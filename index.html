@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas EIDS · Enterprise Intelligence Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
+  <link rel="stylesheet" href="css/light-theme.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="ambient-bg"></div>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-orb"></div>
+    <span>Atlas EIDS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">理念</a></li>
+    <li><a href="#colors">色彩</a></li>
+    <li><a href="#orb">Orb 系统</a></li>
+    <li><a href="#components">组件</a></li>
+    <li><a href="#orb-components">AI 交互</a></li>
+    <li><a href="#enterprise-ui">企业 UI</a></li>
+    <li><a href="#markdown">Markdown</a></li>
+    <li><a href="#examples">代码示例</a></li>
+    <li><a href="#data-charts">数据图表</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle">
+    <span id="themeIcon">🌙</span>
+    <span id="themeText">Dark</span>
+  </button>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-kicker">
+      <span class="hero-kicker-dot"></span>
+      AI Native Design Infrastructure
+    </div>
+    <div class="hero-core">
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring-2"></div>
+      <div class="orb-core"></div>
+    </div>
+    <h1>Atlas EIDS</h1>
+    <p>Enterprise Intelligence Design System<br>为 AI Native 操作系统而生的设计语言</p>
+    <div class="hero-actions" aria-label="Hero actions">
+      <a class="hero-action-primary" href="#orb-components">探索 AI 交互</a>
+      <a class="hero-action-secondary" href="#data-charts">查看数据可视化</a>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy Section -->
+<section id="philosophy">
+  <div class="container">
+    <div class="section-label">01 · Philosophy</div>
+    <h2 class="section-title">Spatial & Alive</h2>
+    <p class="section-desc">
+      摒弃传统 SaaS 的"后台感"与"表格堆砌"。Atlas EIDS 以"空间化工作台"为理念，
+      通过辉光、粒子与呼吸动效，赋予系统"正在苏醒的智能生命体"气质。
+    </p>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <h3>去后台化</h3>
+        <p>减少边框与割裂感，让 AI 成为视觉与交互的绝对中心。</p>
+      </div>
+      <div class="philosophy-card">
+        <h3>信息呼吸感</h3>
+        <p>大量留白与毛玻璃材质，降低认知负载，提供沉浸式思考空间。</p>
+      </div>
+      <div class="philosophy-card">
+        <h3>生命体微交互</h3>
+        <p>流体、呼吸、漂浮、光晕。每一次 Hover 都是与 AI 意识的触碰。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Color System Section -->
+<section id="colors">
+  <div class="container">
+    <div class="section-label">02 · Color System</div>
+    <h2 class="section-title">Atlas Aurora</h2>
+    <p class="section-desc">
+      以"深空紫"为品牌锚点，构建冷静、深邃且充满能量感的极光色彩体系。
+      点击色卡可复制色值。
+    </p>
+
+    <h3 style="font-size: 18px; margin-bottom: 24px; color: var(--text-primary);">Primary & Surfaces</h3>
+    <div class="color-grid" style="margin-bottom: 48px;">
+      <div class="color-card" data-color="#7B61FF">
+        <div class="color-swatch" style="background: #7B61FF;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Atlas Violet</div>
+          <div class="color-hex">#7B61FF</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#4F46E5">
+        <div class="color-swatch" style="background: #4F46E5;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Deep Neural</div>
+          <div class="color-hex">#4F46E5</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#B7A7FF">
+        <div class="color-swatch" style="background: #B7A7FF;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Cognitive Glow</div>
+          <div class="color-hex">#B7A7FF</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#0B0C10">
+        <div class="color-swatch" style="background: #0B0C10; border-bottom: 1px solid #333;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Dark Matter</div>
+          <div class="color-hex">#0B0C10</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 18px; margin-bottom: 24px; color: var(--text-primary);">Functional States</h3>
+    <div class="color-grid">
+      <div class="color-card" data-color="#00C48C">
+        <div class="color-swatch" style="background: #00C48C;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Success</div>
+          <div class="color-hex">#00C48C</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#FFB020">
+        <div class="color-swatch" style="background: #FFB020;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Warning</div>
+          <div class="color-hex">#FFB020</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#FF5A7A">
+        <div class="color-swatch" style="background: #FF5A7A;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Danger</div>
+          <div class="color-hex">#FF5A7A</div>
+        </div>
+      </div>
+      <div class="color-card" data-color="#5B8CFF">
+        <div class="color-swatch" style="background: #5B8CFF;">
+          <div class="copy-hint">点击复制</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Info</div>
+          <div class="color-hex">#5B8CFF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Orb System Section -->
+<section id="orb">
+  <div class="container">
+    <div class="section-label">03 · Core Element</div>
+    <h2 class="section-title">The Agent Orb</h2>
+    <p class="section-desc">
+      Orb 是 Atlas 体系的灵魂。它不是静态的 Icon，而是数字员工的"意识核心"。
+      通过光晕、轨道与呼吸动效，传达 AI 的实时状态。
+    </p>
+
+    <div class="orb-showcase" id="orbShowcase">
+      <!-- Idle -->
+      <div class="orb-demo">
+        <div class="orb-wrapper state-idle">
+          <div class="orb-ring"></div>
+          <div class="orb"></div>
+        </div>
+        <div>
+          <div class="orb-label">Idle</div>
+          <div class="orb-desc">待机 · 微呼吸</div>
+        </div>
+      </div>
+
+      <!-- Thinking -->
+      <div class="orb-demo">
+        <div class="orb-wrapper state-thinking">
+          <div class="orb-ring"></div>
+          <div class="orb"></div>
+        </div>
+        <div>
+          <div class="orb-label">Thinking</div>
+          <div class="orb-desc">推理 · 光晕脉冲</div>
+        </div>
+      </div>
+
+      <!-- Running -->
+      <div class="orb-demo">
+        <div class="orb-wrapper state-running">
+          <div class="orb-ring"></div>
+          <div class="orb"></div>
+        </div>
+        <div>
+          <div class="orb-label">Running</div>
+          <div class="orb-desc">执行 · 轨道旋转</div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="orb-demo">
+        <div class="orb-wrapper state-error">
+          <div class="orb-ring"></div>
+          <div class="orb"></div>
+        </div>
+        <div>
+          <div class="orb-label">Error</div>
+          <div class="orb-desc">异常 · 震动警告</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Demo Controls -->
+    <div class="demo-controls">
+      <h3>交互式演示</h3>
+      <div class="control-group">
+        <div class="control-item">
+          <label>Orb 状态</label>
+          <div style="display: flex; gap: 8px;">
+            <button class="control-btn active" data-state="idle">Idle</button>
+            <button class="control-btn" data-state="thinking">Thinking</button>
+            <button class="control-btn" data-state="running">Running</button>
+            <button class="control-btn" data-state="error">Error</button>
+          </div>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="control-item">
+          <label>动画速度: <span id="speedValue">1x</span></label>
+          <input type="range" class="control-slider" id="animSpeed" min="0.5" max="3" step="0.5" value="1">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Components Section -->
+<section id="components">
+  <div class="container">
+    <div class="section-label">04 · Components</div>
+    <h2 class="section-title">Agent Card & UI</h2>
+    <p class="section-desc">
+      在 AI Native OS 中，Agent Card 取代了传统的 App Icon，成为数字员工的载体。
+    </p>
+
+    <div class="component-grid">
+      <!-- Agent Card -->
+      <div class="agent-card">
+        <div class="card-header">
+          <div class="card-orb"></div>
+          <div class="status-badge">
+            <div class="status-dot"></div>
+            Online
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">法务审查助手</div>
+          <div class="card-subtitle">Legal AI Agent</div>
+          <div class="card-desc">
+            基于 GB/T 9704 规范与 RAG 混合检索，提供合同风险扫描、违约条款提取与合规性自动检测。
+          </div>
+          <div class="card-tags">
+            <span class="tag">Contract</span>
+            <span class="tag">Risk Analysis</span>
+            <span class="tag">OCR</span>
+            <span class="tag">Reasoning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI Components Stack -->
+      <div class="ui-showcase">
+        <!-- Neural Input -->
+        <div class="neural-input">
+          <div class="input-orb"></div>
+          <div class="input-text">
+            <span class="mention">@法务Agent</span>
+            <span class="placeholder">审查这份采购合同的违约条款...</span>
+            <span class="input-cursor"></span>
+          </div>
+        </div>
+
+        <!-- Streaming Block -->
+        <div class="stream-block">
+          <div class="stream-header">
+            <div class="dot"></div>
+            Atlas · 正在生成推理过程
+          </div>
+          <p>
+            正在解析《示例合同.pdf》...<br>
+            <span style="color: var(--text-accent);">已识别 3 处潜在违约风险：</span><br>
+            1. 第 4.2 条违约金上限设定过低...<br>
+            <span style="display:inline-block;width:8px;height:16px;background:var(--atlas-violet);animation:blink 1s infinite;"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Orb AI Interaction Components -->
+<section id="orb-components" style="padding: 80px 0; background: var(--bg-secondary);">
+  <div class="container">
+    <div class="section-label">04 · Components</div>
+    <h2 class="section-title">Orb AI 交互组件</h2>
+    <p class="section-desc">
+      Atlas EIDS 提供完整的 AI 交互组件库，包括对话浮窗、侧边栏对话窗和魔法棒辅助输入等常用交互模式。
+    </p>
+
+    <div class="tabbed-showcase ai-showcase">
+      <div class="showcase-tabs" role="tablist" aria-label="Orb AI components">
+        <button class="showcase-tab active" type="button" role="tab" aria-selected="true" data-tab-target="floating-chat">对话浮窗</button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab-target="sidebar-chat">侧边栏对话</button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab-target="magic-input">魔法棒输入</button>
+      </div>
+
+    <!-- Chat Popup Window -->
+      <div class="showcase-panel active" data-tab-panel="floating-chat">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">小横条对话浮窗</h3>
+    <div style="margin-bottom: 48px;">
+      <div class="chat-popup-demo" style="position: relative; height: 400px; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-subtle);">
+        <!-- Demo Background Content -->
+        <div style="padding: 40px; opacity: 0.3;">
+          <h4 style="margin-bottom: 16px;">页面内容示例</h4>
+          <p>这是页面的主要内容区域...</p>
+        </div>
+
+        <!-- Chat Popup Component -->
+        <div class="chat-popup" style="position: absolute; bottom: 20px; right: 20px; width: 380px; max-height: 500px; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border-subtle); display: flex; flex-direction: column; overflow: hidden;">
+          <!-- Header -->
+          <div class="chat-popup-header" style="padding: 16px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="demo-orb-small" style="width: 32px; height: 32px; position: relative;">
+                <div class="orb-ring" style="position: absolute; inset: 0; border: 2px solid var(--atlas-violet); border-radius: 50%; animation: orb-pulse 2s infinite;"></div>
+                <div class="orb-core" style="position: absolute; inset: 6px; background: var(--atlas-violet); border-radius: 50%;"></div>
+              </div>
+              <div>
+                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Atlas AI 助手</div>
+                <div style="font-size: 12px; color: var(--text-tertiary); display: flex; align-items: center; gap: 4px;">
+                  <span style="display: inline-block; width: 6px; height: 6px; background: #10b981; border-radius: 50%;"></span>
+                  在线
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="icon-btn-sm" title="最小化" onclick="minimizeChatPopup()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </button>
+              <button class="icon-btn-sm" title="关闭" onclick="closeChatPopup()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Messages Area -->
+          <div class="chat-messages" style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; max-height: 300px;">
+            <!-- AI Message -->
+            <div class="message-ai" style="display: flex; gap: 12px; align-items: flex-start;">
+              <div class="message-avatar" style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div class="message-bubble" style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: 12px 16px; max-width: 80%;">
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-primary);">你好！我是 Atlas AI 助手，有什么可以帮助你的吗？</p>
+              </div>
+            </div>
+
+            <!-- User Message -->
+            <div class="message-user" style="display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end;">
+              <div class="message-bubble" style="background: var(--atlas-violet); border-radius: var(--radius-md); padding: 12px 16px; max-width: 80%;">
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: white;">帮我分析一下这份文档的关键点</p>
+              </div>
+              <div class="message-avatar" style="width: 28px; height: 28px; border-radius: 50%; background: var(--atlas-blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- AI Response with Loading -->
+            <div class="message-ai" style="display: flex; gap: 12px; align-items: flex-start;">
+              <div class="message-avatar" style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div class="message-bubble" style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: 12px 16px; max-width: 80%;">
+                <div class="typing-indicator" style="display: flex; gap: 4px; align-items: center;">
+                  <span style="width: 8px; height: 8px; background: var(--text-tertiary); border-radius: 50%; animation: typing 1.4s infinite;"></span>
+                  <span style="width: 8px; height: 8px; background: var(--text-tertiary); border-radius: 50%; animation: typing 1.4s infinite 0.2s;"></span>
+                  <span style="width: 8px; height: 8px; background: var(--text-tertiary); border-radius: 50%; animation: typing 1.4s infinite 0.4s;"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="chat-input-area" style="padding: 16px; border-top: 1px solid var(--border-subtle);">
+            <div style="display: flex; gap: 8px; align-items: flex-end;">
+              <textarea class="chat-input" placeholder="输入消息... (Shift+Enter 换行)" rows="1" style="flex: 1; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-primary); resize: none; font-size: 14px; min-height: 44px; max-height: 120px;" onkeydown="handleChatInput(event)"></textarea>
+              <button class="btn btn-primary" style="padding: 12px 16px; border-radius: var(--radius-md);" onclick="sendChatMessage()" title="发送">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--text-tertiary); text-align: center;">
+              Powered by Atlas EIDS • AI 生成内容仅供参考
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    <!-- Sidebar Chat Window -->
+      <div class="showcase-panel" data-tab-panel="sidebar-chat">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">侧边栏嵌入式对话窗</h3>
+    <div style="margin-bottom: 48px;">
+      <div class="sidebar-chat-demo" style="display: flex; height: 500px; background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); overflow: hidden;">
+        <!-- Main Content Area -->
+        <div style="flex: 1; padding: 40px; opacity: 0.5;">
+          <h4 style="margin-bottom: 16px;">主内容区域</h4>
+          <p>这里是应用的主要内容...</p>
+        </div>
+
+        <!-- Sidebar Chat Panel -->
+        <div class="sidebar-chat-panel" style="width: 380px; border-left: 1px solid var(--border-subtle); display: flex; flex-direction: column; background: var(--bg-secondary);">
+          <!-- Sidebar Header -->
+          <div class="sidebar-header" style="padding: 20px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="demo-orb-medium" style="width: 40px; height: 40px; position: relative;">
+                <div class="orb-ring" style="position: absolute; inset: 0; border: 2px solid var(--atlas-violet); border-radius: 50%; animation: orb-pulse 2s infinite;"></div>
+                <div class="orb-core" style="position: absolute; inset: 8px; background: var(--atlas-violet); border-radius: 50%;"></div>
+              </div>
+              <div>
+                <div style="font-weight: 600; color: var(--text-primary); font-size: 15px;">AI 助手</div>
+                <div style="font-size: 12px; color: var(--text-tertiary);">上下文感知模式</div>
+              </div>
+            </div>
+            <button class="icon-btn-sm" title="设置">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Context Indicator -->
+          <div class="context-indicator" style="padding: 12px 20px; background: rgba(139, 92, 246, 0.1); border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--atlas-violet);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <span>正在查看: 用户手册.pdf (第 3 页)</span>
+          </div>
+
+          <!-- Messages -->
+          <div class="sidebar-messages" style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+            <div class="message-ai" style="display: flex; gap: 12px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="background: var(--card-bg); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 8px;">
+                  <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-primary);">我注意到你正在查看用户手册的第 3 页。需要我帮你解释什么内容吗？</p>
+                </div>
+                <div style="font-size: 11px; color: var(--text-tertiary); padding-left: 4px;">10:23 AM</div>
+              </div>
+            </div>
+
+            <div class="message-user" style="display: flex; justify-content: flex-end;">
+              <div style="max-width: 85%;">
+                <div style="background: var(--atlas-violet); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 4px;">
+                  <p style="margin: 0; font-size: 14px; line-height: 1.6; color: white;">这一节的配置步骤不太清楚，能详细说明一下吗？</p>
+                </div>
+                <div style="font-size: 11px; color: var(--text-tertiary); text-align: right;">10:24 AM</div>
+              </div>
+            </div>
+
+            <!-- Code Block in Message -->
+            <div class="message-ai" style="display: flex; gap: 12px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="background: var(--card-bg); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 8px;">
+                  <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.6; color: var(--text-primary);">当然！这里是一个配置示例：</p>
+                  <div style="background: #1e1e2e; border-radius: var(--radius-sm); padding: 12px; font-family: monospace; font-size: 13px; color: #cdd6f4; overflow-x: auto;">
+                    <div><span style="color: #89b4fa;">const</span> <span style="color: #f9e2af;">config</span> = {</div>
+                    <div style="padding-left: 16px;"><span style="color: #94e2d5;">endpoint</span>: <span style="color: #a6e3a1;">'https://api.example.com'</span>,</div>
+                    <div style="padding-left: 16px;"><span style="color: #94e2d5;">timeout</span>: <span style="color: #fab387;">30000</span></div>
+                    <div>};</div>
+                  </div>
+                  <p style="margin: 12px 0 0 0; font-size: 14px; line-height: 1.6; color: var(--text-primary);">你可以根据实际需求调整这些参数。</p>
+                </div>
+                <div style="font-size: 11px; color: var(--text-tertiary); padding-left: 4px;">10:25 AM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Area with Magic Bar -->
+          <div class="sidebar-input-area" style="padding: 16px; border-top: 1px solid var(--border-subtle);">
+            <!-- Magic Suggestions -->
+            <div class="magic-suggestions" style="margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="magic-chip" style="padding: 6px 12px; border-radius: 16px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--atlas-violet); color: var(--atlas-violet); font-size: 12px; cursor: pointer; transition: all var(--transition-fast);" onmouseover="this.style.background='var(--atlas-violet)'; this.style.color='white'" onmouseout="this.style.background='rgba(139, 92, 246, 0.1)'; this.style.color='var(--atlas-violet)'">
+                ✨ 总结当前页面
+              </button>
+              <button class="magic-chip" style="padding: 6px 12px; border-radius: 16px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--atlas-violet); color: var(--atlas-violet); font-size: 12px; cursor: pointer; transition: all var(--transition-fast);" onmouseover="this.style.background='var(--atlas-violet)'; this.style.color='white'" onmouseout="this.style.background='rgba(139, 92, 246, 0.1)'; this.style.color='var(--atlas-violet)'">
+                ✨ 提取关键点
+              </button>
+              <button class="magic-chip" style="padding: 6px 12px; border-radius: 16px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--atlas-violet); color: var(--atlas-violet); font-size: 12px; cursor: pointer; transition: all var(--transition-fast);" onmouseover="this.style.background='var(--atlas-violet)'; this.style.color='white'" onmouseout="this.style.background='rgba(139, 92, 246, 0.1)'; this.style.color='var(--atlas-violet)'">
+                ✨ 翻译为中文
+              </button>
+            </div>
+            
+            <div style="display: flex; gap: 8px; align-items: flex-end;">
+              <button class="icon-btn-sm" title="附件" style="flex-shrink: 0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                </svg>
+              </button>
+              <textarea class="chat-input" placeholder="输入消息或输入 / 使用命令..." rows="1" style="flex: 1; padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-primary); resize: none; font-size: 14px; min-height: 44px; max-height: 120px;"></textarea>
+              <button class="btn btn-primary" style="padding: 12px 16px; border-radius: var(--radius-md); flex-shrink: 0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    <!-- Magic Wand Component -->
+      <div class="showcase-panel" data-tab-panel="magic-input">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">魔法棒 AI 辅助输入</h3>
+    <div style="margin-bottom: 48px;">
+      <div class="magic-wand-demo" style="background: var(--card-bg); border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--border-subtle);">
+        <!-- Example 1: Basic Magic Wand Input -->
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">基础魔法棒输入框</h4>
+          <div class="magic-input-container" style="position: relative; max-width: 600px;">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <input type="text" class="form-input" placeholder="输入内容或使用魔法棒增强..." style="flex: 1; padding-right: 50px;">
+              <button class="magic-wand-btn" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--transition-fast);" onmouseover="this.style.transform='translateY(-50%) scale(1.1)'; this.style.boxShadow='0 0 20px rgba(139, 92, 246, 0.5)'" onmouseout="this.style.transform='translateY(-50%) scale(1)'; this.style.boxShadow='none'" onclick="toggleMagicSuggestions(this)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- Magic Suggestions Dropdown -->
+            <div class="magic-dropdown" style="position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); display: none; z-index: 100;">
+              <div style="padding: 12px;">
+                <div style="font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; padding: 0 8px;">AI 建议操作</div>
+                <button class="magic-option" style="width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--text-primary); font-size: 14px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all var(--transition-fast);" onmouseover="this.style.background='rgba(139, 92, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <span style="color: var(--atlas-violet);">✨</span>
+                  <span>优化表达方式</span>
+                </button>
+                <button class="magic-option" style="width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--text-primary); font-size: 14px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all var(--transition-fast);" onmouseover="this.style.background='rgba(139, 92, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <span style="color: var(--atlas-violet);">✨</span>
+                  <span>扩展更多内容</span>
+                </button>
+                <button class="magic-option" style="width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--text-primary); font-size: 14px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all var(--transition-fast);" onmouseover="this.style.background='rgba(139, 92, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <span style="color: var(--atlas-violet);">✨</span>
+                  <span>简化并提炼要点</span>
+                </button>
+                <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--border-subtle);">
+                <button class="magic-option" style="width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--text-primary); font-size: 14px; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all var(--transition-fast);" onmouseover="this.style.background='rgba(139, 92, 246, 0.1)'" onmouseout="this.style.background='transparent'">
+                  <span style="color: var(--atlas-violet);">🔍</span>
+                  <span>搜索相关信息</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 2: Textarea with Magic Wand -->
+        <div style="margin-bottom: 32px;">
+          <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">富文本魔法棒</h4>
+          <div class="magic-textarea-container" style="position: relative; max-width: 600px;">
+            <textarea class="form-textarea" rows="4" placeholder="在此输入长文本，点击魔法棒获取智能帮助..." style="padding-bottom: 50px;"></textarea>
+            
+            <!-- Floating Magic Button -->
+            <button class="magic-wand-floating" style="position: absolute; bottom: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--atlas-violet), var(--atlas-purple)); border: 2px solid rgba(255, 255, 255, 0.2); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); transition: all var(--transition-fast);" onmouseover="this.style.transform='scale(1.1) rotate(15deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'" onclick="showMagicMenu(this)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
+              </svg>
+            </button>
+
+            <!-- Magic Menu Popup -->
+            <div class="magic-menu-popup" style="position: absolute; bottom: 60px; right: 12px; width: 280px; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); display: none; z-index: 100;">
+              <div style="padding: 16px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--atlas-violet)">
+                    <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
+                  </svg>
+                  <span style="font-weight: 600; color: var(--text-primary); font-size: 14px;">AI 智能助手</span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                  <button class="magic-action" style="padding: 12px; border-radius: var(--radius-md); background: rgba(139, 92, 246, 0.1); border: 1px solid transparent; color: var(--text-primary); font-size: 13px; cursor: pointer; transition: all var(--transition-fast); text-align: center;" onmouseover="this.style.borderColor='var(--atlas-violet)'; this.style.background='rgba(139, 92, 246, 0.2)'" onmouseout="this.style.borderColor='transparent'; this.style.background='rgba(139, 92, 246, 0.1)'">
+                    <div class="magic-action-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                      </svg>
+                    </div>
+                    <div>续写内容</div>
+                  </button>
+                  <button class="magic-action" style="padding: 12px; border-radius: var(--radius-md); background: rgba(139, 92, 246, 0.1); border: 1px solid transparent; color: var(--text-primary); font-size: 13px; cursor: pointer; transition: all var(--transition-fast); text-align: center;" onmouseover="this.style.borderColor='var(--atlas-violet)'; this.style.background='rgba(139, 92, 246, 0.2)'" onmouseout="this.style.borderColor='transparent'; this.style.background='rgba(139, 92, 246, 0.1)'">
+                    <div class="magic-action-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="8"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+                      </svg>
+                    </div>
+                    <div>提炼要点</div>
+                  </button>
+                  <button class="magic-action" style="padding: 12px; border-radius: var(--radius-md); background: rgba(139, 92, 246, 0.1); border: 1px solid transparent; color: var(--text-primary); font-size: 13px; cursor: pointer; transition: all var(--transition-fast); text-align: center;" onmouseover="this.style.borderColor='var(--atlas-violet)'; this.style.background='rgba(139, 92, 246, 0.2)'" onmouseout="this.style.borderColor='transparent'; this.style.background='rgba(139, 92, 246, 0.1)'">
+                    <div class="magic-action-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"/>
+                      </svg>
+                    </div>
+                    <div>翻译文本</div>
+                  </button>
+                  <button class="magic-action" style="padding: 12px; border-radius: var(--radius-md); background: rgba(139, 92, 246, 0.1); border: 1px solid transparent; color: var(--text-primary); font-size: 13px; cursor: pointer; transition: all var(--transition-fast); text-align: center;" onmouseover="this.style.borderColor='var(--atlas-violet)'; this.style.background='rgba(139, 92, 246, 0.2)'" onmouseout="this.style.borderColor='transparent'; this.style.background='rgba(139, 92, 246, 0.1)'">
+                    <div class="magic-action-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19V5"/>
+                        <path d="M4 19h16"/>
+                        <rect x="7" y="11" width="3" height="5" rx="1"/>
+                        <rect x="12" y="7" width="3" height="9" rx="1"/>
+                        <rect x="17" y="9" width="3" height="7" rx="1"/>
+                      </svg>
+                    </div>
+                    <div>生成图表</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 3: Inline Magic Tooltip -->
+        <div>
+          <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">行内智能提示</h4>
+          <div class="inline-magic-demo" style="max-width: 600px; padding: 20px; background: var(--bg-secondary); border-radius: var(--radius-md); position: relative;">
+            <p style="margin: 0; line-height: 1.8; color: var(--text-primary);">
+              Atlas EIDS 是一个企业级设计系统，
+              <span class="magic-highlight" style="position: relative; display: inline-block; cursor: pointer;" onmouseover="showMagicTooltip(this)" onmouseout="hideMagicTooltip(this)">
+                <span style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2)); padding: 2px 6px; border-radius: 4px; border-bottom: 2px solid var(--atlas-violet);">支持 AI 原生交互</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--atlas-violet)" style="position: absolute; top: -4px; right: -12px;">
+                  <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
+                </svg>
+              </span>
+              的设计规范。
+            </p>
+
+            <!-- Magic Tooltip -->
+            <div class="magic-tooltip" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%) translateY(-100%); background: var(--card-bg); backdrop-filter: blur(20px); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); padding: 12px; display: none; z-index: 100; min-width: 200px;">
+              <div style="font-size: 13px; color: var(--text-primary); margin-bottom: 8px;">
+                <strong>AI 原生交互</strong> 指的是：
+              </div>
+              <ul style="margin: 0; padding-left: 16px; font-size: 12px; color: var(--text-secondary); line-height: 1.8;">
+                <li>自然语言理解与处理</li>
+                <li>上下文感知的智能响应</li>
+                <li>自适应的个性化体验</li>
+              </ul>
+              <button style="margin-top: 8px; padding: 6px 12px; border-radius: var(--radius-sm); background: var(--atlas-violet); border: none; color: white; font-size: 12px; cursor: pointer;">了解更多</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Enterprise UI Components Section -->
+<section id="enterprise-ui">
+  <div class="container">
+    <div class="section-label">05 · Enterprise UI</div>
+    <h2 class="section-title">Business Components</h2>
+    <p class="section-desc">
+      为企业管理应用设计的完整 UI 组件库，涵盖数据展示、表单交互、导航反馈等场景。
+    </p>
+
+    <div class="showcase-index-tabs" aria-label="Business component shortcuts">
+      <a class="showcase-index-tab active" href="#enterprise-controls">基础控件</a>
+      <a class="showcase-index-tab" href="#enterprise-forms">表单输入</a>
+      <a class="showcase-index-tab" href="#enterprise-data">数据展示</a>
+      <a class="showcase-index-tab" href="#enterprise-feedback">反馈状态</a>
+    </div>
+
+    <!-- Buttons -->
+    <h3 id="enterprise-controls" style="font-size: 24px; margin-bottom: 24px;">Buttons</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;">
+      <button class="btn btn-primary">主要按钮</button>
+      <button class="btn btn-secondary">次要按钮</button>
+      <button class="btn btn-ghost">幽灵按钮</button>
+      <button class="btn btn-danger">危险操作</button>
+      <button class="btn btn-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </button>
+      <button class="btn btn-primary" disabled>禁用状态</button>
+    </div>
+
+    <!-- Form Controls -->
+    <h3 id="enterprise-forms" style="font-size: 24px; margin-bottom: 24px;">Form Controls</h3>
+    
+    <!-- Select Variants -->
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">Custom Select Dropdowns</h4>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+      <div class="form-group">
+        <label class="form-label">基础下拉框</label>
+        <div class="custom-select" data-value="">
+          <div class="select-trigger" onclick="toggleSelect(this)">
+            <span class="select-placeholder">请选择...</span>
+            <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="select-dropdown">
+            <div class="select-option" data-value="" onclick="selectOption(this)">请选择...</div>
+            <div class="select-option" data-value="1" onclick="selectOption(this)">选项一</div>
+            <div class="select-option" data-value="2" onclick="selectOption(this)">选项二</div>
+            <div class="select-option" data-value="3" onclick="selectOption(this)">选项三</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">带图标下拉框</label>
+        <div class="custom-select custom-select-icon" data-value="a">
+          <div class="select-trigger" onclick="toggleSelect(this)">
+            <svg class="trigger-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 7h-9M14 17H5M20 12h-9"/>
+            </svg>
+            <span class="select-text">分类 A</span>
+            <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="select-dropdown">
+            <div class="select-option selected" data-value="a" onclick="selectOption(this)">分类 A</div>
+            <div class="select-option" data-value="b" onclick="selectOption(this)">分类 B</div>
+            <div class="select-option" data-value="c" onclick="selectOption(this)">分类 C</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">分组下拉框</label>
+        <div class="custom-select" data-value="react">
+          <div class="select-trigger" onclick="toggleSelect(this)">
+            <span class="select-text">React</span>
+            <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="select-dropdown">
+            <div class="select-group-label">前端技术</div>
+            <div class="select-option selected" data-value="react" onclick="selectOption(this)">React</div>
+            <div class="select-option" data-value="vue" onclick="selectOption(this)">Vue</div>
+            <div class="select-option" data-value="angular" onclick="selectOption(this)">Angular</div>
+            <div class="select-group-label">后端技术</div>
+            <div class="select-option" data-value="node" onclick="selectOption(this)">Node.js</div>
+            <div class="select-option" data-value="python" onclick="selectOption(this)">Python</div>
+            <div class="select-option" data-value="java" onclick="selectOption(this)">Java</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-select Example -->
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">Multi-select Tags</h4>
+    <div class="form-group" style="margin-bottom: 32px;">
+      <label class="form-label">多选标签框</label>
+      <div class="multi-select-tags">
+        <div class="tag-list">
+          <span class="tag-item">
+            已选项目 1
+            <button class="tag-remove" onclick="removeTag(this)" title="移除">×</button>
+          </span>
+          <span class="tag-item">
+            已选项目 2
+            <button class="tag-remove" onclick="removeTag(this)" title="移除">×</button>
+          </span>
+        </div>
+        <div class="custom-select multi-select" data-values='["1","2"]'>
+          <div class="select-trigger" onclick="toggleSelect(this)">
+            <span class="select-placeholder">选择更多项目...</span>
+            <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="select-dropdown">
+            <div class="select-option selected" data-value="1" onclick="toggleMultiSelect(this)">已选项目 1</div>
+            <div class="select-option selected" data-value="2" onclick="toggleMultiSelect(this)">已选项目 2</div>
+            <div class="select-option" data-value="3" onclick="toggleMultiSelect(this)">可选项目 3</div>
+            <div class="select-option" data-value="4" onclick="toggleMultiSelect(this)">可选项目 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Box Variants -->
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">Search Boxes</h4>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+      <div class="form-group">
+        <label class="form-label">基础搜索框</label>
+        <div class="input-with-icon">
+          <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" class="form-input" placeholder="搜索..." style="padding-left: 40px;">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">带清除按钮搜索框</label>
+        <div class="input-with-actions">
+          <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" class="form-input" placeholder="输入关键词搜索..." style="padding-left: 40px; padding-right: 70px;">
+          <button class="input-action-btn clear-btn" title="清除">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <button class="input-action-btn search-btn" title="搜索">搜索</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">高级筛选搜索</label>
+        <div class="search-with-filter">
+          <div class="input-with-icon" style="flex: 1;">
+            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" class="form-input" placeholder="搜索文档、任务..." style="padding-left: 40px;">
+          </div>
+          <button class="filter-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+            </svg>
+            筛选
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Inputs -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px;">
+      <div class="form-group">
+        <label class="form-label">文本输入框</label>
+        <input type="text" class="form-input" placeholder="请输入内容...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">文本域</label>
+        <textarea class="form-textarea" rows="3" placeholder="多行文本输入..."></textarea>
+      </div>
+    </div>
+
+    <!-- Radio Button Variants -->
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">Radio Buttons</h4>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px;">
+      <div>
+        <h5 style="font-size: 14px; margin-bottom: 12px; color: var(--text-tertiary);">经典圆形单选框</h5>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <label class="radio-label">
+            <input type="radio" name="radio-classic" checked>
+            <span class="radio-custom"></span>
+            选项 A（已选中）
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="radio-classic">
+            <span class="radio-custom"></span>
+            选项 B
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="radio-classic" disabled>
+            <span class="radio-custom"></span>
+            选项 C（禁用）
+          </label>
+        </div>
+      </div>
+      <div>
+        <h5 style="font-size: 14px; margin-bottom: 12px; color: var(--text-tertiary);">卡片式单选框</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label class="radio-card">
+            <input type="radio" name="radio-card" checked>
+            <div class="radio-card-content">
+              <div class="radio-card-indicator"></div>
+              <div class="radio-card-text">
+                <strong>标准版</strong>
+                <small>适合个人使用</small>
+              </div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="radio-card">
+            <div class="radio-card-content">
+              <div class="radio-card-indicator"></div>
+              <div class="radio-card-text">
+                <strong>专业版</strong>
+                <small>适合团队协作</small>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div>
+        <h5 style="font-size: 14px; margin-bottom: 12px; color: var(--text-tertiary);">按钮式单选框</h5>
+        <div class="radio-button-group">
+          <label class="radio-button">
+            <input type="radio" name="radio-btn" checked>
+            <span>日视图</span>
+          </label>
+          <label class="radio-button">
+            <input type="radio" name="radio-btn">
+            <span>周视图</span>
+          </label>
+          <label class="radio-button">
+            <input type="radio" name="radio-btn">
+            <span>月视图</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle Switch -->
+    <div style="margin-bottom: 48px;">
+      <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">开关</h4>
+      <div style="display: flex; gap: 24px;">
+        <label class="switch-label">
+          <input type="checkbox" checked>
+          <span class="switch-slider"></span>
+          <span class="switch-text">开启</span>
+        </label>
+        <label class="switch-label">
+          <input type="checkbox">
+          <span class="switch-slider"></span>
+          <span class="switch-text">关闭</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <h3 id="enterprise-data" style="font-size: 24px; margin-bottom: 24px;">Data Table</h3>
+    <div class="table-container" style="margin-bottom: 48px;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox"></th>
+            <th>任务名称</th>
+            <th>负责人</th>
+            <th>状态</th>
+            <th>优先级</th>
+            <th>截止日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" checked></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="table-orb"></div>
+                <span>合同风险审查</span>
+              </div>
+            </td>
+            <td>张律师</td>
+            <td><span class="status-tag status-processing">进行中</span></td>
+            <td><span class="priority-tag priority-high">高</span></td>
+            <td>2026-06-10</td>
+            <td>
+              <div class="table-actions-modern">
+                <button class="icon-btn" title="查看">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+                <button class="icon-btn" title="编辑">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </button>
+                <button class="icon-btn icon-btn-danger" title="删除">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                </button>
+                <div class="dropdown">
+                  <button class="icon-btn dropdown-toggle" title="更多操作">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="1"/>
+                      <circle cx="12" cy="5" r="1"/>
+                      <circle cx="12" cy="19" r="1"/>
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">复制</a>
+                    <a href="#" class="dropdown-item">导出</a>
+                    <a href="#" class="dropdown-item">分享</a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item text-danger">归档</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="table-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+                <span>财务报表生成</span>
+              </div>
+            </td>
+            <td>李会计</td>
+            <td><span class="status-tag status-completed">已完成</span></td>
+            <td><span class="priority-tag priority-medium">中</span></td>
+            <td>2026-06-08</td>
+            <td>
+              <div class="table-actions-modern">
+                <button class="icon-btn" title="查看">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+                <button class="icon-btn" title="下载">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                </button>
+                <button class="icon-btn icon-btn-success" title="审核通过">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="table-orb" style="background: radial-gradient(circle at 30% 30%, #FECDD3, var(--danger) 60%, #BE123C);"></div>
+                <span>异常订单处理</span>
+              </div>
+            </td>
+            <td>王运营</td>
+            <td><span class="status-tag status-pending">待处理</span></td>
+            <td><span class="priority-tag priority-low">低</span></td>
+            <td>2026-06-15</td>
+            <td>
+              <div class="table-actions-modern">
+                <button class="icon-btn" title="查看详情">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </button>
+                <button class="icon-btn icon-btn-warning" title="标记紧急">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </button>
+                <button class="icon-btn" title="分配">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Card Grid -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Agent Cards</h3>
+    
+    <!-- Agent Card Variants -->
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">基础卡片</h4>
+    <div class="card-grid-demo" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+      <div class="demo-card">
+        <div class="demo-card-header">
+          <div class="demo-card-orb"></div>
+          <span class="demo-card-badge">New</span>
+        </div>
+        <h4 class="demo-card-title">智能文档分析</h4>
+        <p class="demo-card-desc">基于 AI 的文档内容提取与结构化分析</p>
+        <div class="demo-card-footer">
+          <span class="demo-card-meta">更新于 2小时前</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-header">
+          <div class="demo-card-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+          <span class="demo-card-badge demo-card-badge-success">Active</span>
+        </div>
+        <h4 class="demo-card-title">数据可视化引擎</h4>
+        <p class="demo-card-desc">自动生成图表与业务洞察报告</p>
+        <div class="demo-card-footer">
+          <span class="demo-card-meta">更新于 5小时前</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-header">
+          <div class="demo-card-orb" style="background: radial-gradient(circle at 30% 30%, #FECDD3, var(--danger) 60%, #BE123C);"></div>
+        </div>
+        <h4 class="demo-card-title">异常检测系统</h4>
+        <p class="demo-card-desc">实时监控业务异常并自动告警</p>
+        <div class="demo-card-footer">
+          <span class="demo-card-meta">更新于 1天前</span>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">带状态指示器</h4>
+    <div class="card-grid-demo" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
+      <div class="agent-card-compact">
+        <div class="agent-card-compact-header">
+          <div class="agent-card-compact-orb"></div>
+          <div class="status-indicator status-online"></div>
+        </div>
+        <h5 class="agent-card-compact-title">法务审查助手</h5>
+        <p class="agent-card-compact-desc">合同风险扫描与合规检测</p>
+        <div class="agent-card-compact-tags">
+          <span class="mini-tag">Legal</span>
+          <span class="mini-tag">OCR</span>
+        </div>
+      </div>
+      <div class="agent-card-compact">
+        <div class="agent-card-compact-header">
+          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+          <div class="status-indicator status-active"></div>
+        </div>
+        <h5 class="agent-card-compact-title">财务分析专家</h5>
+        <p class="agent-card-compact-desc">财务报表生成与趋势预测</p>
+        <div class="agent-card-compact-tags">
+          <span class="mini-tag mini-tag-success">Finance</span>
+          <span class="mini-tag">AI</span>
+        </div>
+      </div>
+      <div class="agent-card-compact">
+        <div class="agent-card-compact-header">
+          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #FFE5B4, var(--warning) 60%, #D97706);"></div>
+          <div class="status-indicator status-busy"></div>
+        </div>
+        <h5 class="agent-card-compact-title">数据分析助手</h5>
+        <p class="agent-card-compact-desc">数据挖掘与可视化报告</p>
+        <div class="agent-card-compact-tags">
+          <span class="mini-tag mini-tag-warning">Analytics</span>
+          <span class="mini-tag">BI</span>
+        </div>
+      </div>
+      <div class="agent-card-compact">
+        <div class="agent-card-compact-header">
+          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #E0E7FF, var(--info) 60%, #2563EB);"></div>
+          <div class="status-indicator status-idle"></div>
+        </div>
+        <h5 class="agent-card-compact-title">客服机器人</h5>
+        <p class="agent-card-compact-desc">7x24小时智能问答服务</p>
+        <div class="agent-card-compact-tags">
+          <span class="mini-tag mini-tag-info">Support</span>
+          <span class="mini-tag">NLP</span>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size: 18px; margin-bottom: 16px; color: var(--text-secondary);">详细卡片（带指标）</h4>
+    <div class="card-grid-demo" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px;">
+      <div class="agent-card-detailed">
+        <div class="detailed-card-header">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="detailed-card-orb"></div>
+            <div>
+              <h5 class="detailed-card-title">代码审查 Agent</h5>
+              <p class="detailed-card-subtitle">Code Review Specialist</p>
+            </div>
+          </div>
+          <div class="performance-badge performance-excellent">优秀</div>
+        </div>
+        <p class="detailed-card-desc">自动检测代码质量问题、安全漏洞和性能瓶颈，提供优化建议。</p>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <span class="metric-label">审查次数</span>
+            <span class="metric-value">1,234</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">问题发现</span>
+            <span class="metric-value metric-warning">89</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">准确率</span>
+            <span class="metric-value metric-success">96.5%</span>
+          </div>
+        </div>
+        <div class="detailed-card-footer">
+          <div class="footer-tags">
+            <span class="footer-tag">Python</span>
+            <span class="footer-tag">JavaScript</span>
+            <span class="footer-tag">Java</span>
+          </div>
+          <button class="btn-compact">查看详情</button>
+        </div>
+      </div>
+      <div class="agent-card-detailed">
+        <div class="detailed-card-header">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="detailed-card-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+            <div>
+              <h5 class="detailed-card-title">市场调研 Agent</h5>
+              <p class="detailed-card-subtitle">Market Research Analyst</p>
+            </div>
+          </div>
+          <div class="performance-badge performance-good">良好</div>
+        </div>
+        <p class="detailed-card-desc">收集行业动态、竞品分析和市场趋势，生成调研报告。</p>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <span class="metric-label">调研项目</span>
+            <span class="metric-value">56</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">数据来源</span>
+            <span class="metric-value">12K+</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">更新频率</span>
+            <span class="metric-value">实时</span>
+          </div>
+        </div>
+        <div class="detailed-card-footer">
+          <div class="footer-tags">
+            <span class="footer-tag">Research</span>
+            <span class="footer-tag">Analysis</span>
+            <span class="footer-tag">Report</span>
+          </div>
+          <button class="btn-compact">开始调研</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- List Component -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">List</h3>
+    <div class="list-container" style="margin-bottom: 48px;">
+      <div class="list-item-modern">
+        <div class="list-item-avatar list-avatar-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+        </div>
+        <div class="list-item-content">
+          <h4 class="list-item-title">Q2 财务报告.pdf</h4>
+          <p class="list-item-desc">文件大小: 2.4 MB · 上传时间: 今天 14:30</p>
+        </div>
+        <div class="list-item-actions-modern">
+          <button class="icon-btn-sm" title="下载">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </button>
+          <button class="icon-btn-sm" title="分享">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+          <button class="icon-btn-sm icon-btn-danger-sm" title="删除">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="list-item-modern">
+        <div class="list-item-avatar list-avatar-success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <div class="list-item-content">
+          <h4 class="list-item-title">产品原型设计.fig</h4>
+          <p class="list-item-desc">文件大小: 15.8 MB · 上传时间: 昨天 18:20</p>
+        </div>
+        <div class="list-item-actions-modern">
+          <button class="icon-btn-sm" title="预览">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+          <button class="icon-btn-sm" title="编辑">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="list-item-modern">
+        <div class="list-item-avatar list-avatar-warning">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="list-item-content">
+          <h4 class="list-item-title">用户反馈汇总</h4>
+          <p class="list-item-desc">共 128 条反馈 · 更新时间: 3天前</p>
+        </div>
+        <div class="list-item-actions-modern">
+          <button class="icon-btn-sm" title="查看详情">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </button>
+          <button class="icon-btn-sm icon-btn-primary-sm" title="标记已读">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <h3 id="enterprise-feedback" style="font-size: 24px; margin-bottom: 24px;">Pagination</h3>
+    <div class="pagination" style="margin-bottom: 48px;">
+      <button class="page-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span class="page-ellipsis">...</span>
+      <button class="page-btn">10</button>
+      <button class="page-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Progress & Loading -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Progress & Loading</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-size: 14px; color: var(--text-secondary);">数据处理进度</span>
+          <span style="font-size: 14px; color: var(--text-accent);">75%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 75%;"></div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 24px;">
+        <div class="loading-spinner"></div>
+        <div class="loading-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Markdown Rendering Section -->
+<section id="markdown">
+  <div class="container">
+    <div class="section-label">06 · Markdown</div>
+    <h2 class="section-title">Markdown Rendering</h2>
+    <p class="section-desc">
+      Atlas EIDS 提供完整的 Markdown 渲染样式规范，支持丰富的内容展示，包括标题、表格、代码块、图表和数学公式等。
+    </p>
+
+    <!-- Headings -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Headings</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <h1 style="font-size: 48px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">一级标题 H1</h1>
+      <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">二级标题 H2</h2>
+      <h3 style="font-size: 28px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">三级标题 H3</h3>
+      <h4 style="font-size: 22px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">四级标题 H4</h4>
+      <h5 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">五级标题 H5</h5>
+      <h6 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--text-secondary);">六级标题 H6</h6>
+    </div>
+
+    <!-- Text Formatting -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Text Formatting</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px; padding: 24px; background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+      <p style="margin-bottom: 12px;"><strong>粗体文本</strong> - 用于强调重要内容</p>
+      <p style="margin-bottom: 12px;"><em>斜体文本</em> - 用于引用或特殊说明</p>
+      <p style="margin-bottom: 12px;"><strong><em>粗斜体文本</em></strong> - 双重强调</p>
+      <p style="margin-bottom: 12px;"><del>删除线文本</del> - 用于标记已废弃的内容</p>
+      <p style="margin-bottom: 12px;"><code>行内代码</code> - 用于显示代码片段或命令</p>
+      <p style="margin-bottom: 0;"><a href="#" style="color: var(--atlas-violet); text-decoration: none;">链接文本</a> - 可点击的超链接</p>
+    </div>
+
+    <!-- Blockquote -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Blockquote</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <blockquote style="border-left: 4px solid var(--atlas-violet); padding: 16px 24px; background: var(--bg-secondary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 0;">
+        <p style="margin: 0; color: var(--text-secondary); font-style: italic;">
+          "设计不仅仅是外观和感觉，设计是关于产品如何工作。" 
+          <br><br>
+          <strong style="color: var(--text-primary); font-style: normal;">— Steve Jobs</strong>
+        </p>
+      </blockquote>
+    </div>
+
+    <!-- Lists -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Lists</h3>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px;">
+      <div class="markdown-preview">
+        <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">无序列表</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="padding: 8px 0; padding-left: 24px; position: relative; color: var(--text-primary);">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet);">•</span>
+            第一项列表内容
+          </li>
+          <li style="padding: 8px 0; padding-left: 24px; position: relative; color: var(--text-primary);">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet);">•</span>
+            第二项列表内容
+            <ul style="list-style: none; padding: 0; margin: 8px 0 0 0;">
+              <li style="padding: 4px 0; padding-left: 24px; position: relative; color: var(--text-secondary);">
+                <span style="position: absolute; left: 0; color: var(--cognitive-glow);">•</span>
+                嵌套列表项
+              </li>
+            </ul>
+          </li>
+          <li style="padding: 8px 0; padding-left: 24px; position: relative; color: var(--text-primary);">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet);">•</span>
+            第三项列表内容
+          </li>
+        </ul>
+      </div>
+      <div class="markdown-preview">
+        <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">有序列表</h4>
+        <ol style="list-style: none; padding: 0; margin: 0; counter-reset: item;">
+          <li style="padding: 8px 0; padding-left: 32px; position: relative; color: var(--text-primary); counter-increment: item;">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet); font-weight: 600;" data-counter="item">1.</span>
+            第一步操作说明
+          </li>
+          <li style="padding: 8px 0; padding-left: 32px; position: relative; color: var(--text-primary); counter-increment: item;">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet); font-weight: 600;">2.</span>
+            第二步操作说明
+          </li>
+          <li style="padding: 8px 0; padding-left: 32px; position: relative; color: var(--text-primary); counter-increment: item;">
+            <span style="position: absolute; left: 0; color: var(--atlas-violet); font-weight: 600;">3.</span>
+            第三步操作说明
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Tables -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Tables</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>功能特性</th>
+              <th>基础版</th>
+              <th>专业版</th>
+              <th>企业版</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>用户数量</strong></td>
+              <td>最多 5 人</td>
+              <td>最多 50 人</td>
+              <td>无限制</td>
+            </tr>
+            <tr>
+              <td><strong>存储空间</strong></td>
+              <td>10 GB</td>
+              <td>100 GB</td>
+              <td>1 TB</td>
+            </tr>
+            <tr>
+              <td><strong>API 调用</strong></td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td><strong>自定义域名</strong></td>
+              <td>✗</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td><strong>优先支持</strong></td>
+              <td></td>
+              <td>✗</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Code Blocks -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Code Blocks</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div style="margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 14px; color: var(--text-secondary);">JavaScript 示例</span>
+          <button class="action-btn" onclick="copyCode('js-code')">复制代码</button>
+        </div>
+        <pre id="js-code" style="background: #1a1b26; border-radius: var(--radius-md); padding: 20px; overflow-x: auto; margin: 0;"><code style="font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #a9b1d6;">// AgentOrb 组件示例
+import { useState } from 'react';
+import AgentOrb from '@atlas-eids/react';
+
+function App() {
+  const [orbState, setOrbState] = useState('idle');
+  
+  return (
+    &lt;div className="orb-container"&gt;
+      &lt;AgentOrb 
+        state={orbState} 
+        size={120}
+        showRing={true}
+      /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+      </div>
+      
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 14px; color: var(--text-secondary);">Python 示例</span>
+          <button class="action-btn" onclick="copyCode('py-code')">复制代码</button>
+        </div>
+        <pre id="py-code" style="background: #1a1b26; border-radius: var(--radius-md); padding: 20px; overflow-x: auto; margin: 0;"><code style="font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: #a9b1d6;"># Atlas EIDS 本地状态示例
+	def get_agent_status(agent_id: str) -> dict:
+	    """返回演示用 Agent 状态，不包含真实服务地址或凭证"""
+	    return {
+	        "agent_id": agent_id,
+	        "state": "thinking",
+	        "label": "正在分析任务上下文"
+	    }</code></pre>
+      </div>
+    </div>
+
+    <!-- Images -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Images</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <div style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%237B61FF' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='sans-serif'%3EAtlas Dashboard%3C/text%3E%3C/svg%3E" alt="Dashboard Screenshot" style="width: 100%; height: auto; display: block;">
+          <div style="padding: 12px; background: var(--bg-secondary);">
+            <p style="margin: 0; font-size: 13px; color: var(--text-secondary); text-align: center;">图 1: Atlas 主界面截图</p>
+          </div>
+        </div>
+        <div style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle);">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%234F46E5' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='sans-serif'%3EOrb Animation%3C/text%3E%3C/svg%3E" alt="Orb Animation" style="width: 100%; height: auto; display: block;">
+          <div style="padding: 12px; background: var(--bg-secondary);">
+            <p style="margin: 0; font-size: 13px; color: var(--text-secondary); text-align: center;">图 2: Orb 动画效果展示</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mermaid Diagrams -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Mermaid Diagrams</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">流程图 (Flowchart)</h4>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; overflow-x: auto;">
+          <pre style="margin: 0; font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary);"><code>graph TD
+    A[用户请求] --> B{AI 路由}
+    B -->|简单查询| C[直接回答]
+    B -->|复杂任务| D[Agent 调度]
+    D --> E[法务审查 Agent]
+    D --> F[财务分析 Agent]
+    D --> G[数据分析 Agent]
+    E --> H[结果汇总]
+    F --> H
+    G --> H
+    H --> I[生成报告]
+    I --> J[返回给用户]</code></pre>
+        </div>
+      </div>
+      
+      <div>
+        <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-secondary);">时序图 (Sequence Diagram)</h4>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; overflow-x: auto;">
+          <pre style="margin: 0; font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary);"><code>sequenceDiagram
+    participant U as 用户
+    participant A as Atlas OS
+    participant O as Orb
+    participant AG as Agent
+    
+    U->>A: 输入问题
+    A->>O: 激活 Orb (Thinking)
+    A->>AG: 调度对应 Agent
+    AG->>AG: 执行任务
+    AG-->>A: 返回结果
+    A->>O: 更新 Orb (Success)
+    A-->>U: 流式输出答案</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Math Formulas -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Math Formulas</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <div style="padding: 24px; background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-secondary);">行内公式</h4>
+          <p style="font-size: 16px; color: var(--text-primary); margin: 0;">
+            爱因斯坦质能方程：<code style="background: var(--bg-secondary); padding: 4px 8px; border-radius: 4px; font-family: 'Times New Roman', serif; font-style: italic;">E = mc²</code>
+          </p>
+          <p style="font-size: 16px; color: var(--text-primary); margin: 12px 0 0 0;">
+            欧拉公式：<code style="background: var(--bg-secondary); padding: 4px 8px; border-radius: 4px; font-family: 'Times New Roman', serif; font-style: italic;">e^(iπ) + 1 = 0</code>
+          </p>
+        </div>
+        
+        <div style="padding: 24px; background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-secondary);">块级公式</h4>
+          <div style="text-align: center; padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+            <p style="font-size: 20px; color: var(--text-primary); margin: 0; font-family: 'Times New Roman', serif; font-style: italic;">
+              <sub>-∞</sub><sup></sup> e<sup>-x²</sup> dx = √π
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 24px; padding: 24px; background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <h4 style="font-size: 14px; margin-bottom: 16px; color: var(--text-secondary);">复杂公式示例</h4>
+        <div style="text-align: center; padding: 20px; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+          <p style="font-size: 18px; color: var(--text-primary); margin: 0; font-family: 'Times New Roman', serif; line-height: 2;">
+            正态分布概率密度函数：<br>
+            <span style="font-size: 24px; font-style: italic;">
+              f(x) = <sup>1</sup>/<sub>σ√(2π)</sub> · e<sup>-(x-μ)²/(2σ²)</sup>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Lists -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Task Lists</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <div style="padding: 24px; background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <h4 style="font-size: 16px; margin-bottom: 16px; color: var(--text-primary);">项目任务清单</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; color: var(--text-secondary);">
+            <input type="checkbox" checked disabled style="width: 18px; height: 18px; accent-color: var(--success);">
+            <span style="text-decoration: line-through;">需求分析与规划</span>
+          </li>
+          <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; color: var(--text-secondary);">
+            <input type="checkbox" checked disabled style="width: 18px; height: 18px; accent-color: var(--success);">
+            <span style="text-decoration: line-through;">设计系统搭建</span>
+          </li>
+          <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; color: var(--text-primary);">
+            <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--atlas-violet);">
+            <span>核心组件开发</span>
+          </li>
+          <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; color: var(--text-primary);">
+            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--atlas-violet);">
+            <span>文档编写</span>
+          </li>
+          <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; color: var(--text-primary);">
+            <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--atlas-violet);">
+            <span>测试与优化</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Horizontal Rule -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">Horizontal Rule</h3>
+    <div class="markdown-preview" style="margin-bottom: 48px;">
+      <p style="color: var(--text-secondary); margin-bottom: 16px;">使用分隔线区分不同内容区块：</p>
+      <p style="color: var(--text-primary);">第一段内容...</p>
+      <hr style="border: none; height: 1px; background: var(--border-subtle); margin: 24px 0;">
+      <p style="color: var(--text-primary);">第二段内容...</p>
+      <hr style="border: none; height: 2px; background: linear-gradient(90deg, transparent, var(--atlas-violet), transparent); margin: 24px 0;">
+      <p style="color: var(--text-primary);">第三段内容（带渐变分隔线）...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Code Examples Section -->
+<section id="examples">
+  <div class="container">
+    <div class="section-label">07 · Code Examples</div>
+    <h2 class="section-title">Implementation</h2>
+    <p class="section-desc">
+      提供 React 和 Vue 3 两个版本的组件实现，满足不同技术栈项目的需求。
+    </p>
+
+    <div class="code-section">
+      <h3 style="font-size: 20px; margin-bottom: 16px;">Agent Orb 组件</h3>
+      <div class="code-tabs">
+        <button class="code-tab active" data-lang="react">React</button>
+        <button class="code-tab" data-lang="vue">Vue 3</button>
+      </div>
+
+      <!-- React Code -->
+      <div class="code-block" data-code="react">
+        <pre><code>// AgentOrb.tsx
+import React from 'react';
+import './AgentOrb.css';
+
+type OrbState = 'idle' | 'thinking' | 'running' | 'error';
+
+interface AgentOrbProps {
+  state?: OrbState;
+  size?: number;
+}
+
+const AgentOrb: React.FC&lt;AgentOrbProps&gt; = ({
+  state = 'idle',
+  size = 80
+}) =&gt; {
+  return (
+    &lt;div className={`orb-wrapper state-${state}`} style={{ width: size, height: size }}&gt;
+      &lt;div className="orb-ring"&gt;&lt;/div&gt;
+      &lt;div className="orb" style={{ width: size * 0.67, height: size * 0.67 }}&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default AgentOrb;</code></pre>
+        <button class="code-copy">复制</button>
+      </div>
+
+      <!-- Vue Code (hidden by default) -->
+      <div class="code-block" data-code="vue" style="display: none;">
+        <pre><code>&lt;!-- AgentOrb.vue --&gt;
+&lt;template&gt;
+  &lt;div :class="['orb-wrapper', `state-${state}`]" :style="{ width: size + 'px', height: size + 'px' }"&gt;
+    &lt;div class="orb-ring"&gt;&lt;/div&gt;
+    &lt;div class="orb" :style="{ width: size * 0.67 + 'px', height: size * 0.67 + 'px' }"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+type OrbState = 'idle' | 'thinking' | 'running' | 'error';
+
+interface Props {
+  state?: OrbState;
+  size?: number;
+}
+
+withDefaults(defineProps&lt;Props&gt;(), {
+  state: 'idle',
+  size: 80
+});
+&lt;/script&gt;</code></pre>
+        <button class="code-copy">复制</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Visualization Charts -->
+<section id="data-charts" style="padding: 80px 0;">
+  <div class="container">
+    <div class="section-label">08 · Data Visualization</div>
+    <h2 class="section-title">数据可视化图表</h2>
+    <p class="section-desc">
+      Atlas EIDS 提供完整的数据可视化图表库，使用纯 CSS/SVG 实现，支持响应式设计和深浅色主题自动适配。
+    </p>
+
+    <div class="tabbed-showcase chart-showcase">
+      <div class="showcase-tabs" role="tablist" aria-label="Data visualization charts">
+        <button class="showcase-tab active" type="button" role="tab" aria-selected="true" data-tab-target="chart-revenue">营收趋势</button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab-target="chart-composition">结构分布</button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" data-tab-target="chart-ops">运营监控</button>
+      </div>
+
+    <!-- Bar Chart -->
+      <div class="showcase-panel active" data-tab-panel="chart-revenue">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">柱状图（Bar Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">月度收入统计</h4>
+            <p style="font-size: 13px; color: var(--text-tertiary);">2026年上半年数据</p>
+          </div>
+          <div style="display: flex; gap: 16px; font-size: 13px;">
+            <span style="color: var(--text-secondary);">
+              <span style="display: inline-block; width: 12px; height: 12px; background: var(--atlas-violet); border-radius: 2px; margin-right: 6px;"></span>
+              总收入
+            </span>
+            <span style="color: var(--text-secondary);">
+              <span style="display: inline-block; width: 12px; height: 12px; background: var(--atlas-blue); border-radius: 2px; margin-right: 6px;"></span>
+              净利润
+            </span>
+          </div>
+        </div>
+        
+        <div class="bar-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 250px; padding: 20px 0; border-bottom: 2px solid var(--border-subtle);">
+          <!-- Jan -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-primary), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 60%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(139, 92, 246, 0.3);" title="¥45,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-secondary), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 40%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(59, 130, 246, 0.3);" title="¥30,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">1月</span>
+          </div>
+          
+          <!-- Feb -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-secondary), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 75%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(168, 85, 247, 0.3);" title="¥56,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-teal), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 55%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(6, 182, 212, 0.3);" title="¥41,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">2月</span>
+          </div>
+          
+          <!-- Mar -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-teal), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 85%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(236, 72, 153, 0.3);" title="¥64,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-mint), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 65%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(16, 185, 129, 0.3);" title="¥49,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">3月</span>
+          </div>
+          
+          <!-- Apr -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-amber), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 70%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(249, 115, 22, 0.3);" title="¥52,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-amber), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 50%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(234, 179, 8, 0.3);" title="¥38,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">4月</span>
+          </div>
+          
+          <!-- May -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-rose), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 90%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(239, 68, 68, 0.3);" title="¥68,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-teal), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 70%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(20, 184, 166, 0.3);" title="¥53,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">5月</span>
+          </div>
+          
+          <!-- Jun -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;">
+            <div style="display: flex; gap: 4px; align-items: flex-end; height: 100%;">
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-primary), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 95%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(139, 92, 246, 0.3);" title="¥72,000"></div>
+              <div style="width: 28px; background: linear-gradient(to top, var(--chart-secondary), var(--cognitive-glow)); border-radius: 6px 6px 0 0; height: 75%; transition: all var(--transition-fast); box-shadow: 0 -2px 8px rgba(59, 130, 246, 0.3);" title="¥56,000"></div>
+            </div>
+            <span style="font-size: 12px; color: var(--text-tertiary);">6月</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line Chart -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">折线图（Line Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">用户增长趋势</h4>
+            <p style="font-size: 13px; color: var(--text-tertiary);">过去 7 天数据</p>
+          </div>
+          <div style="font-size: 13px; color: var(--atlas-green);">↑ 23.5% 增长率</div>
+        </div>
+        
+        <div class="line-chart" style="position: relative; height: 250px; padding: 20px 0;">
+          <svg width="100%" height="100%" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
+            <!-- Grid Lines -->
+            <line x1="0" y1="50" x2="800" y2="50" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="0" y1="100" x2="800" y2="100" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="0" y1="150" x2="800" y2="150" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="0" y1="200" x2="800" y2="200" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            
+            <!-- Area Fill with Gradient -->
+            <defs>
+              <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--chart-primary)" stop-opacity="0.4"/>
+                <stop offset="50%" stop-color="#A78BFA" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="var(--cognitive-glow)" stop-opacity="0.05"/>
+              </linearGradient>
+              <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="var(--chart-primary)"/>
+                <stop offset="50%" stop-color="var(--chart-secondary)"/>
+                <stop offset="100%" stop-color="var(--chart-teal)"/>
+              </linearGradient>
+            </defs>
+            <path d="M 0,200 L 0,180 C 57,160 114,140 171,120 C 228,100 285,90 342,80 C 399,70 456,85 513,95 C 570,105 627,70 684,50 C 741,30 770,25 800,20 L 800,200 Z" fill="url(#areaGradient)"/>
+            
+            <!-- Line with Gradient -->
+            <path d="M 0,180 C 57,160 114,140 171,120 C 228,100 285,90 342,80 C 399,70 456,85 513,95 C 570,105 627,70 684,50 C 741,30 770,25 800,20" 
+                  fill="none" 
+                  stroke="url(#lineGradient)"
+                  stroke-width="3.5" 
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));"/>
+            
+            <!-- Data Points with Glow -->
+            <circle cx="0" cy="180" r="7" fill="white" stroke="var(--chart-primary)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6));"/>
+            <circle cx="114" cy="140" r="7" fill="white" stroke="var(--chart-secondary)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.6));"/>
+            <circle cx="228" cy="100" r="7" fill="white" stroke="var(--chart-teal)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.6));"/>
+            <circle cx="342" cy="80" r="7" fill="white" stroke="var(--chart-amber)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.6));"/>
+            <circle cx="456" cy="85" r="7" fill="white" stroke="var(--chart-amber)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.6));"/>
+            <circle cx="570" cy="105" r="7" fill="white" stroke="var(--chart-mint)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));"/>
+            <circle cx="684" cy="50" r="7" fill="white" stroke="var(--chart-teal)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.6));"/>
+            <circle cx="800" cy="20" r="7" fill="white" stroke="var(--chart-secondary)" stroke-width="3" style="filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.6));"/>
+          </svg>
+          
+          <!-- X-Axis Labels -->
+          <div style="display: flex; justify-content: space-between; margin-top: 12px; padding: 0 10px;">
+            <span style="font-size: 12px; color: var(--text-tertiary);">周一</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周二</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周三</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周四</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周五</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周六</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">周日</span>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    <!-- Pie/Donut Chart -->
+      <div class="showcase-panel" data-tab-panel="chart-composition">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">环形图（Donut Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <!-- Traffic Sources -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+          <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 24px;">流量来源分布</h4>
+          
+          <div style="display: flex; align-items: center; gap: 32px;">
+            <!-- Donut Chart SVG -->
+            <div style="position: relative; width: 200px; height: 200px; flex-shrink: 0;">
+              <svg width="200" height="200" viewBox="0 0 200 200">
+                <!-- Background Circle -->
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--border-subtle)" stroke-width="24" opacity="0.3"/>
+                
+                <!-- Direct (35%) - Circumference = 2*PI*80 ≈ 503 -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient1)" 
+                        stroke-width="24"
+                        stroke-dasharray="176 327"
+                        stroke-dashoffset="0"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Organic (30%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient2)" 
+                        stroke-width="24"
+                        stroke-dasharray="151 352"
+                        stroke-dashoffset="-176"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Referral (25%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient3)" 
+                        stroke-width="24"
+                        stroke-dasharray="126 377"
+                        stroke-dashoffset="-327"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Social (10%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient4)" 
+                        stroke-width="24"
+                        stroke-dasharray="50 453"
+                        stroke-dashoffset="-453"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-primary)"/>
+                    <stop offset="100%" stop-color="#A78BFA"/>
+                  </linearGradient>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-secondary)"/>
+                    <stop offset="100%" stop-color="var(--cognitive-glow)"/>
+                  </linearGradient>
+                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-mint)"/>
+                    <stop offset="100%" stop-color="var(--cognitive-glow)"/>
+                  </linearGradient>
+                  <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-amber)"/>
+                    <stop offset="100%" stop-color="#FB923C"/>
+                  </linearGradient>
+                </defs>
+                
+                <!-- Center Text -->
+                <text x="100" y="95" text-anchor="middle" fill="var(--text-primary)" font-size="28" font-weight="700">12.5K</text>
+                <text x="100" y="115" text-anchor="middle" fill="var(--text-tertiary)" font-size="13">总访问量</text>
+              </svg>
+            </div>
+            
+            <!-- Legend -->
+            <div style="flex: 1;">
+              <div style="margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-violet); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">直接访问</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">35%</span>
+                </div>
+              </div>
+              <div style="margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-blue); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">搜索引擎</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">30%</span>
+                </div>
+              </div>
+              <div style="margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-green); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">引荐流量</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">25%</span>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-orange); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">社交媒体</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">10%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Device Distribution -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+          <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 24px;">设备类型分布</h4>
+          
+          <div style="display: flex; align-items: center; gap: 32px;">
+            <!-- Donut Chart SVG -->
+            <div style="position: relative; width: 200px; height: 200px; flex-shrink: 0;">
+              <svg width="200" height="200" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--border-subtle)" stroke-width="24" opacity="0.3"/>
+                
+                <!-- Mobile (55%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient5)" 
+                        stroke-width="24"
+                        stroke-dasharray="276 227"
+                        stroke-dashoffset="0"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Desktop (35%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient6)" 
+                        stroke-width="24"
+                        stroke-dasharray="176 327"
+                        stroke-dashoffset="-276"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Tablet (10%) -->
+                <circle cx="100" cy="100" r="80" 
+                        fill="none" 
+                        stroke="url(#gradient7)" 
+                        stroke-width="24"
+                        stroke-dasharray="50 453"
+                        stroke-dashoffset="-452"
+                        stroke-linecap="round"
+                        transform="rotate(-90 100 100)"/>
+                
+                <!-- Gradients -->
+                <defs>
+                  <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-secondary)"/>
+                    <stop offset="100%" stop-color="#C084FC"/>
+                  </linearGradient>
+                  <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-teal)"/>
+                    <stop offset="100%" stop-color="#22D3EE"/>
+                  </linearGradient>
+                  <linearGradient id="gradient7" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--chart-teal)"/>
+                    <stop offset="100%" stop-color="#F472B6"/>
+                  </linearGradient>
+                </defs>
+                
+                <text x="100" y="95" text-anchor="middle" fill="var(--text-primary)" font-size="28" font-weight="700">8.2K</text>
+                <text x="100" y="115" text-anchor="middle" fill="var(--text-tertiary)" font-size="13">设备总数</text>
+              </svg>
+            </div>
+            
+            <!-- Legend -->
+            <div style="flex: 1;">
+              <div style="margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-purple); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">移动端</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">55%</span>
+                </div>
+              </div>
+              <div style="margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-cyan); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">桌面端</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">35%</span>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="width: 12px; height: 12px; background: var(--atlas-pink); border-radius: 2px;"></span>
+                  <span style="font-size: 13px; color: var(--text-secondary);">平板</span>
+                  <span style="margin-left: auto; font-size: 13px; color: var(--text-primary); font-weight: 600;">10%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Bar Chart -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">横向柱状图（Horizontal Bar Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">产品销量排行</h4>
+            <p style="font-size: 13px; color: var(--text-tertiary);">Top 5 畅销产品</p>
+          </div>
+        </div>
+        
+        <div class="horizontal-bar-chart">
+          <!-- Product 1 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: var(--text-primary);">智能文档分析器</span>
+              <span style="color: var(--text-secondary); font-weight: 600;">2,450 件</span>
+            </div>
+            <div style="height: 32px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+              <div style="height: 100%; width: 85%; background: linear-gradient(to right, var(--atlas-violet), rgba(139, 92, 246, 0.6)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 600; transition: width 1s ease;">85%</div>
+            </div>
+          </div>
+          
+          <!-- Product 2 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: var(--text-primary);">AI 助手插件</span>
+              <span style="color: var(--text-secondary); font-weight: 600;">1,980 件</span>
+            </div>
+            <div style="height: 32px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+              <div style="height: 100%; width: 72%; background: linear-gradient(to right, var(--atlas-blue), rgba(59, 130, 246, 0.6)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 600; transition: width 1s ease;">72%</div>
+            </div>
+          </div>
+          
+          <!-- Product 3 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: var(--text-primary);">数据可视化工具</span>
+              <span style="color: var(--text-secondary); font-weight: 600;">1,650 件</span>
+            </div>
+            <div style="height: 32px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+              <div style="height: 100%; width: 60%; background: linear-gradient(to right, var(--atlas-green), rgba(16, 185, 129, 0.6)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 600; transition: width 1s ease;">60%</div>
+            </div>
+          </div>
+          
+          <!-- Product 4 -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: var(--text-primary);">自动化工作流</span>
+              <span style="color: var(--text-secondary); font-weight: 600;">1,320 件</span>
+            </div>
+            <div style="height: 32px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+              <div style="height: 100%; width: 48%; background: linear-gradient(to right, var(--atlas-orange), rgba(249, 115, 22, 0.6)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 600; transition: width 1s ease;">48%</div>
+            </div>
+          </div>
+          
+          <!-- Product 5 -->
+          <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;">
+              <span style="color: var(--text-primary);">团队协作平台</span>
+              <span style="color: var(--text-secondary); font-weight: 600;">980 件</span>
+            </div>
+            <div style="height: 32px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden;">
+              <div style="height: 100%; width: 35%; background: linear-gradient(to right, var(--atlas-pink), rgba(236, 72, 153, 0.6)); border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 12px; font-weight: 600; transition: width 1s ease;">35%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+    <!-- Area Chart -->
+      <div class="showcase-panel" data-tab-panel="chart-ops">
+    <h3 style="font-size: 24px; margin-bottom: 24px;">面积图（Area Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">系统负载监控</h4>
+            <p style="font-size: 13px; color: var(--text-tertiary);">24 小时 CPU 使用率</p>
+          </div>
+          <div style="display: flex; gap: 16px; font-size: 13px;">
+            <span style="color: var(--text-secondary);">
+              <span style="display: inline-block; width: 12px; height: 12px; background: var(--atlas-violet); border-radius: 2px; margin-right: 6px;"></span>
+              生产环境
+            </span>
+            <span style="color: var(--text-secondary);">
+              <span style="display: inline-block; width: 12px; height: 12px; background: var(--atlas-green); border-radius: 2px; margin-right: 6px;"></span>
+              测试环境
+            </span>
+          </div>
+        </div>
+        
+        <div class="area-chart" style="position: relative; height: 250px;">
+          <svg width="100%" height="100%" viewBox="0 0 800 250" preserveAspectRatio="xMidYMid meet">
+            <!-- Grid -->
+            <line x1="0" y1="62.5" x2="800" y2="62.5" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="0" y1="125" x2="800" y2="125" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="0" y1="187.5" x2="800" y2="187.5" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+            
+            <!-- Production Area -->
+            <defs>
+              <linearGradient id="prodGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--atlas-violet)" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="var(--atlas-violet)" stop-opacity="0.05"/>
+              </linearGradient>
+              <linearGradient id="testGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--atlas-green)" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="var(--atlas-green)" stop-opacity="0.05"/>
+              </linearGradient>
+            </defs>
+            
+            <!-- Production -->
+            <path d="M 0,200 C 100,180 200,150 300,120 C 400,90 500,100 600,80 C 700,60 750,70 800,60 L 800,250 L 0,250 Z" 
+                  fill="url(#prodGradient)"/>
+            <path d="M 0,200 C 100,180 200,150 300,120 C 400,90 500,100 600,80 C 700,60 750,70 800,60" 
+                  fill="none" stroke="var(--atlas-violet)" stroke-width="2.5" stroke-linecap="round"/>
+            
+            <!-- Test -->
+            <path d="M 0,220 C 100,210 200,200 300,190 C 400,180 500,185 600,175 C 700,165 750,170 800,160 L 800,250 L 0,250 Z" 
+                  fill="url(#testGradient)"/>
+            <path d="M 0,220 C 100,210 200,200 300,190 C 400,180 500,185 600,175 C 700,165 750,170 800,160" 
+                  fill="none" stroke="var(--atlas-green)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          
+          <!-- Time Labels -->
+          <div style="display: flex; justify-content: space-between; margin-top: 12px; padding: 0 10px;">
+            <span style="font-size: 12px; color: var(--text-tertiary);">00:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">04:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">08:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">12:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">16:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">20:00</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">24:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radar Chart -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">雷达图（Radar Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">能力评估矩阵</h4>
+          <p style="font-size: 13px; color: var(--text-tertiary);">多维度性能指标对比</p>
+        </div>
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 48px;">
+          <div style="position: relative; width: 300px; height: 300px;">
+            <svg width="300" height="300" viewBox="0 0 300 300">
+              <!-- Background Grid -->
+              <polygon points="150,30 270,105 270,195 150,270 30,195 30,105" 
+                       fill="none" stroke="var(--border-subtle)" stroke-width="1"/>
+              <polygon points="150,60 240,112.5 240,187.5 150,240 60,187.5 60,112.5" 
+                       fill="none" stroke="var(--border-subtle)" stroke-width="1"/>
+              <polygon points="150,90 210,120 210,180 150,210 90,180 90,120" 
+                       fill="none" stroke="var(--border-subtle)" stroke-width="1"/>
+              <polygon points="150,120 180,127.5 180,172.5 150,180 120,172.5 120,127.5" 
+                       fill="none" stroke="var(--border-subtle)" stroke-width="1"/>
+              
+              <!-- Axis Lines -->
+              <line x1="150" y1="150" x2="150" y2="30" stroke="var(--border-subtle)" stroke-width="1"/>
+              <line x1="150" y1="150" x2="270" y2="105" stroke="var(--border-subtle)" stroke-width="1"/>
+              <line x1="150" y1="150" x2="270" y2="195" stroke="var(--border-subtle)" stroke-width="1"/>
+              <line x1="150" y1="150" x2="150" y2="270" stroke="var(--border-subtle)" stroke-width="1"/>
+              <line x1="150" y1="150" x2="30" y2="195" stroke="var(--border-subtle)" stroke-width="1"/>
+              <line x1="150" y1="150" x2="30" y2="105" stroke="var(--border-subtle)" stroke-width="1"/>
+              
+              <!-- Data Polygon -->
+              <polygon points="150,45 240,112.5 225,180 150,225 75,165 90,105" 
+                       fill="rgba(139, 92, 246, 0.2)" 
+                       stroke="var(--atlas-violet)" 
+                       stroke-width="2.5"
+                       stroke-linejoin="round"/>
+              
+              <!-- Data Points -->
+              <circle cx="150" cy="45" r="5" fill="var(--atlas-violet)"/>
+              <circle cx="240" cy="112.5" r="5" fill="var(--atlas-violet)"/>
+              <circle cx="225" cy="180" r="5" fill="var(--atlas-violet)"/>
+              <circle cx="150" cy="225" r="5" fill="var(--atlas-violet)"/>
+              <circle cx="75" cy="165" r="5" fill="var(--atlas-violet)"/>
+              <circle cx="90" cy="105" r="5" fill="var(--atlas-violet)"/>
+              
+              <!-- Labels -->
+              <text x="150" y="20" text-anchor="middle" fill="var(--text-secondary)" font-size="12">性能</text>
+              <text x="285" y="100" text-anchor="start" fill="var(--text-secondary)" font-size="12">可用性</text>
+              <text x="285" y="205" text-anchor="start" fill="var(--text-secondary)" font-size="12">安全性</text>
+              <text x="150" y="290" text-anchor="middle" fill="var(--text-secondary)" font-size="12">扩展性</text>
+              <text x="15" y="205" text-anchor="end" fill="var(--text-secondary)" font-size="12">稳定性</text>
+              <text x="15" y="100" text-anchor="end" fill="var(--text-secondary)" font-size="12">可维护性</text>
+            </svg>
+          </div>
+          
+          <!-- Legend -->
+          <div>
+            <div style="margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="width: 12px; height: 12px; background: var(--atlas-violet); border-radius: 50%;"></span>
+                <span style="font-size: 13px; color: var(--text-secondary);">当前版本</span>
+              </div>
+            </div>
+            <div style="font-size: 13px; color: var(--text-tertiary); line-height: 1.8;">
+              <div>• 性能评分: 92/100</div>
+              <div>• 可用性: 88/100</div>
+              <div>• 安全性: 85/100</div>
+              <div>• 扩展性: 90/100</div>
+              <div>• 稳定性: 87/100</div>
+              <div>• 可维护性: 83/100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Combination Chart Example -->
+    <h3 style="font-size: 24px; margin-bottom: 24px;">组合图表示例（Combination Chart）</h3>
+    <div style="margin-bottom: 48px;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h4 style="font-size: 16px; color: var(--text-primary); margin-bottom: 4px;">销售数据分析</h4>
+            <p style="font-size: 13px; color: var(--text-tertiary);">销售额与增长率对比</p>
+          </div>
+        </div>
+        
+        <div class="combo-chart" style="position: relative; height: 280px;">
+          <svg width="100%" height="100%" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid meet">
+            <!-- Bars for Revenue -->
+            <rect x="50" y="120" width="60" height="140" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="150" y="100" width="60" height="160" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="250" y="80" width="60" height="180" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="350" y="90" width="60" height="170" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="450" y="60" width="60" height="200" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="550" y="50" width="60" height="210" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            <rect x="650" y="40" width="60" height="220" fill="var(--atlas-violet)" opacity="0.7" rx="4"/>
+            
+            <!-- Line for Growth Rate -->
+            <path d="M 80,200 C 180,180 280,150 380,140 C 480,130 580,100 680,80" 
+                  fill="none" stroke="var(--atlas-green)" stroke-width="3" stroke-linecap="round"/>
+            
+            <!-- Points on Line -->
+            <circle cx="80" cy="200" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="180" cy="180" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="280" cy="150" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="380" cy="140" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="480" cy="130" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="580" cy="100" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+            <circle cx="680" cy="80" r="5" fill="var(--atlas-green)" stroke="white" stroke-width="2"/>
+          </svg>
+          
+          <!-- X-Axis Labels -->
+          <div style="display: flex; justify-content: space-around; margin-top: 12px; padding: 0 50px;">
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q1</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q2</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q3</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q4</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q5</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q6</span>
+            <span style="font-size: 12px; color: var(--text-tertiary);">Q7</span>
+          </div>
+        </div>
+        
+        <!-- Legend -->
+        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 24px;">
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+            <span style="width: 16px; height: 16px; background: var(--atlas-violet); opacity: 0.7; border-radius: 3px;"></span>
+            销售额（万元）
+          </span>
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary);">
+            <span style="width: 16px; height: 3px; background: var(--atlas-green); border-radius: 2px;"></span>
+            增长率（%）
+          </span>
+        </div>
+      </div>
+    </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<section class="footer">
+  <div class="container">
+    <div class="footer-orb"></div>
+    <h3>Atlas Intelligence</h3>
+    <p>
+      Enterprise AI Native Operating System<br>
+      © 2026 Atlas EIDS. All rights reserved.
+    </p>
+  </div>
+</section>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<script src="js/theme-switcher.js"></script>
+<script src="js/orb-demo.js"></script>
+<script src="js/code-highlight.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

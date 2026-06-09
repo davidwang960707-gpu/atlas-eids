@@ -1,0 +1,63 @@
+/* ═══════════════════════════════════════════
+   ATLAS EIDS - DARK THEME
+   ═══════════════════════════════════════════ */
+
+[data-theme="dark"] {
+  /* Surfaces */
+  --bg-primary: #0B0C10;
+  --bg-secondary: rgba(255, 255, 255, 0.03);
+  --bg-tertiary: rgba(255, 255, 255, 0.06);
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(123, 97, 255, 0.4);
+
+  /* Text Colors */
+  --text-primary: #F7F7FA;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #888888;
+  --text-accent: var(--cognitive-glow);
+
+  /* Effects */
+  --blur-glass: blur(24px);
+  --shadow-glow: 0 0 60px rgba(123, 97, 255, 0.15);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Ambient Background */
+  --ambient-gradient-1: radial-gradient(circle at 20% 20%, rgba(123, 97, 255, 0.08) 0%, transparent 40%);
+  --ambient-gradient-2: radial-gradient(circle at 80% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 40%);
+
+  /* Orb Styles */
+  --orb-gradient: radial-gradient(circle at 30% 30%, #E7DEFF, var(--atlas-violet) 55%, var(--deep-neural));
+  --orb-shadow-idle: 0 0 30px rgba(123, 97, 255, 0.3);
+  --orb-shadow-thinking: 0 0 60px rgba(123, 97, 255, 0.6);
+  --orb-shadow-running: 0 0 40px rgba(0, 196, 140, 0.4);
+  --orb-shadow-error: 0 0 40px rgba(255, 90, 122, 0.4);
+
+  /* Card Styles */
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-hover-border: rgba(123, 97, 255, 0.4);
+  --card-hover-shadow: 0 0 60px rgba(123, 97, 255, 0.15);
+
+  /* Input Styles */
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --input-focus-border: var(--atlas-violet);
+  --input-focus-shadow: 0 0 30px rgba(123, 97, 255, 0.1);
+
+  /* Tag Styles */
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --tag-border: rgba(255, 255, 255, 0.08);
+  --tag-color: #cccccc;
+
+  /* Status Badge */
+  --status-success-bg: rgba(0, 196, 140, 0.1);
+  --status-success-border: rgba(0, 196, 140, 0.2);
+  --status-success-color: var(--success);
+
+  /* Stream Block */
+  --stream-bg: rgba(123, 97, 255, 0.03);
+  --stream-border: var(--atlas-violet);
+  --stream-color: #cccccc;
+}

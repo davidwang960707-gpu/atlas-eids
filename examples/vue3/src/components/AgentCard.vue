@@ -1,0 +1,235 @@
+<template>
+  <div class="agent-card">
+    <div class="card-header">
+      <div class="card-orb"></div>
+      <div v-if="status" :class="['status-badge', `status-${status}`]">
+        <div class="status-dot"></div>
+        {{ statusText }}
+      </div>
+    </div>
+    <div class="card-content">
+      <h3 class="card-title">{{ title }}</h3>
+      <div v-if="subtitle" class="card-subtitle">{{ subtitle }}</div>
+      <p class="card-desc">{{ description }}</p>
+      <div v-if="tags.length > 0" class="card-tags">
+        <span v-for="(tag, index) in tags" :key="index" class="tag">{{ tag }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  tags?: string[];
+  status?: 'online' | 'offline' | 'busy';
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  subtitle: '',
+  tags: () => [],
+  status: 'online'
+});
+
+const statusText = computed(() => {
+  return props.status.charAt(0).toUpperCase() + props.status.slice(1);
+});
+</script>
+
+<style scoped>
+.agent-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border: 1px solid rgba(183, 167, 255, 0.16);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at 12% 0%, rgba(183, 167, 255, 0.18), transparent 38%),
+    var(--card-bg);
+  backdrop-filter: var(--blur-glass);
+  box-shadow:
+    0 24px 70px rgba(7, 8, 22, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.08), transparent 46%),
+    radial-gradient(circle at 80% 10%, rgba(0, 184, 169, 0.12), transparent 30%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.agent-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(123, 97, 255, 0.42);
+  box-shadow:
+    0 30px 90px rgba(91, 70, 229, 0.2),
+    0 0 0 6px rgba(123, 97, 255, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.agent-card:hover::before {
+  opacity: 1;
+}
+
+.card-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card-orb {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 48% 52% 50% 50% / 50% 46% 54% 50%;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.96) 0 10%, transparent 28%),
+    conic-gradient(from 236deg at 52% 52%, rgba(255, 255, 255, 0.36), rgba(183, 167, 255, 0.42), rgba(79, 70, 229, 0.34), rgba(255, 255, 255, 0.2)),
+    linear-gradient(135deg, #A898FF 0%, var(--atlas-violet) 46%, var(--deep-neural) 100%);
+  box-shadow:
+    0 12px 36px rgba(123, 97, 255, 0.34),
+    inset 9px 9px 16px rgba(255, 255, 255, 0.26),
+    inset -14px -16px 28px rgba(21, 17, 65, 0.48);
+  animation: cardOrbBreathe 5.6s ease-in-out infinite, cardOrbShape 9s ease-in-out infinite;
+}
+
+.card-orb::after {
+  content: '';
+  position: absolute;
+  inset: -26%;
+  border-radius: 42% 58% 64% 36% / 44% 38% 62% 56%;
+  background:
+    radial-gradient(ellipse at 44% 48%, rgba(255, 255, 255, 0.38), transparent 28%),
+    radial-gradient(ellipse at 64% 64%, rgba(183, 167, 255, 0.46), transparent 40%),
+    conic-gradient(from 148deg, rgba(255, 255, 255, 0.12), rgba(183, 167, 255, 0.42), rgba(79, 70, 229, 0.18), rgba(255, 255, 255, 0.22));
+  mix-blend-mode: screen;
+  filter: blur(2.6px) saturate(1.16);
+  animation: cardOrbFlow 6.8s ease-in-out infinite;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 7px 12px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 650;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.status-online {
+  color: var(--success);
+  background: rgba(0, 196, 140, 0.1);
+  border-color: rgba(0, 196, 140, 0.22);
+}
+
+.status-offline {
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.status-busy {
+  color: var(--warning);
+  background: rgba(255, 176, 32, 0.1);
+  border-color: rgba(255, 176, 32, 0.24);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  animation: statusPulse 2s infinite;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-title {
+  margin: 0 0 4px;
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.card-subtitle {
+  margin-bottom: 16px;
+  color: var(--text-accent);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13px;
+}
+
+.card-desc {
+  margin: 0 0 24px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 11px;
+  border: 1px solid rgba(183, 167, 255, 0.16);
+  border-radius: var(--radius-full);
+  background: rgba(123, 97, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 550;
+}
+
+@keyframes cardOrbBreathe {
+  0%, 100% { transform: scale(0.98); filter: brightness(1) saturate(1.06); }
+  50% { transform: scale(1.05); filter: brightness(1.12) saturate(1.16); }
+}
+
+@keyframes cardOrbShape {
+  0%, 100% { border-radius: 48% 52% 50% 50% / 50% 46% 54% 50%; }
+  38% { border-radius: 56% 44% 47% 53% / 43% 58% 42% 57%; }
+  74% { border-radius: 42% 58% 60% 40% / 57% 43% 52% 48%; }
+}
+
+@keyframes cardOrbFlow {
+  0%, 100% { transform: translate3d(-6%, 4%, 0) rotate(-18deg) scale(1.04); }
+  50% { transform: translate3d(8%, -6%, 0) rotate(46deg) scale(1.14); }
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.52; transform: scale(0.78); }
+}
+</style>

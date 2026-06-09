@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas EIDS · 启动器</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/light-theme.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-en);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        linear-gradient(rgba(109, 93, 248, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(109, 93, 248, 0.055) 1px, transparent 1px),
+        radial-gradient(circle at 12% 8%, rgba(183, 167, 255, 0.38), transparent 31%),
+        radial-gradient(circle at 82% 20%, rgba(123, 97, 255, 0.08), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(247, 247, 250, 0.9)),
+        var(--bg-primary);
+      background-size: 96px 96px, 96px 96px, auto, auto, auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0 28px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 52px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 48% 52% 50% 50% / 50% 46% 54% 50%;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.98) 0 12%, transparent 30%),
+        conic-gradient(from 236deg at 52% 52%, rgba(255, 255, 255, 0.38), rgba(207, 193, 255, 0.5), rgba(123, 97, 255, 0.3), rgba(79, 70, 229, 0.28), rgba(255, 255, 255, 0.24)),
+        linear-gradient(135deg, #A898FF 0%, var(--atlas-violet) 46%, var(--deep-neural) 100%);
+      box-shadow:
+        0 12px 34px rgba(123, 97, 255, 0.26),
+        inset 8px 8px 14px rgba(255, 255, 255, 0.28),
+        inset -14px -16px 24px rgba(21, 17, 65, 0.34);
+      overflow: hidden;
+      animation: orbBreathe 5.8s ease-in-out infinite, orbMorph 9s ease-in-out infinite;
+    }
+
+    .brand-mark::before {
+      content: '';
+      position: absolute;
+      inset: -24%;
+      border-radius: 44% 56% 58% 42% / 48% 46% 54% 52%;
+      background:
+        radial-gradient(ellipse at 42% 48%, rgba(255, 255, 255, 0.34), transparent 30%),
+        radial-gradient(ellipse at 64% 62%, rgba(183, 167, 255, 0.46), transparent 40%),
+        conic-gradient(from 140deg, transparent, rgba(255, 255, 255, 0.18), rgba(123, 97, 255, 0.2), transparent 70%);
+      filter: blur(2px);
+      mix-blend-mode: screen;
+      animation: orbFlow 6.6s ease-in-out infinite;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 780;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .brand-subtitle {
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(123, 97, 255, 0.14);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--text-primary);
+      box-shadow: 0 12px 30px rgba(31, 38, 75, 0.055);
+      cursor: pointer;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .chip-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(123, 97, 255, 0.34);
+      box-shadow: 0 16px 38px rgba(91, 70, 229, 0.12);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--deep-neural);
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 8px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(180deg, var(--atlas-violet), var(--deep-neural));
+      box-shadow: 0 12px 24px rgba(109, 93, 248, 0.22);
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 18px;
+      color: var(--text-primary);
+      font-size: clamp(44px, 6.2vw, 78px);
+      font-weight: 850;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-desc {
+      max-width: 660px;
+      color: var(--text-secondary);
+      font-size: clamp(15px, 1.28vw, 18px);
+      line-height: 1.72;
+    }
+
+    .hero-slogan {
+      max-width: 680px;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+      font-size: clamp(17px, 1.55vw, 22px);
+      font-weight: 760;
+      line-height: 1.52;
+      letter-spacing: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: var(--radius-full);
+      font-weight: 760;
+      letter-spacing: 0;
+      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    }
+
+    .primary-action {
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.34), transparent 34%),
+        linear-gradient(135deg, var(--atlas-violet), var(--deep-neural));
+      box-shadow: 0 20px 46px rgba(91, 70, 229, 0.24);
+    }
+
+    .secondary-action {
+      border: 1px solid rgba(123, 97, 255, 0.18);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 16px 36px rgba(31, 38, 75, 0.06);
+    }
+
+    .primary-action:hover,
+    .secondary-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .orb-panel {
+      position: relative;
+      min-height: 356px;
+      border: 1px solid rgba(183, 167, 255, 0.18);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(183, 167, 255, 0.22), transparent 34%),
+        radial-gradient(circle at 82% 88%, rgba(123, 97, 255, 0.07), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.66), rgba(248, 247, 255, 0.46));
+      box-shadow:
+        0 30px 90px rgba(31, 38, 75, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .orb-panel::before {
+      content: '';
+      position: absolute;
+      inset: 34px;
+      border: 1px dashed rgba(183, 167, 255, 0.38);
+      border-radius: 50%;
+      box-shadow:
+        0 0 70px rgba(123, 97, 255, 0.08),
+        inset 0 0 80px rgba(183, 167, 255, 0.08);
+      animation: slowSpin 24s linear infinite;
+    }
+
+    .orb-panel::after {
+      content: '';
+      position: absolute;
+      inset: 64px;
+      border: 1px solid rgba(183, 167, 255, 0.16);
+      border-radius: 50%;
+      animation: slowDrift 11s ease-in-out infinite;
+    }
+
+    .orb-large {
+      position: absolute;
+      inset: 50%;
+      width: 178px;
+      height: 178px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 49% 51% 50% 50% / 50% 49% 51% 50%;
+      background:
+        radial-gradient(circle at 27% 18%, rgba(255, 255, 255, 1) 0 5%, rgba(255, 245, 255, 0.86) 10%, transparent 22%),
+        radial-gradient(circle at 78% 84%, rgba(25, 21, 68, 0.42), transparent 34%),
+        conic-gradient(from 248deg at 52% 53%, rgba(255, 255, 255, 0.38), rgba(123, 97, 255, 0.08), rgba(238, 226, 255, 0.34), rgba(42, 35, 118, 0.3), rgba(183, 167, 255, 0.22), rgba(255, 255, 255, 0.28)),
+        radial-gradient(ellipse at 49% 54%, rgba(248, 241, 255, 0.78), transparent 45%),
+        linear-gradient(135deg, #A898FF 0%, var(--atlas-violet) 44%, var(--deep-neural) 100%);
+      background-size: 120% 120%, 122% 122%, 150% 150%, 125% 125%, 100% 100%;
+      box-shadow:
+        0 38px 120px rgba(109, 93, 248, 0.34),
+        0 0 0 8px rgba(183, 167, 255, 0.055),
+        inset 22px 22px 40px rgba(255, 255, 255, 0.28),
+        inset -40px -44px 78px rgba(17, 15, 55, 0.42),
+        inset 0 0 42px rgba(238, 226, 255, 0.26);
+      overflow: hidden;
+      z-index: 2;
+      animation: orbLargeBreathe 5.8s ease-in-out infinite, orbLargeShape 10.7s ease-in-out infinite;
+    }
+
+    .orb-large::before,
+    .orb-large::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .orb-large::before {
+      inset: -18%;
+      border-radius: 45% 55% 52% 48% / 52% 44% 56% 48%;
+      background:
+        radial-gradient(ellipse at 38% 43%, rgba(255, 255, 255, 0.22), transparent 32%),
+        radial-gradient(ellipse at 66% 38%, rgba(211, 196, 255, 0.24), transparent 34%),
+        conic-gradient(from 92deg at 52% 50%, rgba(255, 255, 255, 0.12), rgba(194, 173, 255, 0.3), transparent 34%, rgba(123, 97, 255, 0.12), transparent 68%, rgba(183, 167, 255, 0.2));
+      filter: blur(2px) contrast(1.08) saturate(1.12);
+      opacity: 0.82;
+      animation: orbMembrane 7.8s ease-in-out infinite;
+    }
+
+    .orb-large::after {
+      inset: -32%;
+      border-radius: 42% 58% 64% 36% / 44% 38% 62% 56%;
+      background:
+        radial-gradient(ellipse at 42% 48%, rgba(255, 255, 255, 0.42), transparent 28%),
+        radial-gradient(ellipse at 62% 64%, rgba(183, 167, 255, 0.48), transparent 40%),
+        radial-gradient(ellipse at 35% 68%, rgba(123, 97, 255, 0.22), transparent 38%),
+        conic-gradient(from 148deg at 51% 54%, rgba(255, 255, 255, 0.18), rgba(183, 167, 255, 0.52), rgba(42, 35, 118, 0.22), rgba(248, 241, 255, 0.38), rgba(123, 97, 255, 0.16), rgba(255, 255, 255, 0.18));
+      filter: blur(3.4px) saturate(1.2) contrast(1.04);
+      opacity: 0.96;
+      animation: orbLiquid 6.8s ease-in-out infinite;
+    }
+
+    .orb-caption {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 18px;
+      z-index: 3;
+      display: grid;
+      gap: 8px;
+      padding: 16px 18px;
+      border: 1px solid rgba(183, 167, 255, 0.16);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.64);
+      box-shadow: 0 18px 46px rgba(31, 38, 75, 0.08);
+      backdrop-filter: blur(22px);
+    }
+
+    .orb-caption strong {
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .orb-caption span {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .launcher-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 0;
+    }
+
+    .launcher-card {
+      --card-accent: var(--atlas-violet);
+      position: relative;
+      display: grid;
+      gap: 14px;
+      min-height: 174px;
+      padding: 20px 22px;
+      border: 1px solid rgba(123, 97, 255, 0.13);
+      border-radius: 26px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.44)),
+        radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--card-accent) 16%, transparent), transparent 42%);
+      box-shadow: 0 22px 58px rgba(31, 38, 75, 0.07);
+      overflow: hidden;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .launcher-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--card-accent) 36%, transparent);
+      box-shadow: 0 30px 80px color-mix(in srgb, var(--card-accent) 16%, transparent);
+    }
+
+    .launcher-card:nth-child(1) { --card-accent: #7B61FF; }
+    .launcher-card:nth-child(2) { --card-accent: #4F46E5; }
+    .launcher-card:nth-child(3) { --card-accent: #B7A7FF; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .card-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.96) 0 16%, transparent 38%),
+        conic-gradient(from 236deg, rgba(255, 255, 255, 0.26), color-mix(in srgb, var(--card-accent) 34%, white), color-mix(in srgb, var(--card-accent) 52%, transparent), rgba(79, 70, 229, 0.18), rgba(255, 255, 255, 0.24)),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(244, 240, 255, 0.56));
+      border: 1px solid color-mix(in srgb, var(--card-accent) 24%, transparent);
+      box-shadow:
+        0 16px 30px color-mix(in srgb, var(--card-accent) 14%, transparent),
+        inset 8px 8px 16px rgba(255, 255, 255, 0.46),
+        inset -12px -14px 22px rgba(79, 70, 229, 0.16);
+      overflow: hidden;
+      animation: orbBreathe 5.8s ease-in-out infinite;
+    }
+
+    .card-mark::before {
+      content: '';
+      width: 28px;
+      height: 28px;
+      border-radius: 46% 54% 52% 48% / 48% 45% 55% 52%;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.98) 0 14%, transparent 34%),
+        linear-gradient(135deg, #FFFFFF, var(--card-accent) 52%, var(--deep-neural));
+      box-shadow:
+        0 0 18px color-mix(in srgb, var(--card-accent) 28%, transparent),
+        inset 6px 6px 12px rgba(255, 255, 255, 0.34),
+        inset -9px -10px 18px rgba(42, 35, 118, 0.26);
+    }
+
+    .card-kicker {
+      color: var(--text-tertiary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .card-body {
+      display: grid;
+      gap: 10px;
+    }
+
+    .card-title {
+      color: var(--text-primary);
+      font-size: 21px;
+      font-weight: 790;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      line-height: 1.62;
+    }
+
+    .card-action {
+      align-self: end;
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(123, 97, 255, 0.16);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.58);
+      color: color-mix(in srgb, var(--card-accent) 82%, var(--deep-neural));
+      font-size: 13px;
+      font-weight: 740;
+      cursor: pointer;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .card-action:hover {
+      transform: translateY(-1px);
+      border-color: rgba(123, 97, 255, 0.34);
+      box-shadow: 0 14px 30px color-mix(in srgb, var(--card-accent) 12%, transparent);
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 20;
+      transform: translateY(18px);
+      padding: 14px 18px;
+      border: 1px solid rgba(183, 167, 255, 0.18);
+      border-radius: var(--radius-full);
+      background:
+        radial-gradient(circle at 16% 0%, rgba(255, 255, 255, 0.5), transparent 42%),
+        linear-gradient(135deg, rgba(123, 97, 255, 0.94), rgba(79, 70, 229, 0.92));
+      color: #fff;
+      box-shadow: 0 18px 42px rgba(91, 70, 229, 0.24);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @keyframes orbBreathe {
+      0%, 100% { transform: scale(0.98); filter: brightness(1) saturate(1.06); }
+      52% { transform: scale(1.06); filter: brightness(1.14) saturate(1.18); }
+    }
+
+    @keyframes orbMorph {
+      0%, 100% { border-radius: 48% 52% 50% 50% / 50% 46% 54% 50%; }
+      38% { border-radius: 56% 44% 47% 53% / 43% 58% 42% 57%; }
+      74% { border-radius: 42% 58% 60% 40% / 57% 43% 52% 48%; }
+    }
+
+    @keyframes orbFlow {
+      0%, 100% { transform: translate3d(-6%, 4%, 0) rotate(-18deg) scale(1.04); }
+      50% { transform: translate3d(8%, -6%, 0) rotate(46deg) scale(1.14); }
+    }
+
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes slowDrift {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      50% { transform: scale(1.04) rotate(-16deg); opacity: 1; }
+    }
+
+    @keyframes orbLargeBreathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.99); filter: brightness(1) saturate(1.05); }
+      48% { transform: translate(-50%, -50%) scale(1.045); filter: brightness(1.14) saturate(1.16); }
+      62% { transform: translate(-50%, -50%) scale(1.018); }
+    }
+
+    @keyframes orbLargeShape {
+      0%, 100% { border-radius: 49% 51% 50% 50% / 50% 49% 51% 50%; }
+      23% { border-radius: 54% 46% 58% 42% / 46% 54% 44% 56%; }
+      47% { border-radius: 44% 56% 48% 52% / 57% 43% 55% 45%; }
+      71% { border-radius: 52% 48% 43% 57% / 44% 58% 42% 56%; }
+    }
+
+    @keyframes orbMembrane {
+      0%, 100% { transform: translate3d(-2%, 0, 0) rotate(0deg) scale(1.02); opacity: 0.76; }
+      42% { transform: translate3d(4%, -3%, 0) rotate(24deg) scale(1.1); opacity: 0.9; }
+      74% { transform: translate3d(-5%, 4%, 0) rotate(-18deg) scale(1.04); opacity: 0.72; }
+    }
+
+    @keyframes orbLiquid {
+      0%, 100% { transform: translate3d(-7%, 4%, 0) rotate(-22deg) scale(1.08); }
+      33% { transform: translate3d(7%, -5%, 0) rotate(18deg) scale(1.16); }
+      67% { transform: translate3d(-1%, 8%, 0) rotate(44deg) scale(1.04); }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .orb-panel {
+        min-height: 380px;
+      }
+
+      .launcher-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
+        padding-top: 18px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 30px;
+      }
+
+      .topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .chip-button,
+      .primary-action,
+      .secondary-action {
+        width: 100%;
+      }
+
+      .hero-actions {
+        gap: 10px;
+      }
+
+      .orb-panel {
+        min-height: 340px;
+      }
+
+      .orb-large {
+        width: 178px;
+        height: 178px;
+      }
+
+      .launcher-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .launcher-card {
+        min-height: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="Atlas EIDS 启动器导航">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy">
+          <span class="brand-title">Atlas EIDS</span>
+          <span class="brand-subtitle">Enterprise Intelligence Design System</span>
+        </span>
+      </a>
+
+      <div class="topbar-actions">
+        <a class="chip-button" href="README.md">README</a>
+        <a class="chip-button" href="docs/COMPONENTS.md">组件文档</a>
+        <button class="chip-button" type="button" data-copy="npx --yes http-server -p 37772 -c-1">复制启动命令</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="section-label">AI Native OS Design System</div>
+        <h1>Atlas EIDS</h1>
+        <p class="hero-slogan">
+          面向未来 AI 原生 OS 的企业智能设计系统。
+        </p>
+        <p class="hero-desc">
+          以 Orb 生命体、Design Tokens、企业级组件和数据可视化规范，构建 AI 时代的感知层、协作层与执行层体验。
+        </p>
+        <div class="hero-actions">
+          <a class="primary-action" href="index.html">进入 Atlas EIDS</a>
+          <a class="secondary-action" href="README.md">阅读设计理念</a>
+        </div>
+      </div>
+
+      <aside class="orb-panel" aria-label="Orb AI 生命体">
+        <div class="orb-large" aria-hidden="true"></div>
+        <div class="orb-caption">
+          <strong>Orb AI Core</strong>
+          <span>液态金属 Core、近距轨道和呼吸感共同构成 Atlas EIDS 的 AI 存在感。</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="launcher-grid" aria-label="常用入口">
+      <article class="launcher-card">
+        <div class="card-top">
+          <span class="card-mark" aria-hidden="true"></span>
+          <span class="card-kicker">SHOWCASE</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">主展示页</h2>
+          <p class="card-desc">查看 Hero、Orb AI、基础组件、企业 UI、Markdown 和数据可视化。</p>
+        </div>
+        <a class="card-action" href="index.html">打开 index.html</a>
+      </article>
+
+      <article class="launcher-card">
+        <div class="card-top">
+          <span class="card-mark" aria-hidden="true"></span>
+          <span class="card-kicker">REACT</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">React 示例</h2>
+          <p class="card-desc">运行 React + TypeScript + Vite 示例，检查 AgentOrb、NeuralInput 等组件实现。</p>
+        </div>
+        <button class="card-action" type="button" data-copy="cd examples/react && npm install && npm run dev">复制 React 命令</button>
+      </article>
+
+      <article class="launcher-card">
+        <div class="card-top">
+          <span class="card-mark" aria-hidden="true"></span>
+          <span class="card-kicker">VUE 3</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Vue 3 示例</h2>
+          <p class="card-desc">运行 Vue 3 + TypeScript + Vite 示例，验证同一套 AI 交互视觉在 Vue 中的落地。</p>
+        </div>
+        <button class="card-action" type="button" data-copy="cd examples/vue3 && npm install && npm run dev">复制 Vue 命令</button>
+      </article>
+
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    async function copyText(value) {
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast('已复制命令');
+      } catch (error) {
+        const textarea = document.createElement('textarea');
+        textarea.value = value;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        textarea.remove();
+        showToast('已复制命令');
+      }
+    }
+
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', () => copyText(button.dataset.copy));
+    });
+  </script>
+</body>
+</html>
