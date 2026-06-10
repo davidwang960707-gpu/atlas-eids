@@ -3,6 +3,7 @@ import AgentOrb, { OrbState } from './components/AgentOrb';
 import AgentCard from './components/AgentCard';
 import NeuralInput from './components/NeuralInput';
 import StreamBlock from './components/StreamBlock';
+import InsightPanel from './components/InsightPanel';
 import './styles/tokens.css';
 import './App.css';
 
@@ -108,6 +109,28 @@ const App: React.FC = () => {
                 </>
               }
               isStreaming={true}
+            />
+            <InsightPanel
+              title="合同审查洞察"
+              summary="Agent 已完成条款结构化扫描，并将风险项、建议动作和证据位置整理为可复核的交付摘要。"
+              confidence={86}
+              items={[
+                {
+                  label: '交付边界清晰',
+                  value: '已识别验收条件、交付节点与附件清单，可进入业务复核。',
+                  level: 'success'
+                },
+                {
+                  label: '违约条款需复核',
+                  value: '第 4.2 条违约金上限偏低，建议结合采购金额重新测算。',
+                  level: 'warning'
+                },
+                {
+                  label: '建议生成纪要',
+                  value: '可一键生成审查纪要，并同步给法务、采购和项目负责人。',
+                  level: 'info'
+                }
+              ]}
             />
           </div>
         </section>

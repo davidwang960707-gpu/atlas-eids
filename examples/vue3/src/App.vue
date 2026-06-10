@@ -91,6 +91,12 @@
             <p style="color: var(--text-accent);">已识别 3 处潜在违约风险：</p>
             <p>1. 第 4.2 条违约金上限设定过低...</p>
           </StreamBlock>
+          <InsightPanel
+            title="合同审查洞察"
+            summary="Agent 已完成条款结构化扫描，并将风险项、建议动作和证据位置整理为可复核的交付摘要。"
+            :confidence="86"
+            :items="insightItems"
+          />
         </div>
       </section>
     </main>
@@ -104,9 +110,27 @@ import AgentOrb from './components/AgentOrb.vue';
 import AgentCard from './components/AgentCard.vue';
 import NeuralInput from './components/NeuralInput.vue';
 import StreamBlock from './components/StreamBlock.vue';
+import InsightPanel from './components/InsightPanel.vue';
 
 const orbState = ref<OrbState>('idle');
 const inputValue = ref('');
+const insightItems = [
+  {
+    label: '交付边界清晰',
+    value: '已识别验收条件、交付节点与附件清单，可进入业务复核。',
+    level: 'success' as const
+  },
+  {
+    label: '违约条款需复核',
+    value: '第 4.2 条违约金上限偏低，建议结合采购金额重新测算。',
+    level: 'warning' as const
+  },
+  {
+    label: '建议生成纪要',
+    value: '可一键生成审查纪要，并同步给法务、采购和项目负责人。',
+    level: 'info' as const
+  }
+];
 </script>
 
 <style scoped>
