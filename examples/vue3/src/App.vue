@@ -66,10 +66,10 @@
       <section class="section">
         <h2>Agent Card</h2>
         <AgentCard
-          title="法务审查助手"
-          subtitle="Legal AI Agent"
-          description="基于 GB/T 9704 规范与 RAG 混合检索，提供合同风险扫描、违约条款提取与合规性自动检测。"
-          :tags="['Contract', 'Risk Analysis', 'OCR', 'Reasoning']"
+          title="协作智能体"
+          subtitle="Task Copilot"
+          description="统一呈现协作任务、证据线索与执行建议，支持可追溯与状态同步。"
+          :tags="['任务编排', '状态管理', '可复核输出', '工作流']"
           status="online"
         />
       </section>
@@ -80,22 +80,30 @@
         <div class="ui-stack">
           <NeuralInput
             v-model="inputValue"
-            mention="法务Agent"
-            placeholder="审查这份采购合同的违约条款..."
+            mention="AI Assistant"
+            placeholder="生成本周汇总并输出可执行任务..."
           />
           <StreamBlock
-            header="Atlas · 正在生成推理过程"
+            header="Atlas · 任务执行流"
             :is-streaming="true"
           >
-            <p>正在解析《示例合同.pdf》...</p>
-            <p style="color: var(--text-accent);">已识别 3 处潜在违约风险：</p>
-            <p>1. 第 4.2 条违约金上限设定过低...</p>
+            <p>正在检索关联数据源...</p>
+            <p style="color: var(--text-accent);">已形成 3 个可执行输出项：</p>
+            <p>1. 任务优先级重排建议</p>
           </StreamBlock>
           <InsightPanel
-            title="合同审查洞察"
-            summary="Agent 已完成条款结构化扫描，并将风险项、建议动作和证据位置整理为可复核的交付摘要。"
+            title="任务洞察"
+            summary="Agent 已完成任务片段聚合，并将关键结论、待确认项与建议动作整理成可复核清单。"
             :confidence="86"
             :items="insightItems"
+          />
+          <MetricStrip
+            title="系统指标面板"
+            :metrics="metricItems"
+          />
+          <WorkflowTimeline
+            title="流程进度"
+            :steps="workflowSteps"
           />
         </div>
       </section>
@@ -111,26 +119,42 @@ import AgentCard from './components/AgentCard.vue';
 import NeuralInput from './components/NeuralInput.vue';
 import StreamBlock from './components/StreamBlock.vue';
 import InsightPanel from './components/InsightPanel.vue';
+import MetricStrip from './components/MetricStrip.vue';
+import WorkflowTimeline from './components/WorkflowTimeline.vue';
 
 const orbState = ref<OrbState>('idle');
 const inputValue = ref('');
+
 const insightItems = [
   {
-    label: '交付边界清晰',
-    value: '已识别验收条件、交付节点与附件清单，可进入业务复核。',
+    label: '边界定义清晰',
+    value: '已识别触发条件、依赖项与执行边界，可直接进入排程。',
     level: 'success' as const
   },
   {
-    label: '违约条款需复核',
-    value: '第 4.2 条违约金上限偏低，建议结合采购金额重新测算。',
+    label: '关键节点待复核',
+    value: '节点 N-1 存在上下文缺失，建议补充外部输入后继续生成。',
     level: 'warning' as const
   },
   {
-    label: '建议生成纪要',
-    value: '可一键生成审查纪要，并同步给法务、采购和项目负责人。',
+    label: '建议沉淀交付',
+    value: '可一键导出执行清单，支持项目内同步与版本追溯。',
     level: 'info' as const
   }
 ];
+
+const metricItems = [
+  { label: '吞吐率', value: '1244', delta: '较昨日 +12%' },
+  { label: '平均延迟', value: '184ms', delta: '较昨日 -9ms' },
+  { label: '任务完成率', value: '98.1%', delta: '本周波动范围 0.4pp' }
+];
+
+const workflowSteps = [
+  { label: '数据摄取', status: 'done' as const, text: '已完成输入数据归一化与校验。' },
+  { label: '分析推理', status: 'running' as const, text: '特征聚类与规则匹配进行中。' },
+  { label: '结果复核', status: 'pending' as const, text: '等待人工确认后发布结果。' }
+];
+
 </script>
 
 <style scoped>
