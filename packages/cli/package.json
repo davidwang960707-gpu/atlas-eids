@@ -1,0 +1,34 @@
+{
+  "name": "@atlas-eids/cli",
+  "version": "0.2.0-beta.1",
+  "description": "Project and page source generator for Atlas EIDS",
+  "type": "module",
+  "bin": {
+    "atlas-eids": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/generator.mjs"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids.git"
+  },
+  "homepage": "https://davidwang960707-gpu.github.io/atlas-eids/",
+  "bugs": {
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues"
+  }
+}
