@@ -1,0 +1,43 @@
+{
+  "name": "@atlas-eids/adapter-tdesign-vue",
+  "version": "0.2.0-beta.1",
+  "description": "Runtime TDesign Vue Next wrappers for Atlas EIDS",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@atlas-eids/tokens": "0.2.0-beta.1"
+  },
+  "peerDependencies": {
+    "tdesign-vue-next": ">=1.20",
+    "vue": ">=3.4"
+  },
+  "devDependencies": {
+    "tdesign-vue-next": "^1.20.5",
+    "typescript": "^5.9.2",
+    "vue": "^3.5.20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids.git"
+  },
+  "homepage": "https://davidwang960707-gpu.github.io/atlas-eids/",
+  "bugs": {
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues"
+  }
+}

@@ -33,7 +33,10 @@ const AgentOrb: React.FC<AgentOrbProps> = ({
         </>
       )}
       <div className="orb">
+        <div className="orb-depth"></div>
+        <div className="orb-caustic"></div>
         <div className="orb-liquid"></div>
+        <div className="orb-specular"></div>
       </div>
     </div>
   );

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atlas EIDS 应用框架、基础布局、通用页面、业务场景与 AI 原生交互模板中心。">
+  <title>Atlas Pattern Lab · 页面与交互模板中心</title>
+  <link rel="stylesheet" href="css/patterns.css">
+</head>
+<body>
+  <header class="lab-nav">
+    <a class="lab-brand" href="index.html" aria-label="返回 Atlas EIDS 主展示页">
+      <span class="orb-wrapper atlas-orb atlas-orb--nav state-idle" aria-hidden="true">
+        <span class="orb-atmosphere"></span>
+        <span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+        <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+      </span>
+      <span><strong>Atlas EIDS</strong><small>Pattern Lab</small></span>
+    </a>
+    <nav aria-label="模板中心导航">
+      <a href="index.html">设计系统</a>
+      <a href="docs-site.html#/app-frameworks">开发文档</a>
+      <a href="launcher.html">启动页</a>
+    </nav>
+    <button class="theme-control" id="themeControl" type="button" aria-label="切换明暗主题" aria-pressed="false">
+      <span></span><b>深色</b>
+    </button>
+  </header>
+
+  <main>
+    <section class="lab-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Atlas Application Architecture</span>
+        <h1>从框架到智能执行，<br>每一页都有原型。</h1>
+        <p>覆盖企业应用的全局骨架、页面布局、业务场景和 AI 原生交互。所有条目都提供可视结构与信息层级，不再只是标签清单。</p>
+      </div>
+      <aside class="coverage-panel" aria-label="模板覆盖统计">
+        <span class="orb-wrapper atlas-orb atlas-orb--coverage state-thinking coverage-orb" aria-hidden="true">
+          <span class="orb-atmosphere"></span>
+          <span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+          <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+        </span>
+        <div class="coverage-copy"><span>Pattern Coverage</span><strong id="coverageTotal">126</strong><small>可浏览示例</small></div>
+        <div class="coverage-scan" aria-hidden="true"></div>
+      </aside>
+    </section>
+
+    <section class="lab-workspace" aria-label="页面与组件模板浏览器">
+      <div class="workspace-head">
+        <div>
+          <span class="section-kicker">Library Index</span>
+          <h2>页面与交互模板</h2>
+        </div>
+        <div class="workspace-tools">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="patternSearch" type="search" placeholder="搜索模板、结构或场景" autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+          <span class="result-count" id="resultCount">126 / 126</span>
+        </div>
+      </div>
+
+      <div class="filter-row" id="filterRow" aria-label="模板分类"></div>
+      <div class="library-grid" id="libraryGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <strong>没有匹配的模板</strong>
+        <span>换一个关键词或分类继续探索。</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lab-footer">
+    <span>Atlas EIDS · Enterprise Intelligence Design System</span>
+    <a href="https://github.com/davidwang960707-gpu/atlas-eids">GitHub Repository ↗</a>
+  </footer>
+
+  <dialog class="pattern-dialog" id="patternDialog">
+    <div class="dialog-shell">
+      <header class="dialog-header">
+        <div class="dialog-heading">
+          <span class="dialog-context">Pattern Preview</span>
+          <div><span id="dialogCategory"></span><h2 id="dialogTitle"></h2></div>
+          <p id="dialogDescription" hidden></p>
+        </div>
+        <div class="dialog-actions">
+          <div id="dialogAnatomy"></div>
+          <button type="button" id="dialogClose" aria-label="关闭预览">×</button>
+        </div>
+      </header>
+      <div class="dialog-preview" id="dialogPreview"></div>
+      <footer class="dialog-footer">
+        <div class="dialog-template-map">
+          <span>关联运行模板</span>
+          <strong id="dialogTemplateName"></strong>
+        </div>
+        <div class="dialog-primary-actions">
+          <a class="dialog-link" id="dialogSourceLink" href="#" target="_blank" rel="noreferrer">查看源码</a>
+          <button class="dialog-link" id="dialogCliButton" type="button">用 CLI 创建</button>
+          <a class="dialog-link primary" id="dialogDemoLink" href="#" target="_blank" rel="noreferrer">打开完整 Demo</a>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <script src="js/patterns.js"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/dark-theme.css">
   <link rel="stylesheet" href="css/light-theme.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=20260810">
 </head>
 <body>
 
@@ -24,14 +24,11 @@
   </a>
   <ul class="nav-links">
     <li><a href="#philosophy">理念</a></li>
-    <li><a href="#colors">色彩</a></li>
     <li><a href="#orb">Orb 系统</a></li>
     <li><a href="#components">组件</a></li>
-    <li><a href="#orb-components">AI 交互</a></li>
-    <li><a href="#enterprise-ui">企业 UI</a></li>
-    <li><a href="#markdown">Markdown</a></li>
-    <li><a href="#examples">代码示例</a></li>
-    <li><a href="#data-charts">数据图表</a></li>
+    <li><a href="patterns.html">模板中心</a></li>
+    <li><a href="docs-site.html">开发文档</a></li>
+    <li><a href="#developer-start">开发者</a></li>
   </ul>
   <button class="theme-toggle" id="themeToggle">
     <span id="themeIcon">🌙</span>
@@ -49,14 +46,43 @@
     <div class="hero-core">
       <div class="orbit-ring"></div>
       <div class="orbit-ring-2"></div>
-      <div class="orb-core"></div>
+      <div class="orb-core">
+        <span class="hero-orb-depth"></span>
+        <span class="hero-orb-caustic"></span>
+        <span class="hero-orb-liquid"></span>
+        <span class="hero-orb-specular"></span>
+      </div>
     </div>
     <h1>Atlas EIDS</h1>
     <p>Enterprise Intelligence Design System<br>为 AI Native 操作系统而生的设计语言</p>
     <div class="hero-actions" aria-label="Hero actions">
-      <a class="hero-action-primary" href="#orb-components">探索 AI 交互</a>
-      <a class="hero-action-secondary" href="#data-charts">查看数据可视化</a>
+      <a class="hero-action-primary" href="docs-site.html#/getting-started">开发者快速开始</a>
+      <a class="hero-action-secondary" href="patterns.html">进入模板中心</a>
+      <a class="hero-action-secondary" href="storybook/react/" data-runtime-link="storybook-react">打开 Storybook</a>
     </div>
+  </div>
+</section>
+
+<!-- Developer Quickstart -->
+<section class="developer-start" id="developer-start">
+  <div class="container">
+    <div class="developer-start-head">
+      <div>
+        <div class="section-label">Developer Entry</div>
+        <h2>从设计语言直接进入可运行工程</h2>
+      </div>
+      <p>当前 npm packages 尚未发布。请先 Clone Workspace，并在 CLI 中保留 <code>--local</code>。</p>
+    </div>
+    <div class="developer-command">
+      <code id="developerCloneCommand">git clone https://github.com/davidwang960707-gpu/atlas-eids.git && cd atlas-eids && npm install</code>
+      <button type="button" onclick="copyCode('developerCloneCommand')">复制命令</button>
+    </div>
+    <nav class="developer-links" aria-label="开发者入口">
+      <a href="docs-site.html#/getting-started"><strong>快速开始</strong><span>环境、Clone 与本地运行</span></a>
+      <a href="templates/#/workbench" data-runtime-link="templates"><strong>15 个页面模板</strong><span>独立路由与真实交互</span></a>
+      <a href="storybook/react/" data-runtime-link="storybook-react"><strong>React Storybook</strong><span>组件状态与 API</span></a>
+      <a href="storybook/vue/" data-runtime-link="storybook-vue"><strong>Vue Storybook</strong><span>跨框架一致实现</span></a>
+    </nav>
   </div>
 </section>
 
@@ -82,6 +108,26 @@
       <div class="philosophy-card">
         <h3>生命体微交互</h3>
         <p>流体、呼吸、漂浮、光晕。每一次 Hover 都是与 AI 意识的触碰。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Application Architecture Section -->
+<section class="pattern-library-section" id="patterns">
+  <div class="container">
+    <div class="pattern-library-layout">
+      <div class="pattern-library-copy">
+        <div class="section-label">Application Architecture</div>
+        <h2 class="section-title">不止组件，也定义完整工作方式</h2>
+        <p class="section-desc">从全局导航、页面布局到业务场景和 AI 原生执行，Atlas Pattern Lab 将设计语言组织成可浏览、可展开、可落地的页面原型。</p>
+        <a class="pattern-library-link" href="patterns.html">浏览 126 个页面与交互示例 <span>↗</span></a>
+      </div>
+      <div class="pattern-coverage" aria-label="模板覆盖范围">
+        <div><strong>07</strong><span>应用框架</span></div>
+        <div><strong>13</strong><span>基础布局</span></div>
+        <div><strong>72</strong><span>页面模板</span></div>
+        <div><strong>34</strong><span>AI 交互组件</span></div>
       </div>
     </div>
   </div>
@@ -2520,6 +2566,7 @@ withDefaults(defineProps&lt;Props&gt;(), {
 <script src="js/theme-switcher.js"></script>
 <script src="js/orb-demo.js"></script>
 <script src="js/code-highlight.js"></script>
+<script src="js/portal-links.js"></script>
 <script src="js/main.js"></script>
 
 </body>

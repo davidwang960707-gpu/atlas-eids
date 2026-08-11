@@ -64,10 +64,10 @@ import AgentOrb from './components/AgentOrb.vue';
 ```vue
 <template>
   <AgentCard
-    title="法务审查助手"
-    subtitle="Legal AI Agent"
-    description="基于 GB/T 9704 规范与 RAG 混合检索..."
-    :tags="['Contract', 'Risk Analysis', 'OCR']"
+    title="协作智能体"
+    subtitle="Task Copilot"
+    description="统一呈现任务能力、运行状态与可复核输出。"
+    :tags="['任务编排', '状态管理', '可复核输出']"
     status="online"
   />
 </template>
@@ -88,8 +88,8 @@ import AgentOrb from './components/AgentOrb.vue';
 <template>
   <NeuralInput
     v-model="inputValue"
-    mention="法务Agent"
-    placeholder="审查这份采购合同..."
+  mention="AI Assistant"
+  placeholder="输入目标、粘贴上下文或选择工具..."
   />
 </template>
 
@@ -134,6 +134,10 @@ import StreamBlock from './components/StreamBlock.vue';
 
 **Slots:**
 - `default`: 流式内容内容
+
+### FrameworkGallery
+
+7 种通用应用框架的可交互工作区，包括导航切换、任务筛选与选中、多标签页、租户上下文切换和全屏流程画布。示例数据保持通用，不绑定具体行业。
 
 ## 设计令牌
 

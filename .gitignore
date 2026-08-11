@@ -8,6 +8,13 @@ node_modules/
 dist/
 build/
 .vite/
+.playwright-cli/
+output/playwright/
+playwright-report/
+test-results/
+storybook-static/
+.pages/
+target/
 
 # Logs
 *.log
@@ -30,4 +37,3 @@ pnpm-debug.log*
 # Archives
 *.zip
 *.tar.gz
-
