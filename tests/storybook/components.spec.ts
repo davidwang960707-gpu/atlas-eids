@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 
 const frameworks = [
   { name: 'React', port: 6016, prefix: 'react-组件状态矩阵' },
@@ -8,6 +8,18 @@ const frameworks = [
 
 function storyURL(port: number, id: string) {
   return `http://127.0.0.1:${port}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story`
+}
+
+async function analyzeAccessibility(page: Page) {
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    try {
+      return await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze()
+    } catch (error) {
+      if (!(error instanceof Error) || !error.message.includes('Axe is already running') || attempt === 7) throw error
+      await page.waitForTimeout(250)
+    }
+  }
+  throw new Error('Axe accessibility analysis did not complete')
 }
 
 for (const framework of frameworks) {
@@ -40,7 +52,7 @@ for (const framework of frameworks) {
   test(`${framework.name} component matrices have no serious accessibility violations`, async ({ page }) => {
     for (const story of ['button', 'input', 'checkbox', 'switch', 'tabs', 'table', 'alert', 'dialog', 'orb', 'ai-composer', 'execution-plan']) {
       await page.goto(storyURL(framework.port, `${framework.prefix}--${story}`))
-      const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze()
+      const results = await analyzeAccessibility(page)
       const blocking = results.violations.filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')
       expect(blocking, `${framework.name}/${story}: ${blocking.map((violation) => violation.id).join(', ')}`).toEqual([])
     }
