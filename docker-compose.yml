@@ -1,0 +1,68 @@
+name: atlas-eids
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: atlas
+      POSTGRES_USER: atlas
+      POSTGRES_PASSWORD: atlas-local-only
+    ports:
+      - "5432:5432"
+    volumes:
+      - atlas-postgres:/var/lib/postgresql/data
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U atlas -d atlas"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7.0
+    command: start-dev --import-realm --hostname=http://localhost:8180
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: atlas-local-only
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: atlas
+      KC_DB_PASSWORD: atlas-local-only
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - "8180:8080"
+    volumes:
+      - ./infra/keycloak:/opt/keycloak/data/import:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000; printf 'GET /health/ready HTTP/1.1\r\nhost: localhost\r\nConnection: close\r\n\r\n' >&3; grep -q '200 OK' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  server:
+    build:
+      context: ./packages/cli/templates/java-spring-boot
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      ATLAS_DATABASE_URL: jdbc:postgresql://postgres:5432/atlas
+      ATLAS_DATABASE_USER: atlas
+      ATLAS_DATABASE_PASSWORD: atlas-local-only
+      ATLAS_OIDC_ISSUER_URI: http://localhost:8180/realms/atlas-eids
+      ATLAS_OIDC_JWK_SET_URI: http://keycloak:8080/realms/atlas-eids/protocol/openid-connect/certs
+      ATLAS_AI_PROVIDER: ${ATLAS_AI_PROVIDER:-demo}
+      ATLAS_AI_BASE_URL: ${ATLAS_AI_BASE_URL:-https://api.openai.com/v1}
+      ATLAS_AI_API_KEY: ${ATLAS_AI_API_KEY:-}
+      ATLAS_AI_MODEL: ${ATLAS_AI_MODEL:-gpt-5-mini}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+
+volumes:
+  atlas-postgres:

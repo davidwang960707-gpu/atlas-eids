@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: atlas-eids-server
+  datasource:
+    url: jdbc:h2:mem:atlas;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+atlas:
+  security:
+    mode: ${ATLAS_SECURITY_MODE:local}
+    issuer: atlas-eids-local
+    oidc-issuer-uri: ${ATLAS_OIDC_ISSUER_URI:}
+    oidc-jwk-set-uri: ${ATLAS_OIDC_JWK_SET_URI:}
+    token-ttl: PT30M
+    jwt-secret: ${ATLAS_JWT_SECRET:}
+    demo-password: ${ATLAS_DEMO_PASSWORD:atlas-local-only}
+  ai:
+    provider: ${ATLAS_AI_PROVIDER:demo}
+    base-url: ${ATLAS_AI_BASE_URL:https://api.openai.com/v1}
+    api-key: ${ATLAS_AI_API_KEY:}
+    model: ${ATLAS_AI_MODEL:gpt-5-mini}
+    timeout: ${ATLAS_AI_TIMEOUT:PT20S}
+    max-attempts: ${ATLAS_AI_MAX_ATTEMPTS:3}
+    retry-delay: ${ATLAS_AI_RETRY_DELAY:PT0.25S}
+    requests-per-minute: ${ATLAS_AI_REQUESTS_PER_MINUTE:60}
+    input-cost-per-million: ${ATLAS_AI_INPUT_COST_PER_MILLION:0.25}
+    output-cost-per-million: ${ATLAS_AI_OUTPUT_COST_PER_MILLION:2.00}

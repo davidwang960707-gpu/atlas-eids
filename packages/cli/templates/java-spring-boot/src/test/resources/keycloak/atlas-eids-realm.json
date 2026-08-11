@@ -1,0 +1,49 @@
+{
+  "realm": "atlas-eids",
+  "enabled": true,
+  "accessTokenLifespan": 300,
+  "roles": { "realm": [{ "name": "ADMIN" }, { "name": "USER" }] },
+  "clients": [{
+    "clientId": "atlas-cli",
+    "enabled": true,
+    "publicClient": true,
+    "directAccessGrantsEnabled": true,
+    "standardFlowEnabled": false,
+    "defaultClientScopes": ["profile", "roles", "atlas-claims"]
+  }],
+  "clientScopes": [{
+    "name": "atlas-claims",
+    "protocol": "openid-connect",
+    "attributes": { "include.in.token.scope": "true" },
+    "protocolMappers": [
+      {
+        "name": "realm-roles",
+        "protocol": "openid-connect",
+        "protocolMapper": "oidc-usermodel-realm-role-mapper",
+        "config": { "claim.name": "roles", "jsonType.label": "String", "multivalued": "true", "access.token.claim": "true" }
+      },
+      {
+        "name": "tenants",
+        "protocol": "openid-connect",
+        "protocolMapper": "oidc-usermodel-attribute-mapper",
+        "config": { "user.attribute": "tenants", "claim.name": "tenants", "jsonType.label": "String", "multivalued": "true", "access.token.claim": "true" }
+      }
+    ]
+  }],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "attributes": { "tenants": ["atlas-cn", "east-retail"] },
+      "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
+      "realmRoles": ["ADMIN", "USER"]
+    },
+    {
+      "username": "analyst",
+      "enabled": true,
+      "attributes": { "tenants": ["atlas-cn"] },
+      "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
+      "realmRoles": ["USER"]
+    }
+  ]
+}

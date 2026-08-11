@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${ATLAS_DATABASE_URL:jdbc:postgresql://localhost:5432/atlas}
+    username: ${ATLAS_DATABASE_USER:atlas}
+    password: ${ATLAS_DATABASE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+atlas:
+  security:
+    mode: oidc
+    oidc-issuer-uri: ${ATLAS_OIDC_ISSUER_URI}
+    oidc-jwk-set-uri: ${ATLAS_OIDC_JWK_SET_URI:}
+  ai:
+    provider: openai-compatible
