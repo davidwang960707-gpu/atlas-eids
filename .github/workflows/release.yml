@@ -1,0 +1,52 @@
+name: Release Beta Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish packages to npm after verification
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  beta:
+    name: Verify and optionally publish beta
+    runs-on: ubuntu-latest
+    environment: npm-release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify release candidate
+        run: npm run check
+
+      - name: Publish beta packages
+        if: ${{ inputs.publish }}
+        run: npm run release:verify-beta && npm run release:beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true

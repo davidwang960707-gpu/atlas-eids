@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "davidwang960707-gpu/atlas-eids" }],
+  "commit": false,
+  "fixed": [],
+  "linked": [
+    ["@atlas-eids/react", "@atlas-eids/vue"]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

@@ -1,0 +1,26 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "atlas-eids-storybook-react": "0.2.0-dev.0",
+    "atlas-eids-storybook-vue": "0.2.0-dev.0",
+    "atlas-eids-react": "1.0.0",
+    "atlas-eids-templates": "0.2.0-dev.0",
+    "atlas-eids-vue3": "1.0.0",
+    "@atlas-eids/adapter-antd-react": "0.2.0-dev.0",
+    "@atlas-eids/adapter-opentiny-vue": "0.2.0-dev.0",
+    "@atlas-eids/adapter-tdesign-vue": "0.2.0-dev.0",
+    "@atlas-eids/adapters": "0.2.0-dev.0",
+    "@atlas-eids/ai-runtime": "0.2.0-dev.0",
+    "@atlas-eids/cli": "0.2.0-dev.0",
+    "@atlas-eids/core": "0.2.0-dev.0",
+    "@atlas-eids/plugin-sdk": "0.2.0-dev.0",
+    "@atlas-eids/react": "0.2.0-dev.0",
+    "@atlas-eids/tokens": "0.2.0-dev.0",
+    "@atlas-eids/vue": "0.2.0-dev.0",
+    "@atlas-eids/web-agent": "0.2.0-dev.0"
+  },
+  "changesets": [
+    "future-enterprise-beta"
+  ]
+}

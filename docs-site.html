@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atlas EIDS 统一开发者文档、组件 API 与工程指南。">
+  <title>Atlas EIDS Docs · 开发者文档</title>
+  <link rel="stylesheet" href="css/docs-site.css">
+</head>
+<body>
+  <header class="docs-topbar">
+    <a class="docs-brand" href="index.html" aria-label="返回 Atlas EIDS 首页">
+      <span class="docs-orb" aria-hidden="true"></span>
+      <span><strong>Atlas EIDS</strong><small>Developer Docs</small></span>
+    </a>
+    <nav class="docs-product-nav" aria-label="产品导航">
+      <a href="patterns.html">Pattern Lab</a>
+      <a href="templates/#/workbench" data-runtime="templates">页面模板</a>
+      <a href="storybook/react/" data-runtime="storybook-react">Storybook</a>
+    </nav>
+    <div class="docs-tools">
+      <button class="docs-search-trigger" id="searchTrigger" type="button" aria-label="搜索文档与组件 API"><span>搜索文档与 API</span><kbd>/</kbd></button>
+      <button class="docs-quiet-button" id="themeButton" type="button" aria-pressed="false">深色</button>
+      <button class="docs-menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="docsSidebar">目录</button>
+    </div>
+  </header>
+
+  <div class="docs-statusbar">
+    <div><strong>0.2.0-dev</strong><span>npm packages 尚未发布，当前请 Clone 仓库并使用 <code>--local</code>。</span></div>
+    <a href="#/package-status">查看发布状态</a>
+  </div>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar" id="docsSidebar" aria-label="文档目录">
+      <nav id="docsNavigation"></nav>
+      <footer>
+        <a href="https://github.com/davidwang960707-gpu/atlas-eids">GitHub Repository</a>
+        <span id="docsVersion">Atlas EIDS</span>
+      </footer>
+    </aside>
+
+    <main class="docs-main" id="docsMain" tabindex="-1">
+      <article class="docs-article" id="docsArticle"></article>
+      <nav class="docs-pagination" id="docsPagination" aria-label="文档翻页"></nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="当前页面目录">
+      <strong>本页内容</strong>
+      <nav id="docsToc"></nav>
+    </aside>
+  </div>
+
+  <dialog class="docs-search-dialog" id="searchDialog">
+    <div class="search-dialog-head">
+      <label>
+        <span class="visually-hidden">搜索文档与组件 API</span>
+        <input id="globalSearch" type="search" placeholder="搜索文档、组件、Props 或类型" autocomplete="off">
+      </label>
+      <button id="searchClose" type="button">关闭</button>
+    </div>
+    <div class="search-dialog-results" id="searchResults"></div>
+  </dialog>
+
+  <div class="docs-toast" id="docsToast" role="status" aria-live="polite"></div>
+
+  <script src="js/docs-content.js"></script>
+  <script src="js/docs-site.js"></script>
+</body>
+</html>
