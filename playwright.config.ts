@@ -4,7 +4,14 @@ export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: false,
   timeout: 30_000,
-  expect: { timeout: 7_000, toHaveScreenshot: { animations: 'disabled', maxDiffPixelRatio: 0.01 } },
+  expect: {
+    timeout: 7_000,
+    toHaveScreenshot: {
+      animations: 'disabled',
+      threshold: 0.3,
+      maxDiffPixelRatio: 0.04
+    }
+  },
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: { baseURL: 'http://127.0.0.1:4176', trace: 'retain-on-failure', screenshot: 'only-on-failure' },

@@ -1,6 +1,7 @@
 {
   "realm": "atlas-eids",
   "enabled": true,
+  "sslRequired": "none",
   "accessTokenLifespan": 300,
   "roles": { "realm": [{ "name": "ADMIN" }, { "name": "USER" }] },
   "clients": [{
@@ -9,7 +10,7 @@
     "publicClient": true,
     "directAccessGrantsEnabled": true,
     "standardFlowEnabled": false,
-    "defaultClientScopes": ["profile", "roles", "atlas-claims"]
+    "defaultClientScopes": ["atlas-claims"]
   }],
   "clientScopes": [{
     "name": "atlas-claims",
@@ -34,6 +35,11 @@
     {
       "username": "admin",
       "enabled": true,
+      "firstName": "Atlas",
+      "lastName": "Admin",
+      "email": "admin@atlas.local",
+      "emailVerified": true,
+      "requiredActions": [],
       "attributes": { "tenants": ["atlas-cn", "east-retail"] },
       "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
       "realmRoles": ["ADMIN", "USER"]
@@ -41,6 +47,11 @@
     {
       "username": "analyst",
       "enabled": true,
+      "firstName": "Atlas",
+      "lastName": "Analyst",
+      "email": "analyst@atlas.local",
+      "emailVerified": true,
+      "requiredActions": [],
       "attributes": { "tenants": ["atlas-cn"] },
       "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
       "realmRoles": ["USER"]

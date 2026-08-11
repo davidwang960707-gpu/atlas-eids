@@ -1,6 +1,7 @@
 {
   "realm": "atlas-eids",
   "enabled": true,
+  "sslRequired": "none",
   "displayName": "Atlas EIDS",
   "accessTokenLifespan": 300,
   "roles": {
@@ -62,7 +63,11 @@
     {
       "username": "admin",
       "enabled": true,
+      "firstName": "Atlas",
+      "lastName": "Admin",
+      "email": "admin@atlas.local",
       "emailVerified": true,
+      "requiredActions": [],
       "attributes": { "tenants": ["atlas-cn", "east-retail", "south-sales"] },
       "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
       "realmRoles": ["ADMIN", "USER"]
@@ -70,7 +75,11 @@
     {
       "username": "analyst",
       "enabled": true,
+      "firstName": "Atlas",
+      "lastName": "Analyst",
+      "email": "analyst@atlas.local",
       "emailVerified": true,
+      "requiredActions": [],
       "attributes": { "tenants": ["atlas-cn"] },
       "credentials": [{ "type": "password", "value": "atlas-local-only", "temporary": false }],
       "realmRoles": ["USER"]
