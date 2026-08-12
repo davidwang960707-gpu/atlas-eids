@@ -366,7 +366,7 @@ export async function createProject(options) {
     cwd = process.cwd()
   } = options
   if (!validName.test(name)) throw new Error('Project name must use lowercase letters, numbers and hyphens')
-  const configuration = { schemaVersion: 1, generatorVersion: '0.2.0-beta.1', name, framework, backend, template, frameworkLayout, density, locale, adapter, packageSource }
+  const configuration = { schemaVersion: 1, generatorVersion: packageVersion, name, framework, backend, template, frameworkLayout, density, locale, adapter, packageSource }
   validateConfiguration(configuration)
   const target = resolve(cwd, name)
   const files = projectFiles(configuration, target)
@@ -408,7 +408,7 @@ export async function upgradeProject(options = {}) {
   const configuration = {
     ...previous,
     ...Object.fromEntries(['frameworkLayout', 'density', 'locale', 'adapter'].flatMap((key) => options[key] ? [[key, options[key]]] : [])),
-    generatorVersion: '0.2.0-beta.1'
+    generatorVersion: packageVersion
   }
   delete configuration.managedFiles
   validateConfiguration(configuration)
