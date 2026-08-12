@@ -32,6 +32,9 @@
 - 包级测试、Axe、E2E、视觉回归、Maven 测试和 npm audit 已进入检查流程
 - CLI 生成 7 种应用框架，并支持密度、语言、第三方 Adapter、权限导航、Java API Client 和升级差异预览
 - React / Vue 的 31 个组件均建立 Story 状态矩阵，并自动从类型源生成 API 文档
+- React / Vue Storybook 使用统一 Atlas 管理器主题，补齐 Button、Orb、AI Composer Controls，并完成 31 × 2 逐组件 Axe 检查
+- Living Orb 在正式组件包中补齐动态轨道、呼吸形变、深度、碰撞焦散、液态流动和高光层，普通业务列表不再使用 Orb
+- 15 个页面模板增加根布局溢出检查，AI 审计治理页的策略版本标签完成桌面与移动端约束
 - 建立 PostgreSQL + Keycloak + Java Docker Compose，以及 Flyway、OIDC Claims、RBAC、Token 过期与租户隔离 Testcontainers 测试
 - AI Runtime 支持附件、引用、持久化会话、预算、成本、Trace 和失败恢复
 - Plugin SDK 支持 ECDSA Manifest、HTTPS 索引、Worker/iframe 沙箱；Web Agent 支持 WebMCP Draft 和跨页面执行

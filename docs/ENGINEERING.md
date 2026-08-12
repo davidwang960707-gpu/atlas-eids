@@ -34,6 +34,10 @@ npm run test:visual
 npm run test:storybook
 ```
 
+Playwright 使用 `4273–4276` 作为 Portal、React、Vue 和模板的专用测试端口，Storybook 静态测试使用 `6216–6217`。所有测试服务都禁用 `reuseExistingServer`：端口冲突时直接失败，避免误把其他本地项目当成 Atlas EIDS 进行断言。端口可通过 `ATLAS_EIDS_TEST_*_PORT` 环境变量覆盖。
+
+`test:storybook` 会逐一检查 React / Vue 的 31 个组件，并额外验证 Living Orb 的动态轨道、呼吸 Core、碰撞焦散层，以及 AI Composer 的空白初始态与焦点行为。
+
 ## CI
 
 `.github/workflows/ci.yml` 在 `main` 分支 Push 和 Pull Request 时执行：

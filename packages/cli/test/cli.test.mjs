@@ -30,8 +30,9 @@ test('registry projects follow the installed CLI package version', async () => {
   const cwd = await mkdtemp(join(tmpdir(), 'atlas-registry-'))
   const result = await createProject({ name: 'atlas-registry', framework: 'react', packageSource: 'registry', cwd })
   const packageJson = JSON.parse(await readFile(join(result.target, 'package.json'), 'utf8'))
-  assert.equal(packageJson.dependencies['@atlas-eids/react'], '^0.2.0-beta.1')
-  assert.equal(packageJson.dependencies['@atlas-eids/tokens'], '^0.2.0-beta.1')
+  const cliPackage = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
+  assert.equal(packageJson.dependencies['@atlas-eids/react'], `^${cliPackage.version}`)
+  assert.equal(packageJson.dependencies['@atlas-eids/tokens'], `^${cliPackage.version}`)
 })
 
 test('CLI generates runnable React and Vue sources for all 15 page templates', async () => {

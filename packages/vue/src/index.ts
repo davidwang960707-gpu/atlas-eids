@@ -39,7 +39,7 @@ export const AtlasOrb = defineComponent({
   name: 'AtlasOrb',
   props: { state: { type: String, default: 'idle' }, size: { type: Number, default: 48 }, label: { type: String, default: 'Atlas AI' }, showRing: { type: Boolean, default: true } },
   setup(props, { attrs }) {
-    return () => h('span', { ...attrs, class: ['atlas-living-orb', `state-${props.state}`], style: { width: `${props.size}px`, height: `${props.size}px` }, role: 'img', 'aria-label': `${props.label}，${props.state}` }, [h('span', { class: 'atlas-living-orb-atmosphere' }), props.showRing ? [h('span', { class: 'atlas-living-orb-ring primary' }), h('span', { class: 'atlas-living-orb-ring secondary' })] : null, h('span', { class: 'atlas-living-orb-core' }, [h('span', { class: 'depth' }), h('span', { class: 'liquid' }), h('span', { class: 'specular' })])])
+    return () => h('span', { ...attrs, class: ['atlas-living-orb', `state-${props.state}`], style: { width: `${props.size}px`, height: `${props.size}px`, '--atlas-orb-size': `${props.size}px` }, role: 'img', 'aria-label': `${props.label}，${props.state}` }, [h('span', { class: 'atlas-living-orb-atmosphere' }), props.showRing ? [h('span', { class: 'atlas-living-orb-ring primary' }), h('span', { class: 'atlas-living-orb-ring secondary' })] : null, h('span', { class: 'atlas-living-orb-core' }, [h('span', { class: 'depth' }), h('span', { class: 'caustic' }), h('span', { class: 'liquid' }), h('span', { class: 'specular' })])])
   }
 })
 
@@ -235,7 +235,7 @@ export const AtlasBadge = defineComponent({
   name: 'AtlasBadge',
   props: { count: Number, dot: Boolean, intent: { type: String, default: 'danger' } },
   setup(props, { slots }) {
-    return () => h('span', { class: 'atlas-badge' }, [slots.default?.(), h('sup', { class: `is-${props.intent}`, 'aria-label': props.dot ? '有新状态' : `${props.count ?? 0} 条` }, props.dot ? '' : props.count && props.count > 99 ? '99+' : props.count)])
+    return () => h('span', { class: 'atlas-badge' }, [slots.default?.(), props.dot || props.count !== undefined ? h('sup', { class: `is-${props.intent}`, 'aria-hidden': props.dot || undefined }, props.dot ? '' : props.count && props.count > 99 ? '99+' : props.count) : null, props.dot ? h('span', { class: 'sr-only' }, '有新状态') : null])
   }
 })
 

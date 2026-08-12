@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/cli",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "Project and page source generator for Atlas EIDS",
   "type": "module",
   "bin": {

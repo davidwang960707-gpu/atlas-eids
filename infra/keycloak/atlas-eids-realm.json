@@ -58,7 +58,7 @@
       ]
     }
   ],
-  "defaultClientScopes": ["profile", "email", "roles", "atlas-claims"],
+  "defaultDefaultClientScopes": ["profile", "email", "roles", "atlas-claims"],
   "users": [
     {
       "username": "admin",

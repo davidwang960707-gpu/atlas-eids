@@ -1,5 +1,11 @@
 # @atlas-eids/cli
 
+## 0.2.0-beta.2
+
+### Patch Changes
+
+- 统一官网、React、Vue 与 Storybook 的 Orb 生命体视觉标准，完善双端 Storybook Controls、组件可访问性矩阵与独立测试端口，并修复 Pattern Lab 语义和 AI 审计治理页布局。
+
 ## 0.2.0-beta.1
 
 ### Patch Changes

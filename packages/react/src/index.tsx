@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
+import { useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type CSSProperties, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
 
 const cx = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(' ')
 
@@ -65,10 +65,11 @@ export interface AtlasOrbProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 export function AtlasOrb({ state = 'idle', size = 48, label = 'Atlas AI', showRing = true, className, style, ...props }: AtlasOrbProps) {
-  return <span className={cx('atlas-living-orb', `state-${state}`, className)} style={{ width: size, height: size, ...style }} role="img" aria-label={`${label}，${state}`} {...props}>
+  const orbStyle = { width: size, height: size, '--atlas-orb-size': `${size}px`, ...style } as CSSProperties
+  return <span className={cx('atlas-living-orb', `state-${state}`, className)} style={orbStyle} role="img" aria-label={`${label}，${state}`} {...props}>
     <span className="atlas-living-orb-atmosphere" />
     {showRing && <><span className="atlas-living-orb-ring primary" /><span className="atlas-living-orb-ring secondary" /></>}
-    <span className="atlas-living-orb-core"><span className="depth" /><span className="liquid" /><span className="specular" /></span>
+    <span className="atlas-living-orb-core"><span className="depth" /><span className="caustic" /><span className="liquid" /><span className="specular" /></span>
   </span>
 }
 
@@ -212,7 +213,7 @@ export function AtlasTag({ children, intent = 'neutral', removable, onRemove }: 
 }
 
 export function AtlasBadge({ children, count, dot = false, intent = 'danger' }: { children: ReactNode; count?: number; dot?: boolean; intent?: 'primary' | 'success' | 'warning' | 'danger' }) {
-  return <span className="atlas-badge">{children}<sup className={`is-${intent}`} aria-label={dot ? '有新状态' : `${count ?? 0} 条`}>{dot ? '' : (count && count > 99 ? '99+' : count)}</sup></span>
+  return <span className="atlas-badge">{children}{(dot || count !== undefined) && <><sup className={`is-${intent}`} aria-hidden={dot || undefined}>{dot ? '' : (count && count > 99 ? '99+' : count)}</sup>{dot && <span className="sr-only">有新状态</span>}</>}</span>
 }
 
 export function AtlasAvatar({ name, src, size = 32 }: { name: string; src?: string; size?: number }) {

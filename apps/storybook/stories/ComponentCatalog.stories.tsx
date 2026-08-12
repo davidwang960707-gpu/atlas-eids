@@ -17,10 +17,19 @@ const matrix = (component: string, states: string[]) => ({ atlas: { component, s
 const options = [{ label: '标准', value: 'standard' }, { label: '紧凑', value: 'compact' }, { label: '舒适', value: 'comfortable', disabled: true }]
 const Panel = ({ children }: { children: ReactNode }) => <section className="story-panel" style={{ minWidth: 620 }}>{children}</section>
 
-export const Button: Story = {
+interface ButtonStoryArgs { label: string; intent: 'neutral' | 'primary' | 'danger'; size: 'compact' | 'default' | 'comfortable'; loading: boolean; disabled: boolean }
+export const Button: StoryObj<ButtonStoryArgs> = {
+  args: { label: '可调按钮', intent: 'primary', size: 'default', loading: false, disabled: false },
+  argTypes: {
+    label: { control: 'text', description: '按钮文案' },
+    intent: { control: 'select', options: ['neutral', 'primary', 'danger'] },
+    size: { control: 'inline-radio', options: ['compact', 'default', 'comfortable'] },
+    loading: { control: 'boolean' },
+    disabled: { control: 'boolean' }
+  },
   parameters: matrix('AtlasButton', ['neutral', 'primary', 'danger', 'loading', 'disabled']),
-  render: () => <Panel><div className="story-row"><AtlasButton>次要操作</AtlasButton><AtlasButton intent="primary">主要操作</AtlasButton><AtlasButton intent="danger">危险操作</AtlasButton><AtlasButton loading>提交中</AtlasButton><AtlasButton disabled>不可用</AtlasButton></div></Panel>,
-  play: async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: '主要操作' })); await expect(canvas.getByRole('button', { name: '不可用' })).toBeDisabled() }
+  render: (args) => <Panel><div className="story-control"><AtlasButton intent={args.intent} size={args.size} loading={args.loading} disabled={args.disabled}>{args.label}</AtlasButton><span className="story-control-copy"><strong>实时参数预览</strong>在 Controls 中调整语义、尺寸与状态。</span></div><div className="story-row"><AtlasButton>次要操作</AtlasButton><AtlasButton intent="primary">主要操作</AtlasButton><AtlasButton intent="danger">危险操作</AtlasButton><AtlasButton loading>提交中</AtlasButton><AtlasButton disabled>不可用</AtlasButton></div></Panel>,
+  play: async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: '可调按钮' })); await expect(canvas.getByRole('button', { name: '不可用' })).toBeDisabled() }
 }
 
 export const Input: Story = {
@@ -62,6 +71,29 @@ export const Skeleton: Story = { parameters: matrix('AtlasSkeleton', ['one-line'
 export const Dialog: Story = { parameters: matrix('AtlasDialog', ['closed', 'open', 'escape']), render: () => { const [open, setOpen] = useState(false); return <Panel><AtlasButton onClick={() => setOpen(true)}>打开对话框</AtlasButton><AtlasDialog open={open} title="确认发布" onClose={() => setOpen(false)} footer={<AtlasButton intent="primary">确认</AtlasButton>}>发布后将生成审计记录。</AtlasDialog></Panel> } }
 export const Drawer: Story = { parameters: matrix('AtlasDrawer', ['closed', 'open', 'mask-close']), render: () => { const [open, setOpen] = useState(false); return <Panel><AtlasButton onClick={() => setOpen(true)}>查看详情</AtlasButton><AtlasDrawer open={open} title="任务详情" onClose={() => setOpen(false)}>AT-1048 · 内容质量检查</AtlasDrawer></Panel> } }
 
-export const Orb: Story = { parameters: matrix('AtlasOrb', ['idle', 'thinking', 'running', 'error', 'without-ring']), render: () => <Panel><div className="story-row">{(['idle', 'thinking', 'running', 'error'] as const).map((state) => <AtlasOrb key={state} state={state} size={80}/>)}<AtlasOrb size={80} showRing={false}/></div></Panel> }
-export const AIComposer: Story = { parameters: matrix('AtlasAIComposer', ['empty', 'context', 'suggestion', 'busy']), render: () => <Panel><AtlasAIComposer contexts={['客户 AC-1048', '近 30 天']} suggestions={['分析风险', '生成摘要']} onSubmit={() => {}}/></Panel>, play: async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: '分析风险' })); await expect(canvas.getByRole('textbox')).toHaveValue('分析风险') } }
+interface OrbStoryArgs { state: 'idle' | 'thinking' | 'running' | 'error'; size: number; showRing: boolean; label: string }
+export const Orb: StoryObj<OrbStoryArgs> = {
+  args: { state: 'thinking', size: 132, showRing: true, label: 'Atlas AI' },
+  argTypes: {
+    state: { control: 'inline-radio', options: ['idle', 'thinking', 'running', 'error'] },
+    size: { control: { type: 'range', min: 48, max: 220, step: 4 } },
+    showRing: { control: 'boolean' },
+    label: { control: 'text' }
+  },
+  parameters: matrix('AtlasOrb', ['idle', 'thinking', 'running', 'error', 'without-ring']),
+  render: (args) => <Panel><div className="story-control"><AtlasOrb {...args}/><span className="story-control-copy"><strong>Living Intelligence Core</strong>轨道约束、呼吸形变、液态碰撞与状态色共同表达 AI 运行状态。</span></div><div className="story-row">{(['idle', 'thinking', 'running', 'error'] as const).map((state) => <AtlasOrb key={state} state={state} size={72}/>)}</div></Panel>
+}
+
+interface ComposerStoryArgs { placeholder: string; busy: boolean; contexts: string[]; suggestions: string[] }
+export const AIComposer: StoryObj<ComposerStoryArgs> = {
+  args: { placeholder: '描述目标、输出形式和约束条件...', busy: false, contexts: ['客户 AC-1048', '近 30 天'], suggestions: ['分析风险', '生成摘要'] },
+  argTypes: {
+    placeholder: { control: 'text' },
+    busy: { control: 'boolean' },
+    contexts: { control: 'object' },
+    suggestions: { control: 'object' }
+  },
+  parameters: matrix('AtlasAIComposer', ['empty', 'context', 'suggestion', 'busy']),
+  render: (args) => <Panel><AtlasAIComposer {...args} onSubmit={() => {}}/></Panel>
+}
 export const ExecutionPlan: Story = { parameters: matrix('AtlasExecutionPlan', ['pending', 'running', 'completed', 'failed', 'approval']), render: () => <Panel><AtlasExecutionPlan onStop={() => {}} steps={[{ id: '1', title: '读取授权数据', status: 'completed' }, { id: '2', title: '生成变更方案', status: 'running' }, { id: '3', title: '写入业务系统', status: 'approval' }, { id: '4', title: '验证结果', status: 'pending' }, { id: '5', title: '异常恢复', status: 'failed' }]}/></Panel> }

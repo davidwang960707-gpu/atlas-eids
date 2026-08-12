@@ -113,7 +113,7 @@ npm install
 npm run atlas -- create atlas-workspace --framework react --template agent-task --framework-layout tenant --density compact --locale zh-CN --adapter antd --backend java --local
 ```
 
-正式 npm packages 发布后，CLI 才会默认使用 Registry 版本。当前状态与迁移方式见 [Packages 发布状态](docs/PACKAGE_STATUS.md)，首个预发布版本见 [v0.2.0-beta.1 发布说明](docs/releases/v0.2.0-beta.1.md)。
+正式 npm packages 发布后，CLI 才会默认使用 Registry 版本。当前状态与迁移方式见 [Packages 发布状态](docs/PACKAGE_STATUS.md)，当前预发布版本见 [v0.2.0-beta.2 发布说明](docs/releases/v0.2.0-beta.2.md)。
 
 安装后执行完整检查：
 

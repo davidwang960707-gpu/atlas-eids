@@ -390,11 +390,6 @@ main, .lab-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; 
 .demo-task-cell > span { min-width: 0; display: grid; gap: 2px; }
 .demo-task-cell strong { overflow: hidden; color: var(--text); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
 .demo-task-cell small { color: var(--text-3); font-family: var(--mono); font-size: 7px; }
-.demo-table-orb, .demo-card-orb { display: block; flex: 0 0 auto; border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%; background: radial-gradient(circle at 30% 25%, #fff 0 5%, transparent 22%), conic-gradient(from 210deg, var(--neural), var(--glow), var(--atlas), #29216D, var(--neural)); box-shadow: inset -6px -7px 10px rgba(20,14,70,.34), 0 0 15px rgba(123,97,255,.28); }
-.demo-table-orb { width: 28px; height: 28px; }
-.demo-table-orb.orb-2, .demo-card-orb.orb-2 { background: radial-gradient(circle at 30% 25%, #fff 0 5%, transparent 22%), conic-gradient(from 210deg, #008F73, #8AF4D8, #00C48C, #035D50, #008F73); box-shadow: inset -6px -7px 10px rgba(0,63,52,.28), 0 0 15px rgba(0,196,140,.25); }
-.demo-table-orb.orb-3, .demo-card-orb.orb-3 { background: radial-gradient(circle at 30% 25%, #fff 0 5%, transparent 22%), conic-gradient(from 210deg, #D93261, #FFB0C2, #FF5A7A, #8E1538, #D93261); box-shadow: inset -6px -7px 10px rgba(91,8,32,.28), 0 0 15px rgba(255,90,122,.24); }
-.demo-table-orb.orb-4, .demo-card-orb.orb-4 { background: radial-gradient(circle at 30% 25%, #fff 0 5%, transparent 22%), conic-gradient(from 210deg, #C77900, #FFE0A1, #FFB020, #825000, #C77900); box-shadow: inset -6px -7px 10px rgba(84,49,0,.28), 0 0 15px rgba(255,176,32,.22); }
 .demo-status { width: fit-content; padding: 5px 9px; border-radius: 999px; background: rgba(56,201,139,.09); color: var(--success); font-size: 8px; font-weight: 650; }
 .status-运行中 { background: rgba(123,97,255,.1); color: var(--glow); }
 .status-待确认 { background: rgba(240,180,90,.1); color: var(--warning); }

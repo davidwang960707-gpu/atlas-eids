@@ -19,7 +19,7 @@ import { AtlasButton, AtlasOrb } from '@atlas-eids/react'
 import '@atlas-eids/react/styles.css'
 ```
 
-这些组件处于 Beta，已经具备类型、包构建、导出测试、Storybook、代表性 Axe 检查与 Playwright 视觉回归。后续仍需继续扩大组件级交互测试与 API 稳定性验证。
+这些组件处于 Beta，已经具备类型、包构建、导出测试、31 × 2 Story 状态矩阵、逐组件 Axe 检查与 Playwright 视觉回归。Button、Orb、AI Composer 提供可调 Controls；其余组件以完整状态矩阵呈现。后续仍需继续扩大复杂键盘交互与跨浏览器覆盖。
 
 ## Storybook
 
@@ -29,6 +29,8 @@ npm run dev:storybook:vue
 ```
 
 React 与 Vue 工作台分别运行在 `6006` 和 `6007` 端口；静态构建使用 `npm run build:storybook`。
+
+两套 Storybook 使用统一的 Atlas 管理器主题、信息密度和 Canvas 结构，并关闭默认 onboarding 与版本提示。Vue 额外提供与 React 对齐的“AI 原生组件”分组。
 
 公开入口：
 
@@ -53,6 +55,13 @@ Orb 是 Atlas EIDS 中最核心的 AI 存在感组件。
 - 内部运动要有液态、金属、阻尼和随机感。
 - Core 可以轻微变形，但不能视觉上突破外层轨道。
 - Orb 应该像一个有生命感的 AI 入口，而不是普通装饰 icon。
+
+### 语义边界
+
+- 只在 AI Assistant、Agent 实体、AI 生成/执行状态和可信治理入口中使用 Orb。
+- 普通任务、文件、客户、审批和数据行使用业务图标、头像或状态点。
+- `running`、`error` 等颜色表达的是 AI 运行状态，不用于给普通对象做随机分类色。
+- 小尺寸 Orb 仍保留材质层，但在高密度列表中优先使用状态点，避免持续动效干扰扫描。
 
 ### React
 

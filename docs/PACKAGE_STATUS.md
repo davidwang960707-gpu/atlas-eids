@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-Atlas EIDS 当前发布候选为 `0.2.0-beta.1`。Monorepo 内 12 个公开 packages 已完成构建、测试、包体预检和 Changesets 发布准备；GitHub Beta Release 与 npm Registry 是两条独立发布链路。
+Atlas EIDS 当前发布候选为 `0.2.0-beta.2`。Monorepo 内 12 个公开 packages 已完成构建、测试、包体预检和 Changesets 发布准备；GitHub Beta Release 与 npm Registry 是两条独立发布链路。
 
 在 npm Beta 包确认可见前，不要直接执行 `npm install @atlas-eids/react` 或 `npm install @atlas-eids/vue`。请先 Clone 仓库，并通过 CLI 的 `--local` 参数生成使用本地 `file:` 依赖的项目。
 

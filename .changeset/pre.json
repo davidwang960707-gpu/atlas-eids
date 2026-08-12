@@ -21,6 +21,7 @@
     "@atlas-eids/web-agent": "0.2.0-dev.0"
   },
   "changesets": [
-    "future-enterprise-beta"
+    "future-enterprise-beta",
+    "living-orb-storybook-beta"
   ]
 }

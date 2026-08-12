@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
+import { testUrls } from './support/urls.js'
 
-const portal = 'http://127.0.0.1:4173'
+const portal = testUrls.portal
 
 test('首页提供完整开发者快速入口', async ({ page }) => {
   await page.goto(`${portal}/index.html`)

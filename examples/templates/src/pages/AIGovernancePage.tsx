@@ -24,7 +24,7 @@ export function AIGovernancePage() {
   ]
   return <>
     <PageHeader eyebrow="AI 原生" title="AI 审计治理页" description="统一查看输入、输出、工具调用、租户边界和人工审批记录。" primary="配置策略" />
-    <div className="governance-banner"><span><ShieldAlert size={20}/></span><div><strong>治理策略运行正常</strong><p>过去 24 小时已检查 12,846 次调用，阻断 18 次越权请求。</p></div><AtlasTag intent="success">策略版本 v2.8</AtlasTag></div>
+    <div className="governance-banner"><span className="governance-icon"><ShieldAlert size={20}/></span><div><strong>治理策略运行正常</strong><p>过去 24 小时已检查 12,846 次调用，阻断 18 次越权请求。</p></div><AtlasTag intent="success">策略版本 v2.8</AtlasTag></div>
     <div className="stat-grid"><AtlasStatistic label="今日调用量" value="12,846" trend="up" trendLabel="较昨日 +8.2%"/><AtlasStatistic label="策略命中" value={286} trend="up" trendLabel="22 条高风险"/><AtlasStatistic label="人工审批" value={34} trend="flat" trendLabel="平均 8.6 分钟"/><AtlasStatistic label="越权阻断" value={18} trend="down" trendLabel="较上周 -12%"/></div>
     <Panel className="audit-panel">
       <div className="filter-bar"><AtlasInput aria-label="搜索审计日志" placeholder="搜索智能体、操作或租户" value={query} onChange={(event) => setQuery(event.target.value)}/><AtlasSelect aria-label="风险等级" value={risk} onChange={(event) => setRisk(event.target.value)} options={[{ label: '全部风险', value: '全部' }, { label: '高风险', value: '高' }, { label: '中风险', value: '中' }, { label: '低风险', value: '低' }]}/><div className="filter-spacer"/><ExportButton/></div>

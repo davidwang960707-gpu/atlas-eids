@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/plugin-sdk",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "Plugin and extension contracts for Atlas EIDS",
   "type": "module",
   "files": [

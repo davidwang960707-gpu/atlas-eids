@@ -17,19 +17,23 @@ const components = { AtlasAIComposer, AtlasAlert, AtlasAvatar, AtlasBadge, Atlas
 const options = [{ label: '标准', value: 'standard' }, { label: '紧凑', value: 'compact' }, { label: '舒适', value: 'comfortable', disabled: true }]
 const rows = [{ id: 'AT-1048', task: '内容质量检查', owner: '王六' }, { id: 'AT-1047', task: '知识索引更新', owner: '林可' }]
 const columns = [{ key: 'id', title: '编号' }, { key: 'task', title: '任务' }, { key: 'owner', title: '负责人' }]
-const make = (component: string, states: string[], template: string): Story => ({
+const make = (component: string, states: string[], template: string, story: Partial<Story> = {}): Story => ({
+  ...story,
   parameters: { atlas: { component, states } },
-  render: () => ({
+  render: (args) => ({
     components,
     setup() {
-      return { checked: ref(true), value: ref('standard'), page: ref(3), open: ref(false), query: ref(''), selected: ref([]), options, rows, columns }
+      return { args, checked: ref(true), value: ref('standard'), page: ref(3), open: ref(false), query: ref(''), selected: ref([]), options, rows, columns }
     },
     template: `<section class="story-panel" style="min-width:620px">${template}</section>`
   })
 })
 
-export const Button = make('AtlasButton', ['neutral', 'primary', 'danger', 'loading', 'disabled'], `<div class="story-row"><AtlasButton>次要操作</AtlasButton><AtlasButton intent="primary">主要操作</AtlasButton><AtlasButton intent="danger">危险操作</AtlasButton><AtlasButton loading>提交中</AtlasButton><AtlasButton disabled>不可用</AtlasButton></div>`)
-Button.play = async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: '主要操作' })); await expect(canvas.getByRole('button', { name: '不可用' })).toBeDisabled() }
+export const Button = make('AtlasButton', ['neutral', 'primary', 'danger', 'loading', 'disabled'], `<div class="story-control"><AtlasButton :intent="args.intent" :size="args.size" :loading="args.loading" :disabled="args.disabled">{{ args.label }}</AtlasButton><span class="story-control-copy"><strong>实时参数预览</strong>在 Controls 中调整语义、尺寸与状态。</span></div><div class="story-row"><AtlasButton>次要操作</AtlasButton><AtlasButton intent="primary">主要操作</AtlasButton><AtlasButton intent="danger">危险操作</AtlasButton><AtlasButton loading>提交中</AtlasButton><AtlasButton disabled>不可用</AtlasButton></div>`, {
+  args: { label: '可调按钮', intent: 'primary', size: 'default', loading: false, disabled: false },
+  argTypes: { label: { control: 'text', description: '按钮文案' }, intent: { control: 'select', options: ['neutral', 'primary', 'danger'] }, size: { control: 'inline-radio', options: ['compact', 'default', 'comfortable'] }, loading: { control: 'boolean' }, disabled: { control: 'boolean' } }
+})
+Button.play = async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: '可调按钮' })); await expect(canvas.getByRole('button', { name: '不可用' })).toBeDisabled() }
 export const Input = make('AtlasInput', ['default', 'hint', 'error', 'disabled'], `<div class="story-row"><AtlasInput label="任务名称" hint="最多 40 个字符"/><AtlasInput label="负责人" error="请选择负责人"/><AtlasInput label="归档编号" disabled model-value="AT-1048"/></div>`)
 Input.play = async ({ canvasElement }) => { const input = within(canvasElement).getByLabelText('任务名称'); await userEvent.type(input, '知识库同步'); await expect(input).toHaveValue('知识库同步') }
 export const Select = make('AtlasSelect', ['default', 'disabled-option'], `<AtlasSelect v-model="value" label="页面密度" :options="options"/>`)
@@ -60,6 +64,12 @@ export const Empty = make('AtlasEmpty', ['without-action', 'with-action'], `<Atl
 export const Skeleton = make('AtlasSkeleton', ['one-line', 'multi-line'], `<div class="story-stack"><AtlasSkeleton :lines="1"/><AtlasSkeleton :lines="4"/></div>`)
 export const Dialog = make('AtlasDialog', ['closed', 'open', 'escape'], `<AtlasButton @click="open=true">打开对话框</AtlasButton><AtlasDialog v-model:open="open" title="确认发布">发布后将生成审计记录。</AtlasDialog>`)
 export const Drawer = make('AtlasDrawer', ['closed', 'open', 'mask-close'], `<AtlasButton @click="open=true">查看详情</AtlasButton><AtlasDrawer :open="open" title="任务详情" @close="open=false">AT-1048 · 内容质量检查</AtlasDrawer>`)
-export const Orb = make('AtlasOrb', ['idle', 'thinking', 'running', 'error', 'without-ring'], `<div class="story-row"><AtlasOrb state="idle" :size="80"/><AtlasOrb state="thinking" :size="80"/><AtlasOrb state="running" :size="80"/><AtlasOrb state="error" :size="80"/><AtlasOrb :size="80" :show-ring="false"/></div>`)
-export const AIComposer = make('AtlasAIComposer', ['empty', 'context', 'suggestion', 'busy'], `<AtlasAIComposer v-model="query" :contexts="['客户 AC-1048','近 30 天']" :suggestions="['分析风险','生成摘要']"/>`)
+export const Orb = make('AtlasOrb', ['idle', 'thinking', 'running', 'error', 'without-ring'], `<div class="story-control"><AtlasOrb :state="args.state" :size="args.size" :show-ring="args.showRing" :label="args.label"/><span class="story-control-copy"><strong>Living Intelligence Core</strong>轨道约束、呼吸形变、液态碰撞与状态色共同表达 AI 运行状态。</span></div><div class="story-row"><AtlasOrb v-for="state in ['idle','thinking','running','error']" :key="state" :state="state" :size="72"/></div>`, {
+  args: { state: 'thinking', size: 132, showRing: true, label: 'Atlas AI' },
+  argTypes: { state: { control: 'inline-radio', options: ['idle', 'thinking', 'running', 'error'] }, size: { control: { type: 'range', min: 48, max: 220, step: 4 } }, showRing: { control: 'boolean' }, label: { control: 'text' } }
+})
+export const AIComposer = make('AtlasAIComposer', ['empty', 'context', 'suggestion', 'busy'], `<AtlasAIComposer v-model="query" :placeholder="args.placeholder" :busy="args.busy" :contexts="args.contexts" :suggestions="args.suggestions"/>`, {
+  args: { placeholder: '描述目标、输出形式和约束条件...', busy: false, contexts: ['客户 AC-1048', '近 30 天'], suggestions: ['分析风险', '生成摘要'] },
+  argTypes: { placeholder: { control: 'text' }, busy: { control: 'boolean' }, contexts: { control: 'object' }, suggestions: { control: 'object' } }
+})
 export const ExecutionPlan = make('AtlasExecutionPlan', ['pending', 'running', 'completed', 'failed', 'approval'], `<AtlasExecutionPlan stoppable :steps="[{id:'1',title:'读取授权数据',status:'completed'},{id:'2',title:'生成变更方案',status:'running'},{id:'3',title:'写入业务系统',status:'approval'},{id:'4',title:'验证结果',status:'pending'},{id:'5',title:'异常恢复',status:'failed'}]"/>`)

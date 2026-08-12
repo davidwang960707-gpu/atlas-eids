@@ -42,6 +42,9 @@
 - AI Runtime 新增附件、引用、持久化会话、预算预警、成本遥测、运行 Trace 与失败恢复
 - Plugin SDK 新增 ECDSA Manifest 签名、HTTPS 插件索引与 Worker/iframe 沙箱
 - Web Agent 新增服务端 Replay Store、跨页面执行、WebMCP Draft Bridge 与工具契约检查
+- Vue Storybook 新增与 React 对齐的 AI 原生组件分组
+- React / Vue Storybook 的 Button、Living Orb、AI Composer 新增可调 Controls
+- Storybook A11y 从代表性组件抽检扩展为 React / Vue 各 31 个组件逐项检查
 
 ### Changed
 
@@ -58,6 +61,11 @@
 - 明确 Living Orb 的 AI 语义边界：普通列表和普通卡片移除 Orb，仅在 Agent 实体、AI 入口与运行状态中使用
 - 组件 Provider 统一支持 `compact`、`standard`、`comfortable` 密度及 `zh-CN`、`en-US` 语言基线
 - Java AI Provider 增加超时、重试、限流、Usage 与成本统计，会话、附件和审批记录进入持久化模型
+- 正式 React / Vue 组件包的 Living Orb 补齐动态双轨、呼吸形变、深度、碰撞焦散、液态流动与高光层
+- Storybook 管理器统一为 Atlas 企业级主题，并关闭默认 onboarding 与更新提示
+- Playwright 改用独立测试端口并禁止复用已有服务，避免端口冲突导致误测其他本地项目
+- 修复 AI 审计治理页策略版本标签被圆形图标选择器误伤的问题
+- 修复 `AtlasBadge` 状态点使用不允许的 ARIA 属性问题
 
 ### Notes
 

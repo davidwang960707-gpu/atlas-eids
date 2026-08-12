@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/adapter-opentiny-vue",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "Runtime OpenTiny Vue wrappers for Atlas EIDS",
   "type": "module",
   "files": [
@@ -17,7 +17,7 @@
     "test": "node --test test/exports.test.mjs && vite build --config test/vite.config.mjs"
   },
   "dependencies": {
-    "@atlas-eids/tokens": "0.2.0-beta.1"
+    "@atlas-eids/tokens": "0.2.0-beta.2"
   },
   "peerDependencies": {
     "@opentiny/vue-button": ">=3.31",

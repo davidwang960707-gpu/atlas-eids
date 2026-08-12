@@ -8,8 +8,20 @@ test.describe('15 个独立页面模板', () => {
       await page.goto(`/#/${route}`)
       await expect(page.locator('main h1')).toBeVisible()
       await expect(page.locator('.page-main')).not.toBeEmpty()
+      const layout = await page.evaluate(() => ({ clientWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }))
+      expect(layout.scrollWidth, `${route} 不应让页面根节点产生横向溢出`).toBeLessThanOrEqual(layout.clientWidth + 1)
     })
   }
+})
+
+test('AI 审计治理版本标签在桌面和移动端保持单行', async ({ page }) => {
+  await page.goto('/#/ai-governance')
+  const version = page.getByText('策略版本 v2.8')
+  await expect(version).toBeVisible()
+  await expect(version).toHaveCSS('white-space', 'nowrap')
+  const box = await version.boundingBox()
+  expect(box?.width ?? 0).toBeGreaterThan(70)
+  expect(box?.height ?? 0).toBeLessThan(32)
 })
 
 test('数据列表支持筛选、选择和详情抽屉', async ({ page }) => {
