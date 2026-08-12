@@ -60,15 +60,17 @@ Pattern Lab 吸收 Ant Design、TDesign 等成熟企业级设计体系在信息�
 
 先定系统的导航语义与操作模式。
 
-| 名称 | 结构 | 示例草图 |
-| --- | --- | --- |
-| 左侧导航框架 | 左侧菜单 + 顶部工具栏 + 内容区 | `<app><sidebar/><main><topbar/><workspace/></main></app>` |
-| 顶部导航框架 | 顶部一级导航 + 内容区 | `<app><header-nav/><content/></app>` |
-| 混合导航框架 | 顶部产品导航 + 左侧业务菜单 | `<app><header-nav/><workspace><sidebar/><content/></workspace></app>` |
-| 工作台框架 | 应用入口 + 待办 + 消息 + 数据卡片 | `<dashboard><entry-grid/><todo/><messages/><metric-cards/></dashboard>` |
-| 多标签页框架 | 导航 + 页面标签栏 + 内容区 | `<app><left-nav/><page><tabs/><content/></page></app>` |
-| 全屏工作区框架 | 精简导航 + 工具栏 + 全屏画布 | `<canvas-shell><toolbar/><canvas/></canvas-shell>` |
-| 多租户框架 | 租户切换 + 系统导航 + 租户内容 | `<app><tenant-switch/><nav/><tenant-content/></app>` |
+| 名称 | CLI ID | 结构 | 生成后的真实能力 |
+| --- | --- | --- | --- |
+| 左侧导航框架 | `sidebar` | 左侧菜单 + 顶部工具栏 + 内容区 | 权限菜单、路由守卫、主题切换 |
+| 顶部导航框架 | `top` | 顶部一级导航 + 内容区 | 一级路由、通栏内容、主题切换 |
+| 混合导航框架 | `hybrid` | 顶部产品导航 + 左侧业务菜单 | 产品 / 业务分层导航、权限过滤 |
+| 工作台框架 | `workbench` | 应用入口 + 待办 + 消息 + 数据卡片 | 应用启动区、角色工作台、业务路由 |
+| 多标签页框架 | `tabs` | 导航 + 页面标签栏 + 内容区 | 页面标签路由、权限菜单、多任务结构 |
+| 全屏工作区框架 | `fullscreen` | 精简导航 + 工具栏 + 全屏画布 | 紧凑工具栏、全屏内容、路由切换 |
+| 多租户框架 | `tenant` | 租户切换 + 系统导航 + 租户内容 | 租户会话、Java Tenant Header、RBAC |
+
+CLI 生成的每种框架都包含 `navigation`、`router`、`auth`、`theme` 与 `atlas-api` 模块，并提供概览、任务、智能分析和系统设置路由。前端通过 `X-Atlas-Tenant` 与 Java Client 传递当前租户，401 时刷新本地 Demo Token；多租户框架默认使用具备多个租户权限的本地 `admin` 账号。
 
 ## 二、基础页面布局
 

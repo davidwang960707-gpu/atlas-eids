@@ -30,7 +30,7 @@
 - Java 后端建立本地 JWT / 外部 OIDC 双模式、Flyway / PostgreSQL、AI Provider 与 Agent 审批回放
 - 建立 Changesets、npm Provenance Workflow、包体和组件 API/Type 发布预检
 - 包级测试、Axe、E2E、视觉回归、Maven 测试和 npm audit 已进入检查流程
-- CLI 生成 7 种应用框架，并支持密度、语言、第三方 Adapter、权限导航、Java API Client 和升级差异预览
+- CLI 生成 7 种完整应用框架，并支持可运行路由、产品 / 业务分层菜单、角色权限、Light / Dark 主题、多租户会话、类型化 Java API Client、密度、语言、第三方 Adapter 和升级差异预览
 - React / Vue 的 31 个组件均建立 Story 状态矩阵，并自动从类型源生成 API 文档
 - React / Vue Storybook 使用统一 Atlas 管理器主题，补齐 Button、Orb、AI Composer Controls，并完成 31 × 2 逐组件 Axe 检查
 - Living Orb 在正式组件包中补齐动态轨道、呼吸形变、深度、碰撞焦散、液态流动和高光层，普通业务列表不再使用 Orb

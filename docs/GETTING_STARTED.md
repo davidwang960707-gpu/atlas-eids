@@ -10,7 +10,7 @@ cd atlas-eids
 npm install
 ```
 
-不要在仓库外直接安装 `@atlas-eids/react` 或 `@atlas-eids/vue`。发布状态和后续迁移方式见 [Packages 发布状态](PACKAGE_STATUS.md)。
+不要在仓库外直接安装 `@atlas-eids/react` 或 `@atlas-eids/vue`。GitHub 已发布 [v0.2.0-beta.2](https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.2) 源码与 tarball，npm Registry 状态和后续迁移方式见 [Packages 发布状态](PACKAGE_STATUS.md)。
 
 ## Workspace 开发
 
@@ -36,7 +36,9 @@ npm run atlas -- generate page agent-task --framework react --out generated/Agen
 npm run atlas -- generate page analytics --framework vue --out generated/AnalyticsPage.vue
 ```
 
-`create --template` 和 `generate page` 都支持全部 15 个模板。`create` 还支持 7 种 `--framework-layout`、3 种 `--density`、中英文 `--locale` 和 Native / Ant Design / TDesign / OpenTiny Adapter。生成结果包含 App Shell、导航、权限、路由、主题、Java API Client、页面头、操作、指标、真实字段和响应式布局。
+`create --template` 和 `generate page` 都支持全部 15 个模板。`create` 还支持 7 种 `--framework-layout`、3 种 `--density`、中英文 `--locale` 和 Native / Ant Design / TDesign / OpenTiny Adapter。生成结果包含 App Shell、可运行 Hash 路由、权限化菜单、主题切换、租户会话、类型化 Java API Client、系统子页面、业务页面和响应式布局。
+
+七种框架不是同一个外壳换名称：`hybrid` 会拆分顶部产品导航和左侧业务导航，`fullscreen` 提供紧凑工具栏，`workbench` 提供应用启动区，`tenant` 提供可用租户切换并与 Java `X-Atlas-Tenant` 校验闭环。其余框架也共享路由守卫、角色权限、主题状态与当前租户上下文。
 
 生成项目中的 `.atlas-eids.json` 记录 CLI 管理文件。升级前先执行 `upgrade --dry-run`；用户已改动的文件会标记为 `conflict` 并停止覆盖，只有审核差异后才应使用 `--force`。
 

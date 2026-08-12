@@ -1,9 +1,15 @@
 import assert from 'node:assert/strict'
+import { execFile as execFileCallback } from 'node:child_process'
 import { access, mkdtemp, readFile, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
+import { promisify } from 'node:util'
 import { createProject, generatePage, listApplicationLayouts, listPagePatterns, upgradeProject } from '../src/generator.mjs'
+
+const execFile = promisify(execFileCallback)
+const cliPath = fileURLToPath(new URL('../src/cli.mjs', import.meta.url))
 
 test('CLI creates a Vue project with selected page and Java backend source', async () => {
   const cwd = await mkdtemp(join(tmpdir(), 'atlas-cli-'))
@@ -23,6 +29,9 @@ test('CLI creates a Vue project with selected page and Java backend source', asy
   await access(resolve(result.target, vueDependency, 'package.json'))
   const apiClient = await readFile(join(result.target, 'src/atlas-api.ts'), 'utf8')
   assert.match(apiClient, /\/api\/v1\/auth\/token/)
+  assert.match(apiClient, /\/api\/v1\/tenant\/current/)
+  assert.match(apiClient, /\/api\/v1\/audit\/events/)
+  assert.match(apiClient, /atlasRequest<T>/)
   assert.match(apiClient, /X-Atlas-Tenant/)
 })
 
@@ -96,11 +105,36 @@ test('CLI generates all seven application framework shells for React and Vue', a
     })
     assert.match(await readFile(join(react.target, 'src/AppShell.tsx'), 'utf8'), new RegExp(layout.title))
     assert.match(await readFile(join(vue.target, 'src/AppShell.vue'), 'utf8'), new RegExp(layout.title))
-    await access(join(react.target, 'src/navigation.ts'))
-    await access(join(react.target, 'src/router.ts'))
-    await access(join(react.target, 'src/auth.ts'))
-    await access(join(react.target, 'src/atlas-api.ts'))
+    const configuration = await readFile(join(react.target, 'src/atlas-config.ts'), 'utf8')
+    const reactShell = await readFile(join(react.target, 'src/AppShell.tsx'), 'utf8')
+    const vueShell = await readFile(join(vue.target, 'src/AppShell.vue'), 'utf8')
+    const auth = await readFile(join(react.target, 'src/auth.ts'), 'utf8')
+    const router = await readFile(join(react.target, 'src/router.ts'), 'utf8')
+    const apiClient = await readFile(join(react.target, 'src/atlas-api.ts'), 'utf8')
+    assert.match(configuration, new RegExp(layout.capabilities[0]))
+    assert.match(reactShell, /navigateAtlas|toggleAtlasTheme/)
+    assert.match(vueShell, /navigateAtlas|toggleAtlasTheme/)
+    assert.match(auth, /setActiveTenant|canAccess/)
+    assert.match(router, /subscribeAtlasRoute|resolveAtlasRoute/)
+    assert.match(apiClient, /atlasRequest<T>|X-Atlas-Tenant/)
+    await access(join(react.target, 'src/SystemPage.tsx'))
+    await access(join(react.target, 'src/theme.ts'))
+    await access(join(vue.target, 'src/SystemPage.vue'))
+    await access(join(vue.target, 'src/theme.ts'))
+    if (layout.id === 'tenant') {
+      assert.match(auth, /actor: 'admin'/)
+      assert.match(auth, /east-retail/)
+      assert.match(reactShell, /tenant-switcher/)
+    }
   }
+})
+
+test('CLI rejects unknown options instead of silently generating in the wrong directory', async () => {
+  const cwd = await mkdtemp(join(tmpdir(), 'atlas-options-'))
+  await assert.rejects(
+    execFile(process.execPath, [cliPath, 'create', 'atlas-demo', '--output', cwd]),
+    /Unknown option: --output/
+  )
 })
 
 test('upgrade previews configuration changes and protects edited generated files', async () => {

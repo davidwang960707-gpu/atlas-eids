@@ -29,8 +29,8 @@
     <a href="https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html">
       <img src="https://img.shields.io/badge/Developer%20Docs-API%20Search-111827?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Atlas EIDS 开发文档" />
     </a>
-    <a href="https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.1">
-      <img src="https://img.shields.io/badge/Release-v0.2.0--beta.1-087443?style=for-the-badge&logo=github&logoColor=white" alt="Atlas EIDS Beta Release" />
+    <a href="https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.2">
+      <img src="https://img.shields.io/badge/Release-v0.2.0--beta.2-087443?style=for-the-badge&logo=github&logoColor=white" alt="Atlas EIDS Beta Release" />
     </a>
   </p>
 
@@ -79,7 +79,7 @@ Atlas EIDS 是一套面向 AI 原生企业级产品的界面设计系统。
 - **组件工作台与质量门槛**：React / Vue Storybook、Axe A11y、Playwright E2E 与视觉回归
 - **Skills 文档**：把 Atlas EIDS 的设计原则沉淀成可维护的 AI Assistant Skills
 - **Monorepo Packages**：Tokens、Core、Plugin SDK、Adapters、AI Runtime、Web Agent、CLI、React、Vue
-- **源码生成**：通过 `--template` 生成 15 类可编译的 React / Vue 页面，以及 Spring Boot 4.1 / Java 21 后端
+- **源码生成**：组合 7 种完整应用框架与 15 类 React / Vue 页面，内置路由、权限菜单、主题、租户会话、Java API Client，以及 Spring Boot 4.1 / Java 21 后端
 - **企业集成基线**：本地 JWT 与外部 OIDC 双模式、RBAC、租户隔离、PostgreSQL、Flyway、AI Provider、Agent 审批与审计回放
 - **发布工程**：Changesets、npm Provenance 工作流、包体预检、组件 API/Type 契约检查
 

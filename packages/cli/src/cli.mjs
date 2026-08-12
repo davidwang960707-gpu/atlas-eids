@@ -7,9 +7,25 @@ const valueAfter = (name, fallback) => {
   return index >= 0 ? args[index + 1] : fallback
 }
 
+function validateOptions(valueOptions = [], flags = []) {
+  const values = new Set(valueOptions)
+  const booleans = new Set(flags)
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index]
+    if (!argument.startsWith('--')) continue
+    if (!values.has(argument) && !booleans.has(argument)) throw new Error(`Unknown option: ${argument}`)
+    if (values.has(argument)) {
+      const value = args[index + 1]
+      if (!value || value.startsWith('--')) throw new Error(`Option requires a value: ${argument}`)
+      index += 1
+    }
+  }
+}
+
 async function main() {
   const [command, subject, name] = args
   if (command === 'create' && subject) {
+    validateOptions(['--framework', '--backend', '--template', '--framework-layout', '--density', '--locale', '--adapter'], ['--local'])
     const result = await createProject({
       name: subject,
       framework: valueAfter('--framework', 'react'),
@@ -25,6 +41,7 @@ async function main() {
     return
   }
   if (command === 'generate' && subject === 'page' && name) {
+    validateOptions(['--framework', '--out'])
     const target = await generatePage({ pattern: name, framework: valueAfter('--framework', 'react'), output: valueAfter('--out') })
     console.log(`Generated runnable page source at ${target}`)
     return
@@ -38,6 +55,7 @@ async function main() {
     return
   }
   if (command === 'upgrade') {
+    validateOptions(['--framework-layout', '--density', '--locale', '--adapter'], ['--dry-run', '--force'])
     const result = await upgradeProject({
       target: subject && !subject.startsWith('--') ? subject : '.',
       dryRun: args.includes('--dry-run'),

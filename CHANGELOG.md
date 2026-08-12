@@ -45,6 +45,7 @@
 - Vue Storybook 新增与 React 对齐的 AI 原生组件分组
 - React / Vue Storybook 的 Button、Living Orb、AI Composer 新增可调 Controls
 - Storybook A11y 从代表性组件抽检扩展为 React / Vue 各 31 个组件逐项检查
+- CLI 的 7 种应用框架升级为可运行应用运行时，包含 Hash 路由、权限化菜单、主题状态、租户会话、系统子页面和类型化 Java API Client
 
 ### Changed
 
@@ -66,6 +67,7 @@
 - Playwright 改用独立测试端口并禁止复用已有服务，避免端口冲突导致误测其他本地项目
 - 修复 AI 审计治理页策略版本标签被圆形图标选择器误伤的问题
 - 修复 `AtlasBadge` 状态点使用不允许的 ARIA 属性问题
+- 校准 CLI Java Client 的租户与审计接口路径，多租户框架使用可访问多个租户的本地 Demo 身份，并拒绝未知 CLI 参数
 
 ### Notes
 
