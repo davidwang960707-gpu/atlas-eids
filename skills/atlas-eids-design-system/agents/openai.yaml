@@ -1,0 +1,7 @@
+interface:
+  display_name: "Atlas EIDS Design System"
+  short_description: "Atlas EIDS 企业级 AI 原生页面总入口"
+  default_prompt: "使用 $atlas-eids-design-system 规划、实现并验收一个符合 Atlas EIDS 的企业页面。"
+  brand_color: "#7B61FF"
+policy:
+  allow_implicit_invocation: true

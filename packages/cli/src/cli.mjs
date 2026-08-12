@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+import { planAtlasPage, queryAtlasComponents, queryAtlasPatterns, validateAtlasPageSource } from '@atlas-eids/agent-kit'
 import { createProject, generatePage, listApplicationLayouts, listPagePatterns, upgradeProject } from './generator.mjs'
 
 const args = process.argv.slice(2)
@@ -69,7 +72,47 @@ async function main() {
     if (result.conflicts.length) console.log(`Conflicts: ${result.conflicts.length}. Re-run with --force only after reviewing the diff.`)
     return
   }
-  console.log(`Atlas EIDS CLI\n\nCommands:\n  atlas-eids create <name> [--framework react|vue] [--template pattern] [--framework-layout sidebar|top|hybrid|workbench|tabs|fullscreen|tenant] [--density compact|standard|comfortable] [--locale zh-CN|en-US] [--adapter native|antd|tdesign|opentiny] [--backend none|java] [--local]\n  atlas-eids generate page <pattern> [--framework react|vue] [--out file]\n  atlas-eids upgrade [path] [--dry-run] [--force] [configuration options]\n  atlas-eids list pages\n  atlas-eids list layouts`)
+  if (command === 'knowledge' && subject === 'components') {
+    validateOptions(['--category'])
+    queryAtlasComponents(name ?? '', valueAfter('--category')).forEach((component) => console.log(`${component.name}\t${component.category}\t${component.summary}`))
+    return
+  }
+  if (command === 'knowledge' && subject === 'contract' && name) {
+    validateOptions([])
+    const component = queryAtlasComponents(name).find((candidate) => candidate.name.toLowerCase() === name.toLowerCase())
+    if (!component) throw new Error(`Unknown Atlas component: ${name}`)
+    console.log(JSON.stringify(component, null, 2))
+    return
+  }
+  if (command === 'knowledge' && subject === 'patterns') {
+    validateOptions([])
+    queryAtlasPatterns(name ?? '').forEach((pattern) => console.log(`${pattern.id}\t${pattern.title}\t${pattern.regions.join(' + ')}`))
+    return
+  }
+  if (command === 'agent' && subject === 'plan' && name) {
+    validateOptions(['--framework', '--pattern', '--density', '--locale'], ['--json'])
+    const plan = planAtlasPage({ intent: name, framework: valueAfter('--framework', 'react'), pattern: valueAfter('--pattern'), density: valueAfter('--density', 'standard'), locale: valueAfter('--locale', 'zh-CN') })
+    if (args.includes('--json')) console.log(JSON.stringify(plan, null, 2))
+    else {
+      console.log(`${plan.pattern.id}\t${plan.pattern.title}\t${plan.framework}`)
+      plan.instructions.forEach((instruction) => console.log(`- ${instruction}`))
+      console.log(`Components: ${plan.components.map((component) => component.name).join(', ')}`)
+    }
+    return
+  }
+  if (command === 'validate' && subject) {
+    validateOptions(['--framework'], ['--ai', '--json'])
+    const target = resolve(subject)
+    const result = validateAtlasPageSource(await readFile(target, 'utf8'), { framework: valueAfter('--framework'), aiPage: args.includes('--ai') })
+    if (args.includes('--json')) console.log(JSON.stringify({ path: target, ...result }, null, 2))
+    else {
+      result.issues.forEach((issue) => console.log(`${issue.severity}\t${issue.code}\t${issue.line ?? '-'}\t${issue.message}`))
+      console.log(result.valid ? 'Atlas page validation passed.' : 'Atlas page validation failed.')
+    }
+    if (!result.valid) process.exitCode = 1
+    return
+  }
+  console.log(`Atlas EIDS CLI\n\nCommands:\n  atlas-eids create <name> [--framework react|vue] [--template pattern] [--framework-layout sidebar|top|hybrid|workbench|tabs|fullscreen|tenant] [--density compact|standard|comfortable] [--locale zh-CN|en-US] [--adapter native|antd|tdesign|opentiny] [--backend none|java] [--local]\n  atlas-eids generate page <pattern> [--framework react|vue] [--out file]\n  atlas-eids agent plan <intent> [--framework react|vue] [--pattern id] [--density value] [--locale value] [--json]\n  atlas-eids validate <file> [--framework react|vue] [--ai] [--json]\n  atlas-eids knowledge components [query] [--category foundation|input|navigation|display|feedback|composition|ai]\n  atlas-eids knowledge contract <AtlasComponentName>\n  atlas-eids knowledge patterns [query]\n  atlas-eids upgrade [path] [--dry-run] [--force] [configuration options]\n  atlas-eids list pages\n  atlas-eids list layouts`)
 }
 
 main().catch((error) => {

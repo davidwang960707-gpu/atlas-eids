@@ -12,8 +12,8 @@
 
   <p>
     <img src="https://img.shields.io/badge/AI%20Native-Design%20System-111827?style=for-the-badge&logo=openai&logoColor=white" alt="AI Native Design System" />
-    <img src="https://img.shields.io/badge/React%20%2F%20Vue-31%20Components-4F46E5?style=for-the-badge&logo=vite&logoColor=white" alt="React Vue Components" />
-    <img src="https://img.shields.io/badge/Templates-15%20Runnable-7B61FF?style=for-the-badge&logo=storybook&logoColor=white" alt="Runnable Templates" />
+    <img src="https://img.shields.io/badge/React%20%2F%20Vue-50%20Components-4F46E5?style=for-the-badge&logo=vite&logoColor=white" alt="React Vue Components" />
+    <img src="https://img.shields.io/badge/Templates-16%20Routes-7B61FF?style=for-the-badge&logo=storybook&logoColor=white" alt="Runnable Templates" />
   </p>
 
   <p>
@@ -58,7 +58,7 @@ Atlas EIDS 是一套面向 AI 原生企业级产品的界面设计系统。
 - [Atlas EIDS 启动页](https://davidwang960707-gpu.github.io/atlas-eids/launcher.html)
 - [Atlas Pattern Lab · 页面与交互模板中心](https://davidwang960707-gpu.github.io/atlas-eids/patterns.html)
 - [统一开发文档与组件 API 搜索](https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html)
-- [15 个独立运行页面模板](https://davidwang960707-gpu.github.io/atlas-eids/templates/#/workbench)
+- [16 个独立运行页面路由](https://davidwang960707-gpu.github.io/atlas-eids/templates/#/workbench)
 - [React Storybook](https://davidwang960707-gpu.github.io/atlas-eids/storybook/react/)
 - [Vue Storybook](https://davidwang960707-gpu.github.io/atlas-eids/storybook/vue/)
 - [GitHub 仓库](https://github.com/davidwang960707-gpu/atlas-eids)
@@ -67,23 +67,26 @@ Atlas EIDS 是一套面向 AI 原生企业级产品的界面设计系统。
 
 - **Hero 与品牌系统**：面向 AI 原生 OS 的设计系统首页表达
 - **Orb AI Components**：液态金属 Core、外层轨道、呼吸感、状态动效和 AI 辅助输入
-- **基础组件**：React / Vue 各 31 个 UI 组件（另含 Provider），覆盖输入、导航、数据展示、反馈、浮层与 AI 交互
+- **基础与组合组件**：React / Vue 各 50 个 UI 组件（另含 Provider），其中 15 个 AI 组件覆盖对话、附件、知识、MCP、引用、检索轨迹与工具调用
 - **应用框架与页面模板库**：126 个缩略索引均可展开为带真实字段、数据与反馈状态的交互 Demo
 - **企业级 UI**：Agent Card、Chat、Timeline、Command Bar、Status Monitor 等
 - **数据可视化**：品牌化色板、面积图、柱状图、Dashboard 风格示例
 - **Markdown / Code Block**：适合 AI 输出、文档、代码片段和知识库场景
 - **Dark / Light Theme**：基于 CSS Variables 的主题系统
-- **独立页面模板**：15 个可直接路由运行的企业页面，覆盖工作台、数据管理、审批、协同和 AI 治理
+- **独立页面模板**：16 个可直接路由运行的企业页面，覆盖工作台、数据管理、审批、协同、AI 治理和权限感知知识检索
 - **React / Vue 示例**：7 种应用框架均提供可切换、筛选、选中、租户切换或画布操作的真实工作区
 - **第三方运行时 Wrapper**：Ant Design React、TDesign Vue Next、OpenTiny Vue 的主题与核心控件适配层
 - **组件工作台与质量门槛**：React / Vue Storybook、Axe A11y、Playwright E2E 与视觉回归
-- **Skills 文档**：把 Atlas EIDS 的设计原则沉淀成可维护的 AI Assistant Skills
-- **Monorepo Packages**：Tokens、Core、Plugin SDK、Adapters、AI Runtime、Web Agent、CLI、React、Vue
+- **Skills 知识层**：7 个渐进式 Skills，按 React、Vue、AI、页面模式、Tokens 与 CLI 拆分维护
+- **Agent 开发闭环**：Agent Kit 统一组件知识、页面规划、源码校验和生成后修复规则
+- **Machine Manifest**：组件、页面配方、Tokens 与视觉规则生成版本化 JSON，供 Skills、CLI、MCP 和 Agent 共同消费
+- **标准 MCP**：stdio 与 Streamable HTTP Server/Client，向 Agent 暴露设计资源、Prompt、生成与校验工具
+- **Monorepo Packages**：14 个可发布包，覆盖 Tokens、Core、Plugin、Adapters、AI Runtime、Web Agent、Agent Kit、MCP、CLI、React 与 Vue
 - **源码生成**：组合 7 种完整应用框架与 15 类 React / Vue 页面，内置路由、权限菜单、主题、租户会话、Java API Client，以及 Spring Boot 4.1 / Java 21 后端
 - **企业集成基线**：本地 JWT 与外部 OIDC 双模式、RBAC、租户隔离、PostgreSQL、Flyway、AI Provider、Agent 审批与审计回放
 - **发布工程**：Changesets、npm Provenance 工作流、包体预检、组件 API/Type 契约检查
 
-> 当前进入首个 Beta 发布候选。视觉规范、31 个双端组件、15 个页面模板、7 种 CLI 应用框架和企业集成基线均已具备自动验证；WebMCP、第三方高级控件与插件市场服务仍保持 Experimental。
+> 当前处于 Beta。视觉规范、50 个双端 UI 组件、16 个页面路由、7 种 CLI 应用框架、7 个 Skills、Machine Manifest、MCP 本地传输和企业治理基线均已具备自动验证；公网 MCP、浏览器 WebMCP、生产 RAG Adapter、第三方高级控件与插件市场服务仍保持 Experimental。
 
 ## Orb 设计理念
 
@@ -129,9 +132,9 @@ npm run test:browser
 
 1. 从 [开发者快速开始](https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html#/getting-started) 确认环境与本地分发方式。
 2. 在 [Pattern Lab](https://davidwang960707-gpu.github.io/atlas-eids/patterns.html) 浏览 126 个模式，每个模式都映射到一个完整页面模板。
-3. 打开 [15 个独立运行模板](https://davidwang960707-gpu.github.io/atlas-eids/templates/#/workbench) 验证真实页面交互。
+3. 打开 [16 个独立运行页面](https://davidwang960707-gpu.github.io/atlas-eids/templates/#/workbench) 验证真实交互，其中 `#/ai-knowledge` 展示知识源、MCP、检索轨迹和引用闭环。
 4. 在 React 或 Vue Storybook 中检查组件 API、状态、A11y 与框架一致性。
-5. 使用 CLI 组合 7 种应用框架、15 类页面、3 种密度、中英文和第三方 Adapter；发布 npm packages 前保留 `--local`。
+5. 使用 CLI 或 MCP 查询组件、规划页面、生成 7 种应用框架与 15 类核心模板，并执行源码规范校验；发布 npm packages 前保留 `--local`。
 6. 通过 Docker Compose 联调 PostgreSQL、Keycloak 与 Java 21 后端，并通过 `npm run check`、`npm run test:storybook` 与 `npm run test:browser` 完成质量门槛。
 
 CLI 示例：
@@ -142,6 +145,10 @@ npm run atlas -- list layouts
 npm run atlas -- upgrade atlas-workspace --dry-run
 npm run atlas -- generate page agent-task --framework react --out atlas-workspace/src/AgentTaskPage.tsx
 npm run atlas -- generate page analytics --framework vue --out atlas-workspace/src/AnalyticsPage.vue
+npm run atlas -- knowledge components Citation
+npm run atlas -- agent plan "多租户 AI 知识管理页面" --framework react --json
+npm run atlas -- validate examples/templates/src/pages/AIKnowledgePage.tsx --framework react --ai
+npm run atlas:mcp
 ```
 
 主展示页使用纯 HTML/CSS/JavaScript，可直接打开：
@@ -205,7 +212,7 @@ AUI-UX/
 ├── examples/
 │   ├── react/                 # React + TypeScript + Vite 示例
 │   ├── vue3/                  # Vue 3 + TypeScript + Vite 示例
-│   └── templates/             # 15 个独立运行的企业页面模板
+│   └── templates/             # 16 个独立运行的企业与 AI 页面路由
 ├── tests/e2e/                 # E2E、A11y 与视觉回归
 ├── docs/                      # 开源文档
 └── skills/                    # 可维护的 AI Assistant Skills 与设计系统知识
@@ -219,17 +226,19 @@ AUI-UX/
 - [Design Tokens](docs/DESIGN_TOKENS.md)
 - [应用框架与页面模板库](docs/APP_FRAMEWORK_LIBRARY.md)
 - [组件说明](docs/COMPONENTS.md)
+- [设计契约与 Machine Manifest](docs/DESIGN_CONTRACTS.md)
 - [工程架构](docs/ARCHITECTURE.md)
 - [工程化与质量基线](docs/ENGINEERING.md)
 - [插件与第三方组件接入](docs/PLUGIN_DEVELOPMENT.md)
 - [AI Runtime 与网页 Agent](docs/AI_RUNTIME.md)
+- [Agent 页面开发与 MCP](docs/AGENT_DEVELOPMENT.md)
 - [Java 后端与接口契约](docs/JAVA_BACKEND.md)
 - [OpenTiny 能力对标路线图](docs/OPENTINY_PARITY_ROADMAP.md)
 - [路线图](docs/ROADMAP.md)
 - [贡献指南](CONTRIBUTING.md)
 - [安全策略](SECURITY.md)
 - [变更日志](CHANGELOG.md)
-- [Atlas EIDS Skill](skills/atlas-eids-design-system/SKILL.md)
+- [Atlas EIDS Skills](skills/README.md)
 
 ## 设计原则
 

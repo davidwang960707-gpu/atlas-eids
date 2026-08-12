@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { AtlasButton, AtlasDrawer, AtlasInput, AtlasPagination, AtlasSelect, AtlasTable, AtlasTag, type AtlasTableColumn } from '@atlas-eids/react'
-import { Filter, SlidersHorizontal, Trash2 } from 'lucide-react'
-import { ExportButton, PageHeader, Panel, StatusDot } from '../components/Page'
+import { AtlasButton, AtlasDataTable, AtlasDrawer, AtlasInput, AtlasObjectCell, AtlasPagination, AtlasSelect, AtlasStatusTag, AtlasTableToolbar, AtlasTag, type AtlasTableColumn } from '@atlas-eids/react'
+import { FileText, Filter, SlidersHorizontal, Trash2 } from 'lucide-react'
+import { ExportButton, PageHeader } from '../components/Page'
 
 interface Order { id: string; name: string; customer: string; amount: string; status: '运行中' | '待复核' | '已完成'; updated: string }
 const orders: Order[] = [
@@ -20,24 +20,13 @@ export function DataListPage() {
   const [page, setPage] = useState(1)
   const rows = useMemo(() => orders.filter((order) => (status === '全部' || order.status === status) && `${order.name}${order.customer}${order.id}`.includes(keyword)), [keyword, status])
   const columns: AtlasTableColumn<Order>[] = [
-    { key: 'id', title: '编号' }, { key: 'name', title: '任务名称', render: (row) => <button className="table-link" onClick={() => setActive(row)}>{row.name}</button> },
+    { key: 'name', title: '任务名称', width: '34%', sortable: true, render: (row) => <button className="table-link" onClick={() => setActive(row)}><AtlasObjectCell title={row.name} meta={row.id} icon={<FileText size={16}/>} tone={row.status === '已完成' ? 'success' : 'primary'} interactive/></button> },
     { key: 'customer', title: '所属组织' }, { key: 'amount', title: '预算', align: 'end' },
-    { key: 'status', title: '状态', render: (row) => <StatusDot tone={row.status === '待复核' ? 'warning' : 'success'}>{row.status}</StatusDot> }, { key: 'updated', title: '更新时间' }
+    { key: 'status', title: '状态', width: 96, render: (row) => <AtlasStatusTag tone={row.status === '待复核' ? 'warning' : row.status === '已完成' ? 'success' : 'primary'}>{row.status}</AtlasStatusTag> }, { key: 'updated', title: '更新时间' }
   ]
   return <>
     <PageHeader eyebrow="列表与数据管理" title="数据列表页" description="查询、选择、批量操作与对象详情保持在稳定的信息层级中。" primary="新建任务" />
-    <Panel className="data-table-panel">
-      <div className="filter-bar">
-        <AtlasInput aria-label="搜索任务" placeholder="搜索编号、任务或组织" value={keyword} onChange={(event) => setKeyword(event.target.value)} />
-        <AtlasSelect aria-label="任务状态" value={status} onChange={(event) => setStatus(event.target.value)} options={[{ label: '全部状态', value: '全部' }, { label: '运行中', value: '运行中' }, { label: '待复核', value: '待复核' }, { label: '已完成', value: '已完成' }]} />
-        <AtlasButton><Filter size={15}/>高级筛选</AtlasButton>
-        <div className="filter-spacer"/>
-        <ExportButton/><AtlasButton aria-label="表格设置" title="表格设置"><SlidersHorizontal size={16}/></AtlasButton>
-      </div>
-      {selected.length > 0 && <div className="selection-bar"><span>已选择 <b>{selected.length}</b> 项</span><AtlasButton intent="danger" size="compact" onClick={() => setSelected([])}><Trash2 size={14}/>批量移除</AtlasButton></div>}
-      <AtlasTable caption="企业任务列表" columns={columns} rows={rows} selectedIds={selected} onSelect={setSelected}/>
-      <div className="table-footer"><span>共 128 条记录</span><AtlasPagination page={page} pageCount={8} onChange={setPage}/></div>
-    </Panel>
+    <AtlasDataTable className="data-table-panel" title="任务执行排名" description="实时数据" caption="企业任务列表" columns={columns} rows={rows} selectedIds={selected} onSelect={setSelected} toolbar={<AtlasTableToolbar search={<div className="filter-search"><AtlasInput aria-label="搜索任务" placeholder="搜索编号、任务或组织" value={keyword} onChange={(event) => setKeyword(event.target.value)} /></div>} filters={<><AtlasSelect aria-label="任务状态" value={status} onChange={(event) => setStatus(event.target.value)} options={[{ label: '全部状态', value: '全部' }, { label: '运行中', value: '运行中' }, { label: '待复核', value: '待复核' }, { label: '已完成', value: '已完成' }]} /><AtlasButton><Filter size={15}/>高级筛选</AtlasButton></>} selection={selected.length > 0 ? <span>已选择 <b>{selected.length}</b> 项</span> : undefined} actions={<><ExportButton/><AtlasButton aria-label="表格设置" title="表格设置"><SlidersHorizontal size={16}/></AtlasButton>{selected.length > 0 && <AtlasButton intent="danger" size="compact" onClick={() => setSelected([])}><Trash2 size={14}/>批量移除</AtlasButton>}</>} />} footer={<><span>共 128 条记录</span><AtlasPagination page={page} pageCount={8} onChange={setPage}/></>} />
     <AtlasDrawer open={Boolean(active)} title="任务详情" onClose={() => setActive(null)} footer={<><AtlasButton onClick={() => setActive(null)}>关闭</AtlasButton><AtlasButton intent="primary">进入任务</AtlasButton></>}>
       {active && <div className="drawer-detail"><AtlasTag intent={active.status === '待复核' ? 'warning' : 'success'}>{active.status}</AtlasTag><h2>{active.name}</h2><p>{active.id} · {active.customer}</p><dl><div><dt>预算金额</dt><dd>{active.amount}</dd></div><div><dt>最后更新</dt><dd>{active.updated}</dd></div><div><dt>责任人</dt><dd>王六 / 数据运营</dd></div></dl></div>}
     </AtlasDrawer>

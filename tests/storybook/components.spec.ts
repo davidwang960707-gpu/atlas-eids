@@ -10,11 +10,41 @@ const componentStories = [
   'button', 'input', 'select', 'textarea', 'checkbox', 'radio-group', 'switch', 'date-input',
   'search-input', 'segmented-control', 'card', 'tabs', 'breadcrumb', 'pagination', 'steps',
   'dropdown', 'table', 'tag', 'badge', 'avatar', 'statistic', 'progress', 'alert', 'tooltip',
-  'empty', 'skeleton', 'dialog', 'drawer', 'orb', 'ai-composer', 'execution-plan'
+  'object-cell', 'status-tag', 'row-actions', 'table-toolbar', 'data-table', 'page-header', 'panel-story',
+  'empty', 'skeleton', 'dialog', 'drawer', 'orb', 'ai-composer', 'execution-plan',
+  'ai-conversation', 'ai-message-bubble', 'ai-streaming-text', 'ai-prompts', 'ai-attachment-list',
+  'ai-conversation-history', 'ai-feedback', 'mcp-server-picker', 'citation-list',
+  'knowledge-source-picker', 'retrieval-trace', 'tool-call-card'
 ]
 
 function storyURL(port: number, id: string) {
   return `http://127.0.0.1:${port}/iframe.html?id=${encodeURIComponent(id)}&viewMode=story`
+}
+
+function docsURL(port: number, id: string) {
+  return `http://127.0.0.1:${port}/iframe.html?id=${encodeURIComponent(id)}&viewMode=docs`
+}
+
+async function expectDocsStoriesWithinViewport(page: Page, url: string) {
+  await page.setViewportSize({ width: 2048, height: 1220 })
+  await page.goto(url)
+  const wrappers = page.locator('.storybook-atlas')
+  await expect(wrappers.first()).toBeVisible()
+  const geometry = await wrappers.evaluateAll((elements) => elements.map((element) => {
+    const rect = element.getBoundingClientRect()
+    return {
+      left: rect.left,
+      right: rect.right,
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      viewportWidth: document.documentElement.clientWidth
+    }
+  }))
+  for (const item of geometry) {
+    expect(item.left).toBeGreaterThanOrEqual(0)
+    expect(item.right).toBeLessThanOrEqual(item.viewportWidth)
+    expect(item.scrollWidth).toBeLessThanOrEqual(item.clientWidth)
+  }
 }
 
 async function analyzeAccessibility(page: Page) {
@@ -30,6 +60,11 @@ async function analyzeAccessibility(page: Page) {
 }
 
 for (const framework of frameworks) {
+  test(`${framework.name} Docs stories remain fully visible on wide screens`, async ({ page }) => {
+    await expectDocsStoriesWithinViewport(page, docsURL(framework.port, `${framework.name.toLowerCase()}-ai-原生组件--docs`))
+    await expectDocsStoriesWithinViewport(page, docsURL(framework.port, `${framework.prefix}--docs`))
+  })
+
   test(`${framework.name} input supports labels, validation and keyboard focus`, async ({ page }) => {
     await page.goto(storyURL(framework.port, `${framework.prefix}--input`))
     const input = page.getByLabel('任务名称')
@@ -72,6 +107,24 @@ for (const framework of frameworks) {
     expect(motion.caustic).toContain('atlas-orb-collision')
   })
 
+  test(`${framework.name} table keeps the enterprise geometry baseline`, async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto(storyURL(framework.port, `${framework.prefix}--table`))
+    const geometry = await page.locator('.story-stage').evaluate((stage) => ({
+      width: stage.getBoundingClientRect().width,
+      radius: getComputedStyle(stage.querySelector('.atlas-table-wrap')!).borderRadius,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      rows: [...stage.querySelectorAll('tbody tr')].map((row) => row.getBoundingClientRect().height),
+      orbCount: stage.querySelectorAll('.atlas-living-orb').length
+    }))
+    expect(geometry.width).toBe(1120)
+    expect(geometry.radius).toBe('8px')
+    expect(geometry.overflow).toBe(0)
+    expect(geometry.rows).toHaveLength(4)
+    for (const row of geometry.rows) expect(row).toBeGreaterThanOrEqual(42)
+    expect(geometry.orbCount).toBe(0)
+  })
+
   test(`${framework.name} AI Composer opens empty without stealing focus`, async ({ page }) => {
     await page.goto(storyURL(framework.port, `${framework.prefix}--ai-composer`))
     const input = page.getByRole('textbox')
@@ -79,6 +132,19 @@ for (const framework of frameworks) {
     await expect(input).not.toBeFocused()
     await page.getByRole('button', { name: '分析风险' }).click()
     await expect(input).toHaveValue('分析风险')
+  })
+
+  test(`${framework.name} knowledge components expose sources, citations and approval`, async ({ page }) => {
+    await page.goto(storyURL(framework.port, `${framework.prefix}--knowledge-source-picker`))
+    await expect(page.getByText('产品文档')).toBeVisible()
+    await expect(page.getByText('客户数据仓库')).toBeVisible()
+
+    await page.goto(storyURL(framework.port, `${framework.prefix}--citation-list`))
+    await expect(page.getByText('企业权限策略 v2.8')).toBeVisible()
+
+    await page.goto(storyURL(framework.port, `${framework.prefix}--tool-call-card`))
+    await expect(page.getByText('records.publish')).toBeVisible()
+    await expect(page.getByText('high-risk')).toBeVisible()
   })
 
   for (const story of componentStories) {
@@ -90,3 +156,7 @@ for (const framework of frameworks) {
     })
   }
 }
+
+test('React Ant Design adapter Docs remains fully visible on wide screens', async ({ page }) => {
+  await expectDocsStoriesWithinViewport(page, docsURL(frameworks[0].port, 'adapters-ant-design-运行时--docs'))
+})

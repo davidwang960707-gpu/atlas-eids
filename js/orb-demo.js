@@ -106,16 +106,17 @@
     document.documentElement.style.setProperty('--anim-speed-multiplier', speed.toString());
 
     // Apply speed to all animated elements
-    const animatedElements = document.querySelectorAll('.orb, .orb-ring, .status-dot, .input-cursor');
+    const animatedElements = document.querySelectorAll('#orbShowcase .orb-wrapper *, .status-dot, .input-cursor');
     animatedElements.forEach(el => {
       el.style.animationDuration = '';
       const computedStyle = window.getComputedStyle(el);
       const currentDuration = computedStyle.animationDuration;
 
       if (currentDuration && currentDuration !== '0s') {
-        const durationMs = parseDuration(currentDuration);
-        const newDuration = durationMs / speed;
-        el.style.animationDuration = newDuration + 'ms';
+        el.style.animationDuration = currentDuration
+          .split(',')
+          .map(duration => `${parseDuration(duration.trim()) / speed}ms`)
+          .join(', ');
       }
     });
   }
@@ -124,10 +125,10 @@
    * Parse CSS duration string to milliseconds
    */
   function parseDuration(durationStr) {
-    if (durationStr.endsWith('s')) {
-      return parseFloat(durationStr) * 1000;
-    } else if (durationStr.endsWith('ms')) {
+    if (durationStr.endsWith('ms')) {
       return parseFloat(durationStr);
+    } else if (durationStr.endsWith('s')) {
+      return parseFloat(durationStr) * 1000;
     }
     return 0;
   }

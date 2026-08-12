@@ -22,8 +22,8 @@ for (const name of names) {
 }
 
 const documentedUi = names.filter((name) => name !== 'AtlasProvider')
-if (documentedUi.length !== 31) {
-  throw new Error(`组件 API 文档应包含 31 个 UI 组件，当前为 ${documentedUi.length}`)
+if (documentedUi.length !== 50) {
+  throw new Error(`组件 API 文档应包含 50 个 UI 组件，当前为 ${documentedUi.length}`)
 }
 
 console.log(`Component API contract verified: ${names.length} documented exports across React and Vue.`)

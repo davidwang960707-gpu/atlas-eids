@@ -141,7 +141,7 @@ import StreamBlock from './components/StreamBlock.vue';
 
 ## 设计令牌
 
-设计令牌定义在 `src/styles/tokens.css` 中，包含：
+设计令牌来自 `@atlas-eids/tokens`，示例兼容映射统一维护在 `examples/shared/tokens.css`，包含：
 
 - 品牌颜色（Atlas Violet, Deep Neural, Cognitive Glow）
 - 功能颜色（Success, Warning, Danger, Info）

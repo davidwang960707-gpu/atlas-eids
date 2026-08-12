@@ -21,7 +21,7 @@ const rootFiles = [
 
 for (const file of rootFiles) await cp(resolve(root, file), resolve(output, file))
 
-for (const directory of ['css', 'js', 'docs', 'examples/shared']) {
+for (const directory of ['css', 'js', 'docs', 'manifests', 'examples/shared']) {
   await cp(resolve(root, directory), resolve(output, directory), { recursive: true })
 }
 

@@ -8,7 +8,6 @@ import MetricStrip from './components/MetricStrip';
 import WorkflowTimeline from './components/WorkflowTimeline';
 import FrameworkGallery from './components/FrameworkGallery';
 import AITrustPanel from './components/AITrustPanel';
-import './styles/tokens.css';
 import './App.css';
 
 const orbStates: Array<{ state: OrbState; label: string; note: string }> = [

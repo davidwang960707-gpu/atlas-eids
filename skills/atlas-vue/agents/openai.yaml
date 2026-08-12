@@ -1,0 +1,7 @@
+interface:
+  display_name: "Atlas Vue"
+  short_description: "使用 Vue 3 组件构建 Atlas 企业与 AI 页面"
+  default_prompt: "使用 $atlas-vue 通过 @atlas-eids/vue 实现并测试这个企业页面。"
+  brand_color: "#7B61FF"
+policy:
+  allow_implicit_invocation: true

@@ -8,11 +8,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/atlas-components.generated.css?v=20260812">
   <link rel="stylesheet" href="css/dark-theme.css">
   <link rel="stylesheet" href="css/light-theme.css">
-  <link rel="stylesheet" href="css/main.css?v=20260810">
+  <link rel="stylesheet" href="css/main.css?v=20260812">
+  <link rel="stylesheet" href="examples/shared/agent-orb.css?v=20260812b">
 </head>
-<body>
+<body class="atlas-root">
 
 <div class="ambient-bg"></div>
 
@@ -79,7 +81,7 @@
     </div>
     <nav class="developer-links" aria-label="开发者入口">
       <a href="docs-site.html#/getting-started"><strong>快速开始</strong><span>环境、Clone 与本地运行</span></a>
-      <a href="templates/#/workbench" data-runtime-link="templates"><strong>15 个页面模板</strong><span>独立路由与真实交互</span></a>
+      <a href="templates/#/workbench" data-runtime-link="templates"><strong>16 个页面路由</strong><span>独立运行与真实交互</span></a>
       <a href="storybook/react/" data-runtime-link="storybook-react"><strong>React Storybook</strong><span>组件状态与 API</span></a>
       <a href="storybook/vue/" data-runtime-link="storybook-vue"><strong>Vue Storybook</strong><span>跨框架一致实现</span></a>
     </nav>
@@ -239,8 +241,10 @@
       <!-- Idle -->
       <div class="orb-demo">
         <div class="orb-wrapper state-idle">
-          <div class="orb-ring"></div>
-          <div class="orb"></div>
+          <span class="orb-atmosphere"></span>
+          <span class="orb-ring orb-ring-primary"></span>
+          <span class="orb-ring orb-ring-secondary"></span>
+          <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
         </div>
         <div>
           <div class="orb-label">Idle</div>
@@ -251,8 +255,10 @@
       <!-- Thinking -->
       <div class="orb-demo">
         <div class="orb-wrapper state-thinking">
-          <div class="orb-ring"></div>
-          <div class="orb"></div>
+          <span class="orb-atmosphere"></span>
+          <span class="orb-ring orb-ring-primary"></span>
+          <span class="orb-ring orb-ring-secondary"></span>
+          <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
         </div>
         <div>
           <div class="orb-label">Thinking</div>
@@ -263,8 +269,10 @@
       <!-- Running -->
       <div class="orb-demo">
         <div class="orb-wrapper state-running">
-          <div class="orb-ring"></div>
-          <div class="orb"></div>
+          <span class="orb-atmosphere"></span>
+          <span class="orb-ring orb-ring-primary"></span>
+          <span class="orb-ring orb-ring-secondary"></span>
+          <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
         </div>
         <div>
           <div class="orb-label">Running</div>
@@ -275,8 +283,10 @@
       <!-- Error -->
       <div class="orb-demo">
         <div class="orb-wrapper state-error">
-          <div class="orb-ring"></div>
-          <div class="orb"></div>
+          <span class="orb-atmosphere"></span>
+          <span class="orb-ring orb-ring-primary"></span>
+          <span class="orb-ring orb-ring-secondary"></span>
+          <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
         </div>
         <div>
           <div class="orb-label">Error</div>
@@ -1050,8 +1060,8 @@
 
     <!-- Data Table -->
     <h3 id="enterprise-data" style="font-size: 24px; margin-bottom: 24px;">Data Table</h3>
-    <div class="table-container" style="margin-bottom: 48px;">
-      <table class="data-table">
+    <div class="table-container atlas-table-wrap" style="margin-bottom: 48px;">
+      <table class="data-table atlas-table">
         <thead>
           <tr>
             <th><input type="checkbox"></th>
@@ -1067,17 +1077,19 @@
           <tr>
             <td><input type="checkbox" checked></td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div class="table-orb"></div>
-                <span>合同风险审查</span>
+              <div class="atlas-object-cell">
+                <span class="table-object-icon atlas-object-cell-icon is-primary" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </span>
+                <span class="atlas-object-cell-copy"><strong>合同风险审查</strong></span>
               </div>
             </td>
             <td>张律师</td>
-            <td><span class="status-tag status-processing">进行中</span></td>
+            <td><span class="status-tag status-processing atlas-status-tag is-primary">进行中</span></td>
             <td><span class="priority-tag priority-high">高</span></td>
             <td>2026-06-10</td>
             <td>
-              <div class="table-actions-modern">
+              <div class="table-actions-modern atlas-row-actions">
                 <button class="icon-btn" title="查看">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -1118,17 +1130,19 @@
           <tr>
             <td><input type="checkbox"></td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div class="table-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
-                <span>财务报表生成</span>
+              <div class="atlas-object-cell">
+                <span class="table-object-icon atlas-object-cell-icon is-success" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-6"/></svg>
+                </span>
+                <span class="atlas-object-cell-copy"><strong>财务报表生成</strong></span>
               </div>
             </td>
             <td>李会计</td>
-            <td><span class="status-tag status-completed">已完成</span></td>
+            <td><span class="status-tag status-completed atlas-status-tag is-success">已完成</span></td>
             <td><span class="priority-tag priority-medium">中</span></td>
             <td>2026-06-08</td>
             <td>
-              <div class="table-actions-modern">
+              <div class="table-actions-modern atlas-row-actions">
                 <button class="icon-btn" title="查看">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -1153,17 +1167,19 @@
           <tr>
             <td><input type="checkbox"></td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div class="table-orb" style="background: radial-gradient(circle at 30% 30%, #FECDD3, var(--danger) 60%, #BE123C);"></div>
-                <span>异常订单处理</span>
+              <div class="atlas-object-cell">
+                <span class="table-object-icon atlas-object-cell-icon is-danger" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span class="atlas-object-cell-copy"><strong>异常订单处理</strong></span>
               </div>
             </td>
             <td>王运营</td>
-            <td><span class="status-tag status-pending">待处理</span></td>
+            <td><span class="status-tag status-pending atlas-status-tag is-warning">待处理</span></td>
             <td><span class="priority-tag priority-low">低</span></td>
             <td>2026-06-15</td>
             <td>
-              <div class="table-actions-modern">
+              <div class="table-actions-modern atlas-row-actions">
                 <button class="icon-btn" title="查看详情">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -1200,7 +1216,10 @@
     <div class="card-grid-demo" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
       <div class="demo-card">
         <div class="demo-card-header">
-          <div class="demo-card-orb"></div>
+          <span class="card-living-orb orb-wrapper state-thinking" role="img" aria-label="智能文档分析 Agent，推理中">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <span class="demo-card-badge">New</span>
         </div>
         <h4 class="demo-card-title">智能文档分析</h4>
@@ -1211,7 +1230,10 @@
       </div>
       <div class="demo-card">
         <div class="demo-card-header">
-          <div class="demo-card-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+          <span class="card-living-orb orb-wrapper state-running" role="img" aria-label="数据可视化 Agent，运行中">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <span class="demo-card-badge demo-card-badge-success">Active</span>
         </div>
         <h4 class="demo-card-title">数据可视化引擎</h4>
@@ -1222,7 +1244,10 @@
       </div>
       <div class="demo-card">
         <div class="demo-card-header">
-          <div class="demo-card-orb" style="background: radial-gradient(circle at 30% 30%, #FECDD3, var(--danger) 60%, #BE123C);"></div>
+          <span class="card-living-orb orb-wrapper state-error" role="img" aria-label="异常检测 Agent，异常状态">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
         </div>
         <h4 class="demo-card-title">异常检测系统</h4>
         <p class="demo-card-desc">实时监控业务异常并自动告警</p>
@@ -1236,7 +1261,10 @@
     <div class="card-grid-demo" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px;">
       <div class="agent-card-compact">
         <div class="agent-card-compact-header">
-          <div class="agent-card-compact-orb"></div>
+          <span class="card-living-orb is-compact orb-wrapper state-thinking" role="img" aria-label="法务审查助手，推理中">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <div class="status-indicator status-online"></div>
         </div>
         <h5 class="agent-card-compact-title">法务审查助手</h5>
@@ -1248,7 +1276,10 @@
       </div>
       <div class="agent-card-compact">
         <div class="agent-card-compact-header">
-          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+          <span class="card-living-orb is-compact orb-wrapper state-running" role="img" aria-label="财务分析专家，运行中">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <div class="status-indicator status-active"></div>
         </div>
         <h5 class="agent-card-compact-title">财务分析专家</h5>
@@ -1260,7 +1291,10 @@
       </div>
       <div class="agent-card-compact">
         <div class="agent-card-compact-header">
-          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #FFE5B4, var(--warning) 60%, #D97706);"></div>
+          <span class="card-living-orb is-compact orb-wrapper state-thinking" role="img" aria-label="数据分析助手，处理中">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <div class="status-indicator status-busy"></div>
         </div>
         <h5 class="agent-card-compact-title">数据分析助手</h5>
@@ -1272,7 +1306,10 @@
       </div>
       <div class="agent-card-compact">
         <div class="agent-card-compact-header">
-          <div class="agent-card-compact-orb" style="background: radial-gradient(circle at 30% 30%, #E0E7FF, var(--info) 60%, #2563EB);"></div>
+          <span class="card-living-orb is-compact orb-wrapper state-idle" role="img" aria-label="客服机器人，待机">
+            <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+            <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+          </span>
           <div class="status-indicator status-idle"></div>
         </div>
         <h5 class="agent-card-compact-title">客服机器人</h5>
@@ -1289,7 +1326,10 @@
       <div class="agent-card-detailed">
         <div class="detailed-card-header">
           <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="detailed-card-orb"></div>
+            <span class="card-living-orb is-detailed orb-wrapper state-thinking" role="img" aria-label="代码审查 Agent，推理中">
+              <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+              <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+            </span>
             <div>
               <h5 class="detailed-card-title">代码审查 Agent</h5>
               <p class="detailed-card-subtitle">Code Review Specialist</p>
@@ -1324,7 +1364,10 @@
       <div class="agent-card-detailed">
         <div class="detailed-card-header">
           <div style="display: flex; align-items: center; gap: 16px;">
-            <div class="detailed-card-orb" style="background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);"></div>
+            <span class="card-living-orb is-detailed orb-wrapper state-running" role="img" aria-label="市场调研 Agent，运行中">
+              <span class="orb-atmosphere"></span><span class="orb-ring orb-ring-primary"></span><span class="orb-ring orb-ring-secondary"></span>
+              <span class="orb"><span class="orb-depth"></span><span class="orb-caustic"></span><span class="orb-liquid"></span><span class="orb-specular"></span></span>
+            </span>
             <div>
               <h5 class="detailed-card-title">市场调研 Agent</h5>
               <p class="detailed-card-subtitle">Market Research Analyst</p>

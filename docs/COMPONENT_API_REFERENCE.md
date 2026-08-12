@@ -9,7 +9,7 @@
 | `AtlasInput` | 操作与输入 | Yes | Yes | 48 |
 | `AtlasTextarea` | 操作与输入 | Yes | Yes | 48 |
 | `AtlasSelect` | 操作与输入 | Yes | Yes | 48 |
-| `AtlasCheckbox` | 操作与输入 | Yes | Yes | 5 |
+| `AtlasCheckbox` | 操作与输入 | Yes | Yes | 6 |
 | `AtlasRadioGroup` | 操作与输入 | Yes | Yes | 5 |
 | `AtlasSwitch` | 操作与输入 | Yes | Yes | 4 |
 | `AtlasDateInput` | 操作与输入 | Yes | Yes | 48 |
@@ -21,8 +21,15 @@
 | `AtlasSteps` | 导航 | Yes | Yes | 2 |
 | `AtlasDropdown` | 导航 | Yes | Yes | 3 |
 | `AtlasCard` | 数据展示 | Yes | Yes | 48 |
-| `AtlasTable` | 数据展示 | Yes | Yes | 5 |
+| `AtlasTable` | 数据展示 | Yes | Yes | 10 |
 | `AtlasTag` | 数据展示 | Yes | Yes | 4 |
+| `AtlasObjectCell` | 企业组合 | Yes | Yes | 48 |
+| `AtlasStatusTag` | 企业组合 | Yes | Yes | 48 |
+| `AtlasRowActions` | 企业组合 | Yes | Yes | 4 |
+| `AtlasTableToolbar` | 企业组合 | Yes | Yes | 48 |
+| `AtlasDataTable` | 企业组合 | Yes | Yes | 48 |
+| `AtlasPageHeader` | 企业组合 | Yes | Yes | 48 |
+| `AtlasPanel` | 企业组合 | Yes | Yes | 48 |
 | `AtlasBadge` | 数据展示 | Yes | Yes | 4 |
 | `AtlasAvatar` | 数据展示 | Yes | Yes | 3 |
 | `AtlasStatistic` | 数据展示 | Yes | Yes | 5 |
@@ -36,6 +43,18 @@
 | `AtlasOrb` | AI 原生 | Yes | Yes | 48 |
 | `AtlasAIComposer` | AI 原生 | Yes | Yes | 7 |
 | `AtlasExecutionPlan` | AI 原生 | Yes | Yes | 4 |
+| `AtlasAIConversation` | AI 原生 | Yes | Yes | 48 |
+| `AtlasAIMessageBubble` | AI 原生 | Yes | Yes | 48 |
+| `AtlasAIStreamingText` | AI 原生 | Yes | Yes | 3 |
+| `AtlasAIPrompts` | AI 原生 | Yes | Yes | 3 |
+| `AtlasAIAttachmentList` | AI 原生 | Yes | Yes | 4 |
+| `AtlasAIConversationHistory` | AI 原生 | Yes | Yes | 5 |
+| `AtlasAIFeedback` | AI 原生 | Yes | Yes | 4 |
+| `AtlasMCPServerPicker` | AI 原生 | Yes | Yes | 5 |
+| `AtlasCitationList` | AI 原生 | Yes | Yes | 3 |
+| `AtlasKnowledgeSourcePicker` | AI 原生 | Yes | Yes | 4 |
+| `AtlasRetrievalTrace` | AI 原生 | Yes | Yes | 2 |
+| `AtlasToolCallCard` | AI 原生 | Yes | Yes | 4 |
 
 ## AtlasProvider
 
@@ -44,8 +63,8 @@
 | Prop | Type | Optional |
 | --- | --- | --- |
 | `theme` | `"light" \| "dark"` | Yes |
-| `density` | `"compact" \| "standard" \| "comfortable"` | Yes |
-| `locale` | `"zh-CN" \| "en-US"` | Yes |
+| `density` | `AtlasDensity` | Yes |
+| `locale` | `AtlasLocale` | Yes |
 | `children` | `ReactNode` | No |
 
 ## AtlasButton
@@ -277,6 +296,7 @@
 | `checked` | `boolean` | No |
 | `indeterminate` | `boolean` | Yes |
 | `label` | `ReactNode` | No |
+| `hideLabel` | `boolean` | Yes |
 | `onChange` | `(checked: boolean) => void` | No |
 | `disabled` | `boolean` | Yes |
 
@@ -497,6 +517,11 @@
 | `caption` | `string` | No |
 | `selectedIds` | `(string \| number)[]` | Yes |
 | `onSelect` | `(ids: Array<string \| number>) => void` | Yes |
+| `loading` | `boolean` | Yes |
+| `sortKey` | `string \| keyof Row` | Yes |
+| `sortDirection` | `AtlasSortDirection` | Yes |
+| `onSort` | `(key: string \| keyof Row, direction: AtlasSortDirection) => void` | Yes |
+| `labels` | `Partial<AtlasTableLabels>` | Yes |
 
 ## AtlasTag
 
@@ -508,6 +533,347 @@
 | `intent` | `"neutral" \| "primary" \| "danger" \| "success" \| "warning"` | Yes |
 | `removable` | `boolean` | Yes |
 | `onRemove` | `() => void` | Yes |
+
+## AtlasObjectCell
+
+以业务图标、标题和元数据建立列表对象的稳定视觉锚点。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `title` | `ReactNode` | No |
+| `meta` | `ReactNode` | Yes |
+| `description` | `ReactNode` | Yes |
+| `icon` | `ReactNode` | Yes |
+| `tone` | `AtlasSemanticTone` | Yes |
+| `interactive` | `boolean` | Yes |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLDivElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+
+## AtlasStatusTag
+
+使用统一软色和固定几何表达业务状态。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `tone` | `AtlasSemanticTone` | Yes |
+| `children` | `ReactNode` | No |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `hidden` | `boolean` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `title` | `string` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `color` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+| `itemID` | `string` | Yes |
+| `itemRef` | `string` | Yes |
+| `results` | `number` | Yes |
+| `security` | `string` | Yes |
+
+## AtlasRowActions
+
+提供稳定宽度的行级快捷操作和溢出菜单。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasRowAction[]` | No |
+| `onAction` | `(id: string) => void` | No |
+| `maxVisible` | `number` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasTableToolbar
+
+在连续数据表面内组织搜索、筛选、选择反馈和主要操作。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `search` | `ReactNode` | Yes |
+| `filters` | `ReactNode` | Yes |
+| `selection` | `ReactNode` | Yes |
+| `actions` | `ReactNode` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `hidden` | `boolean` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `title` | `string` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `color` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+| `itemID` | `string` | Yes |
+| `itemRef` | `string` | Yes |
+
+## AtlasDataTable
+
+组合标题、工具栏、正式表格和分页信息的企业数据页面配方。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `title` | `ReactNode` | Yes |
+| `description` | `ReactNode` | Yes |
+| `toolbar` | `ReactNode` | Yes |
+| `footer` | `ReactNode` | Yes |
+| `columns` | `AtlasTableColumn<Row>[]` | No |
+| `rows` | `Row[]` | No |
+| `caption` | `string` | No |
+| `selectedIds` | `(string \| number)[]` | Yes |
+| `onSelect` | `(ids: Array<string \| number>) => void` | Yes |
+| `loading` | `boolean` | Yes |
+| `sortKey` | `string \| keyof Row` | Yes |
+| `sortDirection` | `AtlasSortDirection` | Yes |
+| `onSort` | `(key: string \| keyof Row, direction: AtlasSortDirection) => void` | Yes |
+| `labels` | `Partial<AtlasTableLabels>` | Yes |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+
+## AtlasPageHeader
+
+以非卡片化结构承载页面层级、标题、说明和关键命令。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `title` | `ReactNode` | No |
+| `description` | `ReactNode` | Yes |
+| `eyebrow` | `ReactNode` | Yes |
+| `breadcrumbs` | `AtlasBreadcrumbItem[]` | Yes |
+| `actions` | `ReactNode` | Yes |
+| `meta` | `ReactNode` | Yes |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+
+## AtlasPanel
+
+承载一个完整工作区块，避免页面区域和卡片语义混用。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `title` | `ReactNode` | Yes |
+| `description` | `ReactNode` | Yes |
+| `actions` | `ReactNode` | Yes |
+| `footer` | `ReactNode` | Yes |
+| `children` | `ReactNode` | Yes |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+| `itemID` | `string` | Yes |
 
 ## AtlasBadge
 
@@ -696,3 +1062,220 @@
 | `steps` | `AtlasExecutionStep[]` | No |
 | `onStop` | `() => void` | Yes |
 | `onApprove` | `(id: string) => void` | Yes |
+
+## AtlasAIConversation
+
+组织会话历史、消息流、工具栏和输入区的完整 AI 对话容器。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `title` | `string` | No |
+| `subtitle` | `string` | Yes |
+| `status` | `"error" \| "idle" \| "thinking" \| "running"` | Yes |
+| `history` | `ReactNode` | Yes |
+| `toolbar` | `ReactNode` | Yes |
+| `composer` | `ReactNode` | Yes |
+| `children` | `ReactNode` | No |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `hidden` | `boolean` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `color` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+
+## AtlasAIMessageBubble
+
+呈现用户、助手、系统和工具消息，并关联引用与操作。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `role` | `AtlasAIMessageRole` | No |
+| `content` | `ReactNode` | No |
+| `name` | `string` | Yes |
+| `timestamp` | `string` | Yes |
+| `streaming` | `boolean` | Yes |
+| `citations` | `AtlasAICitationItem[]` | Yes |
+| `actions` | `ReactNode` | Yes |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `title` | `string` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `about` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+
+## AtlasAIStreamingText
+
+呈现流式文本、完成、停止和错误状态。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `text` | `string` | No |
+| `status` | `"error" \| "streaming" \| "complete" \| "stopped"` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasAIPrompts
+
+以可扫描的推荐问题和快捷指令帮助用户开始任务。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasAIPromptItem[]` | No |
+| `onSelect` | `(item: AtlasAIPromptItem) => void` | No |
+| `label` | `string` | Yes |
+
+## AtlasAIAttachmentList
+
+展示 AI 输入附件的类型、大小、上传和失败状态。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasAIAttachmentItem[]` | No |
+| `onRemove` | `(id: string) => void` | Yes |
+| `onRetry` | `(id: string) => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasAIConversationHistory
+
+管理会话选择、最近摘要、置顶状态和新建入口。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasAIConversationHistoryItem[]` | No |
+| `activeId` | `string` | Yes |
+| `onSelect` | `(id: string) => void` | No |
+| `onCreate` | `() => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasAIFeedback
+
+收集回答有效性、改进和问题反馈。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `value` | `AtlasAIFeedbackValue` | Yes |
+| `onChange` | `(value: Exclude<AtlasAIFeedbackValue, null>) => void` | No |
+| `onReport` | `() => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasMCPServerPicker
+
+选择并检查 Agent 可使用的 MCP Server、传输和工具数量。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `servers` | `AtlasMCPServerItem[]` | No |
+| `selectedIds` | `string[]` | No |
+| `onChange` | `(ids: string[]) => void` | No |
+| `onAdd` | `() => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasCitationList
+
+展示引用来源、摘录和检索相关度。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasAICitationItem[]` | No |
+| `onOpen` | `(item: AtlasAICitationItem) => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasKnowledgeSourcePicker
+
+选择具有状态、范围和权限语义的知识来源。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `sources` | `AtlasKnowledgeSourceItem[]` | No |
+| `selectedIds` | `string[]` | No |
+| `onChange` | `(ids: string[]) => void` | No |
+| `label` | `string` | Yes |
+
+## AtlasRetrievalTrace
+
+解释查询、检索、重排和引用形成过程。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `steps` | `AtlasRetrievalStep[]` | No |
+| `title` | `string` | Yes |
+
+## AtlasToolCallCard
+
+展示工具权限、输入、结果、审批、失败和重试。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `call` | `AtlasToolCallItem` | No |
+| `onApprove` | `(id: string) => void` | Yes |
+| `onReject` | `(id: string) => void` | Yes |
+| `onRetry` | `(id: string) => void` | Yes |

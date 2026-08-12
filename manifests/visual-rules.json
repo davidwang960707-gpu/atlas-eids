@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "designSystem": "Atlas EIDS",
+  "version": "0.2.0-beta.2",
+  "rules": {
+    "contractVersion": "0.2.0-beta.2",
+    "maxContentRadius": 8,
+    "tableRowHeight": {
+      "compact": 36,
+      "standard": 42,
+      "comfortable": 50
+    },
+    "orbAllowedContexts": [
+      "ai-assistant",
+      "agent-identity",
+      "ai-generation",
+      "ai-execution",
+      "ai-governance"
+    ],
+    "requiredThemes": [
+      "light",
+      "dark"
+    ],
+    "requiredLocales": [
+      "zh-CN",
+      "en-US"
+    ],
+    "requiredDensities": [
+      "compact",
+      "standard",
+      "comfortable"
+    ]
+  },
+  "principles": [
+    "企业任务优先：信息密度、层级和操作效率高于装饰。",
+    "AI 可解释：回答、引用、工具、权限、审批和审计必须形成完整链路。",
+    "Orb 只表达 AI 生命状态，禁止作为普通业务图标。",
+    "Living Orb 使用正式 AtlasOrb 或共享多层结构，禁止用单层渐变圆球近似。",
+    "组件卡片圆角不超过 8px，表单标签位于输入上方。",
+    "标准数据表行高 42px，筛选、表格和分页共享内容基线。",
+    "只使用语义 Design Tokens，不在业务组件中硬编码品牌色。",
+    "React 与 Vue 保持 API 语义、视觉状态和无障碍行为一致。",
+    "页面必须经过构建、键盘、A11y、交互和桌面/移动视觉检查。"
+  ]
+}

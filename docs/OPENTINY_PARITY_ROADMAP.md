@@ -1,53 +1,50 @@
-# OpenTiny 能力对标路线图
+# OpenTiny AI 能力对标与验收
 
-目标是让 Atlas EIDS 在工程可靠性上达到成熟企业级开源项目水平，同时保留 AI 原生交互和 Living Orb 的独立方向。这里的“对标”是能力和质量对标，不复制 OpenTiny 的产品边界或源码。
+Atlas EIDS 对标 OpenTiny 的能力完整性和工程质量，但不复制其源码、视觉外观或产品边界。Atlas 保留 React/Vue 对称、Living Orb、可信执行和 Java 企业治理方向。
 
-## 当前阶段
+## 当前结论
 
-| 能力 | 已实现 | 下一验收门槛 |
-| --- | --- | --- |
-| Design Tokens | JSON 单一源，生成 CSS/JSON/TS，亮暗主题 | DTCG 完整类型、Figma 同步、主题兼容测试 |
-| 基础组件 | React/Vue 各 31 个 UI 组件和 Provider，完整 Story 状态矩阵、A11y、视觉与 API/Type 契约基线 | 扩大复杂键盘交互和跨浏览器矩阵 |
-| 页面模板 | 126 个 Pattern Lab Demo，15 个独立路由运行模板，7 种可生成应用框架 | 生产数据契约、SSR 与微前端组合 |
-| 插件扩展 | 生命周期、依赖、权限、失败回滚、Worker/iframe 沙箱、Manifest 签名与 HTTPS 索引 | 插件撤销、CSP 模板与公开市场服务 |
-| 第三方接入 | Ant/TDesign/OpenTiny Token、元数据与核心运行时 Wrapper | 高级表单、虚拟列表、事件桥接与版本兼容矩阵 |
-| 源码生成 | React/Vue 项目、15 类页面、7 种框架、密度/语言/Adapter、Java 后端、差异预览升级器 | AST 级三方合并与部署平台 Preset |
-| Java 后端 | Java 21、OIDC、RBAC、多租户、Flyway/PostgreSQL、AI Usage、审批审计、Compose/Testcontainers | 密钥托管、分布式限流与全链路可观测性 |
-| AI 对话 | 流式 Provider、Tool、审批、附件/引用、持久化 Store、预算、Trace 与失败恢复 | 服务端 Trace 聚合、评测集与多模态传输 |
-| 网页 Agent | 权限 DOM 工具、服务端 Replay、跨页面 Agent、WebMCP Draft Bridge 与契约检查 | 浏览器兼容矩阵、远程会话和端到端治理 |
-| 工程化 | Workspace、双 Storybook 全组件矩阵、CI、Axe、E2E、视觉回归、Maven、Changesets、包体预检 | Coverage 门槛、跨浏览器矩阵和 Stable 发布 |
+本轮已经补齐 OpenTiny AI 体系对应的能力基线：完整 AI 组件族、Agent 页面规划、渐进式 Skills、标准 MCP Server/Client、路由感知 WebSkills、远程网页 Agent、知识检索协议和生成后验证闭环。
 
-## 里程碑
+“能力基线对齐”不等于社区规模和生产历史相等。OpenTiny 在真实用户量、物料规模、低代码编辑器深度和长期兼容性上仍然更成熟；Atlas 后续以跨浏览器、真实 Provider、公开 npm 包和生产案例继续验收。
 
-### M1 · 可发布组件系统
+| AI 能力 | OpenTiny 参照 | Atlas EIDS 当前实现 | 状态 |
+| --- | --- | --- | --- |
+| AI 交互组件 | TinyRobot 对话、Sender、Prompts、附件、历史、反馈与 MCP | React/Vue 50 个 UI 组件，其中 15 个 AI 组件覆盖会话、消息、流式输出、Prompt、附件、历史、反馈、MCP、引用、知识源、检索轨迹和工具审批 | 能力对齐 |
+| AI 页面开发 | TinyEngine Agent 修改页面 Schema、组件和样式 | Agent Kit 页面规划、CLI 生成、MCP 生成工具、源码校验和最多三轮生成/验证/修复循环 | 能力对齐，编辑器深度待增强 |
+| Skills | TinyVue、TinyRobot、TinyEngine DSL Skill | 7 个渐进式 Skills，按 React、Vue、AI、页面模式、Tokens 和 CLI 分层 | 能力对齐 |
+| MCP | Server、Client、浏览器、远程传输、组件 MCP | `@atlas-eids/mcp` 提供 stdio Server、Streamable HTTP Server/Client、9 类 Resources、Prompts 和 10 个设计/生成工具；Web Agent 提供浏览器 WebMCP Bridge | 能力对齐 |
+| Agent 操作网页 | 页面工具、路由感知、TinyRemoter | DOM 工具、跨页面计划、路由感知 WebSkills、Java Remote Client、审批和审计回放 | 能力对齐 |
+| AI Runtime | 对话、工具和生成式 UI | Provider 路由、流式输出、附件、引用、预算、成本、Trace、恢复、工具审批和知识检索 | Atlas 差异化完整 |
+| 企业治理 | 分布在 TinyEngine 与 NEXT-SDK | OIDC、RBAC、多租户、Java、Flyway、PostgreSQL、审批和审计 | Atlas 占优 |
+| 多框架 | TinyRobot 以 Vue 3 为主 | React/Vue 50 个 UI 组件保持状态、主题、密度和样式对称 | Atlas 占优 |
+| AI 视觉语言 | OpenTiny Design 体系 | Living Orb 表达 AI 身份、呼吸和运行状态，并有自动语义误用检查 | Atlas 差异化 |
+| 知识 AI | WebSkills 注入产品与业务知识 | WebSkill Registry、知识 Provider、租户/角色过滤、引用和检索轨迹、AI 知识工作台 | 能力对齐，生产 RAG Adapter 待扩展 |
 
-- [x] 完成 30 个以上基础/企业组件
-- [x] 建立 React / Vue Storybook
-- [x] 增加包级测试、Axe 和 Playwright
-- [x] 建立 Changesets、Provenance Workflow 与 npm pack 预检
-- [ ] 发布 Tokens、Core、React、Vue Beta packages
+## 可验证入口
 
-### M2 · 可运行页面与适配层
+```bash
+npm run build -w @atlas-eids/agent-kit
+npm run build -w @atlas-eids/mcp
+npm run atlas -- knowledge components MCP
+npm run atlas -- agent plan "知识库检索与引用页面" --framework react --json
+npm run atlas -- validate examples/templates/src/pages/AIKnowledgePage.tsx --framework react --ai
+npm run build:storybook
+npm run test:storybook
+```
 
-- [x] 将 15 个高价值 Pattern 转成真实应用模板
-- [x] 完成 Ant Design、TDesign、OpenTiny 核心运行时适配器
-- [x] 支持紧凑、标准、舒适三种密度及中英文基线
+浏览器入口：
 
-### M3 · AI 原生工程能力
+- `/templates/#/ai-knowledge`：权限感知知识工作台。
+- `/storybook/react/`、`/storybook/vue/`：50 个 UI 组件状态矩阵。
+- `/docs-site.html#/agent-development`：Agent 页面开发与 MCP 接入。
+- `/docs-site.html#/components/api`：React/Vue API 搜索。
 
-- [x] 完成流式对话、Tool Call、审批和执行记录基线
-- [x] 完成 Provider 路由、会话 Store、失败重试和 Usage 遥测
-- [x] 完成浏览器 Agent 审批 ID、History 与只读 Replay
-- [x] 完成引用、附件、持久化会话、WebMCP Draft 契约与跨页面执行基线
+## 下一验收门槛
 
-### M4 · 企业应用生成与 Java 平台
-
-- [x] CLI 生成 React / Vue 前端、15 类页面源码和 Java 后端
-- [x] CLI 生成 7 种完整应用框架
-- [x] Java 后端加入 Demo 认证、多租户、RBAC 和审计
-- [x] 建立外部 OIDC、PostgreSQL Profile、Flyway 和 OpenAI-compatible Provider 基线
-- [x] 建立持久化高风险审批、跨租户隔离和只读回放
-- [x] 建立 PostgreSQL/Keycloak Compose、Testcontainers、插件索引和模板差异升级基线
-- [ ] 完成生产 IdP、密钥托管、长期支持与 Stable 策略
-
-达到 OpenTiny 的成熟度需要持续多个 Release，而不是一次提交。每个里程碑必须以可安装包、自动测试、真实 Demo 和发布记录验收。
+- 在真实 OpenAI-compatible Provider、PostgreSQL 向量检索和企业 IdP 上执行端到端测试。
+- 建立组件与页面 Prompt 测试集，比较生成源码、截图、A11y 和 Token 合规率。
+- 增加截图输入到页面蓝图的多模态 Adapter；Agent Kit 只定义接口，不绑定单一模型。
+- 将 MCP Streamable HTTP 加入 OIDC、限流、会话持久化和部署模板。
+- 发布 npm Beta packages，并在全新目录完成 MCP Host、React、Vue 和 Java Client 验证。
+- 扩大跨浏览器、国际化、密度和复杂键盘交互矩阵。

@@ -24,28 +24,34 @@
 - 新增 Pattern Lab，可视化覆盖 7 种应用框架、13 种基础布局、72 个页面模板和 34 个 AI 交互组件
 - React 与 Vue 示例新增应用框架 Gallery 和 AI 可信执行面板
 - Pattern Lab 的 126 个条目可展开为按类型生成的真实交互 Demo
-- React / Vue 正式包扩展到各 31 个 UI 组件并建立双框架 Storybook
-- 新增 15 个独立路由运行的企业与 AI 页面模板
+- React / Vue 正式包扩展到各 50 个 UI 组件与 `AtlasProvider`，并建立双框架 Storybook
+- 新增 16 个独立路由运行的企业与 AI 页面模板
 - 新增 Ant Design、TDesign、OpenTiny 核心运行时 Wrapper
 - 新增 Playwright E2E、Axe A11y 与 macOS 视觉回归基线
 - Java 模板升级到 Java 21，新增 JWT、RBAC、租户隔离、JPA 审计及接口测试
 - CLI 新增 `--template`，可创建或单独生成 15 类 React / Vue 可编译页面源码
-- 新增 Changesets、手动 Beta 发布 Workflow、npm Provenance、12 包发布元数据与 `npm pack --dry-run` 预检
+- 新增 Changesets、手动 Beta 发布 Workflow、npm Provenance、14 包发布元数据与 `npm pack --dry-run` 预检
 - 新增组件文档导出与 React Props Type 契约检查
 - Plugin SDK 新增权限、依赖、API 版本、注册项隔离、自动卸载与失败回滚
 - AI Runtime 新增会话 Store、Provider Router、失败重试、Token Usage 与运行遥测
 - Web Agent 新增高风险 Execution ID、审批、History 与只读 Replay
 - Java 模板新增外部 OIDC、PostgreSQL Production Profile、Flyway、OpenAI-compatible Provider 和持久化 Agent 审批回放
 - CLI 新增 7 种应用框架、三档密度、中英文、第三方 Adapter、权限导航、Java API Client 与模板升级差异预览
-- React / Vue 31 个组件补齐 Story 状态矩阵、交互测试和自动 TypeScript API 文档
+- React / Vue 50 个 UI 组件补齐 Story 状态矩阵、交互测试和自动 TypeScript API 文档
 - 新增 PostgreSQL、Keycloak 与 Java Server Docker Compose，并通过 Testcontainers 验证 Flyway、OIDC Claims、RBAC 与租户隔离
 - AI Runtime 新增附件、引用、持久化会话、预算预警、成本遥测、运行 Trace 与失败恢复
 - Plugin SDK 新增 ECDSA Manifest 签名、HTTPS 插件索引与 Worker/iframe 沙箱
 - Web Agent 新增服务端 Replay Store、跨页面执行、WebMCP Draft Bridge 与工具契约检查
 - Vue Storybook 新增与 React 对齐的 AI 原生组件分组
 - React / Vue Storybook 的 Button、Living Orb、AI Composer 新增可调 Controls
-- Storybook A11y 从代表性组件抽检扩展为 React / Vue 各 31 个组件逐项检查
+- Storybook A11y 从代表性组件抽检扩展为 React / Vue 各 50 个 UI 组件逐项检查
 - CLI 的 7 种应用框架升级为可运行应用运行时，包含 Hash 路由、权限化菜单、主题状态、租户会话、系统子页面和类型化 Java API Client
+- React / Vue AI 组件扩展到会话、消息、流式文本、Prompt、附件、历史、反馈、MCP、引用、知识源、检索轨迹与工具调用组件
+- 新增 Agent Kit，统一组件知识、15 种 AI 页面模式、页面规划、源码校验与生成修复循环
+- 新增标准 MCP package，提供 stdio / Streamable HTTP Server、Client、9 类 Resources、Prompt 和 10 个页面开发工具
+- 新增 7 个渐进式 Skills，并为 CLI 增加组件/模式查询、Agent 页面规划和源码校验命令
+- AI Runtime 新增权限感知 Knowledge Provider、引用和检索 Trace；Web Agent 新增路由感知 WebSkills 与 Java Remote Client
+- 页面模板新增 AI 知识工作台，完整展示知识源、MCP、检索轨迹、引用和工具审批
 
 ### Changed
 
@@ -68,6 +74,7 @@
 - 修复 AI 审计治理页策略版本标签被圆形图标选择器误伤的问题
 - 修复 `AtlasBadge` 状态点使用不允许的 ARIA 属性问题
 - 校准 CLI Java Client 的租户与审计接口路径，多租户框架使用可访问多个租户的本地 Demo 身份，并拒绝未知 CLI 参数
+- 文档与质量门槛统一更新到 14 个公开 packages、50 个双端 UI 组件、1 个 Provider 和 16 个独立页面路由
 
 ### Notes
 

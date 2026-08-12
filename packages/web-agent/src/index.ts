@@ -316,3 +316,112 @@ export class AtlasCrossPageAgent {
     return results
   }
 }
+
+export interface AtlasWebSkill {
+  id: string
+  title: string
+  description: string
+  routes?: string[]
+  tags?: string[]
+  content?: string
+  load?: () => string | Promise<string>
+  references?: Array<{ title: string; uri: string }>
+}
+
+export class AtlasWebSkillRegistry {
+  #skills = new Map<string, AtlasWebSkill>()
+
+  register(skill: AtlasWebSkill) {
+    if (this.#skills.has(skill.id)) throw new Error(`Atlas WebSkill already registered: ${skill.id}`)
+    if (!skill.content && !skill.load) throw new Error(`Atlas WebSkill requires content or load(): ${skill.id}`)
+    this.#skills.set(skill.id, skill)
+    return () => this.#skills.delete(skill.id)
+  }
+
+  list(route?: string) {
+    return [...this.#skills.values()].filter((skill) => !route || !skill.routes?.length || skill.routes.some((pattern) => route === pattern || route.startsWith(pattern)))
+      .map(({ content: _content, load: _load, ...skill }) => structuredClone(skill))
+  }
+
+  search(query: string, route?: string) {
+    const normalized = query.trim().toLowerCase()
+    return this.list(route).filter((skill) => !normalized || [skill.id, skill.title, skill.description, ...(skill.tags ?? [])].some((value) => value.toLowerCase().includes(normalized)))
+  }
+
+  async read(id: string, route?: string) {
+    const skill = this.#skills.get(id)
+    if (!skill || (route && skill.routes?.length && !skill.routes.some((pattern) => route === pattern || route.startsWith(pattern)))) throw new Error(`Atlas WebSkill is not available in this route: ${id}`)
+    const content = skill.content ?? await skill.load?.()
+    return { ...this.list().find((item) => item.id === id), content: content ?? '' }
+  }
+}
+
+export function createWebSkillToolset(skills: AtlasWebSkillRegistry, getRoute: () => string): AtlasPageTool[] {
+  return [
+    {
+      name: 'skills.list',
+      description: 'List business and design skills available on the current route',
+      permission: 'read',
+      inputSchema: { type: 'object', properties: {} },
+      execute: () => ({ route: getRoute(), skills: skills.list(getRoute()) })
+    },
+    {
+      name: 'skills.search',
+      description: 'Search progressive business knowledge without loading every skill',
+      permission: 'read',
+      inputSchema: { type: 'object', properties: { query: { type: 'string' } }, required: ['query'] },
+      execute: ({ query }) => ({ route: getRoute(), skills: skills.search(String(query ?? ''), getRoute()) })
+    },
+    {
+      name: 'skills.read',
+      description: 'Load the full content of one route-authorized skill',
+      permission: 'read',
+      inputSchema: { type: 'object', properties: { id: { type: 'string' } }, required: ['id'] },
+      execute: ({ id }) => skills.read(String(id ?? ''), getRoute())
+    }
+  ]
+}
+
+export class AtlasRouteAwareAgent {
+  #route: string
+  #registry: AtlasPageToolRegistry
+  #skills: AtlasWebSkillRegistry
+  #cleanup: Array<() => void> = []
+
+  constructor(options: { route: string; registry?: AtlasPageToolRegistry; skills?: AtlasWebSkillRegistry }) {
+    this.#route = options.route
+    this.#registry = options.registry ?? new AtlasPageToolRegistry()
+    this.#skills = options.skills ?? new AtlasWebSkillRegistry()
+    this.#cleanup = createWebSkillToolset(this.#skills, () => this.#route).map((tool) => this.#registry.register(tool))
+  }
+
+  navigate(route: string) { this.#route = route }
+  route() { return this.#route }
+  registry() { return this.#registry }
+  skills() { return this.#skills.list(this.#route) }
+  dispose() { this.#cleanup.forEach((cleanup) => cleanup()); this.#cleanup = [] }
+}
+
+export class AtlasRemoteAgentClient {
+  #baseURL: string
+  #headers: () => Record<string, string> | Promise<Record<string, string>>
+  #fetch: typeof fetch
+
+  constructor(options: { baseURL?: string; headers: () => Record<string, string> | Promise<Record<string, string>>; fetch?: typeof fetch }) {
+    this.#baseURL = (options.baseURL ?? '').replace(/\/$/, '')
+    this.#headers = options.headers
+    this.#fetch = options.fetch ?? fetch
+  }
+
+  async #request(path: string, init: RequestInit = {}) {
+    const response = await this.#fetch(`${this.#baseURL}${path}`, { ...init, headers: { 'content-type': 'application/json', ...(await this.#headers()), ...(init.headers ?? {}) } })
+    if (!response.ok && response.status !== 202) throw new Error(`Atlas remote agent request failed: ${response.status}`)
+    return response.json() as Promise<Record<string, unknown>>
+  }
+
+  listTools() { return this.#request('/api/v1/agent/tools') }
+  history() { return this.#request('/api/v1/agent/executions') }
+  execute(name: string, input: Record<string, unknown>) { return this.#request('/api/v1/agent/tools/execute', { method: 'POST', body: JSON.stringify({ name, input, approved: false }) }) }
+  approve(executionId: string) { return this.#request(`/api/v1/agent/executions/${encodeURIComponent(executionId)}/approve`, { method: 'POST' }) }
+  replay(executionId: string) { return this.#request(`/api/v1/agent/executions/${encodeURIComponent(executionId)}/replay`) }
+}

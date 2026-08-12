@@ -1,0 +1,19 @@
+@import '@atlas-eids/tokens/tokens.css';
+@import '@atlas-eids/tokens/compatibility.css';
+
+/* Shared showcase aliases. Values always resolve from the semantic token package. */
+:root {
+  --brand-gradient: linear-gradient(135deg, var(--atlas-color-brand-primary), var(--atlas-color-brand-strong));
+  --bg-primary: var(--atlas-color-bg-canvas);
+  --bg-secondary: var(--atlas-color-bg-surface);
+  --surface-soft: color-mix(in srgb, var(--atlas-color-bg-surface) 58%, transparent);
+  --surface-strong: color-mix(in srgb, var(--atlas-color-bg-elevated) 92%, transparent);
+  --card-bg: color-mix(in srgb, var(--atlas-color-bg-surface) 76%, transparent);
+  --card-border: color-mix(in srgb, var(--atlas-color-brand-soft) 16%, transparent);
+  --line-subtle: color-mix(in srgb, var(--atlas-color-brand-soft) 14%, transparent);
+  --text-primary: var(--atlas-color-text-primary);
+  --text-secondary: var(--atlas-color-text-secondary);
+  --text-tertiary: var(--atlas-color-text-tertiary);
+  --text-accent: var(--atlas-color-action-primary);
+  --blur-glass: blur(24px);
+}

@@ -387,57 +387,6 @@ h1, h2, h3, h4 {
   justify-content: center;
 }
 
-.orb {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--orb-gradient);
-  position: relative;
-  z-index: 2;
-}
-
-.orb-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px dashed rgba(183, 167, 255, 0.4);
-}
-
-/* Orb States */
-.state-idle .orb {
-  animation: breathe 4s ease-in-out infinite;
-  box-shadow: var(--orb-shadow-idle);
-}
-.state-idle .orb-ring { animation: spin 15s linear infinite; }
-
-.state-thinking .orb {
-  animation: pulseGlow 2s ease-in-out infinite;
-  box-shadow: var(--orb-shadow-thinking);
-}
-.state-thinking .orb-ring {
-  border-color: var(--cognitive-glow);
-  animation: spin 5s linear infinite, pulseRing 2s ease-in-out infinite;
-}
-
-.state-running .orb {
-  box-shadow: var(--orb-shadow-running);
-  background: radial-gradient(circle at 30% 30%, #A7F3D0, var(--success) 60%, #047857);
-}
-.state-running .orb-ring {
-  border-style: solid;
-  border-color: var(--success);
-  border-width: 2px;
-  border-right-color: transparent;
-  animation: spin 1s linear infinite;
-}
-
-.state-error .orb {
-  box-shadow: var(--orb-shadow-error);
-  background: radial-gradient(circle at 30% 30%, #FECDD3, var(--danger) 60%, #BE123C);
-  animation: shake 0.5s ease-in-out infinite;
-}
-.state-error .orb-ring { border-color: var(--danger); opacity: 0.5; }
-
 .orb-label {
   font-size: 16px;
   font-weight: 600;
@@ -4665,3 +4614,57 @@ section:not(.hero):not(.footer)::before {
   .developer-command button { width: 100%; }
   .developer-links { grid-template-columns: 1fr; }
 }
+
+/* Enterprise surface baseline shared with Atlas packages and Pattern Lab. */
+#enterprise-ui .table-container {
+  border-color: #E5E8EF;
+  border-radius: 8px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(29, 33, 41, 0.04);
+}
+#enterprise-ui .data-table { color: #1D2129; font-size: 14px; }
+#enterprise-ui .data-table th,
+#enterprise-ui .data-table td { height: 42px; padding: 0 12px; border-color: #E5E8EF; }
+#enterprise-ui .data-table th { background: #F3F5F8; color: #4E5969; font-weight: 500; }
+#enterprise-ui .data-table tbody tr:last-child td { border-bottom: 0; }
+#enterprise-ui .data-table tbody tr:hover { background: #F8F7FF; }
+.table-object-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 6px;
+  background: rgba(79, 70, 229, 0.08);
+  color: #4F46E5;
+}
+.table-object-icon.is-success { background: rgba(8, 116, 67, 0.08); color: #087443; }
+.table-object-icon.is-danger { background: rgba(196, 60, 53, 0.08); color: #C43C35; }
+#enterprise-ui .status-tag,
+#enterprise-ui .priority-tag { padding: 3px 8px; border-radius: 4px; }
+#enterprise-ui .demo-card,
+#enterprise-ui .agent-card-compact,
+#enterprise-ui .agent-card-detailed {
+  border-radius: 8px;
+  background: var(--card-bg) !important;
+  box-shadow: 0 1px 2px rgba(29, 33, 41, 0.04);
+}
+#enterprise-ui .demo-card,
+#enterprise-ui .agent-card-compact { padding: 18px; }
+#enterprise-ui .demo-card:hover,
+#enterprise-ui .agent-card-compact:hover,
+#enterprise-ui .agent-card-detailed:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(29, 33, 41, 0.08); }
+#enterprise-ui .card-grid-demo { gap: 16px !important; }
+
+[data-theme="dark"] #enterprise-ui .table-container { border-color: var(--border-subtle); background: var(--bg-primary); }
+[data-theme="dark"] #enterprise-ui .data-table { color: var(--text-primary); }
+[data-theme="dark"] #enterprise-ui .data-table th { background: var(--bg-secondary); color: var(--text-secondary); }
+[data-theme="dark"] #enterprise-ui .data-table th,
+[data-theme="dark"] #enterprise-ui .data-table td { border-color: var(--border-subtle); }
+[data-theme="dark"] #enterprise-ui .data-table tbody tr:hover { background: rgba(123, 97, 255, 0.06); }
+
+/* Living Orb sizing stays semantic across the brand page and compact Agent surfaces. */
+#orbShowcase .orb-wrapper { --orb-size: 112px; width: 112px; height: 112px; }
+.card-living-orb { --orb-size: 40px; width: 40px; height: 40px; flex: 0 0 auto; }
+.card-living-orb.is-compact { --orb-size: 36px; width: 36px; height: 36px; }
+.card-living-orb.is-detailed { --orb-size: 48px; width: 48px; height: 48px; }

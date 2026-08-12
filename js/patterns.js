@@ -212,9 +212,20 @@ const dialogDemoLink = document.getElementById('dialogDemoLink');
 const dialogSourceLink = document.getElementById('dialogSourceLink');
 const dialogCliButton = document.getElementById('dialogCliButton');
 
+function localTemplateOrigin() {
+  if (location.protocol === 'file:') return 'http://127.0.0.1:4176';
+  const port = Number(location.port || (location.protocol === 'https:' ? 443 : 80));
+  return `${location.protocol}//${location.hostname}:${port + 3}`;
+}
+
 function fullDemoUrl(templateId) {
   const local = ['localhost', '127.0.0.1'].includes(location.hostname) || location.protocol === 'file:';
-  return local ? `http://127.0.0.1:4176/#/${templateId}` : `templates/#/${templateId}`;
+  return local ? `${localTemplateOrigin()}/#/${templateId}` : `templates/#/${templateId}`;
+}
+
+function embeddedDemoUrl(templateId) {
+  const local = ['localhost', '127.0.0.1'].includes(location.hostname) || location.protocol === 'file:';
+  return local ? `${localTemplateOrigin()}/?embed=1#/${templateId}` : `templates/?embed=1#/${templateId}`;
 }
 
 function cliCommand(templateId) {
@@ -397,7 +408,7 @@ function realDemoMarkup(item) {
       <div class="demo-app-actions">${item.kind === 'tenant' ? '<button class="demo-tenant" type="button" data-demo-action="已打开租户切换">Atlas 华东区⌄</button>' : ''}<button class="demo-icon-button" type="button" data-demo-action="通知中心已打开" aria-label="通知中心">◌</button><button class="demo-ai-button" type="button" data-demo-action="Atlas AI 助手已唤起">${orbMarkup('thinking', 'xxs', false)}<span>AI 助手</span></button><span title="王六">WL</span></div>
     </header>
     <aside class="demo-sidebar"><span class="demo-sidebar-label">工作台</span><nav><button class="active" type="button" data-demo-select><i>⌂</i>概览仪表盘</button><button type="button" data-demo-select><i>□</i>任务中心</button><button type="button" data-demo-select><i>⌁</i>智能分析</button><button type="button" data-demo-select><i>◷</i>运行记录</button></nav><span class="demo-sidebar-label secondary">管理</span><nav><button type="button" data-demo-select><i>◇</i>数据资产</button><button type="button" data-demo-select><i>⚙</i>系统设置</button></nav><button class="demo-sidebar-agent" type="button" data-demo-action="Atlas AI 助手已唤起">${orbMarkup('thinking', 'xs', false)}<div><strong>Atlas AI 助手</strong><span>在线 · 3 个任务</span></div><b>›</b></button></aside>
-    <main class="demo-workspace"><header class="demo-page-header"><div class="demo-page-heading"><nav class="demo-breadcrumb" aria-label="页面路径"><span>工作台</span><i>/</i><b>${item.categoryLabel}</b></nav><h3>${item.name}</h3></div><div class="demo-page-actions"><button type="button" data-demo-action="视图已刷新">刷新</button><button class="primary" type="button" data-demo-action="已创建新的示例任务">＋ 新建任务</button></div></header>${item.kind === 'tabs' ? '<div class="demo-page-tabs"><button type="button" data-demo-tab>工作台</button><button class="active" type="button" data-demo-tab>当前任务</button><button type="button" data-demo-tab>分析报告</button></div>' : ''}${demoPageContent(item)}</main>
+    <main class="demo-workspace"><header class="demo-page-header"><div class="demo-page-heading"><nav class="demo-breadcrumb" aria-label="页面路径"><span>工作台</span><i>/</i><b>${item.categoryLabel}</b></nav><h3>${item.name}</h3><p>${item.description}</p></div><div class="demo-page-actions"><button type="button" data-demo-action="视图已刷新">刷新</button><button class="primary" type="button" data-demo-action="已创建新的示例任务">＋ 新建任务</button></div></header>${item.kind === 'tabs' ? '<div class="demo-page-tabs"><button type="button" data-demo-tab>工作台</button><button class="active" type="button" data-demo-tab>当前任务</button><button type="button" data-demo-tab>分析报告</button></div>' : ''}${demoPageContent(item)}</main>
     <div class="demo-toast" role="status" aria-live="polite"></div>
   </div>`;
 }
@@ -507,8 +518,7 @@ function openPattern(id) {
   dialogDemoLink.href = fullDemoUrl(item.templateId);
   dialogSourceLink.href = `https://github.com/davidwang960707-gpu/atlas-eids/blob/main/examples/templates/src/pages/${template.source}`;
   dialogCliButton.dataset.copy = cliCommand(item.templateId);
-  dialogPreview.innerHTML = realDemoMarkup(item);
-  initDemoInteractions();
+  dialogPreview.innerHTML = `<iframe class="dialog-runtime-frame" title="${escapeHtml(item.name)} 真实运行模板" src="${embeddedDemoUrl(item.templateId)}"></iframe>`;
   dialog.showModal();
 }
 

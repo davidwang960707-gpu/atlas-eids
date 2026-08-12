@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 1,
+  "designSystem": "Atlas EIDS",
+  "version": "0.2.0-beta.2",
+  "patterns": [
+    {
+      "id": "workbench",
+      "title": "角色工作台",
+      "group": "general",
+      "intent": [
+        "工作台",
+        "概览",
+        "首页"
+      ],
+      "regions": [
+        "KPI",
+        "待办",
+        "动态"
+      ],
+      "recommendedComponents": [
+        "AtlasPageHeader",
+        "AtlasStatistic",
+        "AtlasDataTable",
+        "AtlasAlert"
+      ]
+    },
+    {
+      "id": "data-list",
+      "title": "数据列表页",
+      "group": "general",
+      "intent": [
+        "列表",
+        "表格",
+        "数据管理"
+      ],
+      "regions": [
+        "筛选",
+        "操作栏",
+        "表格",
+        "分页"
+      ],
+      "recommendedComponents": [
+        "AtlasPageHeader",
+        "AtlasDataTable",
+        "AtlasTableToolbar",
+        "AtlasObjectCell",
+        "AtlasStatusTag",
+        "AtlasRowActions"
+      ]
+    },
+    {
+      "id": "card-list",
+      "title": "卡片列表页",
+      "group": "general",
+      "intent": [
+        "卡片",
+        "目录"
+      ],
+      "regions": [
+        "筛选",
+        "卡片网格",
+        "分页"
+      ],
+      "recommendedComponents": [
+        "AtlasTabs",
+        "AtlasCard",
+        "AtlasPagination"
+      ]
+    },
+    {
+      "id": "detail",
+      "title": "对象详情页",
+      "group": "general",
+      "intent": [
+        "详情",
+        "档案"
+      ],
+      "regions": [
+        "摘要",
+        "状态",
+        "分组信息",
+        "关联数据"
+      ],
+      "recommendedComponents": [
+        "AtlasBreadcrumb",
+        "AtlasTag",
+        "AtlasTabs"
+      ]
+    },
+    {
+      "id": "form",
+      "title": "分步表单页",
+      "group": "general",
+      "intent": [
+        "表单",
+        "创建",
+        "编辑"
+      ],
+      "regions": [
+        "步骤",
+        "字段分组",
+        "确认"
+      ],
+      "recommendedComponents": [
+        "AtlasSteps",
+        "AtlasInput",
+        "AtlasSelect",
+        "AtlasButton"
+      ]
+    },
+    {
+      "id": "analytics",
+      "title": "数据分析页",
+      "group": "general",
+      "intent": [
+        "分析",
+        "报表",
+        "图表"
+      ],
+      "regions": [
+        "指标",
+        "筛选",
+        "图表",
+        "明细"
+      ],
+      "recommendedComponents": [
+        "AtlasStatistic",
+        "AtlasSegmentedControl",
+        "AtlasTable"
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "系统设置页",
+      "group": "general",
+      "intent": [
+        "设置",
+        "配置"
+      ],
+      "regions": [
+        "设置导航",
+        "分组配置",
+        "保存"
+      ],
+      "recommendedComponents": [
+        "AtlasTabs",
+        "AtlasInput",
+        "AtlasSwitch"
+      ]
+    },
+    {
+      "id": "approval",
+      "title": "审批详情页",
+      "group": "business",
+      "intent": [
+        "审批",
+        "审核"
+      ],
+      "regions": [
+        "业务详情",
+        "审批记录",
+        "操作"
+      ],
+      "recommendedComponents": [
+        "AtlasSteps",
+        "AtlasAlert",
+        "AtlasDialog"
+      ]
+    },
+    {
+      "id": "kanban",
+      "title": "任务看板页",
+      "group": "business",
+      "intent": [
+        "看板",
+        "任务流转"
+      ],
+      "regions": [
+        "筛选",
+        "状态泳道",
+        "任务"
+      ],
+      "recommendedComponents": [
+        "AtlasCard",
+        "AtlasAvatar",
+        "AtlasTag"
+      ]
+    },
+    {
+      "id": "calendar",
+      "title": "团队日历页",
+      "group": "business",
+      "intent": [
+        "日历",
+        "排期"
+      ],
+      "regions": [
+        "日期导航",
+        "日历",
+        "日程"
+      ],
+      "recommendedComponents": [
+        "AtlasSegmentedControl",
+        "AtlasTag",
+        "AtlasDrawer"
+      ]
+    },
+    {
+      "id": "files",
+      "title": "文件管理页",
+      "group": "business",
+      "intent": [
+        "文件",
+        "目录"
+      ],
+      "regions": [
+        "目录树",
+        "文件列表",
+        "预览"
+      ],
+      "recommendedComponents": [
+        "AtlasSearchInput",
+        "AtlasTable",
+        "AtlasDrawer"
+      ]
+    },
+    {
+      "id": "ai-chat",
+      "title": "AI 对话页",
+      "group": "ai",
+      "intent": [
+        "对话",
+        "助手",
+        "问答"
+      ],
+      "regions": [
+        "会话历史",
+        "消息流",
+        "输入",
+        "引用"
+      ],
+      "recommendedComponents": [
+        "AtlasAIConversation",
+        "AtlasAIMessageBubble",
+        "AtlasAIComposer",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-side-assistant",
+      "title": "AI 侧边助手",
+      "group": "ai",
+      "intent": [
+        "侧边助手",
+        "页面助手"
+      ],
+      "regions": [
+        "当前业务页面",
+        "AI 面板",
+        "上下文",
+        "输入"
+      ],
+      "recommendedComponents": [
+        "AtlasDrawer",
+        "AtlasAIMessageBubble",
+        "AtlasAIComposer",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "agent-task",
+      "title": "Agent 任务工作台",
+      "group": "ai",
+      "intent": [
+        "Agent",
+        "执行计划",
+        "工具调用"
+      ],
+      "regions": [
+        "目标",
+        "计划",
+        "步骤",
+        "结果"
+      ],
+      "recommendedComponents": [
+        "AtlasOrb",
+        "AtlasExecutionPlan",
+        "AtlasToolCallCard"
+      ]
+    },
+    {
+      "id": "ai-review",
+      "title": "AI 生成审阅页",
+      "group": "ai",
+      "intent": [
+        "生成审阅",
+        "差异",
+        "接受拒绝"
+      ],
+      "regions": [
+        "原内容",
+        "生成内容",
+        "差异",
+        "控制"
+      ],
+      "recommendedComponents": [
+        "AtlasTabs",
+        "AtlasAlert",
+        "AtlasAIFeedback"
+      ]
+    },
+    {
+      "id": "ai-governance",
+      "title": "AI 审计治理页",
+      "group": "ai",
+      "intent": [
+        "AI 审计",
+        "质量",
+        "成本"
+      ],
+      "regions": [
+        "指标",
+        "风险",
+        "工具审计",
+        "处置"
+      ],
+      "recommendedComponents": [
+        "AtlasStatistic",
+        "AtlasProgress",
+        "AtlasToolCallCard"
+      ]
+    },
+    {
+      "id": "ai-search",
+      "title": "AI 搜索问答页",
+      "group": "ai",
+      "intent": [
+        "搜索问答",
+        "引用来源"
+      ],
+      "regions": [
+        "问题",
+        "答案",
+        "引用",
+        "关联对象"
+      ],
+      "recommendedComponents": [
+        "AtlasAIComposer",
+        "AtlasAIMessageBubble",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-form",
+      "title": "AI 智能填表页",
+      "group": "ai",
+      "intent": [
+        "智能填表",
+        "推荐值"
+      ],
+      "regions": [
+        "表单",
+        "推荐值",
+        "依据",
+        "确认"
+      ],
+      "recommendedComponents": [
+        "AtlasInput",
+        "AtlasAIMessageBubble",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-analysis",
+      "title": "AI 数据分析页",
+      "group": "ai",
+      "intent": [
+        "自然语言分析",
+        "结论"
+      ],
+      "regions": [
+        "提问",
+        "图表",
+        "结论",
+        "明细"
+      ],
+      "recommendedComponents": [
+        "AtlasAIComposer",
+        "AtlasStatistic",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-document",
+      "title": "AI 文档工作台",
+      "group": "ai",
+      "intent": [
+        "AI 文档",
+        "改写"
+      ],
+      "regions": [
+        "文档编辑",
+        "生成",
+        "引用"
+      ],
+      "recommendedComponents": [
+        "AtlasTextarea",
+        "AtlasAIComposer",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-decision",
+      "title": "AI 推荐决策页",
+      "group": "ai",
+      "intent": [
+        "推荐决策",
+        "风险"
+      ],
+      "regions": [
+        "推荐",
+        "依据",
+        "风险",
+        "人工确认"
+      ],
+      "recommendedComponents": [
+        "AtlasAlert",
+        "AtlasCitationList",
+        "AtlasAIFeedback"
+      ]
+    },
+    {
+      "id": "ai-batch",
+      "title": "AI 批处理页",
+      "group": "ai",
+      "intent": [
+        "AI 批量处理",
+        "批处理"
+      ],
+      "regions": [
+        "数据范围",
+        "指令",
+        "预览",
+        "执行"
+      ],
+      "recommendedComponents": [
+        "AtlasTable",
+        "AtlasAIComposer",
+        "AtlasExecutionPlan"
+      ]
+    },
+    {
+      "id": "agent-management",
+      "title": "Agent 管理页",
+      "group": "ai",
+      "intent": [
+        "Agent 管理",
+        "模型技能工具"
+      ],
+      "regions": [
+        "智能体",
+        "模型",
+        "技能",
+        "工具",
+        "权限"
+      ],
+      "recommendedComponents": [
+        "AtlasTable",
+        "AtlasMCPServerPicker",
+        "AtlasTag"
+      ]
+    },
+    {
+      "id": "ai-knowledge",
+      "title": "AI 知识库管理页",
+      "group": "ai",
+      "intent": [
+        "知识库",
+        "RAG",
+        "知识源",
+        "知识检索",
+        "权限感知"
+      ],
+      "regions": [
+        "数据源",
+        "解析",
+        "权限",
+        "评测"
+      ],
+      "recommendedComponents": [
+        "AtlasKnowledgeSourcePicker",
+        "AtlasRetrievalTrace",
+        "AtlasCitationList"
+      ]
+    },
+    {
+      "id": "ai-monitor",
+      "title": "AI 运行监控页",
+      "group": "ai",
+      "intent": [
+        "AI 监控",
+        "调用量",
+        "成本"
+      ],
+      "regions": [
+        "调用量",
+        "成功率",
+        "耗时",
+        "成本"
+      ],
+      "recommendedComponents": [
+        "AtlasStatistic",
+        "AtlasProgress",
+        "AtlasTable"
+      ]
+    },
+    {
+      "id": "ai-evaluation",
+      "title": "AI 质量评测页",
+      "group": "ai",
+      "intent": [
+        "模型评测",
+        "测试集"
+      ],
+      "regions": [
+        "测试集",
+        "模型对比",
+        "评分"
+      ],
+      "recommendedComponents": [
+        "AtlasTable",
+        "AtlasProgress",
+        "AtlasCitationList"
+      ]
+    }
+  ]
+}

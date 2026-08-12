@@ -1,6 +1,6 @@
 # Atlas EIDS 页面模板
 
-15 个独立路由运行的企业与 AI 页面 Demo，统一使用 `@atlas-eids/react` 与 Atlas Design Tokens。
+16 个独立路由运行的企业与 AI 页面 Demo，统一使用 `@atlas-eids/react` 与 Atlas Design Tokens。CLI 保持 15 类核心页面模板，额外的 `ai-knowledge` 路由用于验证知识源、MCP、检索轨迹、引用和工具调用闭环。
 
 ```bash
 npm run dev -w atlas-eids-templates

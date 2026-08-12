@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { AtlasMemoryConversationStore, AtlasMemoryRunTraceStore, AtlasPersistentConversationStore, AtlasToolRegistry, createAtlasAIRuntime, createAtlasProviderRouter } from '../dist/index.js'
+import { AtlasKnowledgeRegistry, AtlasMemoryConversationStore, AtlasMemoryKnowledgeProvider, AtlasMemoryRunTraceStore, AtlasPersistentConversationStore, AtlasToolRegistry, createAtlasAIRuntime, createAtlasProviderRouter, createKnowledgeSearchTool } from '../dist/index.js'
 
 test('runtime collects streaming text and tool calls', async () => {
   const provider = {
@@ -108,4 +108,28 @@ test('runtime enforces budgets, emits warnings and recovers failed traces', asyn
   assert.equal(recovered.estimatedCostMicros, 100)
   assert.equal(warnings.length, 1)
   assert.equal((await runtime.trace(recovered.traceId)).recoveredFromTraceId, failed.traceId)
+})
+
+test('knowledge registry enforces tenant and role boundaries and returns retrieval trace', async () => {
+  const knowledge = new AtlasKnowledgeRegistry()
+  knowledge.register(new AtlasMemoryKnowledgeProvider({
+    sources: [
+      { id: 'public-docs', name: '产品文档', type: 'document', status: 'ready', tenantIds: ['tenant-a', 'tenant-b'] },
+      { id: 'admin-docs', name: '管理员手册', type: 'document', status: 'ready', tenantIds: ['tenant-a'], roles: ['ADMIN'] }
+    ],
+    documents: [
+      { id: 'd1', sourceId: 'public-docs', title: '审批策略', content: '高风险发布必须经过人工审批', tenantIds: ['tenant-a', 'tenant-b'] },
+      { id: 'd2', sourceId: 'admin-docs', title: '密钥轮换', content: '管理员每季度执行密钥轮换', tenantIds: ['tenant-a'], roles: ['ADMIN'] },
+      { id: 'd3', sourceId: 'public-docs', title: '其他租户', content: '审批策略不应泄漏', tenantIds: ['tenant-b'] }
+    ]
+  }))
+  const userResult = await knowledge.search({ text: '审批', tenantId: 'tenant-a', roles: ['USER'] })
+  assert.equal(userResult.hits.length, 1)
+  assert.equal(userResult.hits[0].documentId, 'd1')
+  assert.equal(userResult.trace.length, 3)
+  const adminSources = await knowledge.sources({ tenantId: 'tenant-a', roles: ['ADMIN'] })
+  assert.equal(adminSources.length, 2)
+  const tools = new AtlasToolRegistry()
+  tools.register(createKnowledgeSearchTool(knowledge))
+  assert.equal((await tools.execute({ id: 'knowledge-1', name: 'knowledge.search', arguments: { text: '密钥', tenantId: 'tenant-a', roles: ['ADMIN'] } })).status, 'completed')
 })

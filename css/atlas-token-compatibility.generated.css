@@ -1,0 +1,46 @@
+/* Generated compatibility aliases. New code must use --atlas-* semantic tokens. */
+:root {
+  --atlas-violet: var(--atlas-color-brand-primary);
+  --deep-neural: var(--atlas-color-brand-strong);
+  --cognitive-glow: var(--atlas-color-brand-soft);
+  --atlas-purple: var(--atlas-color-brand-primary);
+  --atlas-blue: var(--atlas-color-status-info);
+  --atlas-cyan: var(--atlas-color-accent-cyan);
+  --atlas-green: var(--atlas-color-accent-green);
+  --atlas-orange: var(--atlas-color-accent-amber);
+  --atlas-pink: var(--atlas-color-accent-rose);
+  --chart-primary: var(--atlas-color-chart-primary);
+  --chart-secondary: var(--atlas-color-chart-secondary);
+  --chart-teal: var(--atlas-color-chart-teal);
+  --chart-mint: var(--atlas-color-chart-mint);
+  --chart-amber: var(--atlas-color-chart-amber);
+  --chart-rose: var(--atlas-color-chart-rose);
+  --chart-ink: var(--atlas-color-chart-ink);
+  --chart-grid: var(--atlas-color-chart-grid);
+  --chart-surface: var(--atlas-color-chart-surface);
+  --success: var(--atlas-color-status-success);
+  --warning: var(--atlas-color-status-warning);
+  --danger: var(--atlas-color-status-error);
+  --info: var(--atlas-color-status-info);
+  --font-en: var(--atlas-font-family-sans);
+  --font-cn: var(--atlas-font-family-sans);
+  --font-mono: var(--atlas-font-family-mono);
+  --space-xs: var(--atlas-space-1);
+  --space-sm: var(--atlas-space-2);
+  --space-md: var(--atlas-space-4);
+  --space-lg: var(--atlas-space-6);
+  --space-xl: var(--atlas-space-8);
+  --space-2xl: var(--atlas-space-12);
+  --radius-sm: var(--atlas-radius-control);
+  --radius-md: var(--atlas-radius-panel);
+  --radius-lg: var(--atlas-radius-overlay);
+  --radius-xl: var(--atlas-radius-overlay);
+  --radius-full: var(--atlas-radius-round);
+  --transition-fast: var(--atlas-motion-fast);
+  --transition-base: var(--atlas-motion-base);
+  --transition-smooth: var(--atlas-motion-base);
+  --transition-slow: var(--atlas-motion-living);
+  --z-dropdown: var(--atlas-z-dropdown);
+  --z-sticky: var(--atlas-z-overlay);
+  --z-tooltip: var(--atlas-z-toast);
+}

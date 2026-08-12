@@ -454,3 +454,176 @@ export function createOpenAICompatibleProvider(options: {
     }
   }
 }
+
+export interface AtlasKnowledgeSource {
+  id: string
+  name: string
+  type: 'document' | 'database' | 'website' | 'api'
+  status: 'ready' | 'syncing' | 'error'
+  description?: string
+  tenantIds?: string[]
+  roles?: string[]
+  updatedAt?: string
+}
+
+export interface AtlasKnowledgeDocument {
+  id: string
+  sourceId: string
+  title: string
+  content: string
+  url?: string
+  metadata?: Record<string, unknown>
+  tenantIds?: string[]
+  roles?: string[]
+}
+
+export interface AtlasKnowledgeQuery {
+  text: string
+  tenantId: string
+  roles?: string[]
+  sourceIds?: string[]
+  topK?: number
+  filters?: Record<string, unknown>
+  signal?: AbortSignal
+}
+
+export interface AtlasKnowledgeHit {
+  id: string
+  sourceId: string
+  documentId: string
+  title: string
+  excerpt: string
+  score: number
+  url?: string
+  metadata?: Record<string, unknown>
+  tenantIds?: string[]
+  roles?: string[]
+}
+
+export interface AtlasKnowledgeTraceStep {
+  id: string
+  title: string
+  status: 'completed' | 'failed'
+  durationMs: number
+  detail?: string
+}
+
+export interface AtlasKnowledgeSearchResult {
+  hits: AtlasKnowledgeHit[]
+  trace: AtlasKnowledgeTraceStep[]
+  sourceIds: string[]
+}
+
+export interface AtlasKnowledgeProvider {
+  id: string
+  sources(): AtlasKnowledgeSource[] | Promise<AtlasKnowledgeSource[]>
+  search(query: AtlasKnowledgeQuery): Promise<AtlasKnowledgeHit[]>
+}
+
+function canAccessKnowledge(value: { tenantIds?: string[]; roles?: string[] }, tenantId: string, roles: string[]) {
+  if (value.tenantIds?.length && !value.tenantIds.includes(tenantId)) return false
+  if (value.roles?.length && !value.roles.some((role) => roles.includes(role))) return false
+  return true
+}
+
+export class AtlasKnowledgeRegistry {
+  #providers = new Map<string, AtlasKnowledgeProvider>()
+
+  register(provider: AtlasKnowledgeProvider) {
+    if (this.#providers.has(provider.id)) throw new Error(`Atlas knowledge provider already registered: ${provider.id}`)
+    this.#providers.set(provider.id, provider)
+    return () => this.#providers.delete(provider.id)
+  }
+
+  async sources(context: { tenantId: string; roles?: string[] }) {
+    const sources = (await Promise.all([...this.#providers.values()].map((provider) => provider.sources()))).flat()
+    return sources.filter((source) => canAccessKnowledge(source, context.tenantId, context.roles ?? []))
+  }
+
+  async search(query: AtlasKnowledgeQuery): Promise<AtlasKnowledgeSearchResult> {
+    if (!query.text.trim()) throw new Error('Atlas knowledge query cannot be empty')
+    const startedAt = Date.now()
+    const roles = query.roles ?? []
+    const permittedSources = await this.sources({ tenantId: query.tenantId, roles })
+    const requested = query.sourceIds?.length ? new Set(query.sourceIds) : undefined
+    const sourceIds = permittedSources.filter((source) => !requested || requested.has(source.id)).map((source) => source.id)
+    const sourceSet = new Set(sourceIds)
+    const sourceStepAt = Date.now()
+    const results = await Promise.all([...this.#providers.values()].map((provider) => provider.search({ ...query, sourceIds })))
+    const hits = results.flat()
+      .filter((hit) => sourceSet.has(hit.sourceId) && canAccessKnowledge(hit, query.tenantId, roles))
+      .sort((left, right) => right.score - left.score)
+      .slice(0, Math.max(1, query.topK ?? 8))
+    return {
+      hits,
+      sourceIds,
+      trace: [
+        { id: 'scope', title: '解析租户、角色与知识范围', status: 'completed', durationMs: sourceStepAt - startedAt, detail: `${sourceIds.length} 个知识源可访问` },
+        { id: 'retrieve', title: '检索并合并 Provider 结果', status: 'completed', durationMs: Date.now() - sourceStepAt, detail: `${results.flat().length} 个候选结果` },
+        { id: 'rerank', title: '权限过滤、相关度排序与截断', status: 'completed', durationMs: Math.max(0, Date.now() - startedAt), detail: `返回 ${hits.length} 个可信引用` }
+      ]
+    }
+  }
+}
+
+export class AtlasMemoryKnowledgeProvider implements AtlasKnowledgeProvider {
+  id: string
+  #sources: AtlasKnowledgeSource[]
+  #documents: AtlasKnowledgeDocument[]
+
+  constructor(options: { id?: string; sources: AtlasKnowledgeSource[]; documents: AtlasKnowledgeDocument[] }) {
+    this.id = options.id ?? 'atlas-memory-knowledge'
+    this.#sources = structuredClone(options.sources)
+    this.#documents = structuredClone(options.documents)
+  }
+
+  sources() { return structuredClone(this.#sources) }
+
+  async search(query: AtlasKnowledgeQuery) {
+    const terms = query.text.toLowerCase().split(/\s+/).filter(Boolean)
+    const sourceIds = query.sourceIds ? new Set(query.sourceIds) : undefined
+    return this.#documents.filter((document) => !sourceIds || sourceIds.has(document.sourceId)).map((document) => {
+      const searchable = `${document.title} ${document.content}`.toLowerCase()
+      const matches = terms.filter((term) => searchable.includes(term)).length
+      return {
+        id: `${this.id}:${document.id}`,
+        sourceId: document.sourceId,
+        documentId: document.id,
+        title: document.title,
+        excerpt: document.content.slice(0, 240),
+        score: terms.length ? matches / terms.length : 0,
+        url: document.url,
+        metadata: document.metadata,
+        tenantIds: document.tenantIds,
+        roles: document.roles
+      }
+    }).filter((hit) => hit.score > 0)
+  }
+}
+
+export function createKnowledgeSearchTool(registry: AtlasKnowledgeRegistry): AtlasToolDefinition {
+  return {
+    name: 'knowledge.search',
+    description: 'Search permission-aware Atlas knowledge sources and return citations with retrieval trace',
+    permission: 'read',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        text: { type: 'string' },
+        tenantId: { type: 'string' },
+        roles: { type: 'array', items: { type: 'string' } },
+        sourceIds: { type: 'array', items: { type: 'string' } },
+        topK: { type: 'number', minimum: 1, maximum: 50 }
+      },
+      required: ['text', 'tenantId']
+    },
+    execute: (input, signal) => registry.search({
+      text: String(input.text ?? ''),
+      tenantId: String(input.tenantId ?? ''),
+      roles: Array.isArray(input.roles) ? input.roles.map(String) : [],
+      sourceIds: Array.isArray(input.sourceIds) ? input.sourceIds.map(String) : undefined,
+      topK: typeof input.topK === 'number' ? input.topK : undefined,
+      signal
+    })
+  }
+}

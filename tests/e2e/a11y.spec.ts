@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 import { testUrls } from './support/urls.js'
 
-const routes = ['workbench', 'data-list', 'form', 'analytics', 'approval', 'ai-chat', 'agent-task', 'ai-review', 'ai-governance']
+const routes = ['workbench', 'data-list', 'form', 'analytics', 'approval', 'ai-chat', 'agent-task', 'ai-review', 'ai-governance', 'ai-knowledge']
 
 for (const route of routes) {
   test(`${route} 无严重或致命 A11y 问题`, async ({ page }) => {

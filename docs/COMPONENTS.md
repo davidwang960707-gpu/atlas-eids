@@ -4,7 +4,7 @@ Atlas EIDS 包含静态 HTML/CSS 组件，以及 React 和 Vue 3 的组件示例
 
 ## 正式 packages
 
-`@atlas-eids/react` 与 `@atlas-eids/vue` 当前同步提供 31 个 UI 组件，另含 `AtlasProvider`：
+`@atlas-eids/react` 与 `@atlas-eids/vue` 当前同步提供 50 个 UI 组件，另含 `AtlasProvider`：
 
 | 类别 | 组件 |
 | --- | --- |
@@ -12,14 +12,16 @@ Atlas EIDS 包含静态 HTML/CSS 组件，以及 React 和 Vue 3 的组件示例
 | 导航 | `AtlasTabs`、`AtlasBreadcrumb`、`AtlasPagination`、`AtlasSteps`、`AtlasDropdown` |
 | 数据展示 | `AtlasCard`、`AtlasTable`、`AtlasTag`、`AtlasBadge`、`AtlasAvatar`、`AtlasStatistic`、`AtlasProgress` |
 | 反馈与浮层 | `AtlasAlert`、`AtlasTooltip`、`AtlasEmpty`、`AtlasSkeleton`、`AtlasDialog`、`AtlasDrawer` |
-| AI 原生 | `AtlasOrb`、`AtlasAIComposer`、`AtlasExecutionPlan` |
+| 企业组合 | `AtlasObjectCell`、`AtlasStatusTag`、`AtlasRowActions`、`AtlasTableToolbar`、`AtlasDataTable`、`AtlasPageHeader`、`AtlasPanel` |
+| AI 会话与输入 | `AtlasOrb`、`AtlasAIComposer`、`AtlasAIConversation`、`AtlasAIMessageBubble`、`AtlasAIStreamingText`、`AtlasAIPrompts`、`AtlasAIAttachmentList`、`AtlasAIConversationHistory` |
+| AI 知识与执行 | `AtlasExecutionPlan`、`AtlasAIFeedback`、`AtlasMCPServerPicker`、`AtlasCitationList`、`AtlasKnowledgeSourcePicker`、`AtlasRetrievalTrace`、`AtlasToolCallCard` |
 
 ```ts
 import { AtlasButton, AtlasOrb } from '@atlas-eids/react'
 import '@atlas-eids/react/styles.css'
 ```
 
-这些组件处于 Beta，已经具备类型、包构建、导出测试、31 × 2 Story 状态矩阵、逐组件 Axe 检查与 Playwright 视觉回归。Button、Orb、AI Composer 提供可调 Controls；其余组件以完整状态矩阵呈现。后续仍需继续扩大复杂键盘交互与跨浏览器覆盖。
+这些组件处于 Beta，已经具备类型、包构建、导出测试、50 × 2 Story 状态矩阵、逐组件 Axe 检查与 Playwright 视觉回归。Provider 统一 Light/Dark、Compact/Standard/Comfortable 和 `zh-CN/en-US`；跨框架像素回归覆盖表格、组合组件、AI Composer 与 Living Orb。
 
 ## Storybook
 
@@ -38,7 +40,7 @@ React 与 Vue 工作台分别运行在 `6006` 和 `6007` 端口；静态构建�
 - [Vue Storybook](https://davidwang960707-gpu.github.io/atlas-eids/storybook/vue/)
 - [统一组件 API 搜索](https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html#/components/api)
 
-## AgentOrb
+## AtlasOrb
 
 Orb 是 Atlas EIDS 中最核心的 AI 存在感组件。
 
@@ -63,19 +65,25 @@ Orb 是 Atlas EIDS 中最核心的 AI 存在感组件。
 - `running`、`error` 等颜色表达的是 AI 运行状态，不用于给普通对象做随机分类色。
 - 小尺寸 Orb 仍保留材质层，但在高密度列表中优先使用状态点，避免持续动效干扰扫描。
 
-### React
+正式 React 组件：
 
 ```tsx
-import AgentOrb from './components/AgentOrb';
+import { AtlasOrb } from '@atlas-eids/react'
 
-<AgentOrb state="thinking" size={120} showRing />
+<AtlasOrb state="thinking" size={120} showRing />
 ```
 
-### Vue 3
+正式 Vue 组件：
 
 ```vue
-<AgentOrb state="thinking" :size="120" />
+<script setup lang="ts">
+import { AtlasOrb } from '@atlas-eids/vue'
+</script>
+
+<AtlasOrb state="thinking" :size="120" :show-ring="true" />
 ```
+
+`examples/react` 与 `examples/vue3` 中的 `AgentOrb` 是展示站组合示例，不属于正式 package 公共 API。
 
 ## AgentCard
 
@@ -135,6 +143,14 @@ AITrustPanel 把执行计划、步骤状态、工具调用、风险提示和人�
 ## AI 交互组件
 
 用于建立 AI 原生页面的“入口-输入-输出-执行”闭环。
+
+正式 package 已实现以下核心能力：
+
+- 会话容器、消息气泡、流式文本、推荐 Prompt、附件和历史会话。
+- MCP Server、知识源、引用列表、检索轨迹和工具调用状态。
+- AI Composer、Execution Plan、反馈与 Living Orb 状态表达。
+
+页面模式目录中的 34 项 AI 交互用于指导组合关系，其中尚未独立组件化的 Diff、风险确认、敏感信息提醒等能力由页面模板或 `AtlasAlert`、`AtlasDialog` 等基础组件组合完成。
 
 - **AI 入口**
   - 全局 AI 助手入口

@@ -1,9 +1,13 @@
-import { defineComponent, h, ref, watch, type PropType } from 'vue'
+import { defineComponent, h, inject, onMounted, provide, ref, watch, type PropType } from 'vue'
+import type { AtlasAIAttachmentItemContract, AtlasAICitationItemContract, AtlasAIHistoryItemContract, AtlasAIPromptItemContract, AtlasBreadcrumbItemContract, AtlasDropdownItemContract, AtlasExecutionStepContract, AtlasKnowledgeSourceItemContract, AtlasMCPServerItemContract, AtlasOptionContract, AtlasRetrievalStepContract, AtlasRowActionContract, AtlasSemanticTone, AtlasSortDirection, AtlasStepContract, AtlasTableColumn, AtlasTableLabels, AtlasToolCallItemContract } from '@atlas-eids/core'
+
+const atlasConfigKey = Symbol('atlas-config')
 
 export const AtlasProvider = defineComponent({
   name: 'AtlasProvider',
   props: { theme: { type: String, default: 'light' }, density: { type: String, default: 'standard' }, locale: { type: String, default: 'zh-CN' } },
   setup(props, { slots }) {
+    provide(atlasConfigKey, props)
     return () => h('div', { class: 'atlas-root', 'data-atlas-theme': props.theme, 'data-atlas-density': props.density, 'data-atlas-locale': props.locale, lang: props.locale }, slots.default?.())
   }
 })
@@ -76,7 +80,7 @@ export const AtlasAIComposer = defineComponent({
   }
 })
 
-export interface AtlasVueExecutionStep { id: string; title: string; description?: string; status: 'pending' | 'running' | 'completed' | 'failed' | 'approval' }
+export interface AtlasVueExecutionStep extends AtlasExecutionStepContract {}
 
 export const AtlasExecutionPlan = defineComponent({
   name: 'AtlasExecutionPlan',
@@ -87,7 +91,7 @@ export const AtlasExecutionPlan = defineComponent({
   }
 })
 
-export interface AtlasVueOption { label: string; value: string; disabled?: boolean }
+export interface AtlasVueOption extends AtlasOptionContract {}
 
 export const AtlasSelect = defineComponent({
   name: 'AtlasSelect',
@@ -112,11 +116,13 @@ export const AtlasTextarea = defineComponent({
 export const AtlasCheckbox = defineComponent({
   name: 'AtlasCheckbox',
   emits: ['update:modelValue'],
-  props: { modelValue: Boolean, indeterminate: Boolean, label: { type: String, required: true }, disabled: Boolean },
+  props: { modelValue: Boolean, indeterminate: Boolean, label: { type: String, required: true }, hideLabel: Boolean, disabled: Boolean },
   setup(props, { emit }) {
     const input = ref<HTMLInputElement>()
-    watch(() => props.indeterminate, (value) => { if (input.value) input.value.indeterminate = value }, { immediate: true, flush: 'post' })
-    return () => h('label', { class: 'atlas-check' }, [h('input', { ref: input, type: 'checkbox', checked: props.modelValue, disabled: props.disabled, onChange: (event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).checked) }), h('span', { 'aria-hidden': 'true' }), h('b', props.label)])
+    const syncIndeterminate = () => { if (input.value) input.value.indeterminate = props.indeterminate }
+    onMounted(syncIndeterminate)
+    watch(() => props.indeterminate, syncIndeterminate, { flush: 'post' })
+    return () => h('label', { class: 'atlas-check' }, [h('input', { ref: input, type: 'checkbox', checked: props.modelValue, 'aria-checked': props.indeterminate ? 'mixed' : props.modelValue, disabled: props.disabled, onChange: (event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).checked) }), h('span', { 'aria-hidden': 'true' }), h('b', { class: props.hideLabel ? 'sr-only' : undefined }, props.label)])
   }
 })
 
@@ -166,7 +172,7 @@ export const AtlasSegmentedControl = defineComponent({
   }
 })
 
-export interface AtlasVueBreadcrumbItem { label: string; href?: string }
+export interface AtlasVueBreadcrumbItem extends AtlasBreadcrumbItemContract {}
 
 export const AtlasBreadcrumb = defineComponent({
   name: 'AtlasBreadcrumb',
@@ -194,7 +200,7 @@ export const AtlasPagination = defineComponent({
   }
 })
 
-export interface AtlasVueStep { id: string; title: string; description?: string; status?: 'pending' | 'current' | 'completed' | 'error' }
+export interface AtlasVueStep extends AtlasStepContract {}
 
 export const AtlasSteps = defineComponent({
   name: 'AtlasSteps',
@@ -210,15 +216,28 @@ export const AtlasSteps = defineComponent({
   }
 })
 
-export interface AtlasVueTableColumn { key: string; title: string; align?: 'start' | 'center' | 'end' }
+export interface AtlasVueTableColumn extends AtlasTableColumn<Record<string, unknown>> { key: string }
+
+const tableLabels: Record<string, AtlasTableLabels> = {
+  'zh-CN': { selectAll: '选择全部', selectRow: '选择当前行', emptyTitle: '暂无数据', emptyDescription: '调整筛选条件后重试。', sortAscending: '升序排列', sortDescending: '降序排列' },
+  'en-US': { selectAll: 'Select all', selectRow: 'Select row', emptyTitle: 'No data', emptyDescription: 'Adjust the filters and try again.', sortAscending: 'Sorted ascending', sortDescending: 'Sorted descending' }
+}
 
 export const AtlasTable = defineComponent({
   name: 'AtlasTable',
-  emits: ['update:selectedIds'],
-  props: { columns: { type: Array as PropType<AtlasVueTableColumn[]>, required: true }, rows: { type: Array as PropType<Array<Record<string, unknown> & { id: string | number }>>, required: true }, caption: { type: String, required: true }, selectedIds: { type: Array as PropType<Array<string | number>>, default: () => [] }, selectable: Boolean },
+  emits: ['update:selectedIds', 'sort'],
+  props: { columns: { type: Array as PropType<AtlasVueTableColumn[]>, required: true }, rows: { type: Array as PropType<Array<Record<string, unknown> & { id: string | number }>>, required: true }, caption: { type: String, required: true }, selectedIds: { type: Array as PropType<Array<string | number>>, default: () => [] }, selectable: Boolean, loading: Boolean, sortKey: String, sortDirection: String as PropType<AtlasSortDirection>, labels: { type: Object as PropType<Partial<AtlasTableLabels>>, default: () => ({}) } },
   setup(props, { emit, slots }) {
+    const config = inject<{ locale: string }>(atlasConfigKey, { locale: 'zh-CN' })
     const toggle = (id: string | number) => emit('update:selectedIds', props.selectedIds.includes(id) ? props.selectedIds.filter((item) => item !== id) : [...props.selectedIds, id])
-    return () => h('div', { class: 'atlas-table-wrap' }, [h('table', { class: 'atlas-table' }, [h('caption', props.caption), h('thead', [h('tr', [props.selectable ? h('th', { class: 'selection' }, [h(AtlasCheckbox, { modelValue: props.rows.length > 0 && props.rows.every((row) => props.selectedIds.includes(row.id)), indeterminate: props.selectedIds.length > 0 && !props.rows.every((row) => props.selectedIds.includes(row.id)), label: '选择全部', 'onUpdate:modelValue': (checked: boolean) => emit('update:selectedIds', checked ? props.rows.map((row) => row.id) : []) })]) : null, ...props.columns.map((column) => h('th', { style: { textAlign: column.align } }, column.title))])]), h('tbody', props.rows.map((row) => h('tr', { class: props.selectedIds.includes(row.id) ? 'is-selected' : undefined }, [props.selectable ? h('td', { class: 'selection' }, [h(AtlasCheckbox, { modelValue: props.selectedIds.includes(row.id), label: '选择当前行', 'onUpdate:modelValue': () => toggle(row.id) })]) : null, ...props.columns.map((column) => h('td', { style: { textAlign: column.align } }, slots[`cell-${column.key}`]?.({ row }) ?? String(row[column.key] ?? '')))])))]), props.rows.length === 0 ? h(AtlasEmpty, { title: '暂无数据', description: '调整筛选条件后重试。' }) : null])
+    return () => {
+      const labels = { ...(tableLabels[config.locale] ?? tableLabels['zh-CN']), ...props.labels }
+      return h('div', { class: ['atlas-table-wrap', props.loading && 'is-loading'], 'aria-busy': props.loading || undefined }, [h('table', { class: 'atlas-table' }, [h('caption', props.caption), h('thead', [h('tr', [props.selectable ? h('th', { class: 'selection' }, [h(AtlasCheckbox, { modelValue: props.rows.length > 0 && props.rows.every((row) => props.selectedIds.includes(row.id)), indeterminate: props.selectedIds.length > 0 && !props.rows.every((row) => props.selectedIds.includes(row.id)), label: labels.selectAll, hideLabel: true, 'onUpdate:modelValue': (checked: boolean) => emit('update:selectedIds', checked ? props.rows.map((row) => row.id) : []) })]) : null, ...props.columns.map((column) => {
+        const activeSort = props.sortKey === column.key ? props.sortDirection : undefined
+        const content = column.sortable ? h('button', { type: 'button', class: 'atlas-table-sort', onClick: () => emit('sort', { key: column.key, direction: activeSort === 'ascending' ? 'descending' : 'ascending' }) }, [column.title, h('span', { 'aria-hidden': 'true' }, activeSort === 'ascending' ? '↑' : activeSort === 'descending' ? '↓' : '↕'), h('span', { class: 'sr-only' }, activeSort === 'ascending' ? labels.sortAscending : activeSort === 'descending' ? labels.sortDescending : '')]) : column.title
+        return h('th', { style: { textAlign: column.align, width: typeof column.width === 'number' ? `${column.width}px` : column.width }, 'aria-sort': column.sortable ? activeSort ?? 'none' : undefined }, content)
+      })])]), h('tbody', props.rows.map((row) => h('tr', { class: props.selectedIds.includes(row.id) ? 'is-selected' : undefined, 'aria-selected': props.selectedIds.includes(row.id) || undefined }, [props.selectable ? h('td', { class: 'selection' }, [h(AtlasCheckbox, { modelValue: props.selectedIds.includes(row.id), label: labels.selectRow, hideLabel: true, 'onUpdate:modelValue': () => toggle(row.id) })]) : null, ...props.columns.map((column) => h('td', { style: { textAlign: column.align, width: typeof column.width === 'number' ? `${column.width}px` : column.width } }, slots[`cell-${column.key}`]?.({ row }) ?? String(row[column.key] ?? '')))])))]), props.rows.length === 0 && !props.loading ? h(AtlasEmpty, { title: labels.emptyTitle, description: labels.emptyDescription }) : null, props.loading ? h('div', { class: 'atlas-table-loading' }, [h(AtlasSkeleton, { lines: 3 })]) : null])
+    }
   }
 })
 
@@ -306,7 +325,7 @@ export const AtlasDrawer = defineComponent({
   }
 })
 
-export interface AtlasVueDropdownItem { id: string; label: string; disabled?: boolean; danger?: boolean }
+export interface AtlasVueDropdownItem extends AtlasDropdownItemContract {}
 
 export const AtlasDropdown = defineComponent({
   name: 'AtlasDropdown',
@@ -318,8 +337,184 @@ export const AtlasDropdown = defineComponent({
   }
 })
 
+export const AtlasObjectCell = defineComponent({
+  name: 'AtlasObjectCell',
+  props: { title: { type: String, required: true }, meta: String, description: String, tone: { type: String as PropType<AtlasSemanticTone>, default: 'neutral' }, interactive: Boolean },
+  setup(props, { slots, attrs }) {
+    return () => h('div', { ...attrs, class: ['atlas-object-cell', `is-${props.tone}`, props.interactive && 'is-interactive'] }, [slots.icon ? h('span', { class: 'atlas-object-cell-icon', 'aria-hidden': 'true' }, slots.icon()) : null, h('span', { class: 'atlas-object-cell-copy' }, [h('strong', slots.title?.() ?? props.title), props.meta ? h('small', props.meta) : null, props.description ? h('span', props.description) : null])])
+  }
+})
+
+export const AtlasStatusTag = defineComponent({
+  name: 'AtlasStatusTag',
+  props: { tone: { type: String as PropType<AtlasSemanticTone>, default: 'neutral' } },
+  setup(props, { slots, attrs }) {
+    return () => h('span', { ...attrs, class: ['atlas-status-tag', `is-${props.tone}`] }, slots.default?.())
+  }
+})
+
+export interface AtlasVueRowAction extends AtlasRowActionContract { icon?: string }
+
+export const AtlasRowActions = defineComponent({
+  name: 'AtlasRowActions',
+  emits: ['action'],
+  props: { items: { type: Array as PropType<AtlasVueRowAction[]>, required: true }, maxVisible: { type: Number, default: 3 }, label: { type: String, default: '行操作' } },
+  setup(props, { emit, slots }) {
+    return () => {
+      const visible = props.items.slice(0, Math.max(0, props.maxVisible))
+      const overflow = props.items.slice(Math.max(0, props.maxVisible))
+      return h('div', { class: 'atlas-row-actions', role: 'group', 'aria-label': props.label }, [...visible.map((item) => h('button', { type: 'button', class: item.danger ? 'is-danger' : undefined, disabled: item.disabled, 'aria-label': item.label, title: item.label, onClick: () => emit('action', item.id) }, slots[`action-${item.id}`]?.() ?? item.icon ?? item.label)), overflow.length ? h(AtlasDropdown, { label: '•••', items: overflow, onSelect: (id: string) => emit('action', id) }) : null])
+    }
+  }
+})
+
+export const AtlasTableToolbar = defineComponent({
+  name: 'AtlasTableToolbar',
+  setup(_, { slots, attrs }) {
+    return () => h('div', { ...attrs, class: 'atlas-table-toolbar' }, [h('div', { class: 'atlas-table-toolbar-primary' }, [slots.search?.(), slots.filters?.()]), h('div', { class: 'atlas-table-toolbar-secondary' }, [slots.selection?.(), slots.actions?.()])])
+  }
+})
+
+export const AtlasDataTable = defineComponent({
+  name: 'AtlasDataTable',
+  emits: ['update:selectedIds', 'sort'],
+  props: { title: String, description: String, columns: { type: Array as PropType<AtlasVueTableColumn[]>, required: true }, rows: { type: Array as PropType<Array<Record<string, unknown> & { id: string | number }>>, required: true }, caption: { type: String, required: true }, selectedIds: { type: Array as PropType<Array<string | number>>, default: () => [] }, selectable: Boolean, loading: Boolean, sortKey: String, sortDirection: String as PropType<AtlasSortDirection>, labels: { type: Object as PropType<Partial<AtlasTableLabels>>, default: () => ({}) } },
+  setup(props, { emit, slots, attrs }) {
+    return () => h('section', { ...attrs, class: 'atlas-data-table' }, [props.title || props.description ? h('header', [h('div', [props.description ? h('span', props.description) : null, props.title ? h('h3', props.title) : null])]) : null, slots.toolbar?.(), h(AtlasTable, { columns: props.columns, rows: props.rows, caption: props.caption, selectedIds: props.selectedIds, selectable: props.selectable, loading: props.loading, sortKey: props.sortKey, sortDirection: props.sortDirection, labels: props.labels, 'onUpdate:selectedIds': (ids: Array<string | number>) => emit('update:selectedIds', ids), onSort: (value: { key: string; direction: AtlasSortDirection }) => emit('sort', value) }, slots), slots.footer ? h('footer', slots.footer()) : null])
+  }
+})
+
+export const AtlasPageHeader = defineComponent({
+  name: 'AtlasPageHeader',
+  props: { title: { type: String, required: true }, description: String, eyebrow: String, breadcrumbs: { type: Array as PropType<AtlasVueBreadcrumbItem[]>, default: () => [] } },
+  setup(props, { slots, attrs }) {
+    return () => h('header', { ...attrs, class: 'atlas-page-header' }, [h('div', { class: 'atlas-page-header-copy' }, [props.breadcrumbs.length ? h(AtlasBreadcrumb, { items: props.breadcrumbs }) : null, props.eyebrow ? h('span', { class: 'atlas-page-header-eyebrow' }, props.eyebrow) : null, h('h1', slots.title?.() ?? props.title), props.description ? h('p', props.description) : null, slots.meta ? h('div', { class: 'atlas-page-header-meta' }, slots.meta()) : null]), slots.actions ? h('div', { class: 'atlas-page-header-actions' }, slots.actions()) : null])
+  }
+})
+
+export const AtlasPanel = defineComponent({
+  name: 'AtlasPanel',
+  props: { title: String, description: String },
+  setup(props, { slots, attrs }) {
+    return () => h('section', { ...attrs, class: 'atlas-panel' }, [props.title || props.description || slots.actions ? h('header', [h('div', [props.title ? h('h2', props.title) : null, props.description ? h('p', props.description) : null]), slots.actions?.()]) : null, h('div', { class: 'atlas-panel-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])
+  }
+})
+
+export interface AtlasVueAICitationItem extends AtlasAICitationItemContract {}
+export interface AtlasVueAIPromptItem extends AtlasAIPromptItemContract {}
+export interface AtlasVueAIAttachmentItem extends AtlasAIAttachmentItemContract {}
+export interface AtlasVueAIHistoryItem extends AtlasAIHistoryItemContract {}
+export interface AtlasVueMCPServerItem extends AtlasMCPServerItemContract {}
+export interface AtlasVueKnowledgeSourceItem extends AtlasKnowledgeSourceItemContract {}
+export interface AtlasVueRetrievalStep extends AtlasRetrievalStepContract {}
+export interface AtlasVueToolCallItem extends AtlasToolCallItemContract {}
+
+export const AtlasAIConversation = defineComponent({
+  name: 'AtlasAIConversation',
+  props: { title: { type: String, required: true }, subtitle: String, status: { type: String, default: 'idle' } },
+  setup(props, { slots, attrs }) {
+    return () => h('section', { ...attrs, class: ['atlas-ai-conversation', slots.history && 'has-history'] }, [slots.history ? h('aside', { class: 'atlas-ai-conversation-history' }, slots.history()) : null, h('div', { class: 'atlas-ai-conversation-main' }, [h('header', [h('span', { class: 'atlas-ai-identity' }, [h(AtlasOrb, { state: props.status, size: 34 }), h('span', [h('strong', props.title), props.subtitle ? h('small', props.subtitle) : null])]), slots.toolbar?.()]), h('div', { class: 'atlas-ai-message-stream', role: 'log', 'aria-live': 'polite' }, slots.default?.()), slots.composer ? h('footer', slots.composer()) : null])])
+  }
+})
+
+export const AtlasAIMessageBubble = defineComponent({
+  name: 'AtlasAIMessageBubble',
+  props: { role: { type: String, required: true }, name: String, timestamp: String, content: String, streaming: Boolean, citations: { type: Array as PropType<AtlasVueAICitationItem[]>, default: () => [] } },
+  setup(props, { slots, attrs }) {
+    const displayName = () => props.name ?? (props.role === 'assistant' ? 'Atlas Reasoner' : props.role === 'user' ? '你' : props.role === 'tool' ? 'Tool' : 'System')
+    return () => h('article', { ...attrs, class: ['atlas-ai-message', `is-${props.role}`, props.streaming && 'is-streaming'] }, [h('div', { class: 'atlas-ai-message-avatar' }, props.role === 'assistant' ? [h(AtlasOrb, { state: props.streaming ? 'thinking' : 'idle', size: 28, showRing: false })] : props.role === 'user' ? '你' : props.role === 'tool' ? 'T' : 'S'), h('div', { class: 'atlas-ai-message-content' }, [h('header', [h('strong', displayName()), props.timestamp ? h('time', props.timestamp) : null]), h('div', slots.default?.() ?? props.content), props.citations.length ? h(AtlasCitationList, { items: props.citations }) : null, slots.actions ? h('footer', slots.actions()) : null])])
+  }
+})
+
+export const AtlasAIStreamingText = defineComponent({
+  name: 'AtlasAIStreamingText',
+  props: { text: { type: String, required: true }, status: { type: String, default: 'streaming' }, label: { type: String, default: 'AI 正在生成' } },
+  setup(props) { return () => h('span', { class: ['atlas-ai-streaming', `is-${props.status}`], role: 'status', 'aria-label': props.status === 'streaming' ? props.label : undefined }, [props.text, props.status === 'streaming' ? h('i', { 'aria-hidden': 'true' }) : null]) }
+})
+
+export const AtlasAIPrompts = defineComponent({
+  name: 'AtlasAIPrompts',
+  emits: ['select'],
+  props: { items: { type: Array as PropType<AtlasVueAIPromptItem[]>, required: true }, label: { type: String, default: '推荐问题' } },
+  setup(props, { emit }) { return () => h('section', { class: 'atlas-ai-prompts', 'aria-label': props.label }, props.items.map((item) => h('button', { type: 'button', onClick: () => emit('select', item) }, [h('span', [item.category ? h('small', item.category) : null, h('strong', item.label), item.description ? h('em', item.description) : null]), h('i', { 'aria-hidden': 'true' }, '›')]))) }
+})
+
+export const AtlasAIAttachmentList = defineComponent({
+  name: 'AtlasAIAttachmentList',
+  emits: ['remove', 'retry'],
+  props: { items: { type: Array as PropType<AtlasVueAIAttachmentItem[]>, required: true }, label: { type: String, default: '附件' }, removable: Boolean },
+  setup(props, { emit }) {
+    const size = (bytes?: number) => bytes === undefined ? '' : bytes < 1024 * 1024 ? `${Math.ceil(bytes / 1024)} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`
+    return () => h('ul', { class: 'atlas-ai-attachments', 'aria-label': props.label }, props.items.map((item) => h('li', { class: `is-${item.status ?? 'ready'}` }, [h('i', { 'aria-hidden': 'true' }, item.mediaType.includes('image') ? 'IMG' : item.mediaType.includes('pdf') ? 'PDF' : 'FILE'), h('span', [h('strong', item.name), h('small', item.status === 'uploading' ? '上传中' : item.status === 'failed' ? '上传失败' : size(item.size))]), item.status === 'failed' ? h('button', { type: 'button', onClick: () => emit('retry', item.id) }, '重试') : null, props.removable ? h('button', { type: 'button', 'aria-label': `移除 ${item.name}`, onClick: () => emit('remove', item.id) }, '×') : null])))
+  }
+})
+
+export const AtlasAIConversationHistory = defineComponent({
+  name: 'AtlasAIConversationHistory',
+  emits: ['update:activeId', 'create'],
+  props: { items: { type: Array as PropType<AtlasVueAIHistoryItem[]>, required: true }, activeId: String, label: { type: String, default: '会话历史' }, creatable: Boolean },
+  setup(props, { emit }) { return () => h('nav', { class: 'atlas-ai-history', 'aria-label': props.label }, [props.creatable ? h(AtlasButton, { intent: 'primary', size: 'compact', onClick: () => emit('create') }, () => '新建会话') : null, h('div', props.items.map((item) => h('button', { type: 'button', class: item.id === props.activeId ? 'is-active' : undefined, 'aria-current': item.id === props.activeId ? 'page' : undefined, onClick: () => emit('update:activeId', item.id) }, [h('span', [h('strong', [item.pinned ? h('i', { role: 'img', 'aria-label': '已置顶' }, '·') : null, item.title]), item.preview ? h('small', item.preview) : null]), item.updatedAt ? h('time', item.updatedAt) : null])))]) }
+})
+
+export const AtlasAIFeedback = defineComponent({
+  name: 'AtlasAIFeedback',
+  emits: ['update:modelValue', 'report'],
+  props: { modelValue: { type: String, default: null }, label: { type: String, default: '评价此回答' }, reportable: Boolean },
+  setup(props, { emit }) { return () => h('div', { class: 'atlas-ai-feedback', role: 'group', 'aria-label': props.label }, [h('button', { type: 'button', 'aria-pressed': props.modelValue === 'helpful', onClick: () => emit('update:modelValue', 'helpful') }, '有帮助'), h('button', { type: 'button', 'aria-pressed': props.modelValue === 'unhelpful', onClick: () => emit('update:modelValue', 'unhelpful') }, '需改进'), props.reportable ? h('button', { type: 'button', onClick: () => emit('report') }, '反馈问题') : null]) }
+})
+
+export const AtlasMCPServerPicker = defineComponent({
+  name: 'AtlasMCPServerPicker',
+  emits: ['update:modelValue', 'add'],
+  props: { servers: { type: Array as PropType<AtlasVueMCPServerItem[]>, required: true }, modelValue: { type: Array as PropType<string[]>, default: () => [] }, label: { type: String, default: 'MCP Servers' }, addable: Boolean },
+  setup(props, { emit }) {
+    const toggle = (id: string) => emit('update:modelValue', props.modelValue.includes(id) ? props.modelValue.filter((item) => item !== id) : [...props.modelValue, id])
+    return () => h('section', { class: 'atlas-mcp-picker', 'aria-label': props.label }, [h('header', [h('div', [h('strong', props.label), h('small', `${props.modelValue.length} 个已授权`)]), props.addable ? h(AtlasButton, { size: 'compact', onClick: () => emit('add') }, () => '添加') : null]), h('div', props.servers.map((server) => h('label', { class: `is-${server.status}` }, [h('input', { type: 'checkbox', checked: props.modelValue.includes(server.id), disabled: server.status !== 'connected', onChange: () => toggle(server.id) }), h('span', [h('strong', server.name), h('small', server.description ?? `${server.toolCount ?? 0} 个工具`)]), h('em', server.transport ?? 'stdio'), h('i', { role: 'img', 'aria-label': `连接状态：${server.status === 'connected' ? '已连接' : server.status === 'error' ? '异常' : '未连接'}` })])))])
+  }
+})
+
+export const AtlasCitationList = defineComponent({
+  name: 'AtlasCitationList',
+  emits: ['open'],
+  props: { items: { type: Array as PropType<AtlasVueAICitationItem[]>, required: true }, label: { type: String, default: '引用来源' }, interactive: Boolean },
+  setup(props, { emit }) {
+    return () => h('ol', { class: 'atlas-citation-list', 'aria-label': props.label }, props.items.map((item, index) =>
+      h('li', [h('button', { type: 'button', disabled: !props.interactive && !item.url, onClick: () => emit('open', item) }, [
+        h('b', index + 1),
+        h('span', [h('strong', item.title), h('small', `${item.source ?? ''}${item.confidence !== undefined ? ` · 相关度 ${Math.round(item.confidence * 100)}%` : ''}`), item.excerpt ? h('em', item.excerpt) : null])
+      ])])
+    ))
+  }
+})
+
+export const AtlasKnowledgeSourcePicker = defineComponent({
+  name: 'AtlasKnowledgeSourcePicker',
+  emits: ['update:modelValue'],
+  props: { sources: { type: Array as PropType<AtlasVueKnowledgeSourceItem[]>, required: true }, modelValue: { type: Array as PropType<string[]>, default: () => [] }, label: { type: String, default: '知识来源' } },
+  setup(props, { emit }) {
+    const toggle = (id: string) => emit('update:modelValue', props.modelValue.includes(id) ? props.modelValue.filter((item) => item !== id) : [...props.modelValue, id])
+    return () => h('fieldset', { class: 'atlas-knowledge-sources' }, [h('legend', [props.label, h('small', `${props.modelValue.length} / ${props.sources.length}`)]), ...props.sources.map((source) => h('label', { class: `is-${source.status ?? 'ready'}` }, [h('input', { type: 'checkbox', checked: props.modelValue.includes(source.id), disabled: source.status === 'error', onChange: () => toggle(source.id) }), h('i', { 'aria-hidden': 'true' }, source.type.slice(0, 1).toUpperCase()), h('span', [h('strong', source.name), h('small', `${source.scope ?? source.type}${source.count !== undefined ? ` · ${source.count} 项` : ''}`)]), h('em', source.status === 'syncing' ? '同步中' : source.status === 'error' ? '异常' : '就绪')]))])
+  }
+})
+
+export const AtlasRetrievalTrace = defineComponent({
+  name: 'AtlasRetrievalTrace',
+  props: { steps: { type: Array as PropType<AtlasVueRetrievalStep[]>, required: true }, title: { type: String, default: '检索轨迹' } },
+  setup(props) { return () => h('section', { class: 'atlas-retrieval-trace' }, [h('header', [h('strong', props.title), h('small', `${props.steps.filter((step) => step.status === 'completed').length} / ${props.steps.length} 完成`)]), h('ol', props.steps.map((step, index) => h('li', { class: `is-${step.status}` }, [h('i', step.status === 'completed' ? '✓' : index + 1), h('span', [h('strong', step.title), step.detail ? h('small', step.detail) : null]), step.durationMs !== undefined ? h('time', `${step.durationMs} ms`) : null])))]) }
+})
+
+export const AtlasToolCallCard = defineComponent({
+  name: 'AtlasToolCallCard',
+  emits: ['approve', 'reject', 'retry'],
+  props: { call: { type: Object as PropType<AtlasVueToolCallItem>, required: true } },
+  setup(props, { emit }) {
+    const expanded = ref(false)
+    return () => h('article', { class: ['atlas-tool-call', `is-${props.call.status}`] }, [h('header', [h('i', { 'aria-hidden': 'true' }, props.call.status === 'completed' ? '✓' : props.call.status === 'failed' ? '!' : props.call.permission === 'read' ? 'R' : 'T'), h('span', [h('strong', props.call.name), props.call.description ? h('small', props.call.description) : null]), h(AtlasTag, { intent: props.call.permission === 'high-risk' ? 'warning' : props.call.permission === 'write' ? 'primary' : 'neutral' }, () => props.call.permission)]), props.call.input !== undefined || props.call.result !== undefined ? [h('button', { type: 'button', class: 'atlas-tool-details-toggle', 'aria-expanded': expanded.value, onClick: () => { expanded.value = !expanded.value } }, expanded.value ? '收起详情' : '查看输入与结果'), expanded.value ? h('pre', JSON.stringify({ input: props.call.input, result: props.call.result }, null, 2)) : null] : null, props.call.status === 'approval' ? h('footer', [h(AtlasButton, { size: 'compact', onClick: () => emit('reject', props.call.id) }, () => '拒绝'), h(AtlasButton, { size: 'compact', intent: 'primary', onClick: () => emit('approve', props.call.id) }, () => '批准执行')]) : null, props.call.status === 'failed' ? h('footer', [h(AtlasButton, { size: 'compact', onClick: () => emit('retry', props.call.id) }, () => '重试')]) : null, props.call.durationMs !== undefined ? h('time', `${props.call.durationMs} ms`) : null])
+  }
+})
+
 export const AtlasEIDS = {
   install(app: { component(name: string, component: unknown): void }) {
-    for (const component of [AtlasProvider, AtlasButton, AtlasInput, AtlasSelect, AtlasTextarea, AtlasCheckbox, AtlasRadioGroup, AtlasSwitch, AtlasDateInput, AtlasSearchInput, AtlasCard, AtlasTabs, AtlasSegmentedControl, AtlasBreadcrumb, AtlasPagination, AtlasSteps, AtlasTable, AtlasTag, AtlasBadge, AtlasAvatar, AtlasStatistic, AtlasProgress, AtlasAlert, AtlasTooltip, AtlasEmpty, AtlasSkeleton, AtlasDialog, AtlasDrawer, AtlasDropdown, AtlasOrb, AtlasAIComposer, AtlasExecutionPlan]) app.component(component.name!, component)
+    for (const component of [AtlasProvider, AtlasButton, AtlasInput, AtlasSelect, AtlasTextarea, AtlasCheckbox, AtlasRadioGroup, AtlasSwitch, AtlasDateInput, AtlasSearchInput, AtlasCard, AtlasTabs, AtlasSegmentedControl, AtlasBreadcrumb, AtlasPagination, AtlasSteps, AtlasTable, AtlasTag, AtlasObjectCell, AtlasStatusTag, AtlasRowActions, AtlasTableToolbar, AtlasDataTable, AtlasPageHeader, AtlasPanel, AtlasBadge, AtlasAvatar, AtlasStatistic, AtlasProgress, AtlasAlert, AtlasTooltip, AtlasEmpty, AtlasSkeleton, AtlasDialog, AtlasDrawer, AtlasDropdown, AtlasOrb, AtlasAIComposer, AtlasExecutionPlan, AtlasAIConversation, AtlasAIMessageBubble, AtlasAIStreamingText, AtlasAIPrompts, AtlasAIAttachmentList, AtlasAIConversationHistory, AtlasAIFeedback, AtlasMCPServerPicker, AtlasCitationList, AtlasKnowledgeSourcePicker, AtlasRetrievalTrace, AtlasToolCallCard]) app.component(component.name!, component)
   }
 }

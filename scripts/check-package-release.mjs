@@ -6,7 +6,7 @@ const root = resolve(import.meta.dirname, '..')
 const workspacePackages = [
   'tokens', 'core', 'plugin-sdk', 'adapters', 'adapter-antd-react',
   'adapter-tdesign-vue', 'adapter-opentiny-vue', 'ai-runtime',
-  'web-agent', 'cli', 'react', 'vue'
+  'web-agent', 'agent-kit', 'mcp', 'cli', 'react', 'vue'
 ]
 const expectedRepository = 'https://github.com/davidwang960707-gpu/atlas-eids.git'
 

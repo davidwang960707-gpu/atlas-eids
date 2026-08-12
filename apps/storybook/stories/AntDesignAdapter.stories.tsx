@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AtlasAntdButton, AtlasAntdForm, AtlasAntdInput, AtlasAntdProvider, AtlasAntdSelect, AtlasAntdTable } from '@atlas-eids/adapter-antd-react'
 
-const meta = { title: 'Adapters/Ant Design 运行时', parameters: { layout: 'centered' } } satisfies Meta
+const meta = { title: 'Adapters/Ant Design 运行时', parameters: { layout: 'fullscreen' } } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

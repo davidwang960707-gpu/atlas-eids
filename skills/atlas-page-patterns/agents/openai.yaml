@@ -1,0 +1,7 @@
+interface:
+  display_name: "Atlas Page Patterns"
+  short_description: "为 Atlas 企业应用选择框架、布局、模板和 AI 页面模式"
+  default_prompt: "使用 $atlas-page-patterns 为这个需求选择应用框架、基础布局和可运行页面模式。"
+  brand_color: "#7B61FF"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7551 @@
+{
+  "schemaVersion": 1,
+  "designSystem": "Atlas EIDS",
+  "version": "0.2.0-beta.2",
+  "componentCount": 50,
+  "providerCount": 1,
+  "frameworks": [
+    "react",
+    "vue"
+  ],
+  "components": [
+    {
+      "name": "AtlasProvider",
+      "category": "foundation",
+      "anatomy": [
+        "root",
+        "theme-context",
+        "density-context",
+        "locale-context"
+      ],
+      "states": [
+        "light",
+        "dark",
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "为组件树建立唯一主题、密度与语言边界。",
+      "tokens": [
+        "color.*",
+        "control.height.*",
+        "font.*"
+      ],
+      "summary": "为组件树建立唯一主题、密度与语言边界。",
+      "useWhen": [
+        "主题、密度、语言和设计系统边界"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "theme",
+          "type": "\"light\" | \"dark\"",
+          "optional": true
+        },
+        {
+          "name": "density",
+          "type": "AtlasDensity",
+          "optional": true
+        },
+        {
+          "name": "locale",
+          "type": "AtlasLocale",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "theme",
+          "type": "'light' | 'dark'",
+          "default": "'light'",
+          "description": "组件主题"
+        },
+        {
+          "name": "density",
+          "type": "'compact' | 'standard' | 'comfortable'",
+          "default": "'standard'",
+          "description": "界面密度"
+        },
+        {
+          "name": "locale",
+          "type": "'zh-CN' | 'en-US'",
+          "default": "'zh-CN'",
+          "description": "界面语言与 DOM lang"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "子内容"
+        }
+      ]
+    },
+    {
+      "name": "AtlasButton",
+      "category": "input",
+      "anatomy": [
+        "root",
+        "icon",
+        "label",
+        "spinner"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "loading",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "明确命令，不承担状态展示。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.action.*",
+        "color.focus.ring"
+      ],
+      "summary": "明确命令，不承担状态展示。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "intent",
+          "type": "\"neutral\" | \"primary\" | \"danger\"",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "\"compact\" | \"comfortable\" | \"default\"",
+          "optional": true
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "type",
+          "type": "\"submit\" | \"reset\" | \"button\"",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "intent",
+          "type": "'neutral' | 'primary' | 'danger'",
+          "default": "'neutral'",
+          "description": "操作意图"
+        },
+        {
+          "name": "size",
+          "type": "'compact' | 'default' | 'comfortable'",
+          "default": "'default'",
+          "description": "控件尺寸"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "加载并禁用按钮"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "禁用状态"
+        }
+      ]
+    },
+    {
+      "name": "AtlasInput",
+      "category": "input",
+      "anatomy": [
+        "field",
+        "label",
+        "control",
+        "hint"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "filled",
+        "error",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "采集结构化文本，标签保持稳定可见。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.border.*",
+        "color.focus.ring"
+      ],
+      "summary": "采集结构化文本，标签保持稳定可见。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "HTMLInputAutoCompleteAttribute",
+          "optional": true
+        },
+        {
+          "name": "capture",
+          "type": "boolean | \"user\" | \"environment\"",
+          "optional": true
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "list",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "max",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "min",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "step",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "type",
+          "type": "HTMLInputTypeAttribute",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLInputElement, HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "字段标签"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "-",
+          "description": "辅助说明"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "default": "-",
+          "description": "错误信息"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "输入值"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTextarea",
+      "category": "input",
+      "anatomy": [
+        "field",
+        "label",
+        "control",
+        "hint"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "filled",
+        "error",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "采集多行内容，保留稳定标签、帮助与错误区域。",
+      "tokens": [
+        "radius.control",
+        "color.border.*",
+        "color.focus.ring"
+      ],
+      "summary": "采集多行内容，保留稳定标签、帮助与错误区域。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "cols",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "dirName",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "rows",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "wrap",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLTextAreaElement, HTMLTextAreaElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "字段标签"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "-",
+          "description": "辅助说明"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "default": "-",
+          "description": "错误信息"
+        },
+        {
+          "name": "rows",
+          "type": "number",
+          "default": "-",
+          "description": "可见行数"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSelect",
+      "category": "input",
+      "anatomy": [
+        "field",
+        "label",
+        "control",
+        "hint"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "error",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "从有限选项中选择，不模拟自由输入。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.border.*",
+        "color.focus.ring"
+      ],
+      "summary": "从有限选项中选择，不模拟自由输入。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "autoComplete",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "default": "-",
+          "description": "选项集合"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "字段标签"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "-",
+          "description": "辅助说明"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "当前值"
+        }
+      ]
+    },
+    {
+      "name": "AtlasCheckbox",
+      "category": "input",
+      "anatomy": [
+        "root",
+        "native-control",
+        "indicator",
+        "label"
+      ],
+      "states": [
+        "unchecked",
+        "checked",
+        "indeterminate",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "选择独立选项或批量对象，标签必须可访问。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.action.*",
+        "color.focus.ring"
+      ],
+      "summary": "选择独立选项或批量对象，标签必须可访问。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "hideLabel",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "-",
+          "description": "选中状态"
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "default": "false",
+          "description": "半选状态"
+        },
+        {
+          "name": "label",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "标签内容"
+        },
+        {
+          "name": "onChange",
+          "type": "(checked) => void",
+          "default": "-",
+          "description": "状态变化回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasRadioGroup",
+      "category": "input",
+      "anatomy": [
+        "group",
+        "label",
+        "option",
+        "indicator"
+      ],
+      "states": [
+        "unchecked",
+        "checked",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "在少量互斥选项中做唯一选择。",
+      "tokens": [
+        "control.height.*",
+        "color.action.*",
+        "color.focus.ring"
+      ],
+      "summary": "在少量互斥选项中做唯一选择。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "分组标签"
+        },
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "default": "-",
+          "description": "选项集合"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "当前值"
+        },
+        {
+          "name": "onChange",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "值变化回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSwitch",
+      "category": "input",
+      "anatomy": [
+        "root",
+        "track",
+        "thumb",
+        "label"
+      ],
+      "states": [
+        "off",
+        "on",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "即时启用或关闭设置，不用于延迟提交的多选。",
+      "tokens": [
+        "control.height.*",
+        "color.action.*",
+        "color.focus.ring"
+      ],
+      "summary": "即时启用或关闭设置，不用于延迟提交的多选。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "default": "-",
+          "description": "开关状态"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "控件标签"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "禁用状态"
+        },
+        {
+          "name": "onChange",
+          "type": "(checked) => void",
+          "default": "-",
+          "description": "状态变化回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasDateInput",
+      "category": "input",
+      "anatomy": [
+        "field",
+        "label",
+        "control",
+        "hint"
+      ],
+      "states": [
+        "empty",
+        "filled",
+        "focus",
+        "error",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "采集具有明确格式和范围的日期。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.border.*",
+        "color.focus.ring"
+      ],
+      "summary": "采集具有明确格式和范围的日期。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "list",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "step",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "HTMLInputAutoCompleteAttribute",
+          "optional": true
+        },
+        {
+          "name": "capture",
+          "type": "boolean | \"user\" | \"environment\"",
+          "optional": true
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "max",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "min",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLInputElement, HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "字段标签"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "-",
+          "description": "辅助说明"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "default": "-",
+          "description": "错误信息"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "ISO 日期值"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSearchInput",
+      "category": "input",
+      "anatomy": [
+        "root",
+        "icon",
+        "control",
+        "clear"
+      ],
+      "states": [
+        "empty",
+        "typing",
+        "submitted",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "搜索和筛选内容，不替代普通文本字段。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.border.*",
+        "color.focus.ring"
+      ],
+      "summary": "搜索和筛选内容，不替代普通文本字段。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "onSearch",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "搜索词"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "'搜索'",
+          "description": "占位提示"
+        },
+        {
+          "name": "onChange",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "输入回调"
+        },
+        {
+          "name": "onSearch",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "提交回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSegmentedControl",
+      "category": "input",
+      "anatomy": [
+        "group",
+        "segment",
+        "label",
+        "indicator"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "selected",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "切换少量同级模式，选项不宜过多。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.action.*"
+      ],
+      "summary": "切换少量同级模式，选项不宜过多。",
+      "useWhen": [
+        "企业表单、命令和筛选"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "items",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "无障碍标签"
+        },
+        {
+          "name": "items",
+          "type": "AtlasOption[]",
+          "default": "-",
+          "description": "模式选项"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "当前模式"
+        },
+        {
+          "name": "onChange",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "切换回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTabs",
+      "category": "navigation",
+      "anatomy": [
+        "tablist",
+        "tab",
+        "label",
+        "count",
+        "indicator"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "切换同层级视图，不能替代主导航。",
+      "tokens": [
+        "control.height.*",
+        "color.action.*",
+        "color.border.default"
+      ],
+      "summary": "切换同层级视图，不能替代主导航。",
+      "useWhen": [
+        "页面层级、模式切换和流程导航"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasTab[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(id: string) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasTab[]",
+          "default": "-",
+          "description": "页签集合"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "当前页签"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'页面标签'",
+          "description": "无障碍标签"
+        },
+        {
+          "name": "onChange",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "切换回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasBreadcrumb",
+      "category": "navigation",
+      "anatomy": [
+        "nav",
+        "list",
+        "item",
+        "separator",
+        "current"
+      ],
+      "states": [
+        "link",
+        "hover",
+        "focus",
+        "current"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达页面层级和返回路径，不承担流程进度。",
+      "tokens": [
+        "font.size.body",
+        "color.text.*",
+        "color.action.*"
+      ],
+      "summary": "表达页面层级和返回路径，不承担流程进度。",
+      "useWhen": [
+        "页面层级、模式切换和流程导航"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasBreadcrumbItem[]",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasBreadcrumbItem[]",
+          "default": "-",
+          "description": "层级项目"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'面包屑'",
+          "description": "无障碍标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasPagination",
+      "category": "navigation",
+      "anatomy": [
+        "nav",
+        "previous",
+        "pages",
+        "next"
+      ],
+      "states": [
+        "first",
+        "middle",
+        "last",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "控制长列表的数据页，不用于步骤流程。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.action.*"
+      ],
+      "summary": "控制长列表的数据页，不用于步骤流程。",
+      "useWhen": [
+        "页面层级、模式切换和流程导航"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "page",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "pageCount",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(page: number) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "page",
+          "type": "number",
+          "default": "-",
+          "description": "当前页"
+        },
+        {
+          "name": "pageCount",
+          "type": "number",
+          "default": "-",
+          "description": "总页数"
+        },
+        {
+          "name": "onChange",
+          "type": "(page) => void",
+          "default": "-",
+          "description": "翻页回调"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'分页'",
+          "description": "无障碍标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSteps",
+      "category": "navigation",
+      "anatomy": [
+        "list",
+        "step",
+        "indicator",
+        "title",
+        "connector"
+      ],
+      "states": [
+        "pending",
+        "current",
+        "completed",
+        "error"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达有先后关系的任务进度。",
+      "tokens": [
+        "color.action.*",
+        "color.status.*",
+        "color.border.default"
+      ],
+      "summary": "表达有先后关系的任务进度。",
+      "useWhen": [
+        "页面层级、模式切换和流程导航"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasStep[]",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasStep[]",
+          "default": "-",
+          "description": "步骤集合"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'流程步骤'",
+          "description": "无障碍标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasDropdown",
+      "category": "navigation",
+      "anatomy": [
+        "trigger",
+        "menu",
+        "item",
+        "separator"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "focus",
+        "disabled",
+        "danger"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "收纳低频命令，常用主操作保持直接可见。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "shadow.overlay"
+      ],
+      "summary": "收纳低频命令，常用主操作保持直接可见。",
+      "useWhen": [
+        "页面层级、模式切换和流程导航"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "items",
+          "type": "AtlasDropdownItem[]",
+          "optional": false
+        },
+        {
+          "name": "onSelect",
+          "type": "(id: string) => void",
+          "optional": false
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "触发器内容"
+        },
+        {
+          "name": "items",
+          "type": "AtlasDropdownItem[]",
+          "default": "-",
+          "description": "菜单项"
+        },
+        {
+          "name": "onSelect",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "选择回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasCard",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "header",
+        "title",
+        "description",
+        "body",
+        "actions"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "selected",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "只承载一个独立对象，禁止卡片嵌套卡片。",
+      "tokens": [
+        "radius.panel",
+        "color.bg.surface",
+        "color.border.default",
+        "shadow.surface"
+      ],
+      "summary": "只承载一个独立对象，禁止卡片嵌套卡片。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "results",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "卡片标题"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "-",
+          "description": "摘要说明"
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "default": "false",
+          "description": "选中状态"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "卡片操作"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTable",
+      "category": "display",
+      "anatomy": [
+        "wrapper",
+        "table",
+        "caption",
+        "header",
+        "row",
+        "cell",
+        "selection",
+        "empty"
+      ],
+      "states": [
+        "data",
+        "hover",
+        "selected",
+        "sorted",
+        "empty",
+        "loading"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "扫描和比较结构化数据；选择控件的辅助文案不可见。",
+      "tokens": [
+        "table.rowHeight.*",
+        "radius.panel",
+        "color.bg.*",
+        "color.border.default",
+        "color.action.soft"
+      ],
+      "summary": "扫描和比较结构化数据；选择控件的辅助文案不可见。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "columns",
+          "type": "AtlasTableColumn<Row>[]",
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "optional": false
+        },
+        {
+          "name": "caption",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "selectedIds",
+          "type": "(string | number)[]",
+          "optional": true
+        },
+        {
+          "name": "onSelect",
+          "type": "(ids: Array<string | number>) => void",
+          "optional": true
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "sortKey",
+          "type": "string | keyof Row",
+          "optional": true
+        },
+        {
+          "name": "sortDirection",
+          "type": "AtlasSortDirection",
+          "optional": true
+        },
+        {
+          "name": "onSort",
+          "type": "(key: string | keyof Row, direction: AtlasSortDirection) => void",
+          "optional": true
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AtlasTableLabels>",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "columns",
+          "type": "AtlasTableColumn[]",
+          "default": "-",
+          "description": "列定义"
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "default": "-",
+          "description": "行数据"
+        },
+        {
+          "name": "caption",
+          "type": "string",
+          "default": "-",
+          "description": "表格说明"
+        },
+        {
+          "name": "selectedIds",
+          "type": "Array<string | number>",
+          "default": "[]",
+          "description": "已选行"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTag",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "label",
+        "remove"
+      ],
+      "states": [
+        "neutral",
+        "primary",
+        "success",
+        "warning",
+        "danger",
+        "removable"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达分类或轻量状态，不作为按钮。",
+      "tokens": [
+        "radius.control",
+        "color.status.*",
+        "color.status.*Soft"
+      ],
+      "summary": "表达分类或轻量状态，不作为按钮。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "intent",
+          "type": "\"neutral\" | \"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        },
+        {
+          "name": "removable",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onRemove",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "intent",
+          "type": "'neutral' | 'primary' | 'success' | 'warning' | 'danger'",
+          "default": "'neutral'",
+          "description": "语义色"
+        },
+        {
+          "name": "removable",
+          "type": "boolean",
+          "default": "false",
+          "description": "是否可移除"
+        },
+        {
+          "name": "onRemove",
+          "type": "() => void",
+          "default": "-",
+          "description": "移除回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasBadge",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "content",
+        "indicator"
+      ],
+      "states": [
+        "count",
+        "dot",
+        "overflow",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "在对象旁表达数量或提醒，不承载完整状态文案。",
+      "tokens": [
+        "radius.round",
+        "color.status.*"
+      ],
+      "summary": "在对象旁表达数量或提醒，不承载完整状态文案。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "dot",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "intent",
+          "type": "\"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "count",
+          "type": "number",
+          "default": "-",
+          "description": "数量"
+        },
+        {
+          "name": "dot",
+          "type": "boolean",
+          "default": "false",
+          "description": "仅显示圆点"
+        },
+        {
+          "name": "intent",
+          "type": "'primary' | 'success' | 'warning' | 'danger'",
+          "default": "'danger'",
+          "description": "语义色"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAvatar",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "image",
+        "fallback"
+      ],
+      "states": [
+        "image",
+        "initials",
+        "loading"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达人员身份，不使用 Orb 替代真人或普通账户头像。",
+      "tokens": [
+        "radius.round",
+        "color.action.soft",
+        "color.text.*"
+      ],
+      "summary": "表达人员身份，不使用 Orb 替代真人或普通账户头像。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "name",
+          "type": "string",
+          "default": "-",
+          "description": "人员名称"
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "default": "-",
+          "description": "图片地址"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "default": "32",
+          "description": "像素尺寸"
+        }
+      ]
+    },
+    {
+      "name": "AtlasStatistic",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "label",
+        "value",
+        "suffix",
+        "trend"
+      ],
+      "states": [
+        "up",
+        "down",
+        "flat"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "突出一个可比较的关键指标，不代替完整图表。",
+      "tokens": [
+        "font.size.title",
+        "color.text.*",
+        "color.status.*"
+      ],
+      "summary": "突出一个可比较的关键指标，不代替完整图表。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string | number",
+          "optional": false
+        },
+        {
+          "name": "suffix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "trend",
+          "type": "\"up\" | \"down\" | \"flat\"",
+          "optional": true
+        },
+        {
+          "name": "trendLabel",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "指标名"
+        },
+        {
+          "name": "value",
+          "type": "string | number",
+          "default": "-",
+          "description": "指标值"
+        },
+        {
+          "name": "suffix",
+          "type": "string",
+          "default": "-",
+          "description": "单位"
+        },
+        {
+          "name": "trend",
+          "type": "'up' | 'down' | 'flat'",
+          "default": "-",
+          "description": "趋势"
+        }
+      ]
+    },
+    {
+      "name": "AtlasProgress",
+      "category": "display",
+      "anatomy": [
+        "root",
+        "label",
+        "track",
+        "bar",
+        "value"
+      ],
+      "states": [
+        "primary",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达零到一百的可量化进度。",
+      "tokens": [
+        "radius.round",
+        "color.action.*",
+        "color.status.*"
+      ],
+      "summary": "表达零到一百的可量化进度。",
+      "useWhen": [
+        "结构化业务数据与状态"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "intent",
+          "type": "\"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "value",
+          "type": "number",
+          "default": "-",
+          "description": "0 到 100 的进度"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "-",
+          "description": "进度说明"
+        },
+        {
+          "name": "intent",
+          "type": "'primary' | 'success' | 'warning' | 'danger'",
+          "default": "'primary'",
+          "description": "语义色"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAlert",
+      "category": "feedback",
+      "anatomy": [
+        "root",
+        "icon",
+        "content",
+        "title",
+        "description",
+        "close"
+      ],
+      "states": [
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "closable"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "呈现需要用户注意且可解释的反馈。",
+      "tokens": [
+        "radius.panel",
+        "color.status.*",
+        "color.status.*Soft"
+      ],
+      "summary": "呈现需要用户注意且可解释的反馈。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "intent",
+          "type": "\"danger\" | \"success\" | \"warning\" | \"info\"",
+          "optional": true
+        },
+        {
+          "name": "closable",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "提示标题"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "-",
+          "description": "详细说明"
+        },
+        {
+          "name": "intent",
+          "type": "'info' | 'success' | 'warning' | 'danger'",
+          "default": "'info'",
+          "description": "反馈类型"
+        },
+        {
+          "name": "closable",
+          "type": "boolean",
+          "default": "false",
+          "description": "是否可关闭"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTooltip",
+      "category": "feedback",
+      "anatomy": [
+        "trigger",
+        "surface",
+        "content"
+      ],
+      "states": [
+        "hidden",
+        "hover",
+        "focus"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "解释陌生图标或术语，不放关键业务信息。",
+      "tokens": [
+        "radius.control",
+        "color.bg.elevated",
+        "shadow.overlay"
+      ],
+      "summary": "解释陌生图标或术语，不放关键业务信息。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "content",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "content",
+          "type": "string",
+          "default": "-",
+          "description": "提示内容"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "触发元素"
+        }
+      ]
+    },
+    {
+      "name": "AtlasEmpty",
+      "category": "feedback",
+      "anatomy": [
+        "root",
+        "visual",
+        "title",
+        "description",
+        "action"
+      ],
+      "states": [
+        "without-action",
+        "with-action"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "解释无数据原因并提供合理下一步。",
+      "tokens": [
+        "color.text.*",
+        "space.*"
+      ],
+      "summary": "解释无数据原因并提供合理下一步。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "action",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "空状态标题"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "default": "-",
+          "description": "补充说明"
+        },
+        {
+          "name": "action",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "建议操作"
+        }
+      ]
+    },
+    {
+      "name": "AtlasSkeleton",
+      "category": "feedback",
+      "anatomy": [
+        "root",
+        "line"
+      ],
+      "states": [
+        "one-line",
+        "multi-line",
+        "reduced-motion"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "加载时保持最终布局稳定，不模拟无关装饰。",
+      "tokens": [
+        "color.bg.subtle",
+        "motion.base"
+      ],
+      "summary": "加载时保持最终布局稳定，不模拟无关装饰。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "lines",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "lines",
+          "type": "number",
+          "default": "3",
+          "description": "占位行数"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'内容加载中'",
+          "description": "无障碍标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasDialog",
+      "category": "feedback",
+      "anatomy": [
+        "backdrop",
+        "surface",
+        "header",
+        "body",
+        "footer",
+        "close"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "focus-trapped"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "用于必须集中决策的模态任务，打开后管理焦点。",
+      "tokens": [
+        "radius.overlay",
+        "color.bg.elevated",
+        "shadow.overlay"
+      ],
+      "summary": "用于必须集中决策的模态任务，打开后管理焦点。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": false
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "default": "-",
+          "description": "是否打开"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "对话框标题"
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "default": "-",
+          "description": "关闭回调"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "底部操作"
+        }
+      ]
+    },
+    {
+      "name": "AtlasDrawer",
+      "category": "feedback",
+      "anatomy": [
+        "backdrop",
+        "surface",
+        "header",
+        "body",
+        "close"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "focus-trapped"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "保留主页面上下文时查看或编辑次级详情。",
+      "tokens": [
+        "color.bg.elevated",
+        "shadow.overlay"
+      ],
+      "summary": "保留主页面上下文时查看或编辑次级详情。",
+      "useWhen": [
+        "反馈、加载、空状态和上下文浮层"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": false
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "default": "-",
+          "description": "是否打开"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "抽屉标题"
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "default": "420",
+          "description": "抽屉宽度"
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "default": "-",
+          "description": "关闭回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasObjectCell",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "icon",
+        "content",
+        "title",
+        "meta",
+        "description"
+      ],
+      "states": [
+        "default",
+        "interactive",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "为表格和列表建立稳定的对象视觉锚点。",
+      "tokens": [
+        "icon.object.size",
+        "radius.control",
+        "color.text.*"
+      ],
+      "summary": "为表格和列表建立稳定的对象视觉锚点。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "tone",
+          "type": "AtlasSemanticTone",
+          "optional": true
+        },
+        {
+          "name": "interactive",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLDivElement, Element>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "对象主标题"
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "编号或元数据"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "补充说明"
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "业务语义图标"
+        },
+        {
+          "name": "tone",
+          "type": "AtlasSemanticTone",
+          "default": "'neutral'",
+          "description": "图标语义色"
+        }
+      ]
+    },
+    {
+      "name": "AtlasStatusTag",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "indicator",
+        "label"
+      ],
+      "states": [
+        "neutral",
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "只表达可解释的业务或系统状态。",
+      "tokens": [
+        "color.status.*",
+        "color.status.*Soft"
+      ],
+      "summary": "只表达可解释的业务或系统状态。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "tone",
+          "type": "AtlasSemanticTone",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "results",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "security",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "tone",
+          "type": "AtlasSemanticTone",
+          "default": "'neutral'",
+          "description": "状态语义"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "状态文案"
+        }
+      ]
+    },
+    {
+      "name": "AtlasRowActions",
+      "category": "composition",
+      "anatomy": [
+        "group",
+        "action",
+        "overflow"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "承载行级命令，图标按钮必须有可访问名称。",
+      "tokens": [
+        "control.height.*",
+        "radius.control",
+        "color.focus.ring"
+      ],
+      "summary": "承载行级命令，图标按钮必须有可访问名称。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasRowAction[]",
+          "optional": false
+        },
+        {
+          "name": "onAction",
+          "type": "(id: string) => void",
+          "optional": false
+        },
+        {
+          "name": "maxVisible",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasRowAction[]",
+          "default": "-",
+          "description": "操作集合"
+        },
+        {
+          "name": "maxVisible",
+          "type": "number",
+          "default": "3",
+          "description": "直接显示数量"
+        },
+        {
+          "name": "onAction",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "操作回调"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'行操作'",
+          "description": "无障碍标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasTableToolbar",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "search",
+        "filters",
+        "selection",
+        "actions"
+      ],
+      "states": [
+        "default",
+        "filtered",
+        "selection",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "筛选、批量操作与表格共享一个连续数据表面。",
+      "tokens": [
+        "control.height.*",
+        "color.bg.surface",
+        "color.border.default"
+      ],
+      "summary": "筛选、批量操作与表格共享一个连续数据表面。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "search",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "filters",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "selection",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "search",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "搜索区域"
+        },
+        {
+          "name": "filters",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "筛选区域"
+        },
+        {
+          "name": "selection",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "选择反馈"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "主要操作"
+        }
+      ]
+    },
+    {
+      "name": "AtlasDataTable",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "header",
+        "toolbar",
+        "table",
+        "footer"
+      ],
+      "states": [
+        "data",
+        "filtered",
+        "selection",
+        "empty",
+        "loading"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "企业数据管理的标准组合配方。",
+      "tokens": [
+        "radius.panel",
+        "table.rowHeight.*",
+        "color.bg.*",
+        "shadow.surface"
+      ],
+      "summary": "企业数据管理的标准组合配方。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "toolbar",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "columns",
+          "type": "AtlasTableColumn<Row>[]",
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "optional": false
+        },
+        {
+          "name": "caption",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "selectedIds",
+          "type": "(string | number)[]",
+          "optional": true
+        },
+        {
+          "name": "onSelect",
+          "type": "(ids: Array<string | number>) => void",
+          "optional": true
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "sortKey",
+          "type": "string | keyof Row",
+          "optional": true
+        },
+        {
+          "name": "sortDirection",
+          "type": "AtlasSortDirection",
+          "optional": true
+        },
+        {
+          "name": "onSort",
+          "type": "(key: string | keyof Row, direction: AtlasSortDirection) => void",
+          "optional": true
+        },
+        {
+          "name": "labels",
+          "type": "Partial<AtlasTableLabels>",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLElement, Element>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "数据区标题"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "数据说明"
+        },
+        {
+          "name": "toolbar",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "工具栏"
+        },
+        {
+          "name": "columns",
+          "type": "AtlasTableColumn[]",
+          "default": "-",
+          "description": "列定义"
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "default": "-",
+          "description": "行数据"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "分页与统计"
+        }
+      ]
+    },
+    {
+      "name": "AtlasPageHeader",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "breadcrumb",
+        "eyebrow",
+        "title",
+        "description",
+        "actions"
+      ],
+      "states": [
+        "default",
+        "with-actions",
+        "compact"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "建立页面层级与主操作，不承担营销 Hero。",
+      "tokens": [
+        "font.size.title",
+        "color.text.*",
+        "color.border.default"
+      ],
+      "summary": "建立页面层级与主操作，不承担营销 Hero。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "eyebrow",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "breadcrumbs",
+          "type": "AtlasBreadcrumbItem[]",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLElement, Element>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "页面标题"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "页面说明"
+        },
+        {
+          "name": "breadcrumbs",
+          "type": "AtlasBreadcrumbItem[]",
+          "default": "[]",
+          "description": "层级导航"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "页面操作"
+        },
+        {
+          "name": "meta",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "状态与元数据"
+        }
+      ]
+    },
+    {
+      "name": "AtlasPanel",
+      "category": "composition",
+      "anatomy": [
+        "root",
+        "header",
+        "title",
+        "description",
+        "actions",
+        "body"
+      ],
+      "states": [
+        "default",
+        "flush",
+        "loading"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "承载一组紧密相关信息，禁止再包裹同级卡片外壳。",
+      "tokens": [
+        "radius.panel",
+        "color.bg.surface",
+        "color.border.default",
+        "shadow.surface"
+      ],
+      "summary": "承载一组紧密相关信息，禁止再包裹同级卡片外壳。",
+      "useWhen": [
+        "企业页面的数据、标题和工作区组合"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLElement, Element>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "面板标题"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode / string",
+          "default": "-",
+          "description": "面板说明"
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "面板操作"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "底部操作"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "面板内容"
+        }
+      ]
+    },
+    {
+      "name": "AtlasOrb",
+      "category": "ai",
+      "anatomy": [
+        "atmosphere",
+        "primary-ring",
+        "secondary-ring",
+        "core",
+        "depth",
+        "caustic",
+        "liquid",
+        "specular"
+      ],
+      "states": [
+        "idle",
+        "thinking",
+        "running",
+        "error",
+        "without-ring"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "只表达 AI 身份和生命状态，不作为普通业务图标。",
+      "tokens": [
+        "color.brand.*",
+        "motion.living",
+        "shadow.orb"
+      ],
+      "summary": "表达 AI 身份、思考、执行和异常状态的 Living Intelligence Core。",
+      "useWhen": [
+        "AI 助手身份",
+        "模型思考",
+        "Agent 执行",
+        "AI 异常"
+      ],
+      "avoidWhen": [
+        "普通业务列表图标",
+        "用户头像",
+        "纯装饰",
+        "非 AI 状态点"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "state",
+          "type": "\"error\" | \"idle\" | \"thinking\" | \"running\"",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "showRing",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "state",
+          "type": "'idle' | 'thinking' | 'running' | 'error'",
+          "default": "'idle'",
+          "description": "AI 状态"
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "default": "48",
+          "description": "像素尺寸"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'Atlas AI'",
+          "description": "无障碍名称"
+        },
+        {
+          "name": "showRing",
+          "type": "boolean",
+          "default": "true",
+          "description": "是否显示约束轨道"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIComposer",
+      "category": "ai",
+      "anatomy": [
+        "contexts",
+        "editor",
+        "suggestions",
+        "toolbar",
+        "submit"
+      ],
+      "states": [
+        "empty",
+        "focus",
+        "context",
+        "suggestion",
+        "busy",
+        "error"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "承载自然语言目标、上下文和工具执行入口。",
+      "tokens": [
+        "radius.panel",
+        "color.action.*",
+        "color.focus.ring"
+      ],
+      "summary": "带上下文、推荐指令和运行状态的 AI 输入。",
+      "useWhen": [
+        "自然语言指令",
+        "AI 对话输入",
+        "Agent 目标描述"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "value",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "suggestions",
+          "type": "string[]",
+          "optional": true
+        },
+        {
+          "name": "busy",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "contexts",
+          "type": "string[]",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": true
+        },
+        {
+          "name": "onSubmit",
+          "type": "(value: string) => void",
+          "optional": false
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "value",
+          "type": "string",
+          "default": "-",
+          "description": "受控输入值"
+        },
+        {
+          "name": "suggestions",
+          "type": "string[]",
+          "default": "[]",
+          "description": "推荐问题"
+        },
+        {
+          "name": "contexts",
+          "type": "string[]",
+          "default": "[]",
+          "description": "上下文标签"
+        },
+        {
+          "name": "busy",
+          "type": "boolean",
+          "default": "false",
+          "description": "生成状态"
+        },
+        {
+          "name": "onSubmit",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "提交回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasExecutionPlan",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "header",
+        "step-list",
+        "step",
+        "controls"
+      ],
+      "states": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "approval"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "展示 Agent 计划、进度和需要人工介入的步骤。",
+      "tokens": [
+        "color.action.*",
+        "color.status.*",
+        "color.border.default"
+      ],
+      "summary": "展示 Agent 计划、进度和需要人工介入的步骤。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "steps",
+          "type": "AtlasExecutionStep[]",
+          "optional": false
+        },
+        {
+          "name": "onStop",
+          "type": "() => void",
+          "optional": true
+        },
+        {
+          "name": "onApprove",
+          "type": "(id: string) => void",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "string",
+          "default": "'执行计划'",
+          "description": "计划标题"
+        },
+        {
+          "name": "steps",
+          "type": "AtlasExecutionStep[]",
+          "default": "-",
+          "description": "执行步骤"
+        },
+        {
+          "name": "onStop",
+          "type": "() => void",
+          "default": "-",
+          "description": "停止回调"
+        },
+        {
+          "name": "onApprove",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "批准步骤回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIConversation",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "header",
+        "message-stream",
+        "composer"
+      ],
+      "states": [
+        "idle",
+        "thinking",
+        "running",
+        "error"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "组织完整 AI 会话，不隐藏模型状态与上下文。",
+      "tokens": [
+        "color.bg.*",
+        "color.border.default",
+        "shadow.surface"
+      ],
+      "summary": "组织消息流、历史、工具栏和输入区域的对话容器。",
+      "useWhen": [
+        "完整 AI 对话页",
+        "业务侧边助手"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "status",
+          "type": "\"error\" | \"idle\" | \"thinking\" | \"running\"",
+          "optional": true
+        },
+        {
+          "name": "history",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "toolbar",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "composer",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "title",
+          "type": "string",
+          "default": "-",
+          "description": "会话标题"
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "default": "-",
+          "description": "模型或上下文说明"
+        },
+        {
+          "name": "status",
+          "type": "'idle' | 'thinking' | 'running' | 'error'",
+          "default": "'idle'",
+          "description": "AI 运行状态"
+        },
+        {
+          "name": "composer",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "输入区域"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIMessageBubble",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "avatar",
+        "meta",
+        "content",
+        "citations",
+        "actions"
+      ],
+      "states": [
+        "user",
+        "assistant",
+        "system",
+        "tool",
+        "streaming"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "区分用户、助手、系统和工具消息，并承载证据与操作。",
+      "tokens": [
+        "radius.panel",
+        "color.bg.*",
+        "color.action.soft"
+      ],
+      "summary": "呈现用户、助手、系统和工具消息。",
+      "useWhen": [
+        "消息流",
+        "流式回答",
+        "工具结果"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "role",
+          "type": "AtlasAIMessageRole",
+          "optional": false
+        },
+        {
+          "name": "content",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "timestamp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "streaming",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "citations",
+          "type": "AtlasAICitationItem[]",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLElement, Element>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "role",
+          "type": "'user' | 'assistant' | 'system' | 'tool'",
+          "default": "-",
+          "description": "消息角色"
+        },
+        {
+          "name": "content",
+          "type": "ReactNode / slot",
+          "default": "-",
+          "description": "消息正文"
+        },
+        {
+          "name": "streaming",
+          "type": "boolean",
+          "default": "false",
+          "description": "是否流式生成"
+        },
+        {
+          "name": "citations",
+          "type": "AtlasAICitationItem[]",
+          "default": "[]",
+          "description": "引用来源"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIStreamingText",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "content",
+        "cursor",
+        "status"
+      ],
+      "states": [
+        "streaming",
+        "complete",
+        "stopped",
+        "error"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "表达生成中的增量文本和最终状态。",
+      "tokens": [
+        "color.text.*",
+        "color.status.*",
+        "motion.base"
+      ],
+      "summary": "表达生成中的增量文本和最终状态。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "text",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "status",
+          "type": "\"error\" | \"streaming\" | \"complete\" | \"stopped\"",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "text",
+          "type": "string",
+          "default": "-",
+          "description": "当前文本"
+        },
+        {
+          "name": "status",
+          "type": "'streaming' | 'complete' | 'stopped' | 'error'",
+          "default": "'streaming'",
+          "description": "生成状态"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'AI 正在生成'",
+          "description": "无障碍状态说明"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIPrompts",
+      "category": "ai",
+      "anatomy": [
+        "group",
+        "prompt",
+        "category",
+        "description"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "提供可解释的起始问题和快捷指令。",
+      "tokens": [
+        "radius.control",
+        "color.action.soft",
+        "color.focus.ring"
+      ],
+      "summary": "提供可解释的起始问题和快捷指令。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasAIPromptItem[]",
+          "optional": false
+        },
+        {
+          "name": "onSelect",
+          "type": "(item: AtlasAIPromptItem) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasAIPromptItem[]",
+          "default": "-",
+          "description": "推荐项"
+        },
+        {
+          "name": "onSelect",
+          "type": "(item) => void",
+          "default": "-",
+          "description": "选择回调"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'推荐问题'",
+          "description": "分组标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIAttachmentList",
+      "category": "ai",
+      "anatomy": [
+        "list",
+        "item",
+        "type",
+        "name",
+        "progress",
+        "actions"
+      ],
+      "states": [
+        "ready",
+        "uploading",
+        "failed",
+        "removable"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "展示进入 AI 上下文的附件、状态和移除控制。",
+      "tokens": [
+        "radius.control",
+        "color.bg.subtle",
+        "color.status.*"
+      ],
+      "summary": "展示进入 AI 上下文的附件、状态和移除控制。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasAIAttachmentItem[]",
+          "optional": false
+        },
+        {
+          "name": "onRemove",
+          "type": "(id: string) => void",
+          "optional": true
+        },
+        {
+          "name": "onRetry",
+          "type": "(id: string) => void",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasAIAttachmentItem[]",
+          "default": "-",
+          "description": "附件集合"
+        },
+        {
+          "name": "onRemove",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "移除回调"
+        },
+        {
+          "name": "onRetry",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "失败重试"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'附件'",
+          "description": "列表标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIConversationHistory",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "create",
+        "list",
+        "item",
+        "preview",
+        "pin"
+      ],
+      "states": [
+        "active",
+        "pinned",
+        "hover",
+        "focus"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "管理会话选择与最近上下文，不承担消息正文。",
+      "tokens": [
+        "color.action.soft",
+        "color.border.default",
+        "control.height.*"
+      ],
+      "summary": "管理会话选择与最近上下文，不承担消息正文。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasAIConversationHistoryItem[]",
+          "optional": false
+        },
+        {
+          "name": "activeId",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "onSelect",
+          "type": "(id: string) => void",
+          "optional": false
+        },
+        {
+          "name": "onCreate",
+          "type": "() => void",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasAIConversationHistoryItem[]",
+          "default": "-",
+          "description": "会话集合"
+        },
+        {
+          "name": "activeId",
+          "type": "string",
+          "default": "-",
+          "description": "当前会话"
+        },
+        {
+          "name": "onSelect",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "选择回调"
+        },
+        {
+          "name": "onCreate",
+          "type": "() => void",
+          "default": "-",
+          "description": "新建回调"
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIFeedback",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "helpful",
+        "unhelpful",
+        "report"
+      ],
+      "states": [
+        "empty",
+        "helpful",
+        "unhelpful",
+        "reported"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "收集回答质量反馈并提供问题上报。",
+      "tokens": [
+        "control.height.*",
+        "color.action.*",
+        "color.status.*"
+      ],
+      "summary": "收集回答质量反馈并提供问题上报。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "value",
+          "type": "AtlasAIFeedbackValue",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "(value: Exclude<AtlasAIFeedbackValue, null>) => void",
+          "optional": false
+        },
+        {
+          "name": "onReport",
+          "type": "() => void",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "value",
+          "type": "'helpful' | 'unhelpful' | null",
+          "default": "null",
+          "description": "当前反馈"
+        },
+        {
+          "name": "onChange",
+          "type": "(value) => void",
+          "default": "-",
+          "description": "反馈回调"
+        },
+        {
+          "name": "onReport",
+          "type": "() => void",
+          "default": "-",
+          "description": "问题上报"
+        }
+      ]
+    },
+    {
+      "name": "AtlasMCPServerPicker",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "server-list",
+        "server",
+        "status",
+        "transport",
+        "tools"
+      ],
+      "states": [
+        "connected",
+        "disconnected",
+        "selected",
+        "disabled"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "明确 Agent 可使用的 MCP Server、传输与授权范围。",
+      "tokens": [
+        "radius.panel",
+        "color.status.*",
+        "color.border.default"
+      ],
+      "summary": "选择和检查 Agent 可访问的 MCP Server。",
+      "useWhen": [
+        "工具配置",
+        "Agent 能力授权",
+        "MCP 连接管理"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "servers",
+          "type": "AtlasMCPServerItem[]",
+          "optional": false
+        },
+        {
+          "name": "selectedIds",
+          "type": "string[]",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(ids: string[]) => void",
+          "optional": false
+        },
+        {
+          "name": "onAdd",
+          "type": "() => void",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "servers",
+          "type": "AtlasMCPServerItem[]",
+          "default": "-",
+          "description": "Server 集合"
+        },
+        {
+          "name": "selectedIds",
+          "type": "string[]",
+          "default": "-",
+          "description": "已授权 Server"
+        },
+        {
+          "name": "onChange",
+          "type": "(ids) => void",
+          "default": "-",
+          "description": "授权变化"
+        },
+        {
+          "name": "onAdd",
+          "type": "() => void",
+          "default": "-",
+          "description": "添加 Server"
+        }
+      ]
+    },
+    {
+      "name": "AtlasCitationList",
+      "category": "ai",
+      "anatomy": [
+        "list",
+        "citation",
+        "index",
+        "title",
+        "excerpt",
+        "confidence"
+      ],
+      "states": [
+        "default",
+        "interactive",
+        "low-confidence"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "展示 AI 结果的可追溯来源和相关度。",
+      "tokens": [
+        "radius.control",
+        "color.action.soft",
+        "color.text.*"
+      ],
+      "summary": "展示 AI 结果的可追溯来源和相关度。",
+      "useWhen": [
+        "AI 对话、知识检索、工具执行和可信控制"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "items",
+          "type": "AtlasAICitationItem[]",
+          "optional": false
+        },
+        {
+          "name": "onOpen",
+          "type": "(item: AtlasAICitationItem) => void",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "items",
+          "type": "AtlasAICitationItem[]",
+          "default": "-",
+          "description": "引用集合"
+        },
+        {
+          "name": "onOpen",
+          "type": "(item) => void",
+          "default": "-",
+          "description": "打开来源"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'引用来源'",
+          "description": "列表标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasKnowledgeSourcePicker",
+      "category": "ai",
+      "anatomy": [
+        "group",
+        "source",
+        "type",
+        "status",
+        "scope",
+        "selection"
+      ],
+      "states": [
+        "ready",
+        "syncing",
+        "error",
+        "selected"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "选择可检索知识源并显式呈现权限范围。",
+      "tokens": [
+        "radius.panel",
+        "color.status.*",
+        "color.border.default"
+      ],
+      "summary": "选择允许参与检索的知识源和权限范围。",
+      "useWhen": [
+        "知识问答",
+        "RAG 配置",
+        "权限感知检索"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "sources",
+          "type": "AtlasKnowledgeSourceItem[]",
+          "optional": false
+        },
+        {
+          "name": "selectedIds",
+          "type": "string[]",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(ids: string[]) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "sources",
+          "type": "AtlasKnowledgeSourceItem[]",
+          "default": "-",
+          "description": "知识源集合"
+        },
+        {
+          "name": "selectedIds",
+          "type": "string[]",
+          "default": "-",
+          "description": "已选择知识源"
+        },
+        {
+          "name": "onChange",
+          "type": "(ids) => void",
+          "default": "-",
+          "description": "选择变化"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'知识来源'",
+          "description": "分组标签"
+        }
+      ]
+    },
+    {
+      "name": "AtlasRetrievalTrace",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "step-list",
+        "step",
+        "duration",
+        "status"
+      ],
+      "states": [
+        "pending",
+        "running",
+        "completed",
+        "failed"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "解释查询、检索、过滤、重排和引用形成过程。",
+      "tokens": [
+        "color.action.*",
+        "color.status.*",
+        "color.border.default"
+      ],
+      "summary": "解释查询、检索、重排和引用形成过程。",
+      "useWhen": [
+        "知识问答依据",
+        "检索调试",
+        "AI 质量评测"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "steps",
+          "type": "AtlasRetrievalStep[]",
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "steps",
+          "type": "AtlasRetrievalStep[]",
+          "default": "-",
+          "description": "检索步骤"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "'检索轨迹'",
+          "description": "轨迹标题"
+        }
+      ]
+    },
+    {
+      "name": "AtlasToolCallCard",
+      "category": "ai",
+      "anatomy": [
+        "root",
+        "header",
+        "permission",
+        "input",
+        "result",
+        "controls"
+      ],
+      "states": [
+        "queued",
+        "running",
+        "approval",
+        "completed",
+        "failed"
+      ],
+      "densities": [
+        "compact",
+        "standard",
+        "comfortable"
+      ],
+      "semantics": "呈现工具权限、输入输出、审批、失败和重试。",
+      "tokens": [
+        "radius.panel",
+        "color.status.*",
+        "color.border.default",
+        "shadow.surface"
+      ],
+      "summary": "展示工具输入、结果、权限和人工审批。",
+      "useWhen": [
+        "Agent 工具调用",
+        "高风险审批",
+        "失败重试"
+      ],
+      "frameworks": [
+        "react",
+        "vue"
+      ],
+      "api": [
+        {
+          "name": "call",
+          "type": "AtlasToolCallItem",
+          "optional": false
+        },
+        {
+          "name": "onApprove",
+          "type": "(id: string) => void",
+          "optional": true
+        },
+        {
+          "name": "onReject",
+          "type": "(id: string) => void",
+          "optional": true
+        },
+        {
+          "name": "onRetry",
+          "type": "(id: string) => void",
+          "optional": true
+        }
+      ],
+      "documentedProps": [
+        {
+          "name": "call",
+          "type": "AtlasToolCallItem",
+          "default": "-",
+          "description": "工具调用"
+        },
+        {
+          "name": "onApprove",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "批准执行"
+        },
+        {
+          "name": "onReject",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "拒绝执行"
+        },
+        {
+          "name": "onRetry",
+          "type": "(id) => void",
+          "default": "-",
+          "description": "失败重试"
+        }
+      ]
+    }
+  ]
+}

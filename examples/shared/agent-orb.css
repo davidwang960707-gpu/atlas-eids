@@ -68,7 +68,7 @@
 }
 
 .orb {
-  position: relative;
+  position: absolute;
   width: 93%;
   height: 93%;
   z-index: 2;

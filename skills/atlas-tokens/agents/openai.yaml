@@ -1,0 +1,7 @@
+interface:
+  display_name: "Atlas Design Tokens"
+  short_description: "应用 Atlas 主题、密度、色彩与动效 Tokens"
+  default_prompt: "使用 $atlas-tokens 为这个界面应用正确的语义 Tokens、主题和密度。"
+  brand_color: "#7B61FF"
+policy:
+  allow_implicit_invocation: true

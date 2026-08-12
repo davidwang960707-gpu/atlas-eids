@@ -13,6 +13,7 @@
       "import": "./dist/index.js"
     },
     "./tokens.css": "./dist/tokens.css",
+    "./compatibility.css": "./dist/compatibility.css",
     "./tokens.json": "./dist/tokens.json"
   },
   "scripts": {

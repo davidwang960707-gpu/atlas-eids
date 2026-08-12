@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-const routes = ['workbench', 'data-list', 'card-list', 'detail', 'form', 'analytics', 'settings', 'approval', 'kanban', 'calendar', 'files', 'ai-chat', 'agent-task', 'ai-review', 'ai-governance']
+const routes = ['workbench', 'data-list', 'card-list', 'detail', 'form', 'analytics', 'settings', 'approval', 'kanban', 'calendar', 'files', 'ai-chat', 'agent-task', 'ai-review', 'ai-governance', 'ai-knowledge']
 
-test.describe('15 个独立页面模板', () => {
+test.describe('16 个独立页面路由', () => {
   for (const route of routes) {
     test(`${route} 可以独立打开`, async ({ page }) => {
       await page.goto(`/#/${route}`)
@@ -54,4 +54,16 @@ test('Agent 高风险写入需要人工批准', async ({ page }) => {
   await page.goto('/#/agent-task')
   await page.getByRole('button', { name: '批准' }).click()
   await expect(page.getByText('已由王六批准并写入审计日志')).toBeVisible()
+})
+
+test('AI 知识工作台支持知识源、MCP 与可信引用闭环', async ({ page }) => {
+  await page.goto('/#/ai-knowledge')
+  await expect(page.getByRole('heading', { name: 'AI 知识工作台', level: 1 })).toBeVisible()
+  await expect(page.getByText('Atlas 产品文档', { exact: true })).toBeVisible()
+  await expect(page.getByText('Atlas Page Tools')).toBeVisible()
+  const composer = page.getByPlaceholder('向授权知识源提问...')
+  await composer.fill('跨租户访问如何处理')
+  await page.getByRole('button', { name: '发送' }).click()
+  await expect(page.getByText(/跨租户写入必须在执行前拒绝/)).toBeVisible()
+  await expect(page.getByText('多租户数据边界')).toBeVisible()
 })

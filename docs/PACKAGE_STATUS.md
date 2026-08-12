@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-Atlas EIDS 当前发布候选为 `0.2.0-beta.2`。Monorepo 内 12 个公开 packages 已完成构建、测试、包体预检和 Changesets 发布准备；GitHub Beta Release 与 npm Registry 是两条独立发布链路。
+Atlas EIDS 当前发布版本为 `0.2.0-beta.2`。Monorepo 内 14 个公开 packages 已纳入构建、测试和包体预检；本轮新增的 Agent Kit 与 MCP 仍处于未发布改动，需在下一次 Changeset 中进入 npm Beta。GitHub Beta Release 与 npm Registry 是两条独立发布链路。
 
 在 npm Beta 包确认可见前，不要直接执行 `npm install @atlas-eids/react` 或 `npm install @atlas-eids/vue`。请先 Clone 仓库，并通过 CLI 的 `--local` 参数生成使用本地 `file:` 依赖的项目。
 
@@ -29,7 +29,8 @@ npm Beta 发布并完成全新目录安装验证后，CLI 默认会使用 Regist
 
 | 能力 | 命令 | 默认地址 |
 | --- | --- | --- |
-| 15 个页面模板 | `npm run dev:templates` | `http://127.0.0.1:5176` |
+| 16 个页面路由 | `npm run dev:templates` | `http://127.0.0.1:5176` |
+| Atlas MCP Server | `npm run atlas:mcp` | stdio |
 | React Storybook | `npm run dev:storybook:react` | `http://127.0.0.1:6006` |
 | Vue Storybook | `npm run dev:storybook:vue` | `http://127.0.0.1:6007` |
 | React 示例 | `npm run dev:react` | Vite 提示的本地地址 |
@@ -39,10 +40,12 @@ npm Beta 发布并完成全新目录安装验证后，CLI 默认会使用 Regist
 
 - Changesets 版本与 Changelog 流程。
 - 手动触发的 Beta 发布 Workflow，并支持 npm Provenance。
-- 12 个公开 package 的统一 Repository、Homepage、License、Exports 和 Public Access 元数据。
+- 14 个公开 package 的统一 Repository、Homepage、License、Exports 和 Public Access 元数据。
 - `npm pack --dry-run` 包体、导出文件、体积和禁止文件检查。
 - React / Vue 文档导出一致性与 React TypeScript Props 契约检查。
-- React / Vue 31 个组件的 Story 状态矩阵、交互和 Axe A11y 检查。
+- React / Vue 50 个 UI 组件的 Story 状态矩阵、交互、三档密度、双语言、双主题和 Axe A11y 检查。
+- Agent Kit 的页面规划与源码校验测试，以及 MCP 的 9 类 Resources、Prompts、10 个工具和路径边界测试。
+- 51 项 Core Contract 与 4 份 Machine Manifest 的版本、名称、Props 和 Token 漂移检查。
 - 全新目录生成 React/Ant Design、Vue/TDesign 项目并执行生产构建。
 - 7 种应用框架与模板升级冲突保护测试。
 

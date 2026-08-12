@@ -1,0 +1,7 @@
+interface:
+  display_name: "Atlas AI"
+  short_description: "构建可信的 AI 对话、知识检索与 Agent 交互"
+  default_prompt: "使用 $atlas-ai 设计包含引用、工具状态与人工控制的可信 AI 交互。"
+  brand_color: "#7B61FF"
+policy:
+  allow_implicit_invocation: true

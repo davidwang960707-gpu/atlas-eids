@@ -333,10 +333,10 @@ main, .lab-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; 
 .demo-page-header h3 { margin: 5px 0; font-size: 20px; line-height: 1.2; }
 .demo-page-header p { max-width: 630px; margin: 0; overflow: hidden; color: var(--text-2); font-size: 10px; line-height: 1.5; text-overflow: ellipsis; white-space: nowrap; }
 .demo-page-header > div:last-child { display: flex; gap: 6px; flex: 0 0 auto; }
-.demo-page-header button, .demo-panel button, .demo-form button, .demo-component-surface button, .demo-map button, .demo-properties button { min-height: 32px; padding: 0 11px; border: 1px solid var(--line); border-radius: 10px; background: var(--demo-control); color: var(--text-2); font-size: 9px; font-weight: 650; cursor: pointer; box-shadow: 0 3px 10px rgba(79,70,229,.035); }
+.demo-page-header button, .demo-panel button:not(.demo-tr), .demo-form button, .demo-component-surface button, .demo-map button, .demo-properties button { min-height: 32px; padding: 0 11px; border: 1px solid var(--line); border-radius: 10px; background: var(--demo-control); color: var(--text-2); font-size: 9px; font-weight: 650; cursor: pointer; box-shadow: 0 3px 10px rgba(79,70,229,.035); }
 .live-demo button.primary, .demo-page-header button.primary { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--atlas), var(--neural)); box-shadow: 0 8px 22px rgba(79,70,229,.22); }
 .live-demo button:hover { border-color: var(--line-strong); color: var(--text); }
-.live-demo button:active { transform: scale(.98); }
+.live-demo button:not(.demo-tr):active { transform: scale(.98); }
 .demo-page-tabs { min-height: 38px; display: flex; align-items: end; gap: 2px; padding: 0 18px; border-bottom: 1px solid var(--line); }
 .demo-page-tabs button { min-height: 34px; padding: 0 10px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--text-3); font-size: 8px; cursor: pointer; }
 .demo-page-tabs button.active { color: var(--text); border-bottom-color: var(--atlas); }
@@ -668,7 +668,7 @@ main, .lab-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; 
 .demo-page-header h3 { margin: 0; color: var(--demo-text); font-size: 20px; font-weight: 600; line-height: 1.4; }
 .demo-page-header p { max-width: 680px; margin: 2px 0 0; color: var(--demo-text-2); font-size: 12px; line-height: 1.55; }
 .demo-page-actions { display: flex; gap: 8px; flex: 0 0 auto; }
-.demo-page-header button, .demo-panel button, .demo-form button, .demo-component-surface button, .demo-map button, .demo-properties button {
+.demo-page-header button, .demo-panel button:not(.demo-tr), .demo-form button, .demo-component-surface button, .demo-map button, .demo-properties button {
   min-height: var(--demo-control-height);
   padding: 0 12px;
   border-color: var(--demo-line);
@@ -1004,6 +1004,7 @@ main, .lab-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; 
   border: 0;
   border-radius: 0;
 }
+.dialog-runtime-frame { width: 100%; min-height: calc(100dvh - 129px); display: block; border: 0; background: var(--demo-page); }
 
 .live-demo {
   --demo-page-gutter: 20px;
@@ -1538,4 +1539,44 @@ main, .lab-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; 
 
 @media (max-width: 420px) {
   .dialog-primary-actions .dialog-link:first-child { display: none; }
+}
+
+/* Atlas enterprise surface contract: 56px shell, 216px navigation, 8px panels, 42px rows. */
+.live-demo {
+  --demo-page-gutter: 20px;
+  min-height: 720px;
+  grid-template: 56px minmax(0, 1fr) / 216px minmax(0, 1fr);
+  background: var(--demo-page);
+}
+.demo-appbar { grid-template-columns: 216px minmax(200px, 1fr) auto; }
+.demo-page-header { min-height: 92px; align-items: flex-start; padding: 16px var(--demo-page-gutter); }
+.demo-page-header h3 { font-size: 22px; line-height: 1.3; }
+.demo-page-header p { display: block; max-width: 680px; margin-top: 3px; overflow: visible; font-size: 12px; line-height: 1.5; text-overflow: clip; white-space: normal; }
+.demo-panel,
+.demo-object-card,
+.demo-form,
+.demo-tree,
+.demo-object-list,
+.demo-context-panel,
+.demo-detail-document,
+.demo-map-list,
+.demo-conversations,
+.demo-chat { border: 1px solid var(--demo-line); border-radius: 8px; }
+.demo-panel > header { min-height: 56px; }
+.demo-tr { min-height: 42px; padding: 0 14px; }
+.demo-tr.demo-th { min-height: 40px; }
+.demo-metrics article { min-height: 116px; border: 1px solid var(--demo-line); border-radius: 8px; }
+.demo-object-card { min-height: 176px; border-radius: 8px; }
+.demo-status { border-radius: 4px; }
+.demo-sidebar-agent { border-radius: 8px; }
+
+@media (max-width: 980px) {
+  .live-demo { grid-template-columns: 180px minmax(0, 1fr); }
+  .demo-appbar { grid-template-columns: 180px minmax(150px, 1fr) auto; }
+}
+
+@media (max-width: 760px) {
+  .live-demo { grid-template: 52px minmax(0, 1fr) / minmax(0, 1fr); }
+  .demo-appbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .demo-page-header { min-height: 88px; }
 }

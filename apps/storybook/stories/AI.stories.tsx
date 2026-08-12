@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AtlasAIComposer, AtlasExecutionPlan, AtlasOrb, AtlasTag, type AtlasExecutionStep } from '@atlas-eids/react'
 
-const meta = { title: 'React/AI 原生组件', parameters: { layout: 'centered' } } satisfies Meta
+const meta = { title: 'React/AI 原生组件', parameters: { layout: 'fullscreen' } } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { AtlasAlert, AtlasButton, AtlasCard, AtlasCheckbox, AtlasInput, AtlasPagination, AtlasProgress, AtlasRadioGroup, AtlasSelect, AtlasStatistic, AtlasSwitch, AtlasTable, AtlasTag, type AtlasTableColumn } from '@atlas-eids/react'
 
-const meta = { title: 'React/企业核心组件', parameters: { layout: 'centered' } } satisfies Meta
+const meta = { title: 'React/企业核心组件', parameters: { layout: 'fullscreen' } } satisfies Meta
 export default meta
 type Story = StoryObj<typeof meta>
 

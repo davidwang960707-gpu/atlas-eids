@@ -17,6 +17,14 @@ test('Pattern Lab AI 对话视觉基线', async ({ page }) => {
   await expect(page).toHaveScreenshot('pattern-ai-chat.png', { fullPage: true, animations: 'allow' })
 })
 
+test('AI 知识工作台视觉基线', async ({ page }) => {
+  await page.goto('/#/ai-knowledge')
+  await expect(page.getByRole('heading', { name: 'AI 知识工作台', level: 1 })).toBeVisible()
+  await page.waitForTimeout(400)
+  await page.addStyleTag({ content: '.atlas-living-orb * { animation: none !important; transition: none !important; }' })
+  await expect(page).toHaveScreenshot('pattern-ai-knowledge.png', { fullPage: true, animations: 'allow' })
+})
+
 test('官网模式库视觉基线', async ({ page }) => {
   await page.goto(`${testUrls.portal}/patterns.html`)
   await expect(page).toHaveScreenshot('website-patterns.png')

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { AtlasCrossPageAgent, AtlasHttpExecutionAuditStore, AtlasPageToolRegistry, exposeAtlasAgent, installModelContextBridge, installWebMCPBridge, validateWebMCPToolset } from '../dist/index.js'
+import { AtlasCrossPageAgent, AtlasHttpExecutionAuditStore, AtlasPageToolRegistry, AtlasRemoteAgentClient, AtlasRouteAwareAgent, AtlasWebSkillRegistry, createWebSkillToolset, exposeAtlasAgent, installModelContextBridge, installWebMCPBridge, validateWebMCPToolset } from '../dist/index.js'
 
 test('registry exposes tools and protects high-risk page actions', async () => {
   const events = []
@@ -73,4 +73,34 @@ test('server audit replay maps enterprise backend records', async () => {
   const replay = await registry.replayFromAudit('server-1')
   assert.equal(replay.executionId, 'server-1')
   assert.deepEqual(replay.result, { published: true })
+})
+
+test('route-aware WebSkills use progressive disclosure', async () => {
+  const skills = new AtlasWebSkillRegistry()
+  skills.register({ id: 'customer-sop', title: '客户审批 SOP', description: '客户页面审批规则', routes: ['/customers'], tags: ['approval'], content: '# 客户审批\n高风险变更需要人工确认。' })
+  skills.register({ id: 'global-design', title: 'Atlas Design', description: '全局设计规则', content: '# Atlas' })
+  const tools = createWebSkillToolset(skills, () => '/customers/AC-1048')
+  assert.equal((await tools[0].execute({})).skills.length, 2)
+  assert.match((await tools[2].execute({ id: 'customer-sop' })).content, /人工确认/)
+  const agent = new AtlasRouteAwareAgent({ route: '/customers', skills })
+  assert.equal(agent.skills().length, 2)
+  agent.navigate('/settings')
+  assert.equal(agent.skills().length, 1)
+  agent.dispose()
+})
+
+test('remote agent client connects Java tools, approval and replay', async () => {
+  const calls = []
+  const client = new AtlasRemoteAgentClient({
+    baseURL: 'https://atlas.example',
+    headers: () => ({ authorization: 'Bearer test', 'X-Atlas-Tenant': 'atlas-cn' }),
+    fetch: async (url, init) => { calls.push({ url, init }); return new Response(JSON.stringify({ id: 'execution-1', status: 'completed' }), { status: 200 }) }
+  })
+  await client.listTools()
+  await client.execute('records.publish', { count: 12 })
+  await client.approve('execution-1')
+  await client.replay('execution-1')
+  assert.equal(calls.length, 4)
+  assert.equal(calls[1].init.method, 'POST')
+  assert.equal(calls[2].init.headers['X-Atlas-Tenant'], 'atlas-cn')
 })

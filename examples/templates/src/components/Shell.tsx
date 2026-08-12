@@ -3,7 +3,7 @@ import { AtlasAvatar, AtlasBadge, AtlasButton, AtlasDropdown, AtlasOrb, AtlasSea
 import { Bell, ChevronLeft, ChevronRight, Command, Menu, Moon, Search, Sun } from 'lucide-react'
 import type { TemplateRoute } from '../template-types'
 
-export function Shell({ routes, current, onNavigate, children }: { routes: TemplateRoute[]; current: string; onNavigate: (id: string) => void; children: ReactNode }) {
+export function Shell({ routes, current, onNavigate, children, embedded = false }: { routes: TemplateRoute[]; current: string; onNavigate: (id: string) => void; children: ReactNode; embedded?: boolean }) {
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
@@ -11,6 +11,7 @@ export function Shell({ routes, current, onNavigate, children }: { routes: Templ
   const groups = Array.from(new Set(routes.map((route) => route.group)))
 
   const navigate = (id: string) => { onNavigate(id); setMobileOpen(false) }
+  if (embedded) return <main className="page-main embedded-main" id="main-content">{children}</main>
   return <div className={`pattern-app ${collapsed ? 'nav-collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`} data-atlas-theme={theme}>
     <header className="global-header">
       <button className="mobile-menu" type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label="打开导航"><Menu size={19} /></button>

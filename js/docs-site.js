@@ -141,7 +141,8 @@
   }
 
   function renderComponentApi() {
-    article.innerHTML = `<div class="doc-eyebrow">设计系统 / Component API</div><h1>组件 API</h1><p class="api-intro">统一检索 React 与 Vue 3 的 31 个 UI 组件及 AtlasProvider。当前 API 处于 Beta，发布 npm packages 前以仓库源码和本页生成数据为准。</p><div class="api-toolbar"><input id="apiSearch" type="search" placeholder="搜索组件、Prop 或类型" autocomplete="off"></div><section class="api-layout" aria-label="组件 API 浏览器"><div class="api-list"></div><article class="api-detail"></article></section>`;
+    const uiComponentCount = data.components.filter((component) => component.name !== 'AtlasProvider').length;
+    article.innerHTML = `<div class="doc-eyebrow">设计系统 / Component API</div><h1>组件 API</h1><p class="api-intro">统一检索 React 与 Vue 3 的 ${uiComponentCount} 个 UI 组件及 AtlasProvider。当前 API 处于 Beta，发布 npm packages 前以仓库源码和本页生成数据为准。</p><div class="api-toolbar"><input id="apiSearch" type="search" placeholder="搜索组件、Prop 或类型" autocomplete="off"></div><section class="api-layout" aria-label="组件 API 浏览器"><div class="api-list"></div><article class="api-detail"></article></section>`;
     const input = article.querySelector('#apiSearch');
     input.addEventListener('input', () => updateApiResults(input.value));
     updateApiResults();

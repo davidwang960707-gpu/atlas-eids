@@ -43,7 +43,7 @@ jobs:
         run: npm test
 
       - name: Verify component API and release metadata
-        run: npm run test:api-contract && npm run test:release
+        run: npm run test:design-contract && npm run test:api-contract && npm run test:release
 
       - name: Build React and Vue Storybook
         run: npm run build:storybook

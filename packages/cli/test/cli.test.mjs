@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { execFile as execFileCallback } from 'node:child_process'
-import { access, mkdtemp, readFile, writeFile } from 'node:fs/promises'
+import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import test from 'node:test'
@@ -151,4 +151,21 @@ test('upgrade previews configuration changes and protects edited generated files
   const unchangedBefore = await readFile(navigationPath, 'utf8')
   await upgradeProject({ target: created.target, locale: 'en-US' })
   assert.equal(await readFile(navigationPath, 'utf8'), unchangedBefore)
+})
+
+test('CLI exposes agent planning, design knowledge and source validation', async () => {
+  const knowledge = await execFile(process.execPath, [cliPath, 'knowledge', 'components', 'MCP'])
+  assert.match(knowledge.stdout, /AtlasMCPServerPicker/)
+  const plan = await execFile(process.execPath, [cliPath, 'agent', 'plan', '知识库检索与引用页面', '--framework', 'vue', '--json'])
+  assert.equal(JSON.parse(plan.stdout).pattern.id, 'ai-knowledge')
+  const contract = await execFile(process.execPath, [cliPath, 'knowledge', 'contract', 'AtlasDataTable'])
+  const parsedContract = JSON.parse(contract.stdout)
+  assert.equal(parsedContract.category, 'composition')
+  assert.ok(parsedContract.tokens.includes('table.rowHeight.*'))
+  const root = await mkdtemp(join(tmpdir(), 'atlas-eids-validation-'))
+  const source = join(root, 'Page.tsx')
+  await writeFile(source, "import { AtlasCitationList } from '@atlas-eids/react'; export const Page=()=> <main><h1>AI 知识</h1><AtlasCitationList items={[]}/></main>")
+  const validation = await execFile(process.execPath, [cliPath, 'validate', source, '--framework', 'react', '--ai', '--json'])
+  assert.equal(JSON.parse(validation.stdout).valid, true)
+  await rm(root, { recursive: true, force: true })
 })
