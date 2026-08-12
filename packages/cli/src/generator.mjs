@@ -7,7 +7,7 @@ import { listBlueprints, pageBlueprints } from './page-catalog.mjs'
 import { applicationLayouts, listApplicationLayouts as listLayouts } from './app-layout-catalog.mjs'
 
 const moduleRoot = dirname(fileURLToPath(import.meta.url))
-const templateRoot = resolve(moduleRoot, '../templates')
+const templateRoot = resolve(moduleRoot, basename(moduleRoot) === 'dist' ? 'templates' : '../templates')
 const packageVersion = JSON.parse(readFileSync(resolve(moduleRoot, '../package.json'), 'utf8')).version
 const validName = /^[a-z][a-z0-9-]*$/
 

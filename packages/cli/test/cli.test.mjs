@@ -26,6 +26,20 @@ test('CLI creates a Vue project with selected page and Java backend source', asy
   assert.match(apiClient, /X-Atlas-Tenant/)
 })
 
+test('built CLI resolves bundled Java templates from its distribution directory', async () => {
+  const { createProject: createBuiltProject } = await import('../dist/generator.mjs')
+  const cwd = await mkdtemp(join(tmpdir(), 'atlas-cli-dist-'))
+  const result = await createBuiltProject({
+    name: 'atlas-dist-demo',
+    framework: 'react',
+    backend: 'java',
+    packageSource: 'registry',
+    cwd
+  })
+  await access(join(result.target, 'server/pom.xml'))
+  await access(join(result.target, 'server/src/main/java/design/atlas/eids/AtlasEidsApplication.java'))
+})
+
 test('registry projects follow the installed CLI package version', async () => {
   const cwd = await mkdtemp(join(tmpdir(), 'atlas-registry-'))
   const result = await createProject({ name: 'atlas-registry', framework: 'react', packageSource: 'registry', cwd })
