@@ -29,6 +29,10 @@ function moduleExports(path) {
 const reactExports = moduleExports(reactPath)
 const vueExports = moduleExports(vuePath)
 
+function normalizeType(type) {
+  return type.replace(/import\((?:"[^"]+"|'[^']+')\)\./g, '')
+}
+
 function reactProps(name) {
   const symbol = reactExports.get(name)
   const declaration = symbol?.valueDeclaration ?? symbol?.declarations?.[0]
@@ -41,7 +45,7 @@ function reactProps(name) {
     const propertyDeclaration = property.valueDeclaration ?? property.declarations?.[0] ?? parameterDeclaration
     return {
       name: property.name,
-      type: checker.typeToString(checker.getTypeOfSymbolAtLocation(property, propertyDeclaration), propertyDeclaration, ts.TypeFormatFlags.NoTruncation),
+      type: normalizeType(checker.typeToString(checker.getTypeOfSymbolAtLocation(property, propertyDeclaration), propertyDeclaration, ts.TypeFormatFlags.NoTruncation)),
       optional: Boolean(property.flags & ts.SymbolFlags.Optional)
     }
   }).filter((property) => !property.name.startsWith('aria-') && !property.name.startsWith('onAnimation')).slice(0, 48)

@@ -7202,7 +7202,7 @@
       },
       {
         "name": "renderers",
-        "type": "Partial<Record<import(\"/Users/macbook/Desktop/AUI-UX/packages/core/dist/ai-native\").AtlasAIArtifactType, (artifact: AtlasAIArtifactContract) => ReactNode>>",
+        "type": "Partial<Record<AtlasAIArtifactType, (artifact: AtlasAIArtifactContract) => ReactNode>>",
         "optional": true
       },
       {

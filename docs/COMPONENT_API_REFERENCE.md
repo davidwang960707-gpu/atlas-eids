@@ -1492,7 +1492,7 @@
 | Prop | Type | Optional |
 | --- | --- | --- |
 | `artifact` | `AtlasAIArtifactContract` | No |
-| `renderers` | `Partial<Record<import("/Users/macbook/Desktop/AUI-UX/packages/core/dist/ai-native").AtlasAIArtifactType, (artifact: AtlasAIArtifactContract) => ReactNode>>` | Yes |
+| `renderers` | `Partial<Record<AtlasAIArtifactType, (artifact: AtlasAIArtifactContract) => ReactNode>>` | Yes |
 | `actions` | `ReactNode` | Yes |
 
 ## AtlasAIStructuredInput

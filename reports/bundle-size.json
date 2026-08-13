@@ -97,7 +97,7 @@
       "maxRawBytes": 30000,
       "maxGzipBytes": 8500,
       "rawBytes": 18765,
-      "gzipBytes": 5405,
+      "gzipBytes": 5404,
       "withinBudget": true
     },
     {
