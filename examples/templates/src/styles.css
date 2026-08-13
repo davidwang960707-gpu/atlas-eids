@@ -200,5 +200,6 @@ button { cursor: pointer; }
   .agent-task-hero { align-items: flex-start; flex-direction: column; }.agent-runtime { width: 100%; flex-wrap: wrap; }.agent-runtime .atlas-button { margin-left: auto; }
   .review-toolbar { align-items: flex-start; flex-direction: column; }.review-head { display: none; }.diff-columns { grid-template-columns: 1fr; }.diff-columns .before { min-height: auto; border-right: 0; border-bottom: 1px solid var(--atlas-color-border-default); }.review-actions { align-items: stretch; flex-direction: column; }
   .governance-banner { grid-template-columns: 36px 1fr; }.governance-banner > .atlas-tag { grid-column: 2; width: fit-content; }
-  .knowledge-answer { min-height: 0; }.knowledge-answer .atlas-citation-list { margin-left: 0; }
+  .knowledge-workbench main .atlas-panel-body { padding-inline: 8px; }
+  .knowledge-answer { min-height: 0; padding-inline: 0; }.knowledge-answer .atlas-ai-message { grid-template-columns: 28px minmax(0, 1fr); gap: 8px; }.knowledge-answer .atlas-citation-list { margin-left: 0; }
 }

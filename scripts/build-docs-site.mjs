@@ -75,7 +75,6 @@ const components = JSON.parse(await readFile(resolve(root, 'docs/component-api.j
 const workspace = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'))
 const data = {
   version: workspace.version,
-  generatedAt: new Date().toISOString(),
   documents: compiled,
   components,
   groups: [...new Set(documents.map((document) => document.group))]

@@ -84,7 +84,15 @@ ${item.props.length ? item.props.map((prop) => `| \`${prop.name}\` | \`${prop.ty
 if (check) {
   const currentJson = await readFile(jsonTarget, 'utf8').catch(() => '')
   const currentMarkdown = await readFile(markdownTarget, 'utf8').catch(() => '')
-  if (currentJson !== json || currentMarkdown !== markdown) throw new Error('Generated component API docs are stale. Run npm run docs:api.')
+  if (currentJson !== json || currentMarkdown !== markdown) {
+    const currentLines = currentJson.split('\n')
+    const generatedLines = json.split('\n')
+    const firstDifference = generatedLines.findIndex((line, index) => line !== currentLines[index])
+    const detail = firstDifference >= 0
+      ? ` First JSON difference at line ${firstDifference + 1}: expected ${JSON.stringify(generatedLines[firstDifference])}, received ${JSON.stringify(currentLines[firstDifference] ?? '')}.`
+      : ''
+    throw new Error(`Generated component API docs are stale. Run npm run docs:api.${detail}`)
+  }
 } else {
   await writeFile(jsonTarget, json)
   await writeFile(markdownTarget, markdown)
