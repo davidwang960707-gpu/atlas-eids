@@ -1,15 +1,15 @@
 {
   "name": "atlas-eids-storybook-react",
   "private": true,
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build": "storybook build -o storybook-static"
   },
   "dependencies": {
-    "@atlas-eids/adapter-antd-react": "0.2.0-beta.2",
-    "@atlas-eids/react": "0.2.0-beta.2",
+    "@atlas-eids/adapter-antd-react": "0.2.0-beta.3",
+    "@atlas-eids/react": "0.2.0-beta.3",
     "antd": "^6.6.0",
     "lucide-react": "^0.468.0",
     "react": "^19.1.1",

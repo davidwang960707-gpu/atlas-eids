@@ -43,18 +43,24 @@ export function CustomerPage() {
 ## React 约束
 
 - 受控组件的状态由页面持有；加载、空、错误和禁用状态都要实现。
+- 页面先声明唯一主任务和主操作；`AtlasPageHeader` 不重复 App Shell 导航，同一区域只放一个 `intent="primary"`。
+- 字体使用 Page/Section/Body/Caption `20/16/14/12px` Token 层级，布局间距只消费 `--atlas-space-*`；禁止引用未定义的 CSS 变量。
+- 筛选结果为空时同步清理详情、AI 回答、引用和分页；窄屏通过重排或 Drawer 保留功能，不隐藏核心命令。
 - Dialog、Drawer、Tabs、Switch、选择组件必须有明确可访问名称。
 - 图标使用项目现有 `lucide-react`，图标按钮提供 Tooltip 或 `aria-label`。
 - 企业列表页优先使用 `AtlasDataTable`、`AtlasTableToolbar`、`AtlasObjectCell`、`AtlasStatusTag` 和 `AtlasRowActions`；底层 `AtlasTable` 仍需有意义的 `caption`。
+- 深交互优先使用 `AtlasForm`、`AtlasDataGrid`、`AtlasCombobox`、`AtlasTree`、`AtlasUpload`、`AtlasDateRange`、`AtlasMenu` 和 `AtlasAppLayout`，不要在页面内重写键盘模型。
 - 普通对象行使用业务图标、`AtlasAvatar` 或状态点，不放 Orb；表格行高由 Provider 密度统一控制为 `36/42/50px`。
 - `AtlasCard` 只承载独立对象或工具，不把页头、筛选、表格和分页拆成多层卡片。
 - AI 页面使用 `AtlasAIConversation`、`AtlasAIMessageBubble` 和 `AtlasAIComposer` 组成真实消息流。
+- AI 结果使用 `AtlasAIArtifactRenderer`，结构化采集使用 `AtlasAIStructuredInput`，生成依据使用 `AtlasAIProvenance`；GenUI、MCP 工具和跨页面任务分别使用正式 Renderer、Tool Panel 与 Agent 组件。
 - 高风险工具使用 `AtlasToolCallCard` 或 `AtlasDialog` 提供审批，不用普通按钮直接执行。
 - Living Orb 只使用 `AtlasOrb`，不复制一份局部渐变球 CSS。
 
 ## 与 Vue 的契约
 
-- 先以 `packages/core/src/component-contracts.ts` 确定 Anatomy、States、Density、Semantics 和 Tokens，再设计 Props。
+- 先以 `packages/core/src/component-contracts.ts` 确定 Anatomy、States、Density、Semantics 和 Tokens；Form、Grid、Combobox、Tree、Upload、DateRange、通知与选择行为复用 `packages/core/src/headless.ts`，AI Schema 复用 `packages/core/src/ai-native.ts`，再设计 Props。
+- 组合组件的标题、间距、空态和响应式结果也是契约；不能只对齐单个控件高度和颜色。
 - React 可以使用受控 Props 与 Callback，但其默认值、状态结果和 Vue 的 Props/Slots/Emits 必须等价。
 - 状态根类、ARIA、键盘路径、焦点管理、Loading/Empty/Error/Disabled 行为以及 `36/42/50px` 密度几何必须对齐。
 - 改动共享组件时同步修改 Vue 实现与双端 Story；使用 `tests/storybook/parity.spec.ts` 检查关键 DOM 语义、状态类和几何，不接受只改 React。

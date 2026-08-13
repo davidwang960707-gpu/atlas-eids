@@ -15,8 +15,8 @@ Atlas EIDS 是面向 AI 原生企业应用的设计与工程系统。页面必�
 4. 只读取当前任务需要的专项 Skill 和 Reference，不一次加载全部资料。
 5. 对每个将使用的组件调用 `atlas_get_component_api`，或运行 `npm run atlas -- knowledge components <名称>`；不得根据截图猜 Props。
 6. 实现真实 Loading、Empty、Error、Disabled、权限和响应式状态，不交付纯示意画面。
-7. 调用 `atlas_validate_page`；CLI 回退为 `npm run atlas -- validate <file> --framework react|vue`，AI 页面增加 `--ai`。
-8. 执行构建、键盘、A11y、交互和桌面/移动视觉检查，并与同框架 Storybook、页面模板及品牌页对照。
+7. 调用 `atlas_validate_page`；CLI 回退为 `npm run atlas -- validate <file> --framework react|vue`，AI 页面增加 `--ai`。发布候选继续使用 Runtime Validator 组合执行 AST、Type、DOM、Playwright 与视觉检查。
+8. 执行构建、键盘、A11y、交互、跨浏览器和桌面/移动视觉检查，并与同框架 Storybook、页面模板及品牌页对照。
 
 ## 专项 Skills
 
@@ -38,6 +38,7 @@ Atlas EIDS 是面向 AI 原生企业应用的设计与工程系统。页面必�
 - 内容容器使用低圆角，普通面板不超过 `8px`；表格标准数据行保持 `42px`，不要把页面区块全部做成浮动卡片。
 - 业务组件只使用 Atlas 语义 Design Tokens，不硬编码品牌色。
 - AI 结果必须按风险提供引用、工具状态、权限提示、人工确认或审计信息。
+- AI Artifact、结构化输入与 GenUI 必须经过 Core Schema 验证；不渲染模型返回的任意 HTML、脚本或未注册组件。
 - React 与 Vue 的组件语义、状态和可访问行为保持一致。
 - 官网负责品牌表达，应用页负责企业任务；一致性以 Token、组件语义和 Orb 契约为核心，不强行复制官网 Hero。
 - 生成页面后必须校验，不把编译通过或单张截图当作设计验收完成。

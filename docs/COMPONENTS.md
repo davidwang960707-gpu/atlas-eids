@@ -4,24 +4,24 @@ Atlas EIDS 包含静态 HTML/CSS 组件，以及 React 和 Vue 3 的组件示例
 
 ## 正式 packages
 
-`@atlas-eids/react` 与 `@atlas-eids/vue` 当前同步提供 50 个 UI 组件，另含 `AtlasProvider`：
+`@atlas-eids/react` 与 `@atlas-eids/vue` 当前同步提供 66 个 UI 组件，另含 `AtlasProvider`：
 
 | 类别 | 组件 |
 | --- | --- |
-| 操作与输入 | `AtlasButton`、`AtlasInput`、`AtlasTextarea`、`AtlasSelect`、`AtlasCheckbox`、`AtlasRadioGroup`、`AtlasSwitch`、`AtlasDateInput`、`AtlasSearchInput`、`AtlasSegmentedControl` |
-| 导航 | `AtlasTabs`、`AtlasBreadcrumb`、`AtlasPagination`、`AtlasSteps`、`AtlasDropdown` |
+| 操作与输入 | `AtlasButton`、`AtlasInput`、`AtlasForm`、`AtlasTextarea`、`AtlasSelect`、`AtlasCombobox`、`AtlasCheckbox`、`AtlasRadioGroup`、`AtlasSwitch`、`AtlasDateInput`、`AtlasDateRange`、`AtlasUpload`、`AtlasSearchInput`、`AtlasSegmentedControl` |
+| 导航 | `AtlasTabs`、`AtlasBreadcrumb`、`AtlasPagination`、`AtlasSteps`、`AtlasDropdown`、`AtlasTree`、`AtlasMenu` |
 | 数据展示 | `AtlasCard`、`AtlasTable`、`AtlasTag`、`AtlasBadge`、`AtlasAvatar`、`AtlasStatistic`、`AtlasProgress` |
-| 反馈与浮层 | `AtlasAlert`、`AtlasTooltip`、`AtlasEmpty`、`AtlasSkeleton`、`AtlasDialog`、`AtlasDrawer` |
-| 企业组合 | `AtlasObjectCell`、`AtlasStatusTag`、`AtlasRowActions`、`AtlasTableToolbar`、`AtlasDataTable`、`AtlasPageHeader`、`AtlasPanel` |
+| 反馈与浮层 | `AtlasAlert`、`AtlasTooltip`、`AtlasEmpty`、`AtlasSkeleton`、`AtlasDialog`、`AtlasDrawer`、`AtlasNotification`、`AtlasNotificationCenter` |
+| 企业组合 | `AtlasObjectCell`、`AtlasStatusTag`、`AtlasRowActions`、`AtlasTableToolbar`、`AtlasDataTable`、`AtlasDataGrid`、`AtlasPageHeader`、`AtlasPanel`、`AtlasAppLayout` |
 | AI 会话与输入 | `AtlasOrb`、`AtlasAIComposer`、`AtlasAIConversation`、`AtlasAIMessageBubble`、`AtlasAIStreamingText`、`AtlasAIPrompts`、`AtlasAIAttachmentList`、`AtlasAIConversationHistory` |
-| AI 知识与执行 | `AtlasExecutionPlan`、`AtlasAIFeedback`、`AtlasMCPServerPicker`、`AtlasCitationList`、`AtlasKnowledgeSourcePicker`、`AtlasRetrievalTrace`、`AtlasToolCallCard` |
+| AI 知识与执行 | `AtlasExecutionPlan`、`AtlasAIFeedback`、`AtlasMCPServerPicker`、`AtlasCitationList`、`AtlasKnowledgeSourcePicker`、`AtlasRetrievalTrace`、`AtlasToolCallCard`、`AtlasAIArtifactRenderer`、`AtlasAIStructuredInput`、`AtlasAIProvenance`、`AtlasGenUIRenderer`、`AtlasMCPToolPanel`、`AtlasCrossPageAgent` |
 
 ```ts
 import { AtlasButton, AtlasOrb } from '@atlas-eids/react'
 import '@atlas-eids/react/styles.css'
 ```
 
-这些组件处于 Beta，已经具备类型、包构建、导出测试、50 × 2 Story 状态矩阵、逐组件 Axe 检查与 Playwright 视觉回归。Provider 统一 Light/Dark、Compact/Standard/Comfortable 和 `zh-CN/en-US`；跨框架像素回归覆盖表格、组合组件、AI Composer 与 Living Orb。
+这些组件处于 Beta，已经具备类型、包构建、导出测试、66 × 2 Story 状态矩阵、逐组件 Axe 检查与 Playwright 视觉回归。Provider 统一 Light/Dark、Compact/Standard/Comfortable 和 `zh-CN/en-US`；跨框架测试同时覆盖视觉与 Headless 行为契约。
 
 ## Storybook
 

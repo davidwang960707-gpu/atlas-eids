@@ -53,7 +53,7 @@ Agent Kit ── Skills ── Standard MCP Server / Client
 ## 设计约束
 
 1. Token 必须从 `packages/tokens/src/tokens.json` 生成，不再手工维护多份相互独立的主题值。
-2. 50 个 UI 组件与 `AtlasProvider` 的视觉契约只在 `@atlas-eids/core` 维护，`manifests/`、Agent Kit、MCP 与 CLI 由构建同步。
+2. 66 个 UI 组件与 `AtlasProvider` 的视觉契约只在 `@atlas-eids/core` 维护，Headless 行为与 AI Schema 同样由 Core 共享，`manifests/`、Agent Kit、MCP 与 CLI 由构建同步。
 3. React 与 Vue 组件保持相同的状态语义、可访问名称和视觉类名，框架 API 可以符合各自习惯。
 4. 高风险 Tool Call 默认返回 `approval-required`，不得静默执行。
 5. 第三方适配器不得复制第三方组件源码，只维护语义 Token、组件映射和组合层。

@@ -1,0 +1,2345 @@
+{
+  "version": "0.2.0-beta.2",
+  "components": [
+    {
+      "name": "AtlasProvider",
+      "props": [
+        {
+          "name": "theme",
+          "type": "\"light\" | \"dark\"",
+          "optional": true
+        },
+        {
+          "name": "density",
+          "type": "\"compact\" | \"standard\" | \"comfortable\"",
+          "optional": true
+        },
+        {
+          "name": "locale",
+          "type": "\"zh-CN\" | \"en-US\"",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "name": "AtlasButton",
+      "props": [
+        {
+          "name": "intent",
+          "type": "\"neutral\" | \"primary\" | \"danger\"",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "\"compact\" | \"comfortable\" | \"default\"",
+          "optional": true
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "type",
+          "type": "\"submit\" | \"reset\" | \"button\"",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasInput",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "HTMLInputAutoCompleteAttribute",
+          "optional": true
+        },
+        {
+          "name": "capture",
+          "type": "boolean | \"user\" | \"environment\"",
+          "optional": true
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "list",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "max",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "min",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "step",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "type",
+          "type": "HTMLInputTypeAttribute",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLInputElement, HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasTextarea",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "cols",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "dirName",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "rows",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "wrap",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLTextAreaElement, HTMLTextAreaElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSelect",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "autoComplete",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasCheckbox",
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasRadioGroup",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSwitch",
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(checked: boolean) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasDateInput",
+      "props": [
+        {
+          "name": "form",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "list",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "step",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoComplete",
+          "type": "HTMLInputAutoCompleteAttribute",
+          "optional": true
+        },
+        {
+          "name": "capture",
+          "type": "boolean | \"user\" | \"environment\"",
+          "optional": true
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formAction",
+          "type": "string | ((formData: FormData) => void | Promise<void>)",
+          "optional": true
+        },
+        {
+          "name": "formEncType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formMethod",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "formTarget",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "max",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "min",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "minLength",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "pattern",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<HTMLInputElement, HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSearchInput",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "onSearch",
+          "type": "(value: string) => void",
+          "optional": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSegmentedControl",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "items",
+          "type": "AtlasOption[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "name": "AtlasTabs",
+      "props": [
+        {
+          "name": "items",
+          "type": "AtlasTab[]",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(id: string) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasBreadcrumb",
+      "props": [
+        {
+          "name": "items",
+          "type": "AtlasBreadcrumbItem[]",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasPagination",
+      "props": [
+        {
+          "name": "page",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "pageCount",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "onChange",
+          "type": "(page: number) => void",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSteps",
+      "props": [
+        {
+          "name": "items",
+          "type": "AtlasStep[]",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasDropdown",
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "items",
+          "type": "AtlasDropdownItem[]",
+          "optional": false
+        },
+        {
+          "name": "onSelect",
+          "type": "(id: string) => void",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "name": "AtlasCard",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "results",
+          "type": "number",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasTable",
+      "props": [
+        {
+          "name": "columns",
+          "type": "AtlasTableColumn<Row>[]",
+          "optional": false
+        },
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "optional": false
+        },
+        {
+          "name": "caption",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "selectedIds",
+          "type": "(string | number)[]",
+          "optional": true
+        },
+        {
+          "name": "onSelect",
+          "type": "(ids: Array<string | number>) => void",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasTag",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "intent",
+          "type": "\"neutral\" | \"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        },
+        {
+          "name": "removable",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onRemove",
+          "type": "() => void",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasBadge",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "dot",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "intent",
+          "type": "\"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasAvatar",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasStatistic",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string | number",
+          "optional": false
+        },
+        {
+          "name": "suffix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "trend",
+          "type": "\"up\" | \"down\" | \"flat\"",
+          "optional": true
+        },
+        {
+          "name": "trendLabel",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasProgress",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "intent",
+          "type": "\"primary\" | \"danger\" | \"success\" | \"warning\"",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasAlert",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "intent",
+          "type": "\"danger\" | \"success\" | \"warning\" | \"info\"",
+          "optional": true
+        },
+        {
+          "name": "closable",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasTooltip",
+      "props": [
+        {
+          "name": "content",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "name": "AtlasEmpty",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "action",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasSkeleton",
+      "props": [
+        {
+          "name": "lines",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasDialog",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": false
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasDrawer",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "optional": false
+        },
+        {
+          "name": "onClose",
+          "type": "() => void",
+          "optional": false
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasOrb",
+      "props": [
+        {
+          "name": "state",
+          "type": "\"error\" | \"idle\" | \"thinking\" | \"running\"",
+          "optional": true
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "showRing",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "optional": true
+        },
+        {
+          "name": "suppressContentEditableWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "suppressHydrationWarning",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "accessKey",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCapitalize",
+          "type": "\"off\" | \"none\" | \"on\" | \"sentences\" | \"words\" | \"characters\" | (string & {})",
+          "optional": true
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "contentEditable",
+          "type": "Booleanish | \"inherit\" | \"plaintext-only\"",
+          "optional": true
+        },
+        {
+          "name": "contextMenu",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "dir",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "draggable",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "enterKeyHint",
+          "type": "\"enter\" | \"done\" | \"go\" | \"next\" | \"previous\" | \"search\" | \"send\"",
+          "optional": true
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "lang",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "nonce",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "slot",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "spellCheck",
+          "type": "Booleanish",
+          "optional": true
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "optional": true
+        },
+        {
+          "name": "tabIndex",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "translate",
+          "type": "\"yes\" | \"no\"",
+          "optional": true
+        },
+        {
+          "name": "radioGroup",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "role",
+          "type": "AriaRole",
+          "optional": true
+        },
+        {
+          "name": "about",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "datatype",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "inlist",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "property",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "resource",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "rev",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "typeof",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "vocab",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoCorrect",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "autoSave",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemProp",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemScope",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "itemType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemID",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "itemRef",
+          "type": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "AtlasAIComposer",
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "suggestions",
+          "type": "string[]",
+          "optional": true
+        },
+        {
+          "name": "busy",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "contexts",
+          "type": "string[]",
+          "optional": true
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "optional": true
+        },
+        {
+          "name": "onSubmit",
+          "type": "(value: string) => void",
+          "optional": false
+        }
+      ]
+    },
+    {
+      "name": "AtlasExecutionPlan",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "steps",
+          "type": "AtlasExecutionStep[]",
+          "optional": false
+        },
+        {
+          "name": "onStop",
+          "type": "() => void",
+          "optional": true
+        },
+        {
+          "name": "onApprove",
+          "type": "(id: string) => void",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}

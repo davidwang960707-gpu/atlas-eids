@@ -29,10 +29,13 @@ AI 原生模式包括：AI 对话、AI 侧边助手、搜索问答、智能填�
 
 ## 页面布局
 
+- 先写出页面的唯一主任务、唯一主操作、次级区域和状态矩阵，再选择组件；不要从卡片数量开始布局。
 - 页头只保留层级、标题、说明和关键操作，不做营销 Hero。
 - 内容宽度、表格列、筛选和工具条必须共享基线；标准表格行高为 `42px`。
 - 页面区块使用全宽带或边框分组，避免卡片套卡片。
-- Desktop、MacBook 常见尺寸和 Mobile 都要检查文本、表格和固定工具区。
+- Page/Section/Body/Caption 使用 `20/16/14/12px` 层级，布局间距使用 `4/8/12/16/20/24/32/48px` Token 尺度。
+- Desktop、MacBook 常见尺寸和 Mobile 都要检查文本、表格和固定工具区；响应式必须重排而不是隐藏核心功能。
+- Filtered Empty 必须清理详情、AI 回答和引用；Loading 不叠加两套 Spinner；Error 提供 Retry 或明确恢复动作。
 - AI 页面仍然是企业任务页面，科技感来自 Orb、状态、材料和运动，不来自大面积渐变。
 
 ## 真实 Demo 门槛
@@ -41,3 +44,4 @@ AI 原生模式包括：AI 对话、AI 侧边助手、搜索问答、智能填�
 - 独立模板至少有一条可完成的主要流程，并实现筛选、选择、分页、抽屉、审批或生成中的适用交互。
 - 普通页面使用业务图标；只有明确的 AI 助手和 Agent 状态使用 Orb。
 - 组合层视觉以 `examples/templates` 为基线，基础组件以 React/Vue Storybook 为基线，详细规则读取 `../atlas-eids-design-system/references/visual-quality.md`。
+- `manifests/page-recipes.json` 中的 `primaryTask`、`primaryAction`、`requiredStates` 和 `responsiveContract` 是 Agent 生成与验收的机器契约，不得只看区域列表。

@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/core",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Framework-neutral contracts and state utilities for Atlas EIDS",
   "type": "module",
   "files": [

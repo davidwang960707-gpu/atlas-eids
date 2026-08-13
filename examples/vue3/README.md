@@ -139,6 +139,10 @@ import StreamBlock from './components/StreamBlock.vue';
 
 7 种通用应用框架的可交互工作区，包括导航切换、任务筛选与选中、多标签页、租户上下文切换和全屏流程画布。示例数据保持通用，不绑定具体行业。
 
+### 知识库管理工作台
+
+启动开发服务后访问 `/knowledge.html`。该页面用于验证 Atlas Skills 与正式 Vue 组件包的组合能力，包含知识空间导航、指标、可筛选表格、文档详情、导入流程和带权限上下文、引用来源的 AI 检索。页面与 React 版本共享数据模型、Design Tokens 和响应式样式，可作为跨框架视觉与交互契约基线。
+
 ## 设计令牌
 
 设计令牌来自 `@atlas-eids/tokens`，示例兼容映射统一维护在 `examples/shared/tokens.css`，包含：

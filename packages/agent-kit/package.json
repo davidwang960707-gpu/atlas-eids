@@ -1,9 +1,11 @@
 {
   "name": "@atlas-eids/agent-kit",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Design knowledge, planning and validation runtime for Atlas EIDS coding agents",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -15,17 +17,22 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@atlas-eids/core": "0.2.0-beta.2"
+    "@atlas-eids/core": "0.2.0-beta.3",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/davidwang960707-gpu/atlas-eids.git"
   },
   "homepage": "https://davidwang960707-gpu.github.io/atlas-eids/",
-  "bugs": { "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues" }
+  "bugs": {
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues"
+  }
 }

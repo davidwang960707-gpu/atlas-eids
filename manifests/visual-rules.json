@@ -1,14 +1,53 @@
 {
   "schemaVersion": 1,
   "designSystem": "Atlas EIDS",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "rules": {
-    "contractVersion": "0.2.0-beta.2",
+    "contractVersion": "0.2.0-beta.3",
     "maxContentRadius": 8,
     "tableRowHeight": {
       "compact": 36,
       "standard": 42,
       "comfortable": 50
+    },
+    "typography": {
+      "micro": {
+        "size": 10,
+        "allowedFor": [
+          "badge-count",
+          "non-reading-indicator"
+        ]
+      },
+      "caption": 12,
+      "body": 14,
+      "headingSm": 16,
+      "headingMd": 18,
+      "headingLg": 20,
+      "metric": 26,
+      "minimumReadable": 12
+    },
+    "spacing": {
+      "base": 4,
+      "scale": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        32,
+        48
+      ]
+    },
+    "pageComposition": {
+      "contentInsets": [
+        16,
+        24
+      ],
+      "maxPrimaryActionsPerRegion": 1,
+      "secondaryPanelMinWidth": 320,
+      "preserveFunctionsAcrossBreakpoints": true,
+      "clearDependentContextOnEmpty": true
     },
     "orbAllowedContexts": [
       "ai-assistant",
@@ -38,6 +77,10 @@
     "Living Orb 使用正式 AtlasOrb 或共享多层结构，禁止用单层渐变圆球近似。",
     "组件卡片圆角不超过 8px，表单标签位于输入上方。",
     "标准数据表行高 42px，筛选、表格和分页共享内容基线。",
+    "正文阅读字号不低于 12px；页面标题、区块标题、正文和辅助信息遵循 20/16/14/12px 层级。",
+    "页面间距遵循 4px 基线与 4/8/12/16/20/24/32/48px 尺度，业务样式不得随机发明间距。",
+    "每个任务区域最多一个主操作；次级面板不得与主任务争夺视觉层级。",
+    "响应式适配必须保留业务功能；空态、错误态和筛选结果要同步清理或恢复依赖上下文。",
     "只使用语义 Design Tokens，不在业务组件中硬编码品牌色。",
     "React 与 Vue 保持 API 语义、视觉状态和无障碍行为一致。",
     "页面必须经过构建、键盘、A11y、交互和桌面/移动视觉检查。"

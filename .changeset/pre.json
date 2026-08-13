@@ -18,9 +18,13 @@
     "@atlas-eids/react": "0.2.0-dev.0",
     "@atlas-eids/tokens": "0.2.0-dev.0",
     "@atlas-eids/vue": "0.2.0-dev.0",
-    "@atlas-eids/web-agent": "0.2.0-dev.0"
+    "@atlas-eids/web-agent": "0.2.0-dev.0",
+    "@atlas-eids/agent-kit": "0.2.0-beta.2",
+    "@atlas-eids/mcp": "0.2.0-beta.2"
   },
   "changesets": [
+    "complete-application-frameworks",
+    "dtcg-headless-ai-beta",
     "future-enterprise-beta",
     "living-orb-storybook-beta"
   ]

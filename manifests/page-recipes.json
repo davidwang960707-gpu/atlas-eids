@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "designSystem": "Atlas EIDS",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "patterns": [
     {
       "id": "workbench",
@@ -22,6 +22,37 @@
         "AtlasStatistic",
         "AtlasDataTable",
         "AtlasAlert"
+      ],
+      "primaryTask": "在一个入口判断今天最重要的事项并立即开始处理。",
+      "primaryAction": "处理首要待办",
+      "secondaryRegions": [
+        "关键指标",
+        "消息与业务动态"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "personalized-empty",
+        "stale-data"
+      ],
+      "responsiveContract": [
+        "窄屏先展示待办，再展示指标与动态",
+        "应用入口保持可搜索且不缩成不可读图标墙",
+        "高优先级提醒和主操作始终可见"
+      ],
+      "informationPriority": [
+        "待办与风险",
+        "关键指标",
+        "应用入口",
+        "业务动态"
+      ],
+      "completionCriteria": [
+        "用户能进入首要待办",
+        "指标标明口径和更新时间"
       ]
     },
     {
@@ -46,6 +77,38 @@
         "AtlasObjectCell",
         "AtlasStatusTag",
         "AtlasRowActions"
+      ],
+      "primaryTask": "快速定位、比较并处理业务对象。",
+      "primaryAction": "新建对象",
+      "secondaryRegions": [
+        "筛选条件",
+        "批量操作与分页"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "filtered-empty",
+        "partial-selection",
+        "server-error"
+      ],
+      "responsiveContract": [
+        "列按业务优先级降级，操作列不得消失",
+        "窄屏使用对象摘要加详情 Drawer",
+        "筛选和选择状态跨分页保持可解释"
+      ],
+      "informationPriority": [
+        "对象身份",
+        "核心状态",
+        "关键指标",
+        "更新时间与操作"
+      ],
+      "completionCriteria": [
+        "筛选、选择和分页形成闭环",
+        "行操作可通过键盘完成"
       ]
     },
     {
@@ -65,6 +128,37 @@
         "AtlasTabs",
         "AtlasCard",
         "AtlasPagination"
+      ],
+      "primaryTask": "按条件浏览并选择一个业务对象。",
+      "primaryAction": "新建对象",
+      "secondaryRegions": [
+        "分类与筛选",
+        "分页与批量选择"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "filtered-empty",
+        "selected"
+      ],
+      "responsiveContract": [
+        "卡片由多列稳定降为单列",
+        "卡片主操作和状态在窄屏仍可见",
+        "长标题不能改变操作位置"
+      ],
+      "informationPriority": [
+        "对象名称与状态",
+        "摘要",
+        "关键元数据",
+        "次级操作"
+      ],
+      "completionCriteria": [
+        "用户可筛选并打开对象",
+        "卡片选择状态清晰可撤销"
       ]
     },
     {
@@ -85,6 +179,37 @@
         "AtlasBreadcrumb",
         "AtlasTag",
         "AtlasTabs"
+      ],
+      "primaryTask": "理解对象当前状态并完成最相关的后续操作。",
+      "primaryAction": "编辑对象",
+      "secondaryRegions": [
+        "关联数据",
+        "活动与版本记录"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "not-found",
+        "read-only"
+      ],
+      "responsiveContract": [
+        "摘要和状态先于分组详情",
+        "关联信息在窄屏转为 Tabs 或纵向区块",
+        "固定操作区不能遮挡正文"
+      ],
+      "informationPriority": [
+        "对象身份和状态",
+        "关键属性",
+        "关联数据",
+        "操作历史"
+      ],
+      "completionCriteria": [
+        "关键字段可扫描",
+        "权限不足时明确可用操作"
       ]
     },
     {
@@ -106,6 +231,39 @@
         "AtlasInput",
         "AtlasSelect",
         "AtlasButton"
+      ],
+      "primaryTask": "准确完成分步录入并安全提交。",
+      "primaryAction": "保存并继续",
+      "secondaryRegions": [
+        "步骤导航",
+        "校验摘要与确认"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "validation-error",
+        "saving",
+        "unsaved-changes",
+        "submitted"
+      ],
+      "responsiveContract": [
+        "字段单列化且标签不截断",
+        "错误摘要与首个错误建立焦点跳转",
+        "移动端主操作保持可达但不遮挡字段"
+      ],
+      "informationPriority": [
+        "当前步骤任务",
+        "必填字段",
+        "校验与帮助",
+        "次级字段"
+      ],
+      "completionCriteria": [
+        "错误可定位和恢复",
+        "提交前提供最终确认"
       ]
     },
     {
@@ -127,6 +285,38 @@
         "AtlasStatistic",
         "AtlasSegmentedControl",
         "AtlasTable"
+      ],
+      "primaryTask": "识别指标变化、原因和需要采取的行动。",
+      "primaryAction": "导出分析",
+      "secondaryRegions": [
+        "维度筛选",
+        "明细与口径说明"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "no-data",
+        "partial-data",
+        "stale-data"
+      ],
+      "responsiveContract": [
+        "先保留核心指标与趋势，再重排图表和明细",
+        "图例不得依赖颜色单独传达",
+        "明细表在窄屏保留关键列和钻取入口"
+      ],
+      "informationPriority": [
+        "异常与结论",
+        "核心指标",
+        "趋势和分布",
+        "明细与口径"
+      ],
+      "completionCriteria": [
+        "结论可追溯到明细",
+        "图表具备文本替代"
       ]
     },
     {
@@ -146,6 +336,39 @@
         "AtlasTabs",
         "AtlasInput",
         "AtlasSwitch"
+      ],
+      "primaryTask": "查找、修改并确认系统配置。",
+      "primaryAction": "保存设置",
+      "secondaryRegions": [
+        "设置导航",
+        "变更影响说明"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "dirty",
+        "saving",
+        "save-success",
+        "conflict"
+      ],
+      "responsiveContract": [
+        "设置导航在窄屏转为选择器或 Drawer",
+        "保存状态与未保存提示持续可见",
+        "危险设置与普通设置分区"
+      ],
+      "informationPriority": [
+        "当前配置组",
+        "关键设置",
+        "影响与风险",
+        "高级设置"
+      ],
+      "completionCriteria": [
+        "变更可保存和撤销",
+        "冲突时不覆盖远端配置"
       ]
     },
     {
@@ -165,6 +388,39 @@
         "AtlasSteps",
         "AtlasAlert",
         "AtlasDialog"
+      ],
+      "primaryTask": "在充分理解业务事实和风险后作出审批决定。",
+      "primaryAction": "批准",
+      "secondaryRegions": [
+        "审批轨迹",
+        "附件与风险提示"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "pending",
+        "approved",
+        "rejected",
+        "withdrawn"
+      ],
+      "responsiveContract": [
+        "业务摘要和风险先于审批历史",
+        "批准与拒绝保持视觉区分",
+        "移动端操作区不遮挡审批依据"
+      ],
+      "informationPriority": [
+        "审批对象与风险",
+        "关键业务数据",
+        "审批意见",
+        "历史记录"
+      ],
+      "completionCriteria": [
+        "决定必须附带身份和时间",
+        "高风险操作二次确认"
       ]
     },
     {
@@ -184,6 +440,38 @@
         "AtlasCard",
         "AtlasAvatar",
         "AtlasTag"
+      ],
+      "primaryTask": "判断任务分布并推动任务进入下一状态。",
+      "primaryAction": "新建任务",
+      "secondaryRegions": [
+        "筛选与分组",
+        "任务详情"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "dragging",
+        "drop-denied",
+        "updating"
+      ],
+      "responsiveContract": [
+        "窄屏按泳道分页或切换，不压缩成不可读列",
+        "拖拽之外提供键盘移动菜单",
+        "任务详情使用 Drawer 保留看板上下文"
+      ],
+      "informationPriority": [
+        "阻塞和逾期任务",
+        "当前泳道",
+        "负责人和截止时间",
+        "次级标签"
+      ],
+      "completionCriteria": [
+        "状态变化可撤销",
+        "拖拽失败恢复原位置"
       ]
     },
     {
@@ -203,6 +491,38 @@
         "AtlasSegmentedControl",
         "AtlasTag",
         "AtlasDrawer"
+      ],
+      "primaryTask": "查看资源时间冲突并安排日程。",
+      "primaryAction": "新建日程",
+      "secondaryRegions": [
+        "日期与视图切换",
+        "日程详情"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "conflict",
+        "timezone-warning",
+        "saving"
+      ],
+      "responsiveContract": [
+        "窄屏切换为日程列表或单日视图",
+        "冲突和全天事件不依赖颜色单独表达",
+        "详情在 Drawer 中可编辑"
+      ],
+      "informationPriority": [
+        "冲突与即将开始",
+        "日期时间",
+        "参与者与资源",
+        "备注"
+      ],
+      "completionCriteria": [
+        "时间与时区明确",
+        "冲突可被识别和解决"
       ]
     },
     {
@@ -222,6 +542,39 @@
         "AtlasSearchInput",
         "AtlasTable",
         "AtlasDrawer"
+      ],
+      "primaryTask": "在目录中定位、预览和管理文件。",
+      "primaryAction": "上传文件",
+      "secondaryRegions": [
+        "目录树",
+        "预览与版本信息"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "uploading",
+        "upload-failed",
+        "preview-unavailable",
+        "version-conflict"
+      ],
+      "responsiveContract": [
+        "目录树在窄屏转为 Drawer",
+        "文件名、状态和主要操作不可隐藏",
+        "预览不可用时保留下载和元数据"
+      ],
+      "informationPriority": [
+        "文件身份与状态",
+        "目录位置",
+        "版本和修改人",
+        "预览与操作"
+      ],
+      "completionCriteria": [
+        "上传可暂停重试",
+        "权限和文件风险明确"
       ]
     },
     {
@@ -244,6 +597,39 @@
         "AtlasAIMessageBubble",
         "AtlasAIComposer",
         "AtlasCitationList"
+      ],
+      "primaryTask": "基于明确上下文获得可验证的 AI 回答。",
+      "primaryAction": "发送问题",
+      "secondaryRegions": [
+        "会话历史",
+        "引用与工具轨迹"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "streaming",
+        "stopped",
+        "tool-approval",
+        "citation-missing"
+      ],
+      "responsiveContract": [
+        "消息流优先，会话历史在窄屏转 Drawer",
+        "Composer 始终可达且不遮挡回答",
+        "引用和工具结果可展开查看"
+      ],
+      "informationPriority": [
+        "当前回答与人工控制",
+        "引用依据",
+        "工具状态",
+        "会话历史"
+      ],
+      "completionCriteria": [
+        "回答可停止重试",
+        "关键结论有来源或不确定性提示"
       ]
     },
     {
@@ -265,6 +651,39 @@
         "AtlasAIMessageBubble",
         "AtlasAIComposer",
         "AtlasCitationList"
+      ],
+      "primaryTask": "在不离开当前业务上下文的情况下获得 AI 辅助。",
+      "primaryAction": "发送上下文问题",
+      "secondaryRegions": [
+        "当前页面上下文",
+        "引用与应用结果"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "streaming",
+        "context-stale",
+        "apply-preview",
+        "tool-approval"
+      ],
+      "responsiveContract": [
+        "窄屏 AI 面板转为全屏 Drawer",
+        "关闭助手后业务页面状态不丢失",
+        "应用结果前提供差异预览"
+      ],
+      "informationPriority": [
+        "当前业务任务",
+        "AI 回答",
+        "引用和工具",
+        "会话历史"
+      ],
+      "completionCriteria": [
+        "上下文范围可见",
+        "生成结果需确认后应用"
       ]
     },
     {
@@ -286,6 +705,41 @@
         "AtlasOrb",
         "AtlasExecutionPlan",
         "AtlasToolCallCard"
+      ],
+      "primaryTask": "定义目标、监督执行并对高风险步骤作出决定。",
+      "primaryAction": "启动任务",
+      "secondaryRegions": [
+        "执行计划",
+        "工具调用与结果"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "planning",
+        "running",
+        "waiting-approval",
+        "paused",
+        "failed",
+        "completed"
+      ],
+      "responsiveContract": [
+        "目标和当前步骤始终可见",
+        "工具详情在窄屏使用 Drawer",
+        "停止与审批操作保持可达"
+      ],
+      "informationPriority": [
+        "当前状态与人工控制",
+        "执行计划",
+        "工具证据",
+        "最终结果"
+      ],
+      "completionCriteria": [
+        "每一步可追踪",
+        "高风险工具未经审批不得执行"
       ]
     },
     {
@@ -307,6 +761,39 @@
         "AtlasTabs",
         "AtlasAlert",
         "AtlasAIFeedback"
+      ],
+      "primaryTask": "比较生成内容并决定接受、拒绝或局部应用。",
+      "primaryAction": "应用已选变更",
+      "secondaryRegions": [
+        "生成依据",
+        "反馈与版本记录"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "generating",
+        "diff-ready",
+        "partial-selection",
+        "apply-conflict"
+      ],
+      "responsiveContract": [
+        "窄屏使用逐段差异而非并排压缩",
+        "接受和拒绝可逐项操作",
+        "应用冲突时保留原内容"
+      ],
+      "informationPriority": [
+        "差异和风险",
+        "原文与生成内容",
+        "引用依据",
+        "版本历史"
+      ],
+      "completionCriteria": [
+        "所有变更可逐项确认",
+        "应用后可撤销"
       ]
     },
     {
@@ -328,6 +815,39 @@
         "AtlasStatistic",
         "AtlasProgress",
         "AtlasToolCallCard"
+      ],
+      "primaryTask": "发现高风险 AI 行为并追溯、处置和审计。",
+      "primaryAction": "创建处置任务",
+      "secondaryRegions": [
+        "质量与成本指标",
+        "调用和审批记录"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "risk-detected",
+        "investigating",
+        "resolved",
+        "exporting"
+      ],
+      "responsiveContract": [
+        "风险列表先于汇总图表",
+        "版本和风险标签保持单行",
+        "窄屏详情使用 Drawer 并保留处置操作"
+      ],
+      "informationPriority": [
+        "高风险事件",
+        "输入输出与工具证据",
+        "责任主体",
+        "趋势指标"
+      ],
+      "completionCriteria": [
+        "事件可追溯到完整 Trace",
+        "处置记录不可静默覆盖"
       ]
     },
     {
@@ -348,6 +868,39 @@
         "AtlasAIComposer",
         "AtlasAIMessageBubble",
         "AtlasCitationList"
+      ],
+      "primaryTask": "提出问题并从可信来源定位答案。",
+      "primaryAction": "搜索并生成回答",
+      "secondaryRegions": [
+        "引用来源",
+        "关联业务对象"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "searching",
+        "streaming",
+        "no-authorized-source",
+        "citation-missing"
+      ],
+      "responsiveContract": [
+        "答案和来源按顺序纵向阅读",
+        "来源筛选在窄屏转 Drawer",
+        "无授权来源时禁止伪造回答"
+      ],
+      "informationPriority": [
+        "答案与置信提示",
+        "引用来源",
+        "关联对象",
+        "检索轨迹"
+      ],
+      "completionCriteria": [
+        "结论可打开原始来源",
+        "无证据时明确说明"
       ]
     },
     {
@@ -368,6 +921,39 @@
         "AtlasInput",
         "AtlasAIMessageBubble",
         "AtlasCitationList"
+      ],
+      "primaryTask": "审查 AI 推荐值并安全完成业务表单。",
+      "primaryAction": "确认并提交",
+      "secondaryRegions": [
+        "推荐依据",
+        "修改差异"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "generating",
+        "recommendation-ready",
+        "validation-error",
+        "stale-recommendation"
+      ],
+      "responsiveContract": [
+        "推荐说明紧邻对应字段",
+        "窄屏不把依据放到不可发现侧栏",
+        "用户修改后标记推荐已过期"
+      ],
+      "informationPriority": [
+        "必填字段与异常",
+        "推荐值",
+        "生成依据",
+        "次级字段"
+      ],
+      "completionCriteria": [
+        "AI 不自动提交",
+        "推荐值可逐字段接受或撤销"
       ]
     },
     {
@@ -388,6 +974,39 @@
         "AtlasAIComposer",
         "AtlasStatistic",
         "AtlasCitationList"
+      ],
+      "primaryTask": "用自然语言分析数据并验证结论与明细。",
+      "primaryAction": "运行分析",
+      "secondaryRegions": [
+        "分析过程",
+        "图表与明细"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "querying",
+        "partial-result",
+        "data-stale",
+        "citation-missing"
+      ],
+      "responsiveContract": [
+        "结论先于图表，明细可下钻",
+        "窄屏图表不横向挤压标签",
+        "生成过程和取消操作保持可见"
+      ],
+      "informationPriority": [
+        "结论与异常",
+        "指标和图表",
+        "查询与口径",
+        "明细证据"
+      ],
+      "completionCriteria": [
+        "结论可回到数据明细",
+        "使用的数据范围和时间可见"
       ]
     },
     {
@@ -407,6 +1026,39 @@
         "AtlasTextarea",
         "AtlasAIComposer",
         "AtlasCitationList"
+      ],
+      "primaryTask": "编辑文档并可控地使用 AI 生成、改写和引用。",
+      "primaryAction": "保存文档",
+      "secondaryRegions": [
+        "AI 指令与预览",
+        "引用和版本历史"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "generating",
+        "unsaved-changes",
+        "version-conflict",
+        "citation-missing"
+      ],
+      "responsiveContract": [
+        "编辑区保持主区域",
+        "窄屏 AI 面板转为 Drawer",
+        "生成结果先预览再写入正文"
+      ],
+      "informationPriority": [
+        "正文编辑",
+        "未保存和冲突状态",
+        "AI 建议",
+        "引用与版本"
+      ],
+      "completionCriteria": [
+        "生成内容可撤销",
+        "引用随内容保存"
       ]
     },
     {
@@ -427,6 +1079,39 @@
         "AtlasAlert",
         "AtlasCitationList",
         "AtlasAIFeedback"
+      ],
+      "primaryTask": "理解推荐、依据和风险后作出人工决策。",
+      "primaryAction": "确认决策",
+      "secondaryRegions": [
+        "推荐依据",
+        "替代方案与风险"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "calculating",
+        "recommendation-ready",
+        "insufficient-evidence",
+        "expired"
+      ],
+      "responsiveContract": [
+        "推荐与风险同时可见",
+        "窄屏按决策、依据、替代方案排序",
+        "确认操作不与重新生成混为同级"
+      ],
+      "informationPriority": [
+        "推荐和风险",
+        "关键依据",
+        "替代方案",
+        "模型与数据说明"
+      ],
+      "completionCriteria": [
+        "决策由人确认",
+        "记录采用或拒绝原因"
       ]
     },
     {
@@ -447,6 +1132,40 @@
         "AtlasTable",
         "AtlasAIComposer",
         "AtlasExecutionPlan"
+      ],
+      "primaryTask": "预览并批准 AI 对一批数据执行一致操作。",
+      "primaryAction": "执行批处理",
+      "secondaryRegions": [
+        "影响范围",
+        "执行计划与失败项"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "previewing",
+        "waiting-approval",
+        "running",
+        "partial-failure",
+        "completed"
+      ],
+      "responsiveContract": [
+        "影响数量和风险始终可见",
+        "窄屏批量明细可分页查看",
+        "停止和重试不隐藏"
+      ],
+      "informationPriority": [
+        "影响范围与风险",
+        "指令与预览",
+        "执行进度",
+        "失败明细"
+      ],
+      "completionCriteria": [
+        "执行前必须预览",
+        "部分失败可单独重试和导出"
       ]
     },
     {
@@ -468,6 +1187,40 @@
         "AtlasTable",
         "AtlasMCPServerPicker",
         "AtlasTag"
+      ],
+      "primaryTask": "配置 Agent 的模型、Skills、工具和权限边界。",
+      "primaryAction": "新建 Agent",
+      "secondaryRegions": [
+        "能力配置",
+        "版本与运行状态"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "draft",
+        "validating",
+        "published",
+        "disabled",
+        "permission-conflict"
+      ],
+      "responsiveContract": [
+        "Agent 列表与配置详情在窄屏转主从导航",
+        "权限风险先于高级参数",
+        "发布和停用操作保持明确区分"
+      ],
+      "informationPriority": [
+        "身份与发布状态",
+        "权限和工具",
+        "模型与 Skills",
+        "版本记录"
+      ],
+      "completionCriteria": [
+        "发布前完成权限校验",
+        "变更具备版本和审计记录"
       ]
     },
     {
@@ -482,15 +1235,58 @@
         "权限感知"
       ],
       "regions": [
-        "数据源",
-        "解析",
-        "权限",
-        "评测"
+        "页面上下文",
+        "知识空间与筛选",
+        "知识文档主任务",
+        "选中详情",
+        "上下文 AI 助手",
+        "状态反馈"
       ],
       "recommendedComponents": [
+        "AtlasPageHeader",
+        "AtlasDataTable",
+        "AtlasTableToolbar",
+        "AtlasObjectCell",
+        "AtlasStatusTag",
+        "AtlasRowActions",
+        "AtlasPanel",
+        "AtlasAIComposer",
         "AtlasKnowledgeSourcePicker",
         "AtlasRetrievalTrace",
         "AtlasCitationList"
+      ],
+      "primaryTask": "管理知识文档、同步状态与权限，并验证检索结果。",
+      "primaryAction": "导入知识源",
+      "secondaryRegions": [
+        "选中文档详情",
+        "上下文 AI 检索助手"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "syncing",
+        "selected",
+        "filtered-empty",
+        "index-failed"
+      ],
+      "responsiveContract": [
+        "主表保留筛选、选择和行操作",
+        "低于 720px 时详情与 AI 助手转为纵向区块或 Drawer",
+        "空筛选结果清理文档详情、回答与引用"
+      ],
+      "informationPriority": [
+        "知识源状态和权限",
+        "文档主列表",
+        "选中详情",
+        "检索回答与引用"
+      ],
+      "completionCriteria": [
+        "同步失败可重试",
+        "回答受知识权限约束并可追溯"
       ]
     },
     {
@@ -512,6 +1308,39 @@
         "AtlasStatistic",
         "AtlasProgress",
         "AtlasTable"
+      ],
+      "primaryTask": "监控 AI 调用健康、成本和异常并快速定位原因。",
+      "primaryAction": "创建告警规则",
+      "secondaryRegions": [
+        "趋势和预算",
+        "调用 Trace 明细"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "live",
+        "delayed",
+        "budget-warning",
+        "provider-outage"
+      ],
+      "responsiveContract": [
+        "异常和预算先于总调用量",
+        "窄屏图表转为单列并保留时间范围",
+        "Trace 明细通过 Drawer 打开"
+      ],
+      "informationPriority": [
+        "告警与预算",
+        "成功率和耗时",
+        "调用趋势",
+        "Trace 明细"
+      ],
+      "completionCriteria": [
+        "异常可定位到 Provider 和 Trace",
+        "指标标明采样时间"
       ]
     },
     {
@@ -531,6 +1360,40 @@
         "AtlasTable",
         "AtlasProgress",
         "AtlasCitationList"
+      ],
+      "primaryTask": "用稳定测试集比较模型和提示词质量。",
+      "primaryAction": "运行评测",
+      "secondaryRegions": [
+        "评分维度",
+        "失败样本与证据"
+      ],
+      "requiredStates": [
+        "loading",
+        "empty",
+        "error-with-retry",
+        "permission-denied",
+        "disabled",
+        "long-content",
+        "queued",
+        "running",
+        "partial-result",
+        "failed",
+        "completed"
+      ],
+      "responsiveContract": [
+        "模型对比保持同一评分基线",
+        "窄屏按模型切换而非压缩对比列",
+        "失败样本可逐条打开"
+      ],
+      "informationPriority": [
+        "总评分和风险",
+        "维度对比",
+        "失败样本",
+        "运行配置"
+      ],
+      "completionCriteria": [
+        "结果关联测试集版本",
+        "评分可回到原始输入输出"
       ]
     }
   ]

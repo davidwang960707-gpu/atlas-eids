@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0-beta.3",
+  "collections": {
+    "Global": {
+      "modes": [
+        "Value"
+      ],
+      "variableCount": 74
+    },
+    "Semantic": {
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variableCount": 29
+    },
+    "Component": {
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variableCount": 15
+    },
+    "State": {
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variableCount": 7
+    }
+  },
+  "componentCount": 67,
+  "linkedNodeCount": 0,
+  "accountGate": "Live Variables, Team Library publication and Code Connect require an editable Figma library and eligible plan."
+}

@@ -1,5 +1,12 @@
 # @atlas-eids/adapter-opentiny-vue
 
+## 0.2.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @atlas-eids/tokens@0.2.0-beta.3
+
 ## 0.2.0-beta.2
 
 ### Patch Changes

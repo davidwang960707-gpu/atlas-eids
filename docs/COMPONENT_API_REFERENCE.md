@@ -9,7 +9,7 @@
 | `AtlasInput` | 操作与输入 | Yes | Yes | 48 |
 | `AtlasTextarea` | 操作与输入 | Yes | Yes | 48 |
 | `AtlasSelect` | 操作与输入 | Yes | Yes | 48 |
-| `AtlasCheckbox` | 操作与输入 | Yes | Yes | 6 |
+| `AtlasCheckbox` | 操作与输入 | Yes | Yes | 8 |
 | `AtlasRadioGroup` | 操作与输入 | Yes | Yes | 5 |
 | `AtlasSwitch` | 操作与输入 | Yes | Yes | 4 |
 | `AtlasDateInput` | 操作与输入 | Yes | Yes | 48 |
@@ -38,8 +38,18 @@
 | `AtlasTooltip` | 反馈与浮层 | Yes | Yes | 2 |
 | `AtlasEmpty` | 反馈与浮层 | Yes | Yes | 3 |
 | `AtlasSkeleton` | 反馈与浮层 | Yes | Yes | 2 |
-| `AtlasDialog` | 反馈与浮层 | Yes | Yes | 5 |
-| `AtlasDrawer` | 反馈与浮层 | Yes | Yes | 6 |
+| `AtlasDialog` | 反馈与浮层 | Yes | Yes | 6 |
+| `AtlasDrawer` | 反馈与浮层 | Yes | Yes | 7 |
+| `AtlasForm` | 表单与输入 | Yes | Yes | 48 |
+| `AtlasCombobox` | 表单与输入 | Yes | Yes | 10 |
+| `AtlasDateRange` | 表单与输入 | Yes | Yes | 6 |
+| `AtlasUpload` | 表单与输入 | Yes | Yes | 9 |
+| `AtlasDataGrid` | 企业组合 | Yes | Yes | 18 |
+| `AtlasTree` | 导航 | Yes | Yes | 6 |
+| `AtlasMenu` | 导航 | Yes | Yes | 5 |
+| `AtlasNotification` | 反馈与浮层 | Yes | Yes | 2 |
+| `AtlasNotificationCenter` | 反馈与浮层 | Yes | Yes | 3 |
+| `AtlasAppLayout` | 企业组合 | Yes | Yes | 8 |
 | `AtlasOrb` | AI 原生 | Yes | Yes | 48 |
 | `AtlasAIComposer` | AI 原生 | Yes | Yes | 7 |
 | `AtlasExecutionPlan` | AI 原生 | Yes | Yes | 4 |
@@ -55,6 +65,12 @@
 | `AtlasKnowledgeSourcePicker` | AI 原生 | Yes | Yes | 4 |
 | `AtlasRetrievalTrace` | AI 原生 | Yes | Yes | 2 |
 | `AtlasToolCallCard` | AI 原生 | Yes | Yes | 4 |
+| `AtlasAIArtifactRenderer` | AI 原生 | Yes | Yes | 3 |
+| `AtlasAIStructuredInput` | AI 原生 | Yes | Yes | 6 |
+| `AtlasAIProvenance` | AI 原生 | Yes | Yes | 2 |
+| `AtlasGenUIRenderer` | AI 原生 | Yes | Yes | 2 |
+| `AtlasMCPToolPanel` | AI 原生 | Yes | Yes | 5 |
+| `AtlasCrossPageAgent` | AI 原生 | Yes | Yes | 8 |
 
 ## AtlasProvider
 
@@ -299,6 +315,8 @@
 | `hideLabel` | `boolean` | Yes |
 | `onChange` | `(checked: boolean) => void` | No |
 | `disabled` | `boolean` | Yes |
+| `name` | `string` | Yes |
+| `value` | `string` | Yes |
 
 ## AtlasRadioGroup
 
@@ -969,6 +987,7 @@
 | `children` | `ReactNode` | No |
 | `onClose` | `() => void` | No |
 | `footer` | `ReactNode` | Yes |
+| `closeOnBackdrop` | `boolean` | Yes |
 
 ## AtlasDrawer
 
@@ -982,6 +1001,192 @@
 | `onClose` | `() => void` | No |
 | `width` | `number` | Yes |
 | `footer` | `ReactNode` | Yes |
+| `closeOnBackdrop` | `boolean` | Yes |
+
+## AtlasForm
+
+统一表单提交、字段校验、错误摘要与焦点回跳。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `schema` | `Record<string, AtlasFormRule[]>` | Yes |
+| `errors` | `Record<string, string>` | Yes |
+| `busy` | `boolean` | Yes |
+| `onSubmit` | `(values: Record<string, AtlasFieldValue>) => void \| Promise<void>` | No |
+| `children` | `ReactNode` | No |
+| `color` | `string` | Yes |
+| `hidden` | `boolean` | Yes |
+| `onChange` | `ChangeEventHandler<HTMLFormElement, Element>` | Yes |
+| `defaultChecked` | `boolean` | Yes |
+| `defaultValue` | `string \| number \| readonly string[]` | Yes |
+| `suppressContentEditableWarning` | `boolean` | Yes |
+| `suppressHydrationWarning` | `boolean` | Yes |
+| `accessKey` | `string` | Yes |
+| `autoCapitalize` | `"off" \| "none" \| "on" \| "sentences" \| "words" \| "characters" \| (string & {})` | Yes |
+| `autoFocus` | `boolean` | Yes |
+| `className` | `string` | Yes |
+| `contentEditable` | `Booleanish \| "inherit" \| "plaintext-only"` | Yes |
+| `contextMenu` | `string` | Yes |
+| `dir` | `string` | Yes |
+| `draggable` | `Booleanish` | Yes |
+| `enterKeyHint` | `"enter" \| "done" \| "go" \| "next" \| "previous" \| "search" \| "send"` | Yes |
+| `id` | `string` | Yes |
+| `lang` | `string` | Yes |
+| `nonce` | `string` | Yes |
+| `slot` | `string` | Yes |
+| `spellCheck` | `Booleanish` | Yes |
+| `style` | `CSSProperties` | Yes |
+| `tabIndex` | `number` | Yes |
+| `title` | `string` | Yes |
+| `translate` | `"yes" \| "no"` | Yes |
+| `radioGroup` | `string` | Yes |
+| `role` | `AriaRole` | Yes |
+| `about` | `string` | Yes |
+| `content` | `string` | Yes |
+| `datatype` | `string` | Yes |
+| `inlist` | `any` | Yes |
+| `prefix` | `string` | Yes |
+| `property` | `string` | Yes |
+| `rel` | `string` | Yes |
+| `resource` | `string` | Yes |
+| `rev` | `string` | Yes |
+| `typeof` | `string` | Yes |
+| `vocab` | `string` | Yes |
+| `autoCorrect` | `string` | Yes |
+| `autoSave` | `string` | Yes |
+| `itemProp` | `string` | Yes |
+| `itemScope` | `boolean` | Yes |
+| `itemType` | `string` | Yes |
+
+## AtlasCombobox
+
+支持过滤、键盘活动项和空状态的可访问组合框。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `label` | `string` | No |
+| `options` | `AtlasOption[]` | No |
+| `value` | `string` | Yes |
+| `query` | `string` | Yes |
+| `placeholder` | `string` | Yes |
+| `loading` | `boolean` | Yes |
+| `error` | `string` | Yes |
+| `disabled` | `boolean` | Yes |
+| `onQueryChange` | `(query: string) => void` | Yes |
+| `onChange` | `(value: string) => void` | No |
+
+## AtlasDateRange
+
+保持起止日期关联约束和窄屏完整性的日期范围输入。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `value` | `AtlasDateRangeValue` | No |
+| `onChange` | `(value: AtlasDateRangeValue) => void` | No |
+| `label` | `string` | Yes |
+| `min` | `string` | Yes |
+| `max` | `string` | Yes |
+| `disabled` | `boolean` | Yes |
+
+## AtlasUpload
+
+提供拖放选择、前置校验、上传进度、失败重试和移除。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `files` | `AtlasUploadFileContract[]` | Yes |
+| `accept` | `string[]` | Yes |
+| `maxSize` | `number` | Yes |
+| `multiple` | `boolean` | Yes |
+| `disabled` | `boolean` | Yes |
+| `onAdd` | `(files: AtlasUploadFileContract[], nativeFiles: File[]) => void` | No |
+| `onRemove` | `(id: string) => void` | Yes |
+| `onRetry` | `(id: string) => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasDataGrid
+
+支持筛选、排序、分页和窗口化的大数据企业网格。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `columns` | `AtlasDataGridColumn<Row>[]` | No |
+| `rows` | `Row[]` | No |
+| `query` | `string` | Yes |
+| `page` | `number` | Yes |
+| `pageSize` | `number` | Yes |
+| `totalRows` | `number` | Yes |
+| `virtualize` | `boolean` | Yes |
+| `viewportHeight` | `number` | Yes |
+| `onPageChange` | `(page: number) => void` | Yes |
+| `onQueryChange` | `(query: string) => void` | Yes |
+| `onSelect` | `(ids: Array<string \| number>) => void` | Yes |
+| `caption` | `string` | No |
+| `selectedIds` | `(string \| number)[]` | Yes |
+| `loading` | `boolean` | Yes |
+| `sortKey` | `string \| keyof Row` | Yes |
+| `sortDirection` | `AtlasSortDirection` | Yes |
+| `onSort` | `(key: string \| keyof Row, direction: AtlasSortDirection) => void` | Yes |
+| `labels` | `Partial<AtlasTableLabels>` | Yes |
+
+## AtlasTree
+
+展开控制与节点选择分离的可访问层级导航。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `nodes` | `AtlasTreeNodeContract[]` | No |
+| `expandedIds` | `string[]` | No |
+| `selectedId` | `string` | Yes |
+| `onExpandedChange` | `(ids: string[]) => void` | No |
+| `onSelect` | `(id: string) => void` | No |
+| `label` | `string` | Yes |
+
+## AtlasMenu
+
+支持水平或垂直方向键导航的企业菜单。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasDropdownItem[]` | No |
+| `activeId` | `string` | Yes |
+| `onSelect` | `(id: string) => void` | No |
+| `label` | `string` | Yes |
+| `orientation` | `"horizontal" \| "vertical"` | Yes |
+
+## AtlasNotification
+
+使用正确 live region 语义反馈异步操作结果。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `notification` | `AtlasNotificationContract` | No |
+| `onDismiss` | `(id: string) => void` | Yes |
+
+## AtlasNotificationCenter
+
+在统一位置管理通知队列、堆叠和关闭行为。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `items` | `AtlasNotificationContract[]` | No |
+| `onDismiss` | `(id: string) => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasAppLayout
+
+包含顶部栏、主导航、内容和可选侧栏的响应式应用框架。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `brand` | `ReactNode` | No |
+| `navigation` | `ReactNode` | No |
+| `topbar` | `ReactNode` | Yes |
+| `children` | `ReactNode` | No |
+| `aside` | `ReactNode` | Yes |
+| `collapsed` | `boolean` | Yes |
+| `mobileNavigationOpen` | `boolean` | Yes |
+| `onNavigationToggle` | `(open: boolean) => void` | Yes |
 
 ## AtlasOrb
 
@@ -1279,3 +1484,71 @@
 | `onApprove` | `(id: string) => void` | Yes |
 | `onReject` | `(id: string) => void` | Yes |
 | `onRetry` | `(id: string) => void` | Yes |
+
+## AtlasAIArtifactRenderer
+
+安全渲染文本、代码、表格、图表、文件和 JSON 等 AI 结构化产物。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `artifact` | `AtlasAIArtifactContract` | No |
+| `renderers` | `Partial<Record<import("/Users/macbook/Desktop/AUI-UX/packages/core/dist/ai-native").AtlasAIArtifactType, (artifact: AtlasAIArtifactContract) => ReactNode>>` | Yes |
+| `actions` | `ReactNode` | Yes |
+
+## AtlasAIStructuredInput
+
+使用字段 Schema 为 AI 目标提供可校验、可重复的结构化参数。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `fields` | `AtlasAIStructuredFieldContract[]` | No |
+| `values` | `Record<string, AtlasFieldValue>` | No |
+| `onChange` | `(values: Record<string, AtlasFieldValue>) => void` | No |
+| `onSubmit` | `(values: Record<string, AtlasFieldValue>) => void` | No |
+| `busy` | `boolean` | Yes |
+| `submitLabel` | `string` | Yes |
+
+## AtlasAIProvenance
+
+展示模型、Provider、来源、策略、成本、Trace 与人工复核。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `provenance` | `AtlasAIProvenanceContract` | No |
+| `defaultOpen` | `boolean` | Yes |
+
+## AtlasGenUIRenderer
+
+验证并渲染白名单 GenUI/A2UI Schema，拒绝任意组件与脚本。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `schema` | `AtlasGenUINodeContract` | No |
+| `onAction` | `(actionId: string, node: AtlasGenUINodeContract) => void` | Yes |
+
+## AtlasMCPToolPanel
+
+检索、选择、授权和审批 MCP 工具，并显示 Server 与权限。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `tools` | `AtlasMCPToolContract[]` | No |
+| `selectedIds` | `string[]` | No |
+| `onChange` | `(ids: string[]) => void` | No |
+| `onApprove` | `(id: string) => void` | Yes |
+| `label` | `string` | Yes |
+
+## AtlasCrossPageAgent
+
+呈现 Agent 的跨页面路径、当前上下文、执行计划和人工控制。
+
+| Prop | Type | Optional |
+| --- | --- | --- |
+| `goal` | `string` | No |
+| `currentRoute` | `string` | No |
+| `routes` | `{ path: string; label: string; }[]` | No |
+| `steps` | `AtlasCrossPageStepContract[]` | No |
+| `status` | `"error" \| "idle" \| "thinking" \| "running"` | Yes |
+| `onNavigate` | `(path: string) => void` | No |
+| `onApprove` | `(id: string) => void` | Yes |
+| `onStop` | `() => void` | Yes |

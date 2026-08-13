@@ -1,0 +1,1560 @@
+{
+  "schemaVersion": "1.0.0",
+  "designSystem": "Atlas EIDS",
+  "version": "0.2.0-beta.3",
+  "variableSource": "figma/atlas-eids.variables.json",
+  "connectionPolicy": {
+    "publishedLibraryRequired": true,
+    "fakeNodeIdsForbidden": true,
+    "supportedFrameworks": [
+      "react",
+      "vue"
+    ],
+    "instructions": "Fill figmaNodeUrl only after the matching component is published in an editable Figma library, then generate framework Code Connect files."
+  },
+  "components": [
+    {
+      "name": "AtlasProvider",
+      "category": "foundation",
+      "figmaComponentName": "Atlas/Provider",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "theme",
+        "density",
+        "locale",
+        "children"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasProvider"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasProvider"
+        }
+      }
+    },
+    {
+      "name": "AtlasButton",
+      "category": "input",
+      "figmaComponentName": "Atlas/Button",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "intent",
+        "size",
+        "loading",
+        "disabled"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasButton"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasButton"
+        }
+      }
+    },
+    {
+      "name": "AtlasInput",
+      "category": "input",
+      "figmaComponentName": "Atlas/Input",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "hint",
+        "error",
+        "value"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasInput"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasInput"
+        }
+      }
+    },
+    {
+      "name": "AtlasForm",
+      "category": "input",
+      "figmaComponentName": "Atlas/Form",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "schema",
+        "errors",
+        "busy",
+        "onSubmit"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasForm"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasForm"
+        }
+      }
+    },
+    {
+      "name": "AtlasTextarea",
+      "category": "input",
+      "figmaComponentName": "Atlas/Textarea",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "hint",
+        "error",
+        "rows"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTextarea"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTextarea"
+        }
+      }
+    },
+    {
+      "name": "AtlasSelect",
+      "category": "input",
+      "figmaComponentName": "Atlas/Select",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "options",
+        "label",
+        "hint",
+        "value"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSelect"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSelect"
+        }
+      }
+    },
+    {
+      "name": "AtlasCombobox",
+      "category": "input",
+      "figmaComponentName": "Atlas/Combobox",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "options",
+        "value",
+        "query",
+        "loading",
+        "error",
+        "onQueryChange",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasCombobox"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasCombobox"
+        }
+      }
+    },
+    {
+      "name": "AtlasCheckbox",
+      "category": "input",
+      "figmaComponentName": "Atlas/Checkbox",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "checked",
+        "indeterminate",
+        "label",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasCheckbox"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasCheckbox"
+        }
+      }
+    },
+    {
+      "name": "AtlasRadioGroup",
+      "category": "input",
+      "figmaComponentName": "Atlas/RadioGroup",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "options",
+        "value",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasRadioGroup"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasRadioGroup"
+        }
+      }
+    },
+    {
+      "name": "AtlasSwitch",
+      "category": "input",
+      "figmaComponentName": "Atlas/Switch",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "checked",
+        "label",
+        "disabled",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSwitch"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSwitch"
+        }
+      }
+    },
+    {
+      "name": "AtlasDateInput",
+      "category": "input",
+      "figmaComponentName": "Atlas/DateInput",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "hint",
+        "error",
+        "value"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDateInput"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDateInput"
+        }
+      }
+    },
+    {
+      "name": "AtlasDateRange",
+      "category": "input",
+      "figmaComponentName": "Atlas/DateRange",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "value",
+        "label",
+        "min",
+        "max",
+        "disabled",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDateRange"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDateRange"
+        }
+      }
+    },
+    {
+      "name": "AtlasUpload",
+      "category": "input",
+      "figmaComponentName": "Atlas/Upload",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "files",
+        "accept",
+        "maxSize",
+        "multiple",
+        "onAdd",
+        "onRemove",
+        "onRetry"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasUpload"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasUpload"
+        }
+      }
+    },
+    {
+      "name": "AtlasSearchInput",
+      "category": "input",
+      "figmaComponentName": "Atlas/SearchInput",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "value",
+        "placeholder",
+        "onChange",
+        "onSearch"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSearchInput"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSearchInput"
+        }
+      }
+    },
+    {
+      "name": "AtlasSegmentedControl",
+      "category": "input",
+      "figmaComponentName": "Atlas/SegmentedControl",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "items",
+        "value",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSegmentedControl"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSegmentedControl"
+        }
+      }
+    },
+    {
+      "name": "AtlasTabs",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Tabs",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "value",
+        "label",
+        "onChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTabs"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTabs"
+        }
+      }
+    },
+    {
+      "name": "AtlasBreadcrumb",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Breadcrumb",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasBreadcrumb"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasBreadcrumb"
+        }
+      }
+    },
+    {
+      "name": "AtlasPagination",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Pagination",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "page",
+        "pageCount",
+        "onChange",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasPagination"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasPagination"
+        }
+      }
+    },
+    {
+      "name": "AtlasSteps",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Steps",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSteps"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSteps"
+        }
+      }
+    },
+    {
+      "name": "AtlasDropdown",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Dropdown",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "items",
+        "onSelect"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDropdown"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDropdown"
+        }
+      }
+    },
+    {
+      "name": "AtlasTree",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Tree",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "nodes",
+        "expandedIds",
+        "selectedId",
+        "onExpandedChange",
+        "onSelect",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTree"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTree"
+        }
+      }
+    },
+    {
+      "name": "AtlasMenu",
+      "category": "navigation",
+      "figmaComponentName": "Atlas/Menu",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "activeId",
+        "orientation",
+        "onSelect",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasMenu"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasMenu"
+        }
+      }
+    },
+    {
+      "name": "AtlasCard",
+      "category": "display",
+      "figmaComponentName": "Atlas/Card",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "selected",
+        "actions"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasCard"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasCard"
+        }
+      }
+    },
+    {
+      "name": "AtlasTable",
+      "category": "display",
+      "figmaComponentName": "Atlas/Table",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "columns",
+        "rows",
+        "caption",
+        "selectedIds"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTable"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTable"
+        }
+      }
+    },
+    {
+      "name": "AtlasTag",
+      "category": "display",
+      "figmaComponentName": "Atlas/Tag",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "intent",
+        "removable",
+        "onRemove"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTag"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTag"
+        }
+      }
+    },
+    {
+      "name": "AtlasBadge",
+      "category": "display",
+      "figmaComponentName": "Atlas/Badge",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "count",
+        "dot",
+        "intent"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasBadge"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasBadge"
+        }
+      }
+    },
+    {
+      "name": "AtlasAvatar",
+      "category": "display",
+      "figmaComponentName": "Atlas/Avatar",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "name",
+        "src",
+        "size"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAvatar"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAvatar"
+        }
+      }
+    },
+    {
+      "name": "AtlasStatistic",
+      "category": "display",
+      "figmaComponentName": "Atlas/Statistic",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "label",
+        "value",
+        "suffix",
+        "trend"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasStatistic"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasStatistic"
+        }
+      }
+    },
+    {
+      "name": "AtlasProgress",
+      "category": "display",
+      "figmaComponentName": "Atlas/Progress",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "value",
+        "label",
+        "intent"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasProgress"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasProgress"
+        }
+      }
+    },
+    {
+      "name": "AtlasAlert",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Alert",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "intent",
+        "closable"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAlert"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAlert"
+        }
+      }
+    },
+    {
+      "name": "AtlasTooltip",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Tooltip",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "content",
+        "children"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTooltip"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTooltip"
+        }
+      }
+    },
+    {
+      "name": "AtlasEmpty",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Empty",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "action"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasEmpty"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasEmpty"
+        }
+      }
+    },
+    {
+      "name": "AtlasSkeleton",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Skeleton",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "lines",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasSkeleton"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasSkeleton"
+        }
+      }
+    },
+    {
+      "name": "AtlasDialog",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Dialog",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "open",
+        "title",
+        "onClose",
+        "footer"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDialog"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDialog"
+        }
+      }
+    },
+    {
+      "name": "AtlasDrawer",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Drawer",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "open",
+        "title",
+        "width",
+        "onClose"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDrawer"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDrawer"
+        }
+      }
+    },
+    {
+      "name": "AtlasNotification",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/Notification",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "notification",
+        "onDismiss"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasNotification"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasNotification"
+        }
+      }
+    },
+    {
+      "name": "AtlasNotificationCenter",
+      "category": "feedback",
+      "figmaComponentName": "Atlas/NotificationCenter",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "onDismiss",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasNotificationCenter"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasNotificationCenter"
+        }
+      }
+    },
+    {
+      "name": "AtlasObjectCell",
+      "category": "composition",
+      "figmaComponentName": "Atlas/ObjectCell",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "meta",
+        "description",
+        "icon",
+        "tone"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasObjectCell"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasObjectCell"
+        }
+      }
+    },
+    {
+      "name": "AtlasStatusTag",
+      "category": "composition",
+      "figmaComponentName": "Atlas/StatusTag",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "tone",
+        "children"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasStatusTag"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasStatusTag"
+        }
+      }
+    },
+    {
+      "name": "AtlasRowActions",
+      "category": "composition",
+      "figmaComponentName": "Atlas/RowActions",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "maxVisible",
+        "onAction",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasRowActions"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasRowActions"
+        }
+      }
+    },
+    {
+      "name": "AtlasTableToolbar",
+      "category": "composition",
+      "figmaComponentName": "Atlas/TableToolbar",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "search",
+        "filters",
+        "selection",
+        "actions"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasTableToolbar"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasTableToolbar"
+        }
+      }
+    },
+    {
+      "name": "AtlasDataTable",
+      "category": "composition",
+      "figmaComponentName": "Atlas/DataTable",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "toolbar",
+        "columns",
+        "rows",
+        "footer"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDataTable"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDataTable"
+        }
+      }
+    },
+    {
+      "name": "AtlasDataGrid",
+      "category": "composition",
+      "figmaComponentName": "Atlas/DataGrid",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "columns",
+        "rows",
+        "query",
+        "page",
+        "pageSize",
+        "virtualize",
+        "onQueryChange",
+        "onPageChange"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasDataGrid"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasDataGrid"
+        }
+      }
+    },
+    {
+      "name": "AtlasPageHeader",
+      "category": "composition",
+      "figmaComponentName": "Atlas/PageHeader",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "breadcrumbs",
+        "actions",
+        "meta"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasPageHeader"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasPageHeader"
+        }
+      }
+    },
+    {
+      "name": "AtlasPanel",
+      "category": "composition",
+      "figmaComponentName": "Atlas/Panel",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "description",
+        "actions",
+        "footer",
+        "children"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasPanel"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasPanel"
+        }
+      }
+    },
+    {
+      "name": "AtlasAppLayout",
+      "category": "composition",
+      "figmaComponentName": "Atlas/AppLayout",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "brand",
+        "navigation",
+        "topbar",
+        "aside",
+        "collapsed",
+        "mobileNavigationOpen",
+        "onNavigationToggle"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAppLayout"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAppLayout"
+        }
+      }
+    },
+    {
+      "name": "AtlasOrb",
+      "category": "ai",
+      "figmaComponentName": "Atlas/Orb",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "state",
+        "size",
+        "label",
+        "showRing"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasOrb"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasOrb"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIComposer",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIComposer",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "value",
+        "suggestions",
+        "contexts",
+        "busy",
+        "onSubmit"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIComposer"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIComposer"
+        }
+      }
+    },
+    {
+      "name": "AtlasExecutionPlan",
+      "category": "ai",
+      "figmaComponentName": "Atlas/ExecutionPlan",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "steps",
+        "onStop",
+        "onApprove"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasExecutionPlan"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasExecutionPlan"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIConversation",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIConversation",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "title",
+        "subtitle",
+        "status",
+        "composer"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIConversation"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIConversation"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIMessageBubble",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIMessageBubble",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "role",
+        "content",
+        "streaming",
+        "citations"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIMessageBubble"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIMessageBubble"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIStreamingText",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIStreamingText",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "text",
+        "status",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIStreamingText"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIStreamingText"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIPrompts",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIPrompts",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "onSelect",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIPrompts"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIPrompts"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIAttachmentList",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIAttachmentList",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "onRemove",
+        "onRetry",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIAttachmentList"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIAttachmentList"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIConversationHistory",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIConversationHistory",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "activeId",
+        "onSelect",
+        "onCreate"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIConversationHistory"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIConversationHistory"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIFeedback",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIFeedback",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "value",
+        "onChange",
+        "onReport"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIFeedback"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIFeedback"
+        }
+      }
+    },
+    {
+      "name": "AtlasMCPServerPicker",
+      "category": "ai",
+      "figmaComponentName": "Atlas/MCPServerPicker",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "servers",
+        "selectedIds",
+        "onChange",
+        "onAdd"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasMCPServerPicker"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasMCPServerPicker"
+        }
+      }
+    },
+    {
+      "name": "AtlasCitationList",
+      "category": "ai",
+      "figmaComponentName": "Atlas/CitationList",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "items",
+        "onOpen",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasCitationList"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasCitationList"
+        }
+      }
+    },
+    {
+      "name": "AtlasKnowledgeSourcePicker",
+      "category": "ai",
+      "figmaComponentName": "Atlas/KnowledgeSourcePicker",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "sources",
+        "selectedIds",
+        "onChange",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasKnowledgeSourcePicker"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasKnowledgeSourcePicker"
+        }
+      }
+    },
+    {
+      "name": "AtlasRetrievalTrace",
+      "category": "ai",
+      "figmaComponentName": "Atlas/RetrievalTrace",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "steps",
+        "title"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasRetrievalTrace"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasRetrievalTrace"
+        }
+      }
+    },
+    {
+      "name": "AtlasToolCallCard",
+      "category": "ai",
+      "figmaComponentName": "Atlas/ToolCallCard",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "call",
+        "onApprove",
+        "onReject",
+        "onRetry"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasToolCallCard"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasToolCallCard"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIArtifactRenderer",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIArtifactRenderer",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "artifact",
+        "renderers",
+        "actions"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIArtifactRenderer"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIArtifactRenderer"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIStructuredInput",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIStructuredInput",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "fields",
+        "values",
+        "busy",
+        "submitLabel",
+        "onChange",
+        "onSubmit"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIStructuredInput"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIStructuredInput"
+        }
+      }
+    },
+    {
+      "name": "AtlasAIProvenance",
+      "category": "ai",
+      "figmaComponentName": "Atlas/AIProvenance",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "provenance",
+        "defaultOpen"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasAIProvenance"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasAIProvenance"
+        }
+      }
+    },
+    {
+      "name": "AtlasGenUIRenderer",
+      "category": "ai",
+      "figmaComponentName": "Atlas/GenUIRenderer",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "schema",
+        "onAction"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasGenUIRenderer"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasGenUIRenderer"
+        }
+      }
+    },
+    {
+      "name": "AtlasMCPToolPanel",
+      "category": "ai",
+      "figmaComponentName": "Atlas/MCPToolPanel",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "tools",
+        "selectedIds",
+        "onChange",
+        "onApprove",
+        "label"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasMCPToolPanel"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasMCPToolPanel"
+        }
+      }
+    },
+    {
+      "name": "AtlasCrossPageAgent",
+      "category": "ai",
+      "figmaComponentName": "Atlas/CrossPageAgent",
+      "figmaNodeUrl": null,
+      "status": "awaiting-published-node",
+      "properties": [
+        "goal",
+        "currentRoute",
+        "routes",
+        "steps",
+        "status",
+        "onNavigate",
+        "onApprove",
+        "onStop"
+      ],
+      "implementations": {
+        "react": {
+          "package": "@atlas-eids/react",
+          "export": "AtlasCrossPageAgent"
+        },
+        "vue": {
+          "package": "@atlas-eids/vue",
+          "export": "AtlasCrossPageAgent"
+        }
+      }
+    }
+  ]
+}

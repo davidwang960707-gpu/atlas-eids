@@ -123,7 +123,7 @@ npm run atlas -- validate src/pages/Knowledge.vue --framework vue --ai
 
 ## 自动验证范围
 
-Agent Kit 当前检查硬编码颜色与阴影、过大圆角、原生表格绕过、表面嵌套、Orb 行内及语义误用、AI 证据缺失、高风险操作缺少人工控制、页面标题和框架组件导入。它是快速反馈层，不能替代 TypeScript、Vue Compiler、Axe、Playwright 和人工视觉验收。
+Agent Kit 当前检查硬编码颜色与阴影、过大圆角、原生表格绕过、表面嵌套、Orb 行内及语义误用、AI 证据缺失、高风险操作缺少人工控制、页面标题、框架组件导入、10/11px 阅读文字、脱离 4px 尺度的布局间距和同区多个 Primary 操作。它是快速反馈层，不能替代 TypeScript、Vue Compiler、Axe、Playwright 和人工视觉验收。
 
 Skills 自身运行：
 

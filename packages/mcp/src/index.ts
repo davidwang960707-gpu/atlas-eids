@@ -14,7 +14,7 @@ const response = (value: unknown) => ({
 export function createAtlasMcpServer(options: AtlasMCPServiceOptions & { service?: AtlasMCPService } = {}) {
   const service = options.service ?? createAtlasMCPService(options)
   const server = new McpServer(
-    { name: 'atlas-eids', version: '0.2.0-beta.2' },
+    { name: 'atlas-eids', version: '0.2.0-beta.3' },
     { instructions: '先用 atlas_get_skill 按需读取规则，再查询页面模式和组件 API，然后生成或修改页面。Orb 只能用于 AI 身份和运行状态。所有生成结果必须调用 atlas_validate_page。' }
   )
 

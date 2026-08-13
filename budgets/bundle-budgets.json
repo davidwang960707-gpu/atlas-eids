@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "packages": [
+    { "name": "@atlas-eids/tokens", "path": "packages/tokens/dist", "maxRawBytes": 80000, "maxGzipBytes": 10000 },
+    { "name": "@atlas-eids/core", "path": "packages/core/dist", "maxRawBytes": 45000, "maxGzipBytes": 12000 },
+    { "name": "@atlas-eids/plugin-sdk", "path": "packages/plugin-sdk/dist", "maxRawBytes": 16000, "maxGzipBytes": 5000 },
+    { "name": "@atlas-eids/adapters", "path": "packages/adapters/dist", "maxRawBytes": 6000, "maxGzipBytes": 2000 },
+    { "name": "@atlas-eids/adapter-antd-react", "path": "packages/adapter-antd-react/dist", "maxRawBytes": 5000, "maxGzipBytes": 2000 },
+    { "name": "@atlas-eids/adapter-tdesign-vue", "path": "packages/adapter-tdesign-vue/dist", "maxRawBytes": 5000, "maxGzipBytes": 2000 },
+    { "name": "@atlas-eids/adapter-opentiny-vue", "path": "packages/adapter-opentiny-vue/dist", "maxRawBytes": 5000, "maxGzipBytes": 2000 },
+    { "name": "@atlas-eids/ai-runtime", "path": "packages/ai-runtime/dist", "maxRawBytes": 28000, "maxGzipBytes": 8000 },
+    { "name": "@atlas-eids/web-agent", "path": "packages/web-agent/dist", "maxRawBytes": 24000, "maxGzipBytes": 6500 },
+    { "name": "@atlas-eids/agent-kit", "path": "packages/agent-kit/dist", "maxRawBytes": 65000, "maxGzipBytes": 20000 },
+    { "name": "@atlas-eids/mcp", "path": "packages/mcp/dist", "maxRawBytes": 30000, "maxGzipBytes": 8500 },
+    { "name": "@atlas-eids/cli", "path": "packages/cli/dist", "maxRawBytes": 160000, "maxGzipBytes": 35000 },
+    { "name": "@atlas-eids/react", "path": "packages/react/dist", "maxRawBytes": 180000, "maxGzipBytes": 36000 },
+    { "name": "@atlas-eids/vue", "path": "packages/vue/dist", "maxRawBytes": 195000, "maxGzipBytes": 38000 }
+  ]
+}

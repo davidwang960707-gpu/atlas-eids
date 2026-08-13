@@ -1,0 +1,1998 @@
+{
+  "$schema": "https://atlas-eids.dev/schemas/figma-variables-handoff-1.0.json",
+  "name": "Atlas EIDS Variables",
+  "source": "packages/tokens/src/tokens.json",
+  "sourceFormat": "DTCG 2025.10",
+  "note": "Use values for alias-preserving import and resolvedValues for REST or Plugin API synchronization.",
+  "collections": [
+    {
+      "name": "Global",
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "breakpoint/lg",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-breakpoint-lg"
+          },
+          "values": {
+            "Value": 1024
+          },
+          "resolvedValues": {
+            "Value": 1024
+          }
+        },
+        {
+          "name": "breakpoint/md",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-breakpoint-md"
+          },
+          "values": {
+            "Value": 768
+          },
+          "resolvedValues": {
+            "Value": 768
+          }
+        },
+        {
+          "name": "breakpoint/sm",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-breakpoint-sm"
+          },
+          "values": {
+            "Value": 640
+          },
+          "resolvedValues": {
+            "Value": 640
+          }
+        },
+        {
+          "name": "breakpoint/xl",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-breakpoint-xl"
+          },
+          "values": {
+            "Value": 1280
+          },
+          "resolvedValues": {
+            "Value": 1280
+          }
+        },
+        {
+          "name": "breakpoint/xxl",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-breakpoint-xxl"
+          },
+          "values": {
+            "Value": 1440
+          },
+          "resolvedValues": {
+            "Value": 1440
+          }
+        },
+        {
+          "name": "color/accent/amber",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-accent-amber"
+          },
+          "values": {
+            "Value": "#F59E0B"
+          },
+          "resolvedValues": {
+            "Value": "#F59E0B"
+          }
+        },
+        {
+          "name": "color/accent/cyan",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-accent-cyan"
+          },
+          "values": {
+            "Value": "#06B6D4"
+          },
+          "resolvedValues": {
+            "Value": "#06B6D4"
+          }
+        },
+        {
+          "name": "color/accent/green",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-accent-green"
+          },
+          "values": {
+            "Value": "#00C48C"
+          },
+          "resolvedValues": {
+            "Value": "#00C48C"
+          }
+        },
+        {
+          "name": "color/accent/rose",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-accent-rose"
+          },
+          "values": {
+            "Value": "#EF5DA8"
+          },
+          "resolvedValues": {
+            "Value": "#EF5DA8"
+          }
+        },
+        {
+          "name": "color/brand/primary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-brand-primary"
+          },
+          "values": {
+            "Value": "#7B61FF"
+          },
+          "resolvedValues": {
+            "Value": "#7B61FF"
+          }
+        },
+        {
+          "name": "color/brand/soft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-brand-soft"
+          },
+          "values": {
+            "Value": "#B7A7FF"
+          },
+          "resolvedValues": {
+            "Value": "#B7A7FF"
+          }
+        },
+        {
+          "name": "color/brand/strong",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-brand-strong"
+          },
+          "values": {
+            "Value": "#4F46E5"
+          },
+          "resolvedValues": {
+            "Value": "#4F46E5"
+          }
+        },
+        {
+          "name": "color/chart/amber",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-amber"
+          },
+          "values": {
+            "Value": {
+              "$alias": "Global/color/accent/amber"
+            }
+          },
+          "resolvedValues": {
+            "Value": "#F59E0B"
+          }
+        },
+        {
+          "name": "color/chart/ink",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-ink"
+          },
+          "values": {
+            "Value": "#252A3D"
+          },
+          "resolvedValues": {
+            "Value": "#252A3D"
+          }
+        },
+        {
+          "name": "color/chart/mint",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-mint"
+          },
+          "values": {
+            "Value": "#18C7A7"
+          },
+          "resolvedValues": {
+            "Value": "#18C7A7"
+          }
+        },
+        {
+          "name": "color/chart/primary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-primary"
+          },
+          "values": {
+            "Value": "#6D5DF8"
+          },
+          "resolvedValues": {
+            "Value": "#6D5DF8"
+          }
+        },
+        {
+          "name": "color/chart/rose",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-rose"
+          },
+          "values": {
+            "Value": {
+              "$alias": "Global/color/accent/rose"
+            }
+          },
+          "resolvedValues": {
+            "Value": "#EF5DA8"
+          }
+        },
+        {
+          "name": "color/chart/secondary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-secondary"
+          },
+          "values": {
+            "Value": "#2F80ED"
+          },
+          "resolvedValues": {
+            "Value": "#2F80ED"
+          }
+        },
+        {
+          "name": "color/chart/teal",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-teal"
+          },
+          "values": {
+            "Value": "#00B8A9"
+          },
+          "resolvedValues": {
+            "Value": "#00B8A9"
+          }
+        },
+        {
+          "name": "color/neutral/0",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-0"
+          },
+          "values": {
+            "Value": "#FFFFFF"
+          },
+          "resolvedValues": {
+            "Value": "#FFFFFF"
+          }
+        },
+        {
+          "name": "color/neutral/100",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-100"
+          },
+          "values": {
+            "Value": "#F3F5F8"
+          },
+          "resolvedValues": {
+            "Value": "#F3F5F8"
+          }
+        },
+        {
+          "name": "color/neutral/200",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-200"
+          },
+          "values": {
+            "Value": "#E5E8EF"
+          },
+          "resolvedValues": {
+            "Value": "#E5E8EF"
+          }
+        },
+        {
+          "name": "color/neutral/300",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-300"
+          },
+          "values": {
+            "Value": "#C9CDD4"
+          },
+          "resolvedValues": {
+            "Value": "#C9CDD4"
+          }
+        },
+        {
+          "name": "color/neutral/50",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-50"
+          },
+          "values": {
+            "Value": "#F8F9FB"
+          },
+          "resolvedValues": {
+            "Value": "#F8F9FB"
+          }
+        },
+        {
+          "name": "color/neutral/500",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-500"
+          },
+          "values": {
+            "Value": "#5F6B7A"
+          },
+          "resolvedValues": {
+            "Value": "#5F6B7A"
+          }
+        },
+        {
+          "name": "color/neutral/600",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-600"
+          },
+          "values": {
+            "Value": "#4E5969"
+          },
+          "resolvedValues": {
+            "Value": "#4E5969"
+          }
+        },
+        {
+          "name": "color/neutral/900",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-900"
+          },
+          "values": {
+            "Value": "#1D2129"
+          },
+          "resolvedValues": {
+            "Value": "#1D2129"
+          }
+        },
+        {
+          "name": "color/neutral/950",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-neutral-950"
+          },
+          "values": {
+            "Value": "#101116"
+          },
+          "resolvedValues": {
+            "Value": "#101116"
+          }
+        },
+        {
+          "name": "control/height/comfortable",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-control-height-comfortable"
+          },
+          "values": {
+            "Value": 40
+          },
+          "resolvedValues": {
+            "Value": 40
+          }
+        },
+        {
+          "name": "control/height/compact",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-control-height-compact"
+          },
+          "values": {
+            "Value": 28
+          },
+          "resolvedValues": {
+            "Value": 28
+          }
+        },
+        {
+          "name": "control/height/default",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-control-height-default"
+          },
+          "values": {
+            "Value": 32
+          },
+          "resolvedValues": {
+            "Value": 32
+          }
+        },
+        {
+          "name": "font/family/mono",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-family-mono"
+          },
+          "values": {
+            "Value": "JetBrains Mono, SFMono-Regular, Consolas, monospace"
+          },
+          "resolvedValues": {
+            "Value": "JetBrains Mono, SFMono-Regular, Consolas, monospace"
+          }
+        },
+        {
+          "name": "font/family/sans",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-family-sans"
+          },
+          "values": {
+            "Value": "Inter, PingFang SC, Microsoft YaHei, sans-serif"
+          },
+          "resolvedValues": {
+            "Value": "Inter, PingFang SC, Microsoft YaHei, sans-serif"
+          }
+        },
+        {
+          "name": "font/size/body",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-body"
+          },
+          "values": {
+            "Value": 14
+          },
+          "resolvedValues": {
+            "Value": 14
+          }
+        },
+        {
+          "name": "font/size/caption",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-caption"
+          },
+          "values": {
+            "Value": 12
+          },
+          "resolvedValues": {
+            "Value": 12
+          }
+        },
+        {
+          "name": "font/size/headingLg",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-heading-lg"
+          },
+          "values": {
+            "Value": 20
+          },
+          "resolvedValues": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "font/size/headingMd",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-heading-md"
+          },
+          "values": {
+            "Value": 18
+          },
+          "resolvedValues": {
+            "Value": 18
+          }
+        },
+        {
+          "name": "font/size/headingSm",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-heading-sm"
+          },
+          "values": {
+            "Value": 16
+          },
+          "resolvedValues": {
+            "Value": 16
+          }
+        },
+        {
+          "name": "font/size/metric",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-metric"
+          },
+          "values": {
+            "Value": 26
+          },
+          "resolvedValues": {
+            "Value": 26
+          }
+        },
+        {
+          "name": "font/size/micro",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-micro"
+          },
+          "values": {
+            "Value": 10
+          },
+          "resolvedValues": {
+            "Value": 10
+          }
+        },
+        {
+          "name": "font/size/title",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-size-title"
+          },
+          "values": {
+            "Value": {
+              "$alias": "Global/font/size/headingLg"
+            }
+          },
+          "resolvedValues": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "font/weight/medium",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-weight-medium"
+          },
+          "values": {
+            "Value": 500
+          },
+          "resolvedValues": {
+            "Value": 500
+          }
+        },
+        {
+          "name": "font/weight/regular",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-weight-regular"
+          },
+          "values": {
+            "Value": 400
+          },
+          "resolvedValues": {
+            "Value": 400
+          }
+        },
+        {
+          "name": "font/weight/semibold",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-font-weight-semibold"
+          },
+          "values": {
+            "Value": 600
+          },
+          "resolvedValues": {
+            "Value": 600
+          }
+        },
+        {
+          "name": "icon/object/size",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-icon-object-size"
+          },
+          "values": {
+            "Value": 30
+          },
+          "resolvedValues": {
+            "Value": 30
+          }
+        },
+        {
+          "name": "layout/content/compact",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-layout-content-compact"
+          },
+          "values": {
+            "Value": 960
+          },
+          "resolvedValues": {
+            "Value": 960
+          }
+        },
+        {
+          "name": "layout/content/default",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-layout-content-default"
+          },
+          "values": {
+            "Value": 1200
+          },
+          "resolvedValues": {
+            "Value": 1200
+          }
+        },
+        {
+          "name": "layout/content/wide",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-layout-content-wide"
+          },
+          "values": {
+            "Value": 1440
+          },
+          "resolvedValues": {
+            "Value": 1440
+          }
+        },
+        {
+          "name": "layout/sidebar/collapsed",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-layout-sidebar-collapsed"
+          },
+          "values": {
+            "Value": 64
+          },
+          "resolvedValues": {
+            "Value": 64
+          }
+        },
+        {
+          "name": "layout/sidebar/default",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-layout-sidebar-default"
+          },
+          "values": {
+            "Value": 224
+          },
+          "resolvedValues": {
+            "Value": 224
+          }
+        },
+        {
+          "name": "line/height/body",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-line-height-body"
+          },
+          "values": {
+            "Value": 1.5
+          },
+          "resolvedValues": {
+            "Value": 1.5
+          }
+        },
+        {
+          "name": "line/height/heading",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-line-height-heading"
+          },
+          "values": {
+            "Value": 1.35
+          },
+          "resolvedValues": {
+            "Value": 1.35
+          }
+        },
+        {
+          "name": "line/height/tight",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-line-height-tight"
+          },
+          "values": {
+            "Value": 1.2
+          },
+          "resolvedValues": {
+            "Value": 1.2
+          }
+        },
+        {
+          "name": "motion/base",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-motion-base"
+          },
+          "values": {
+            "Value": "240ms cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "resolvedValues": {
+            "Value": "240ms cubic-bezier(0.22, 1, 0.36, 1)"
+          }
+        },
+        {
+          "name": "motion/fast",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-motion-fast"
+          },
+          "values": {
+            "Value": "150ms cubic-bezier(0.22, 1, 0.36, 1)"
+          },
+          "resolvedValues": {
+            "Value": "150ms cubic-bezier(0.22, 1, 0.36, 1)"
+          }
+        },
+        {
+          "name": "motion/living",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-motion-living"
+          },
+          "values": {
+            "Value": "1800ms cubic-bezier(0.37, 0, 0.63, 1)"
+          },
+          "resolvedValues": {
+            "Value": "1800ms cubic-bezier(0.37, 0, 0.63, 1)"
+          }
+        },
+        {
+          "name": "radius/control",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-radius-control"
+          },
+          "values": {
+            "Value": 6
+          },
+          "resolvedValues": {
+            "Value": 6
+          }
+        },
+        {
+          "name": "radius/overlay",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-radius-overlay"
+          },
+          "values": {
+            "Value": 10
+          },
+          "resolvedValues": {
+            "Value": 10
+          }
+        },
+        {
+          "name": "radius/panel",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-radius-panel"
+          },
+          "values": {
+            "Value": 8
+          },
+          "resolvedValues": {
+            "Value": 8
+          }
+        },
+        {
+          "name": "radius/round",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-radius-round"
+          },
+          "values": {
+            "Value": 9999
+          },
+          "resolvedValues": {
+            "Value": 9999
+          }
+        },
+        {
+          "name": "space/1",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-1"
+          },
+          "values": {
+            "Value": 4
+          },
+          "resolvedValues": {
+            "Value": 4
+          }
+        },
+        {
+          "name": "space/12",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-12"
+          },
+          "values": {
+            "Value": 48
+          },
+          "resolvedValues": {
+            "Value": 48
+          }
+        },
+        {
+          "name": "space/2",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-2"
+          },
+          "values": {
+            "Value": 8
+          },
+          "resolvedValues": {
+            "Value": 8
+          }
+        },
+        {
+          "name": "space/3",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-3"
+          },
+          "values": {
+            "Value": 12
+          },
+          "resolvedValues": {
+            "Value": 12
+          }
+        },
+        {
+          "name": "space/4",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-4"
+          },
+          "values": {
+            "Value": 16
+          },
+          "resolvedValues": {
+            "Value": 16
+          }
+        },
+        {
+          "name": "space/5",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-5"
+          },
+          "values": {
+            "Value": 20
+          },
+          "resolvedValues": {
+            "Value": 20
+          }
+        },
+        {
+          "name": "space/6",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-6"
+          },
+          "values": {
+            "Value": 24
+          },
+          "resolvedValues": {
+            "Value": 24
+          }
+        },
+        {
+          "name": "space/8",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-space-8"
+          },
+          "values": {
+            "Value": 32
+          },
+          "resolvedValues": {
+            "Value": 32
+          }
+        },
+        {
+          "name": "table/rowHeight/comfortable",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-table-row-height-comfortable"
+          },
+          "values": {
+            "Value": 50
+          },
+          "resolvedValues": {
+            "Value": 50
+          }
+        },
+        {
+          "name": "table/rowHeight/compact",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-table-row-height-compact"
+          },
+          "values": {
+            "Value": 36
+          },
+          "resolvedValues": {
+            "Value": 36
+          }
+        },
+        {
+          "name": "table/rowHeight/default",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-table-row-height-default"
+          },
+          "values": {
+            "Value": 42
+          },
+          "resolvedValues": {
+            "Value": 42
+          }
+        },
+        {
+          "name": "z/dropdown",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-z-dropdown"
+          },
+          "values": {
+            "Value": 1000
+          },
+          "resolvedValues": {
+            "Value": 1000
+          }
+        },
+        {
+          "name": "z/overlay",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-z-overlay"
+          },
+          "values": {
+            "Value": 1100
+          },
+          "resolvedValues": {
+            "Value": 1100
+          }
+        },
+        {
+          "name": "z/toast",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-z-toast"
+          },
+          "values": {
+            "Value": 1200
+          },
+          "resolvedValues": {
+            "Value": 1200
+          }
+        }
+      ]
+    },
+    {
+      "name": "Semantic",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "color/action/primary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-action-primary"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/brand/strong"
+            },
+            "Dark": "#8D75FF"
+          },
+          "resolvedValues": {
+            "Light": "#4F46E5",
+            "Dark": "#8D75FF"
+          }
+        },
+        {
+          "name": "color/action/primaryHover",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-action-primary-hover"
+          },
+          "values": {
+            "Light": "#4338CA",
+            "Dark": "#A08CFF"
+          },
+          "resolvedValues": {
+            "Light": "#4338CA",
+            "Dark": "#A08CFF"
+          }
+        },
+        {
+          "name": "color/action/soft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-action-soft"
+          },
+          "values": {
+            "Light": "#F0ECFF",
+            "Dark": "#292441"
+          },
+          "resolvedValues": {
+            "Light": "#F0ECFF",
+            "Dark": "#292441"
+          }
+        },
+        {
+          "name": "color/bg/canvas",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-bg-canvas"
+          },
+          "values": {
+            "Light": "#F5F7FA",
+            "Dark": {
+              "$alias": "Global/color/neutral/950"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#F5F7FA",
+            "Dark": "#101116"
+          }
+        },
+        {
+          "name": "color/bg/elevated",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-bg-elevated"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/0"
+            },
+            "Dark": "#232630"
+          },
+          "resolvedValues": {
+            "Light": "#FFFFFF",
+            "Dark": "#232630"
+          }
+        },
+        {
+          "name": "color/bg/subtle",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-bg-subtle"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/100"
+            },
+            "Dark": "#1E2029"
+          },
+          "resolvedValues": {
+            "Light": "#F3F5F8",
+            "Dark": "#1E2029"
+          }
+        },
+        {
+          "name": "color/bg/surface",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-bg-surface"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/0"
+            },
+            "Dark": "#171920"
+          },
+          "resolvedValues": {
+            "Light": "#FFFFFF",
+            "Dark": "#171920"
+          }
+        },
+        {
+          "name": "color/border/default",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-border-default"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/200"
+            },
+            "Dark": "#2F333D"
+          },
+          "resolvedValues": {
+            "Light": "#E5E8EF",
+            "Dark": "#2F333D"
+          }
+        },
+        {
+          "name": "color/border/strong",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-border-strong"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/300"
+            },
+            "Dark": {
+              "$alias": "Global/color/neutral/600"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#C9CDD4",
+            "Dark": "#4E5969"
+          }
+        },
+        {
+          "name": "color/chart/grid",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-grid"
+          },
+          "values": {
+            "Light": "color(srgb 0.4275 0.3647 0.9725 / 0.09)",
+            "Dark": "color(srgb 0.7176 0.6549 1 / 0.12)"
+          },
+          "resolvedValues": {
+            "Light": "color(srgb 0.4275 0.3647 0.9725 / 0.09)",
+            "Dark": "color(srgb 0.7176 0.6549 1 / 0.12)"
+          }
+        },
+        {
+          "name": "color/chart/surface",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-chart-surface"
+          },
+          "values": {
+            "Light": "#F8F9FF",
+            "Dark": "#171920"
+          },
+          "resolvedValues": {
+            "Light": "#F8F9FF",
+            "Dark": "#171920"
+          }
+        },
+        {
+          "name": "color/focus/ring",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-focus-ring"
+          },
+          "values": {
+            "Light": "color(srgb 0.3098 0.2745 0.898 / 0.18)",
+            "Dark": "color(srgb 0.6275 0.549 1 / 0.24)"
+          },
+          "resolvedValues": {
+            "Light": "color(srgb 0.3098 0.2745 0.898 / 0.18)",
+            "Dark": "color(srgb 0.6275 0.549 1 / 0.24)"
+          }
+        },
+        {
+          "name": "color/status/error",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-error"
+          },
+          "values": {
+            "Light": "#C43C35",
+            "Dark": "#F06A63"
+          },
+          "resolvedValues": {
+            "Light": "#C43C35",
+            "Dark": "#F06A63"
+          }
+        },
+        {
+          "name": "color/status/errorSoft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-error-soft"
+          },
+          "values": {
+            "Light": "#FFF0EF",
+            "Dark": "#402421"
+          },
+          "resolvedValues": {
+            "Light": "#FFF0EF",
+            "Dark": "#402421"
+          }
+        },
+        {
+          "name": "color/status/info",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-info"
+          },
+          "values": {
+            "Light": "#2468C9",
+            "Dark": "#6AA8FF"
+          },
+          "resolvedValues": {
+            "Light": "#2468C9",
+            "Dark": "#6AA8FF"
+          }
+        },
+        {
+          "name": "color/status/infoSoft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-info-soft"
+          },
+          "values": {
+            "Light": "#EDF4FF",
+            "Dark": "#1E3047"
+          },
+          "resolvedValues": {
+            "Light": "#EDF4FF",
+            "Dark": "#1E3047"
+          }
+        },
+        {
+          "name": "color/status/neutralSoft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-neutral-soft"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/100"
+            },
+            "Dark": "#232630"
+          },
+          "resolvedValues": {
+            "Light": "#F3F5F8",
+            "Dark": "#232630"
+          }
+        },
+        {
+          "name": "color/status/success",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-success"
+          },
+          "values": {
+            "Light": "#087443",
+            "Dark": "#23C98B"
+          },
+          "resolvedValues": {
+            "Light": "#087443",
+            "Dark": "#23C98B"
+          }
+        },
+        {
+          "name": "color/status/successSoft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-success-soft"
+          },
+          "values": {
+            "Light": "#E8F7F0",
+            "Dark": "#16372D"
+          },
+          "resolvedValues": {
+            "Light": "#E8F7F0",
+            "Dark": "#16372D"
+          }
+        },
+        {
+          "name": "color/status/warning",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-warning"
+          },
+          "values": {
+            "Light": "#8A4B00",
+            "Dark": "#F2A93B"
+          },
+          "resolvedValues": {
+            "Light": "#8A4B00",
+            "Dark": "#F2A93B"
+          }
+        },
+        {
+          "name": "color/status/warningSoft",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-status-warning-soft"
+          },
+          "values": {
+            "Light": "#FFF4E5",
+            "Dark": "#3B2E18"
+          },
+          "resolvedValues": {
+            "Light": "#FFF4E5",
+            "Dark": "#3B2E18"
+          }
+        },
+        {
+          "name": "color/text/inverse",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-text-inverse"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/0"
+            },
+            "Dark": "#171920"
+          },
+          "resolvedValues": {
+            "Light": "#FFFFFF",
+            "Dark": "#171920"
+          }
+        },
+        {
+          "name": "color/text/primary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-text-primary"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/900"
+            },
+            "Dark": "#F2F3F5"
+          },
+          "resolvedValues": {
+            "Light": "#1D2129",
+            "Dark": "#F2F3F5"
+          }
+        },
+        {
+          "name": "color/text/secondary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-text-secondary"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/600"
+            },
+            "Dark": {
+              "$alias": "Global/color/neutral/300"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#4E5969",
+            "Dark": "#C9CDD4"
+          }
+        },
+        {
+          "name": "color/text/tertiary",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-color-text-tertiary"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/color/neutral/500"
+            },
+            "Dark": "#86909C"
+          },
+          "resolvedValues": {
+            "Light": "#5F6B7A",
+            "Dark": "#86909C"
+          }
+        },
+        {
+          "name": "shadow/orb",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-shadow-orb"
+          },
+          "values": {
+            "Light": "0px 0px 28px 0px color(srgb 0.4824 0.3804 1 / 0.34)",
+            "Dark": "0px 0px 34px 0px color(srgb 0.4824 0.3804 1 / 0.48)"
+          },
+          "resolvedValues": {
+            "Light": "0px 0px 28px 0px color(srgb 0.4824 0.3804 1 / 0.34)",
+            "Dark": "0px 0px 34px 0px color(srgb 0.4824 0.3804 1 / 0.48)"
+          }
+        },
+        {
+          "name": "shadow/overlay",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-shadow-overlay"
+          },
+          "values": {
+            "Light": "0px 12px 32px 0px color(srgb 0.1137 0.1294 0.1608 / 0.14)",
+            "Dark": "0px 16px 40px 0px color(srgb 0 0 0 / 0.38)"
+          },
+          "resolvedValues": {
+            "Light": "0px 12px 32px 0px color(srgb 0.1137 0.1294 0.1608 / 0.14)",
+            "Dark": "0px 16px 40px 0px color(srgb 0 0 0 / 0.38)"
+          }
+        },
+        {
+          "name": "shadow/surface",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-shadow-surface"
+          },
+          "values": {
+            "Light": "0px 1px 2px 0px color(srgb 0.1137 0.1294 0.1608 / 0.04)",
+            "Dark": "0px 1px 2px 0px color(srgb 0 0 0 / 0.22)"
+          },
+          "resolvedValues": {
+            "Light": "0px 1px 2px 0px color(srgb 0.1137 0.1294 0.1608 / 0.04)",
+            "Dark": "0px 1px 2px 0px color(srgb 0 0 0 / 0.22)"
+          }
+        },
+        {
+          "name": "shadow/surfaceHover",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-shadow-surface-hover"
+          },
+          "values": {
+            "Light": "0px 8px 24px 0px color(srgb 0.1137 0.1294 0.1608 / 0.08)",
+            "Dark": "0px 8px 24px 0px color(srgb 0 0 0 / 0.28)"
+          },
+          "resolvedValues": {
+            "Light": "0px 8px 24px 0px color(srgb 0.1137 0.1294 0.1608 / 0.08)",
+            "Dark": "0px 8px 24px 0px color(srgb 0 0 0 / 0.28)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Component",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "appShell/contentMaxWidth",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-app-shell-content-max-width"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/layout/content/wide"
+            },
+            "Dark": {
+              "$alias": "Global/layout/content/wide"
+            }
+          },
+          "resolvedValues": {
+            "Light": 1440,
+            "Dark": 1440
+          }
+        },
+        {
+          "name": "appShell/sidebarWidth",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-app-shell-sidebar-width"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/layout/sidebar/default"
+            },
+            "Dark": {
+              "$alias": "Global/layout/sidebar/default"
+            }
+          },
+          "resolvedValues": {
+            "Light": 224,
+            "Dark": 224
+          }
+        },
+        {
+          "name": "button/height",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-button-height"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/control/height/default"
+            },
+            "Dark": {
+              "$alias": "Global/control/height/default"
+            }
+          },
+          "resolvedValues": {
+            "Light": 32,
+            "Dark": 32
+          }
+        },
+        {
+          "name": "button/labelSize",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-button-label-size"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/font/size/body"
+            },
+            "Dark": {
+              "$alias": "Global/font/size/body"
+            }
+          },
+          "resolvedValues": {
+            "Light": 14,
+            "Dark": 14
+          }
+        },
+        {
+          "name": "button/primaryBackground",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-button-primary-background"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Semantic/color/action/primary"
+            },
+            "Dark": {
+              "$alias": "Semantic/color/action/primary"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#4F46E5",
+            "Dark": "#8D75FF"
+          }
+        },
+        {
+          "name": "button/radius",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-button-radius"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/radius/control"
+            },
+            "Dark": {
+              "$alias": "Global/radius/control"
+            }
+          },
+          "resolvedValues": {
+            "Light": 6,
+            "Dark": 6
+          }
+        },
+        {
+          "name": "input/height",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-input-height"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/control/height/default"
+            },
+            "Dark": {
+              "$alias": "Global/control/height/default"
+            }
+          },
+          "resolvedValues": {
+            "Light": 32,
+            "Dark": 32
+          }
+        },
+        {
+          "name": "input/radius",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-input-radius"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/radius/control"
+            },
+            "Dark": {
+              "$alias": "Global/radius/control"
+            }
+          },
+          "resolvedValues": {
+            "Light": 6,
+            "Dark": 6
+          }
+        },
+        {
+          "name": "orb/duration",
+          "type": "STRING",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-orb-duration"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/motion/living"
+            },
+            "Dark": {
+              "$alias": "Global/motion/living"
+            }
+          },
+          "resolvedValues": {
+            "Light": "1800ms cubic-bezier(0.37, 0, 0.63, 1)",
+            "Dark": "1800ms cubic-bezier(0.37, 0, 0.63, 1)"
+          }
+        },
+        {
+          "name": "panel/background",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-panel-background"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Semantic/color/bg/surface"
+            },
+            "Dark": {
+              "$alias": "Semantic/color/bg/surface"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#FFFFFF",
+            "Dark": "#171920"
+          }
+        },
+        {
+          "name": "panel/padding",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-panel-padding"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/space/4"
+            },
+            "Dark": {
+              "$alias": "Global/space/4"
+            }
+          },
+          "resolvedValues": {
+            "Light": 16,
+            "Dark": 16
+          }
+        },
+        {
+          "name": "panel/radius",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-panel-radius"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/radius/panel"
+            },
+            "Dark": {
+              "$alias": "Global/radius/panel"
+            }
+          },
+          "resolvedValues": {
+            "Light": 8,
+            "Dark": 8
+          }
+        },
+        {
+          "name": "table/cellPaddingInline",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-table-cell-padding-inline"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/space/3"
+            },
+            "Dark": {
+              "$alias": "Global/space/3"
+            }
+          },
+          "resolvedValues": {
+            "Light": 12,
+            "Dark": 12
+          }
+        },
+        {
+          "name": "table/headerBackground",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-table-header-background"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Semantic/color/bg/subtle"
+            },
+            "Dark": {
+              "$alias": "Semantic/color/bg/subtle"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#F3F5F8",
+            "Dark": "#1E2029"
+          }
+        },
+        {
+          "name": "table/rowHeight",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-component-table-row-height"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Global/table/rowHeight/default"
+            },
+            "Dark": {
+              "$alias": "Global/table/rowHeight/default"
+            }
+          },
+          "resolvedValues": {
+            "Light": 42,
+            "Dark": 42
+          }
+        }
+      ]
+    },
+    {
+      "name": "State",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "disabled/opacity",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-disabled-opacity"
+          },
+          "values": {
+            "Light": 0.48,
+            "Dark": 0.48
+          },
+          "resolvedValues": {
+            "Light": 0.48,
+            "Dark": 0.48
+          }
+        },
+        {
+          "name": "drag/opacity",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-drag-opacity"
+          },
+          "values": {
+            "Light": 0.72,
+            "Dark": 0.72
+          },
+          "resolvedValues": {
+            "Light": 0.72,
+            "Dark": 0.72
+          }
+        },
+        {
+          "name": "focus/minimumTarget",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-focus-minimum-target"
+          },
+          "values": {
+            "Light": 32,
+            "Dark": 32
+          },
+          "resolvedValues": {
+            "Light": 32,
+            "Dark": 32
+          }
+        },
+        {
+          "name": "focus/offset",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-focus-offset"
+          },
+          "values": {
+            "Light": 2,
+            "Dark": 2
+          },
+          "resolvedValues": {
+            "Light": 2,
+            "Dark": 2
+          }
+        },
+        {
+          "name": "focus/ring",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-focus-ring"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Semantic/color/focus/ring"
+            },
+            "Dark": {
+              "$alias": "Semantic/color/focus/ring"
+            }
+          },
+          "resolvedValues": {
+            "Light": "color(srgb 0.3098 0.2745 0.898 / 0.18)",
+            "Dark": "color(srgb 0.6275 0.549 1 / 0.24)"
+          }
+        },
+        {
+          "name": "focus/width",
+          "type": "FLOAT",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-focus-width"
+          },
+          "values": {
+            "Light": 3,
+            "Dark": 3
+          },
+          "resolvedValues": {
+            "Light": 3,
+            "Dark": 3
+          }
+        },
+        {
+          "name": "selected/background",
+          "type": "COLOR",
+          "description": "",
+          "codeSyntax": {
+            "CSS": "--atlas-state-selected-background"
+          },
+          "values": {
+            "Light": {
+              "$alias": "Semantic/color/action/soft"
+            },
+            "Dark": {
+              "$alias": "Semantic/color/action/soft"
+            }
+          },
+          "resolvedValues": {
+            "Light": "#F0ECFF",
+            "Dark": "#292441"
+          }
+        }
+      ]
+    }
+  ]
+}

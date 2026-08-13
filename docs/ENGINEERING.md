@@ -20,10 +20,11 @@ npm run check
 - 构建 14 个 Workspace packages
 - 构建 React、Vue、16 个页面路由与双框架 Storybook
 - 执行 Tokens、Core、Plugin、Adapter、AI Runtime、Web Agent、Agent Kit、MCP、CLI、React、Vue 测试
-- 校验 51 个文档条目在 React / Vue 中的导出，核对 React Props Type，并检查 50 + 50 个 Story 状态矩阵
+- 校验 67 个文档条目在 React / Vue 中的导出，核对 React Props Type，并检查 66 + 66 个 Story 状态矩阵
 - 从 React / Vue TypeScript 源码生成浏览器可搜索的组件 API 文档
 - 从 Core Contract、组件 API 和 Tokens 生成 4 份 Machine Manifest，并检查名称、版本与数量不漂移
 - 对 14 个公开 package 执行 `npm pack --dry-run`，检查导出、包体积与禁止文件
+- 检查 API 兼容、包体积预算、覆盖率、Figma 交接资产和读屏语义准备度
 - 使用 Java 21 / Maven 执行本地 JWT、OIDC、Flyway、Provider、租户、审批与审计测试
 
 浏览器质量检查独立执行：
@@ -33,11 +34,14 @@ npm run test:e2e
 npm run test:a11y
 npm run test:visual
 npm run test:storybook
+npm run test:cross-browser
 ```
 
 Playwright 使用 `4273–4276` 作为 Portal、React、Vue 和模板的专用测试端口，Storybook 静态测试使用 `6216–6217`。所有测试服务都禁用 `reuseExistingServer`：端口冲突时直接失败，避免误把其他本地项目当成 Atlas EIDS 进行断言。端口可通过 `ATLAS_EIDS_TEST_*_PORT` 环境变量覆盖。
 
-`test:storybook` 会逐一检查 React / Vue 的 50 个 UI 组件，并额外验证三档密度、双语言、双主题、数据组合组件的跨框架像素差，以及 Living Orb 的动态轨道、呼吸 Core、碰撞焦散层和 AI Composer 的焦点行为。
+`test:storybook` 会逐一检查 React / Vue 的 66 个 UI 组件，并额外验证三档密度、双语言、双主题、数据组合组件的跨框架像素差，以及 Living Orb 的动态轨道、呼吸 Core、碰撞焦散层和 AI Composer 的焦点行为。`test:cross-browser` 在 Chromium、Firefox 和 WebKit 验证核心入口与知识工作台。
+
+`test:screen-reader-readiness` 只验证语义、ARIA、焦点管理和人工测试协议存在；真实 VoiceOver/NVDA 结果必须按 [人工读屏测试矩阵](SCREEN_READER_TEST_MATRIX.md) 由测试人签字，自动化不得代替人工结论。
 
 ## CI
 

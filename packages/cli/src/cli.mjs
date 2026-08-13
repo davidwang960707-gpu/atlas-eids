@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import { planAtlasPage, queryAtlasComponents, queryAtlasPatterns, validateAtlasPageSource } from '@atlas-eids/agent-kit'
+import { planAtlasPage, queryAtlasComponents, queryAtlasPatterns, validateAtlasPagePipeline } from '@atlas-eids/agent-kit'
 import { createProject, generatePage, listApplicationLayouts, listPagePatterns, upgradeProject } from './generator.mjs'
+import { validateRenderedPage } from './runtime-validator.mjs'
 
 const args = process.argv.slice(2)
 const valueAfter = (name, fallback) => {
@@ -101,9 +102,11 @@ async function main() {
     return
   }
   if (command === 'validate' && subject) {
-    validateOptions(['--framework'], ['--ai', '--json'])
+    validateOptions(['--framework', '--url', '--baseline', '--report'], ['--ai', '--json'])
     const target = resolve(subject)
-    const result = validateAtlasPageSource(await readFile(target, 'utf8'), { framework: valueAfter('--framework'), aiPage: args.includes('--ai') })
+    const source = await readFile(target, 'utf8')
+    const runtime = valueAfter('--url') ? await validateRenderedPage(valueAfter('--url'), { sourcePath: target, baseline: valueAfter('--baseline'), reportDirectory: valueAfter('--report') }) : undefined
+    const result = validateAtlasPagePipeline({ source, fileName: target, framework: valueAfter('--framework'), aiPage: args.includes('--ai'), dom: runtime?.dom, visual: runtime?.visual })
     if (args.includes('--json')) console.log(JSON.stringify({ path: target, ...result }, null, 2))
     else {
       result.issues.forEach((issue) => console.log(`${issue.severity}\t${issue.code}\t${issue.line ?? '-'}\t${issue.message}`))
@@ -112,7 +115,7 @@ async function main() {
     if (!result.valid) process.exitCode = 1
     return
   }
-  console.log(`Atlas EIDS CLI\n\nCommands:\n  atlas-eids create <name> [--framework react|vue] [--template pattern] [--framework-layout sidebar|top|hybrid|workbench|tabs|fullscreen|tenant] [--density compact|standard|comfortable] [--locale zh-CN|en-US] [--adapter native|antd|tdesign|opentiny] [--backend none|java] [--local]\n  atlas-eids generate page <pattern> [--framework react|vue] [--out file]\n  atlas-eids agent plan <intent> [--framework react|vue] [--pattern id] [--density value] [--locale value] [--json]\n  atlas-eids validate <file> [--framework react|vue] [--ai] [--json]\n  atlas-eids knowledge components [query] [--category foundation|input|navigation|display|feedback|composition|ai]\n  atlas-eids knowledge contract <AtlasComponentName>\n  atlas-eids knowledge patterns [query]\n  atlas-eids upgrade [path] [--dry-run] [--force] [configuration options]\n  atlas-eids list pages\n  atlas-eids list layouts`)
+  console.log(`Atlas EIDS CLI\n\nCommands:\n  atlas-eids create <name> [--framework react|vue] [--template pattern] [--framework-layout sidebar|top|hybrid|workbench|tabs|fullscreen|tenant] [--density compact|standard|comfortable] [--locale zh-CN|en-US] [--adapter native|antd|tdesign|opentiny] [--backend none|java] [--local]\n  atlas-eids generate page <pattern> [--framework react|vue] [--out file]\n  atlas-eids agent plan <intent> [--framework react|vue] [--pattern id] [--density value] [--locale value] [--json]\n  atlas-eids validate <file> [--framework react|vue] [--ai] [--url http://...] [--baseline image.png] [--report directory] [--json]\n  atlas-eids knowledge components [query] [--category foundation|input|navigation|display|feedback|composition|ai]\n  atlas-eids knowledge contract <AtlasComponentName>\n  atlas-eids knowledge patterns [query]\n  atlas-eids upgrade [path] [--dry-run] [--force] [configuration options]\n  atlas-eids list pages\n  atlas-eids list layouts`)
 }
 
 main().catch((error) => {

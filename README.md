@@ -12,7 +12,7 @@
 
   <p>
     <img src="https://img.shields.io/badge/AI%20Native-Design%20System-111827?style=for-the-badge&logo=openai&logoColor=white" alt="AI Native Design System" />
-    <img src="https://img.shields.io/badge/React%20%2F%20Vue-50%20Components-4F46E5?style=for-the-badge&logo=vite&logoColor=white" alt="React Vue Components" />
+    <img src="https://img.shields.io/badge/React%20%2F%20Vue-66%20Components-4F46E5?style=for-the-badge&logo=vite&logoColor=white" alt="React Vue Components" />
     <img src="https://img.shields.io/badge/Templates-16%20Routes-7B61FF?style=for-the-badge&logo=storybook&logoColor=white" alt="Runnable Templates" />
   </p>
 
@@ -29,8 +29,8 @@
     <a href="https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html">
       <img src="https://img.shields.io/badge/Developer%20Docs-API%20Search-111827?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Atlas EIDS 开发文档" />
     </a>
-    <a href="https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.2">
-      <img src="https://img.shields.io/badge/Release-v0.2.0--beta.2-087443?style=for-the-badge&logo=github&logoColor=white" alt="Atlas EIDS Beta Release" />
+    <a href="https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.3">
+      <img src="https://img.shields.io/badge/Release-v0.2.0--beta.3-087443?style=for-the-badge&logo=github&logoColor=white" alt="Atlas EIDS Beta Release" />
     </a>
   </p>
 
@@ -67,7 +67,7 @@ Atlas EIDS 是一套面向 AI 原生企业级产品的界面设计系统。
 
 - **Hero 与品牌系统**：面向 AI 原生 OS 的设计系统首页表达
 - **Orb AI Components**：液态金属 Core、外层轨道、呼吸感、状态动效和 AI 辅助输入
-- **基础与组合组件**：React / Vue 各 50 个 UI 组件（另含 Provider），其中 15 个 AI 组件覆盖对话、附件、知识、MCP、引用、检索轨迹与工具调用
+- **基础与组合组件**：React / Vue 各 66 个 UI 组件（另含 Provider），其中 21 个 AI 组件覆盖对话、附件、知识、Artifact、结构化输入、Provenance、GenUI、MCP、跨页面 Agent 与工具调用
 - **应用框架与页面模板库**：126 个缩略索引均可展开为带真实字段、数据与反馈状态的交互 Demo
 - **企业级 UI**：Agent Card、Chat、Timeline、Command Bar、Status Monitor 等
 - **数据可视化**：品牌化色板、面积图、柱状图、Dashboard 风格示例
@@ -86,7 +86,7 @@ Atlas EIDS 是一套面向 AI 原生企业级产品的界面设计系统。
 - **企业集成基线**：本地 JWT 与外部 OIDC 双模式、RBAC、租户隔离、PostgreSQL、Flyway、AI Provider、Agent 审批与审计回放
 - **发布工程**：Changesets、npm Provenance 工作流、包体预检、组件 API/Type 契约检查
 
-> 当前处于 Beta。视觉规范、50 个双端 UI 组件、16 个页面路由、7 种 CLI 应用框架、7 个 Skills、Machine Manifest、MCP 本地传输和企业治理基线均已具备自动验证；公网 MCP、浏览器 WebMCP、生产 RAG Adapter、第三方高级控件与插件市场服务仍保持 Experimental。
+> 当前处于 Beta。DTCG 2025.10 四层 Tokens、66 个双端 UI 组件、26 个页面 Recipe、16 个页面路由、7 种 CLI 应用框架、7 个 Skills、Machine Manifest、MCP 本地传输和企业治理基线均已具备自动验证；公网 MCP、浏览器 WebMCP、生产 RAG Adapter、第三方高级控件与插件市场服务仍保持 Experimental。
 
 ## Orb 设计理念
 
@@ -116,7 +116,7 @@ npm install
 npm run atlas -- create atlas-workspace --framework react --template agent-task --framework-layout tenant --density compact --locale zh-CN --adapter antd --backend java --local
 ```
 
-正式 npm packages 发布后，CLI 才会默认使用 Registry 版本。当前状态与迁移方式见 [Packages 发布状态](docs/PACKAGE_STATUS.md)，当前预发布版本见 [v0.2.0-beta.2 发布说明](docs/releases/v0.2.0-beta.2.md)。
+正式 npm packages 发布后，CLI 才会默认使用 Registry 版本。当前状态与迁移方式见 [Packages 发布状态](docs/PACKAGE_STATUS.md)，当前预发布版本见 [v0.2.0-beta.3 发布说明](docs/releases/v0.2.0-beta.3.md)。
 
 安装后执行完整检查：
 
@@ -223,10 +223,14 @@ AUI-UX/
 - [浏览器文档站](https://davidwang960707-gpu.github.io/atlas-eids/docs-site.html)
 - [快速开始](docs/GETTING_STARTED.md)
 - [Packages 发布状态](docs/PACKAGE_STATUS.md)
+- [DTCG Tokens 与 Figma 交付](figma/README.md)
+- [仓库内采用案例](docs/ADOPTION_CASES.md)
+- [人工读屏测试矩阵](docs/SCREEN_READER_TEST_MATRIX.md)
 - [Design Tokens](docs/DESIGN_TOKENS.md)
 - [应用框架与页面模板库](docs/APP_FRAMEWORK_LIBRARY.md)
 - [组件说明](docs/COMPONENTS.md)
 - [设计契约与 Machine Manifest](docs/DESIGN_CONTRACTS.md)
+- [企业页面组合与 UI 质量规范](docs/UI_COMPOSITION_GUIDELINES.md)
 - [工程架构](docs/ARCHITECTURE.md)
 - [工程化与质量基线](docs/ENGINEERING.md)
 - [插件与第三方组件接入](docs/PLUGIN_DEVELOPMENT.md)

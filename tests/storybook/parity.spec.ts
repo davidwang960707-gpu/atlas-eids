@@ -75,4 +75,37 @@ for (const framework of [{ id: 'react' as const, port: reactPort }, { id: 'vue' 
     expect(colors.surface).not.toBe(colors.root)
     await expect(page.locator('.atlas-root')).toHaveAttribute('data-atlas-theme', 'dark')
   })
+
+  test(`${framework.id} headless interaction contracts`, async ({ page }) => {
+    await page.goto(storyURL(framework.port, framework.id, 'combobox'))
+    const combobox = page.getByRole('combobox', { name: '知识库' })
+    await combobox.fill('安全')
+    await expect(page.getByRole('option', { name: '安全策略' })).toBeVisible()
+    await combobox.press('ArrowDown')
+    await combobox.press('Enter')
+    await expect(combobox).toHaveValue('安全策略')
+    await expect(combobox).toHaveAttribute('aria-expanded', 'false')
+
+    await page.goto(storyURL(framework.port, framework.id, 'menu'))
+    const overview = page.getByRole('menuitem', { name: '概览' })
+    await overview.focus()
+    await overview.press('ArrowDown')
+    await expect(page.getByRole('menuitem', { name: '成员' })).toBeFocused()
+    await page.getByRole('menuitem', { name: '成员' }).press('ArrowDown')
+    await expect(page.getByRole('menuitem', { name: '删除' })).toBeFocused()
+
+    await page.goto(storyURL(framework.port, framework.id, 'tree'))
+    const child = page.getByRole('button', { name: '产品规范' })
+    await child.focus()
+    await child.press('ArrowUp')
+    await expect(page.getByRole('button', { name: '企业知识', exact: true })).toBeFocused()
+
+    await page.goto(storyURL(framework.port, framework.id, 'dialog'))
+    const opener = page.getByRole('button', { name: '打开对话框' })
+    await opener.click()
+    await expect(page.getByRole('dialog', { name: '确认发布' })).toBeVisible()
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog', { name: '确认发布' })).not.toBeVisible()
+    await expect(opener).toBeFocused()
+  })
 }

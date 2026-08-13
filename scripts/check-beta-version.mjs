@@ -5,7 +5,7 @@ const root = resolve(import.meta.dirname, '..')
 const packages = [
   'tokens', 'core', 'plugin-sdk', 'adapters', 'adapter-antd-react',
   'adapter-tdesign-vue', 'adapter-opentiny-vue', 'ai-runtime',
-  'web-agent', 'cli', 'react', 'vue'
+  'web-agent', 'agent-kit', 'mcp', 'cli', 'react', 'vue'
 ]
 
 for (const directory of packages) {

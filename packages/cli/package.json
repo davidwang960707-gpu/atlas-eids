@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/cli",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Project and page source generator for Atlas EIDS",
   "type": "module",
   "bin": {
@@ -13,7 +13,23 @@
     ".": "./dist/generator.mjs"
   },
   "dependencies": {
-    "@atlas-eids/agent-kit": "0.2.0-beta.2"
+    "@atlas-eids/agent-kit": "0.2.0-beta.3"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.50",
+    "pixelmatch": ">=7",
+    "pngjs": ">=7"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "pixelmatch": {
+      "optional": true
+    },
+    "pngjs": {
+      "optional": true
+    }
   },
   "scripts": {
     "build": "node scripts/build.mjs",

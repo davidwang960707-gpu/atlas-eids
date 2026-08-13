@@ -1,0 +1,57 @@
+{
+  "baselineVersion": "0.2.0-beta.2",
+  "currentVersion": "0.2.0-beta.3",
+  "compatible": true,
+  "breaking": [],
+  "changed": [
+    {
+      "component": "AtlasProvider",
+      "prop": "density",
+      "before": "\"compact\" | \"standard\" | \"comfortable\"",
+      "after": "AtlasDensity"
+    },
+    {
+      "component": "AtlasProvider",
+      "prop": "locale",
+      "before": "\"zh-CN\" | \"en-US\"",
+      "after": "AtlasLocale"
+    }
+  ],
+  "additions": [
+    "AtlasObjectCell",
+    "AtlasStatusTag",
+    "AtlasRowActions",
+    "AtlasTableToolbar",
+    "AtlasDataTable",
+    "AtlasPageHeader",
+    "AtlasPanel",
+    "AtlasForm",
+    "AtlasCombobox",
+    "AtlasDateRange",
+    "AtlasUpload",
+    "AtlasDataGrid",
+    "AtlasTree",
+    "AtlasMenu",
+    "AtlasNotification",
+    "AtlasNotificationCenter",
+    "AtlasAppLayout",
+    "AtlasAIConversation",
+    "AtlasAIMessageBubble",
+    "AtlasAIStreamingText",
+    "AtlasAIPrompts",
+    "AtlasAIAttachmentList",
+    "AtlasAIConversationHistory",
+    "AtlasAIFeedback",
+    "AtlasMCPServerPicker",
+    "AtlasCitationList",
+    "AtlasKnowledgeSourcePicker",
+    "AtlasRetrievalTrace",
+    "AtlasToolCallCard",
+    "AtlasAIArtifactRenderer",
+    "AtlasAIStructuredInput",
+    "AtlasAIProvenance",
+    "AtlasGenUIRenderer",
+    "AtlasMCPToolPanel",
+    "AtlasCrossPageAgent"
+  ]
+}

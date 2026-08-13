@@ -1,0 +1,15 @@
+{
+  "automatedReadiness": "passed",
+  "verifiedContracts": [
+    "Dialog focus trap",
+    "Combobox pattern",
+    "Tree keyboard model",
+    "Data status announcement",
+    "Notification live region",
+    "AI conversation live output",
+    "Generated chart alternative"
+  ],
+  "manualStatus": "pending-human-verification",
+  "manualMatrix": "docs/SCREEN_READER_TEST_MATRIX.md",
+  "note": "Automated semantic readiness is not a substitute for human VoiceOver and NVDA sign-off."
+}

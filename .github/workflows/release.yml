@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           registry-url: https://registry.npmjs.org
 
@@ -43,6 +43,13 @@ jobs:
 
       - name: Verify release candidate
         run: npm run check
+
+      - name: Verify fresh install and generated applications
+        run: npm run test:fresh-install
+
+      - name: Enable npm Trusted Publishing support
+        if: ${{ inputs.publish }}
+        run: npm install --global npm@latest
 
       - name: Publish beta packages
         if: ${{ inputs.publish }}

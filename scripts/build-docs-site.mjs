@@ -7,12 +7,17 @@ const root = resolve(import.meta.dirname, '..')
 const documents = [
   { id: 'getting-started', title: '快速开始', group: '开始', file: 'docs/GETTING_STARTED.md' },
   { id: 'package-status', title: 'Packages 发布状态', group: '开始', file: 'docs/PACKAGE_STATUS.md' },
+  { id: 'release-beta-3', title: 'v0.2.0-beta.3 发布说明', group: '开始', file: 'docs/releases/v0.2.0-beta.3.md' },
   { id: 'design-tokens', title: 'Design Tokens', group: '设计系统', file: 'docs/DESIGN_TOKENS.md' },
   { id: 'components', title: '组件说明', group: '设计系统', file: 'docs/COMPONENTS.md' },
   { id: 'design-contracts', title: '设计契约与 Machine Manifest', group: '设计系统', file: 'docs/DESIGN_CONTRACTS.md' },
+  { id: 'ui-composition', title: '企业页面组合与 UI 质量规范', group: '设计系统', file: 'docs/UI_COMPOSITION_GUIDELINES.md' },
   { id: 'app-frameworks', title: '应用框架与页面模板', group: '设计系统', file: 'docs/APP_FRAMEWORK_LIBRARY.md' },
   { id: 'architecture', title: '工程架构', group: '工程', file: 'docs/ARCHITECTURE.md' },
   { id: 'engineering', title: '工程化与质量基线', group: '工程', file: 'docs/ENGINEERING.md' },
+  { id: 'screen-reader', title: '人工读屏测试矩阵', group: '工程', file: 'docs/SCREEN_READER_TEST_MATRIX.md' },
+  { id: 'figma-handoff', title: 'Figma 交付资产', group: '工程', file: 'figma/README.md' },
+  { id: 'adoption-cases', title: '仓库内采用案例', group: '工程', file: 'docs/ADOPTION_CASES.md' },
   { id: 'plugin-development', title: '插件与第三方组件', group: '工程', file: 'docs/PLUGIN_DEVELOPMENT.md' },
   { id: 'agent-development', title: 'Agent 页面开发与 MCP', group: 'AI 与后端', file: 'docs/AGENT_DEVELOPMENT.md' },
   { id: 'ai-runtime', title: 'AI Runtime 与 Web Agent', group: 'AI 与后端', file: 'docs/AI_RUNTIME.md' },
@@ -67,8 +72,9 @@ const components = JSON.parse(await readFile(resolve(root, 'docs/component-api.j
   props: component.props.map(([name, type, defaultValue, description]) => ({ name, type, defaultValue, description }))
 }))
 
+const workspace = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'))
 const data = {
-  version: '0.2.0-dev',
+  version: workspace.version,
   generatedAt: new Date().toISOString(),
   documents: compiled,
   components,

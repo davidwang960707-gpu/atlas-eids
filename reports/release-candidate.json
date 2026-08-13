@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0-beta.3",
+  "status": "passed",
+  "packageCount": 14,
+  "packageArchives": [
+    "atlas-eids-adapter-antd-react-0.2.0-beta.3.tgz",
+    "atlas-eids-adapter-opentiny-vue-0.2.0-beta.3.tgz",
+    "atlas-eids-adapter-tdesign-vue-0.2.0-beta.3.tgz",
+    "atlas-eids-adapters-0.2.0-beta.2.tgz",
+    "atlas-eids-agent-kit-0.2.0-beta.3.tgz",
+    "atlas-eids-ai-runtime-0.2.0-beta.2.tgz",
+    "atlas-eids-cli-0.2.0-beta.3.tgz",
+    "atlas-eids-core-0.2.0-beta.3.tgz",
+    "atlas-eids-mcp-0.2.0-beta.3.tgz",
+    "atlas-eids-plugin-sdk-0.2.0-beta.2.tgz",
+    "atlas-eids-react-0.2.0-beta.3.tgz",
+    "atlas-eids-tokens-0.2.0-beta.3.tgz",
+    "atlas-eids-vue-0.2.0-beta.3.tgz",
+    "atlas-eids-web-agent-0.2.0-beta.2.tgz"
+  ],
+  "applications": [
+    {
+      "framework": "react",
+      "layout": "tenant",
+      "template": "agent-task",
+      "backend": "java",
+      "build": "passed",
+      "javaClient": "passed"
+    },
+    {
+      "framework": "vue",
+      "layout": "hybrid",
+      "template": "data-list",
+      "backend": "none",
+      "build": "passed",
+      "javaClient": "passed"
+    }
+  ]
+}

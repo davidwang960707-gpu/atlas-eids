@@ -1,7 +1,37 @@
-import { createContext, useContext, useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type CSSProperties, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
+import { Fragment, createContext, useContext, useEffect, useId, useMemo, useRef, useState, type ButtonHTMLAttributes, type CSSProperties, type FormEvent, type HTMLAttributes, type InputHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
+import { createAtlasDataGridModel, filterAtlasMCPTools, filterAtlasOptions, flattenAtlasTree, moveAtlasActiveIndex, normalizeAtlasUploadFiles, validateAtlasDateRange, validateAtlasForm, validateAtlasGenUISchema, type AtlasAIArtifactContract, type AtlasAIProvenanceContract, type AtlasAIStructuredFieldContract, type AtlasCrossPageStepContract, type AtlasDataGridColumn as AtlasCoreDataGridColumn, type AtlasDateRangeValue, type AtlasFieldValue, type AtlasFormRule, type AtlasGenUINodeContract, type AtlasMCPToolContract, type AtlasNotificationContract, type AtlasTreeNodeContract, type AtlasUploadFileContract } from '@atlas-eids/core'
 import type { AtlasAIAttachmentItemContract, AtlasAICitationItemContract, AtlasAIHistoryItemContract, AtlasAIPromptItemContract, AtlasDensity, AtlasDropdownItemContract, AtlasExecutionStepContract, AtlasKnowledgeSourceItemContract, AtlasLocale, AtlasMCPServerItemContract, AtlasOptionContract, AtlasRetrievalStepContract, AtlasRowActionContract, AtlasSemanticTone, AtlasSortDirection, AtlasStepContract, AtlasTableColumn as AtlasCoreTableColumn, AtlasTableLabels, AtlasToolCallItemContract } from '@atlas-eids/core'
 
 const cx = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(' ')
+const focusableSelector = 'button:not([disabled]),[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+
+function useAtlasOverlay(open: boolean, root: React.RefObject<HTMLElement | null>, onClose: () => void) {
+  const previousFocus = useRef<HTMLElement | null>(null)
+  useEffect(() => {
+    if (!open || !root.current) return
+    previousFocus.current = document.activeElement as HTMLElement | null
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const elements = () => [...root.current!.querySelectorAll<HTMLElement>(focusableSelector)].filter((element) => element.offsetParent !== null)
+    elements()[0]?.focus()
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); onClose(); return }
+      if (event.key !== 'Tab') return
+      const items = elements()
+      if (!items.length) return
+      const first = items[0]
+      const last = items[items.length - 1]
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
+    }
+    document.addEventListener('keydown', keydown)
+    return () => {
+      document.removeEventListener('keydown', keydown)
+      document.body.style.overflow = previousOverflow
+      previousFocus.current?.focus()
+    }
+  }, [open, onClose, root])
+}
 
 export interface AtlasProviderProps {
   theme?: 'light' | 'dark'
@@ -46,6 +76,32 @@ export function AtlasInput({ label, hint, error, className, id, ...props }: Atla
   </label>
 }
 
+export interface AtlasFormProps extends Omit<HTMLAttributes<HTMLFormElement>, 'onSubmit'> {
+  schema?: Record<string, AtlasFormRule[]>
+  errors?: Record<string, string>
+  busy?: boolean
+  onSubmit: (values: Record<string, AtlasFieldValue>) => void | Promise<void>
+  children: ReactNode
+}
+
+export function AtlasForm({ schema = {}, errors: externalErrors, busy = false, onSubmit, children, className, ...props }: AtlasFormProps) {
+  const [internalErrors, setInternalErrors] = useState<Record<string, string>>({})
+  const errors = externalErrors ?? internalErrors
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const values = Object.fromEntries(new FormData(event.currentTarget).entries()) as Record<string, AtlasFieldValue>
+    const nextErrors = validateAtlasForm(values, schema)
+    if (!externalErrors) setInternalErrors(nextErrors)
+    const first = Object.keys(nextErrors)[0]
+    if (first) { event.currentTarget.querySelector<HTMLElement>(`[name="${CSS.escape(first)}"]`)?.focus(); return }
+    await onSubmit(values)
+  }
+  return <form className={cx('atlas-form', className)} aria-busy={busy || undefined} noValidate onSubmit={submit} {...props}>
+    {Object.keys(errors).length > 0 && <div className="atlas-form-summary" role="alert" tabIndex={-1}><strong>请检查以下字段</strong><ul>{Object.entries(errors).map(([name, message]) => <li key={name}><button type="button" onClick={(event) => event.currentTarget.form?.querySelector<HTMLElement>(`[name="${CSS.escape(name)}"]`)?.focus()}>{message}</button></li>)}</ul></div>}
+    <fieldset disabled={busy}>{children}</fieldset>
+  </form>
+}
+
 export interface AtlasCardProps extends HTMLAttributes<HTMLElement> {
   title?: string
   description?: string
@@ -87,16 +143,17 @@ export function AtlasTabs({ items, value, onChange, label = '页面标签' }: { 
   return <div className="atlas-tabs" role="tablist" aria-label={label}>{items.map((item) => <button key={item.id} role="tab" aria-selected={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.label}{item.count !== undefined && <b>{item.count}</b>}</button>)}</div>
 }
 
-export function AtlasDialog({ open, title, children, onClose, footer }: { open: boolean; title: string; children: ReactNode; onClose: () => void; footer?: ReactNode }) {
+export function AtlasDialog({ open, title, children, onClose, footer, closeOnBackdrop = true }: { open: boolean; title: string; children: ReactNode; onClose: () => void; footer?: ReactNode; closeOnBackdrop?: boolean }) {
   const ref = useRef<HTMLDialogElement>(null)
   const titleId = useId()
+  useAtlasOverlay(open, ref, onClose)
   useEffect(() => {
     const dialog = ref.current
     if (!dialog) return
     if (open && !dialog.open) dialog.showModal()
     if (!open && dialog.open) dialog.close()
   }, [open])
-  return <dialog ref={ref} className="atlas-dialog" aria-labelledby={titleId} onCancel={(event) => { event.preventDefault(); onClose() }} onClose={onClose}>
+  return <dialog ref={ref} className="atlas-dialog" aria-labelledby={titleId} onCancel={(event) => event.preventDefault()} onClick={(event) => { if (closeOnBackdrop && event.target === ref.current) onClose() }}>
     <header><h2 id={titleId}>{title}</h2><button onClick={onClose} aria-label="关闭">×</button></header>
     <div className="atlas-dialog-body">{children}</div>
     {footer && <footer>{footer}</footer>}
@@ -146,6 +203,37 @@ export function AtlasSelect({ label, hint, options, className, id, ...props }: A
   return <label className={cx('atlas-field', className)} htmlFor={selectId}>{label && <span className="atlas-field-label">{label}</span>}<select id={selectId} className="atlas-select" {...props}>{options.map((option) => <option key={option.value} value={option.value} disabled={option.disabled}>{option.label}</option>)}</select>{hint && <small>{hint}</small>}</label>
 }
 
+export interface AtlasComboboxProps {
+  label: string
+  options: AtlasOption[]
+  value?: string
+  query?: string
+  placeholder?: string
+  loading?: boolean
+  error?: string
+  disabled?: boolean
+  onQueryChange?: (query: string) => void
+  onChange: (value: string) => void
+}
+
+export function AtlasCombobox({ label, options, value, query, placeholder = '搜索或选择', loading, error, disabled, onQueryChange, onChange }: AtlasComboboxProps) {
+  const id = useId()
+  const [internalQuery, setInternalQuery] = useState(() => options.find((option) => option.value === value)?.label ?? '')
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState(-1)
+  const currentQuery = query ?? internalQuery
+  const filtered = useMemo(() => filterAtlasOptions(options, currentQuery), [options, currentQuery])
+  const disabledIndexes = useMemo(() => new Set(filtered.map((option, index) => option.disabled ? index : -1).filter((index) => index >= 0)), [filtered])
+  const updateQuery = (next: string) => { if (query === undefined) setInternalQuery(next); onQueryChange?.(next); setOpen(true); setActive(-1) }
+  const select = (option: AtlasOption) => { if (option.disabled) return; updateQuery(option.label); onChange(option.value); setOpen(false) }
+  const keydown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); setOpen(true); setActive((current) => moveAtlasActiveIndex(current, event.key === 'ArrowDown' ? 1 : -1, filtered.length, disabledIndexes)) }
+    if (event.key === 'Enter' && open && active >= 0) { event.preventDefault(); select(filtered[active]) }
+    if (event.key === 'Escape') setOpen(false)
+  }
+  return <label className={cx('atlas-field', 'atlas-combobox', error && 'has-error')} htmlFor={id}><span className="atlas-field-label">{label}</span><div><input id={id} role="combobox" aria-expanded={open} aria-controls={`${id}-listbox`} aria-activedescendant={active >= 0 ? `${id}-option-${active}` : undefined} aria-autocomplete="list" value={currentQuery} placeholder={placeholder} disabled={disabled} onChange={(event) => updateQuery(event.target.value)} onFocus={() => setOpen(true)} onKeyDown={keydown}/><button type="button" aria-label={open ? '关闭选项' : '打开选项'} disabled={disabled} onClick={() => setOpen((current) => !current)}>⌄</button></div>{open && <ul id={`${id}-listbox`} role="listbox">{loading ? <li role="option" aria-disabled="true">加载中...</li> : filtered.length ? filtered.map((option, index) => <li id={`${id}-option-${index}`} role="option" aria-selected={option.value === value} aria-disabled={option.disabled || undefined} className={cx(index === active && 'is-active', option.value === value && 'is-selected')} key={option.value} onMouseDown={(event) => event.preventDefault()} onClick={() => select(option)}>{option.label}</li>) : <li role="option" aria-disabled="true">没有匹配项</li>}</ul>}{error && <small>{error}</small>}</label>
+}
+
 export interface AtlasTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> { label?: string; hint?: string; error?: string }
 
 export function AtlasTextarea({ label, hint, error, className, id, ...props }: AtlasTextareaProps) {
@@ -154,10 +242,10 @@ export function AtlasTextarea({ label, hint, error, className, id, ...props }: A
   return <label className={cx('atlas-field', error && 'has-error', className)} htmlFor={textareaId}>{label && <span className="atlas-field-label">{label}</span>}<textarea id={textareaId} className="atlas-textarea" aria-invalid={Boolean(error) || undefined} {...props} />{(hint || error) && <small>{error ?? hint}</small>}</label>
 }
 
-export function AtlasCheckbox({ checked, indeterminate, label, hideLabel = false, onChange, disabled }: { checked: boolean; indeterminate?: boolean; label: ReactNode; hideLabel?: boolean; onChange: (checked: boolean) => void; disabled?: boolean }) {
+export function AtlasCheckbox({ checked, indeterminate, label, hideLabel = false, onChange, disabled, name, value }: { checked: boolean; indeterminate?: boolean; label: ReactNode; hideLabel?: boolean; onChange: (checked: boolean) => void; disabled?: boolean; name?: string; value?: string }) {
   const inputRef = useRef<HTMLInputElement>(null)
   useEffect(() => { if (inputRef.current) inputRef.current.indeterminate = Boolean(indeterminate) }, [indeterminate])
-  return <label className="atlas-check"><input ref={inputRef} type="checkbox" checked={checked} aria-checked={indeterminate ? 'mixed' : checked} disabled={disabled} onChange={(event) => onChange(event.target.checked)} /><span aria-hidden="true" /><b className={hideLabel ? 'sr-only' : undefined}>{label}</b></label>
+  return <label className="atlas-check"><input ref={inputRef} type="checkbox" name={name} value={value} checked={checked} aria-checked={indeterminate ? 'mixed' : checked} disabled={disabled} onChange={(event) => onChange(event.target.checked)} /><span aria-hidden="true" /><b className={hideLabel ? 'sr-only' : undefined}>{label}</b></label>
 }
 
 export function AtlasRadioGroup({ label, options, value, onChange, disabled }: { label: string; options: AtlasOption[]; value: string; onChange: (value: string) => void; disabled?: boolean }) {
@@ -171,6 +259,17 @@ export function AtlasSwitch({ checked, onChange, label, disabled }: { checked: b
 
 export function AtlasDateInput(props: Omit<AtlasInputProps, 'type'>) {
   return <AtlasInput type="date" {...props} />
+}
+
+export function AtlasDateRange({ value, onChange, label = '日期范围', min, max, disabled }: { value: AtlasDateRangeValue; onChange: (value: AtlasDateRangeValue) => void; label?: string; min?: string; max?: string; disabled?: boolean }) {
+  const error = validateAtlasDateRange(value, min, max)
+  return <fieldset className={cx('atlas-date-range', error && 'has-error')} disabled={disabled}><legend>{label}</legend><AtlasDateInput label="开始日期" value={value.start ?? ''} min={min} max={value.end ?? max} onChange={(event) => onChange({ ...value, start: event.target.value })}/><span aria-hidden="true">至</span><AtlasDateInput label="结束日期" value={value.end ?? ''} min={value.start ?? min} max={max} onChange={(event) => onChange({ ...value, end: event.target.value })}/>{error && <small role="alert">{error}</small>}</fieldset>
+}
+
+export function AtlasUpload({ files = [], accept, maxSize, multiple = true, disabled, onAdd, onRemove, onRetry, label = '上传文件' }: { files?: AtlasUploadFileContract[]; accept?: string[]; maxSize?: number; multiple?: boolean; disabled?: boolean; onAdd: (files: AtlasUploadFileContract[], nativeFiles: File[]) => void; onRemove?: (id: string) => void; onRetry?: (id: string) => void; label?: string }) {
+  const input = useRef<HTMLInputElement>(null)
+  const add = (nativeFiles: File[]) => nativeFiles.length && onAdd(normalizeAtlasUploadFiles(nativeFiles, { accept, maxSize }), nativeFiles)
+  return <section className={cx('atlas-upload', disabled && 'is-disabled')} aria-label={label}><input ref={input} className="sr-only" type="file" multiple={multiple} accept={accept?.join(',')} disabled={disabled} onChange={(event) => add([...event.target.files ?? []])}/><button type="button" className="atlas-upload-dropzone" disabled={disabled} onClick={() => input.current?.click()} onDragOver={(event) => event.preventDefault()} onDrop={(event) => { event.preventDefault(); if (!disabled) add([...event.dataTransfer.files]) }}><strong>{label}</strong><span>拖放文件到这里，或点击选择</span>{maxSize && <small>单个文件不超过 {Math.round(maxSize / 1024 / 1024)} MB</small>}</button>{files.length > 0 && <ul>{files.map((file) => <li key={file.id} className={`is-${file.status}`}><span><strong>{file.name}</strong><small>{file.error ?? `${Math.ceil(file.size / 1024)} KB`}</small></span><progress value={file.progress} max="100">{file.progress}%</progress>{file.status === 'failed' && onRetry && <AtlasButton size="compact" onClick={() => onRetry(file.id)}>重试</AtlasButton>}{onRemove && <button type="button" aria-label={`移除 ${file.name}`} onClick={() => onRemove(file.id)}>×</button>}</li>)}</ul>}</section>
 }
 
 export function AtlasSearchInput({ value, onChange, onSearch, placeholder = '搜索', label = '搜索' }: { value: string; onChange: (value: string) => void; onSearch: (value: string) => void; placeholder?: string; label?: string }) {
@@ -283,6 +382,58 @@ export function AtlasDataTable<Row extends { id: string | number }>({ title, des
   return <section className={cx('atlas-data-table', className)}>{(title || description) && <header><div>{description && <span>{description}</span>}{title && <h3>{title}</h3>}</div></header>}{toolbar}<AtlasTable {...tableProps}/>{footer && <footer>{footer}</footer>}</section>
 }
 
+export interface AtlasDataGridColumn<Row extends object> extends AtlasTableColumn<Row>, Omit<AtlasCoreDataGridColumn<Row>, 'render'> {}
+export interface AtlasDataGridProps<Row extends { id: string | number }> extends Omit<AtlasTableProps<Row>, 'columns' | 'rows'> {
+  columns: AtlasDataGridColumn<Row>[]
+  rows: Row[]
+  query?: string
+  page?: number
+  pageSize?: number
+  totalRows?: number
+  virtualize?: boolean
+  viewportHeight?: number
+  onPageChange?: (page: number) => void
+  onQueryChange?: (query: string) => void
+}
+
+export function AtlasDataGrid<Row extends { id: string | number }>({ columns, rows, query = '', page = 1, pageSize = 50, totalRows, virtualize = false, viewportHeight = 420, onPageChange, onQueryChange, ...tableProps }: AtlasDataGridProps<Row>) {
+  const { density } = useContext(AtlasConfigContext)
+  const rowHeight = density === 'compact' ? 36 : density === 'comfortable' ? 50 : 42
+  const [scrollTop, setScrollTop] = useState(0)
+  const windowSize = virtualize ? Math.ceil(viewportHeight / rowHeight) + 4 : pageSize
+  const offset = virtualize ? Math.max(0, Math.floor(scrollTop / rowHeight) - 2) : (Math.max(1, page) - 1) * pageSize
+  const model = createAtlasDataGridModel({ rows, columns, query, sortKey: tableProps.sortKey, sortDirection: tableProps.sortDirection, offset, limit: windowSize })
+  const pageCount = Math.max(1, Math.ceil((totalRows ?? model.totalRows) / pageSize))
+  const body = <AtlasTable {...tableProps} columns={model.visibleColumns} rows={model.visibleRows} />
+  return <section className="atlas-data-grid" data-atlas-critical>
+    <div className="atlas-data-grid-controls"><AtlasSearchInput value={query} onChange={(value) => onQueryChange?.(value)} onSearch={(value) => onQueryChange?.(value)} placeholder="筛选数据"/><span role="status">{totalRows ?? model.totalRows} 项</span></div>
+    {virtualize ? <div className="atlas-data-grid-viewport" style={{ height: viewportHeight }} onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}><div style={{ paddingTop: offset * rowHeight, paddingBottom: Math.max(0, (model.totalRows - offset - model.visibleRows.length) * rowHeight) }}>{body}</div></div> : body}
+    {!virtualize && pageCount > 1 && <footer><AtlasPagination page={page} pageCount={pageCount} onChange={(next) => onPageChange?.(next)}/></footer>}
+  </section>
+}
+
+export function AtlasTree({ nodes, expandedIds, selectedId, onExpandedChange, onSelect, label = '树形导航' }: { nodes: AtlasTreeNodeContract[]; expandedIds: string[]; selectedId?: string; onExpandedChange: (ids: string[]) => void; onSelect: (id: string) => void; label?: string }) {
+  const flat = useMemo(() => flattenAtlasTree(nodes, expandedIds), [nodes, expandedIds])
+  const refs = useRef(new Map<string, HTMLButtonElement>())
+  const activate = (index: number) => refs.current.get(flat[index]?.id)?.focus()
+  const keydown = (event: ReactKeyboardEvent<HTMLButtonElement>, index: number) => {
+    const node = flat[index]
+    if (event.key === 'ArrowDown') { event.preventDefault(); activate(Math.min(flat.length - 1, index + 1)) }
+    if (event.key === 'ArrowUp') { event.preventDefault(); activate(Math.max(0, index - 1)) }
+    if (event.key === 'ArrowRight' && node.hasChildren) { event.preventDefault(); if (!expandedIds.includes(node.id)) onExpandedChange([...expandedIds, node.id]); else activate(index + 1) }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); if (expandedIds.includes(node.id)) onExpandedChange(expandedIds.filter((id) => id !== node.id)); else if (node.parentId) refs.current.get(node.parentId)?.focus() }
+    if (event.key === 'Home') { event.preventDefault(); activate(0) }
+    if (event.key === 'End') { event.preventDefault(); activate(flat.length - 1) }
+  }
+  return <div className="atlas-tree" role="tree" aria-label={label}>{flat.map((node, index) => {
+    const expanded = expandedIds.includes(node.id)
+    return <div role="treeitem" aria-level={node.depth + 1} aria-expanded={node.hasChildren ? expanded : undefined} aria-selected={node.id === selectedId} aria-disabled={node.disabled || undefined} key={node.id} style={{ '--atlas-tree-depth': node.depth } as CSSProperties}>
+      {node.hasChildren ? <button type="button" className="atlas-tree-expander" aria-label={expanded ? `收起 ${node.label}` : `展开 ${node.label}`} disabled={node.disabled} onClick={() => onExpandedChange(expanded ? expandedIds.filter((id) => id !== node.id) : [...expandedIds, node.id])}>{expanded ? '⌄' : '›'}</button> : <span className="atlas-tree-expander is-placeholder" aria-hidden="true">›</span>}
+      <button ref={(element) => { if (element) refs.current.set(node.id, element); else refs.current.delete(node.id) }} className="atlas-tree-selector" type="button" tabIndex={node.id === selectedId || (!selectedId && index === 0) ? 0 : -1} disabled={node.disabled} onKeyDown={(event) => keydown(event, index)} onClick={() => onSelect(node.id)}><strong>{node.label}</strong></button>
+    </div>
+  })}</div>
+}
+
 export interface AtlasPageHeaderProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   title: ReactNode
   description?: ReactNode
@@ -306,6 +457,19 @@ export interface AtlasPanelProps extends Omit<HTMLAttributes<HTMLElement>, 'titl
 
 export function AtlasPanel({ title, description, actions, footer, children, className, ...props }: AtlasPanelProps) {
   return <section className={cx('atlas-panel', className)} {...props}>{(title || description || actions) && <header><div>{title && <h2>{title}</h2>}{description && <p>{description}</p>}</div>{actions}</header>}<div className="atlas-panel-body">{children}</div>{footer && <footer>{footer}</footer>}</section>
+}
+
+export function AtlasAppLayout({ brand, navigation, topbar, children, aside, collapsed = false, mobileNavigationOpen = false, onNavigationToggle }: { brand: ReactNode; navigation: ReactNode; topbar?: ReactNode; children: ReactNode; aside?: ReactNode; collapsed?: boolean; mobileNavigationOpen?: boolean; onNavigationToggle?: (open: boolean) => void }) {
+  return <div className={cx('atlas-app-layout', collapsed && 'is-collapsed', mobileNavigationOpen && 'is-mobile-open')}><header className="atlas-app-layout-header"><button type="button" className="atlas-app-layout-toggle" aria-label={mobileNavigationOpen ? '关闭导航' : '打开导航'} aria-expanded={mobileNavigationOpen} onClick={() => onNavigationToggle?.(!mobileNavigationOpen)}>☰</button>{brand}<div>{topbar}</div></header><aside className="atlas-app-layout-nav" aria-label="主导航">{navigation}</aside>{mobileNavigationOpen && <button type="button" className="atlas-app-layout-mask" aria-label="关闭导航" onClick={() => onNavigationToggle?.(false)}/>}<main className="atlas-app-layout-main">{children}</main>{aside && <aside className="atlas-app-layout-aside">{aside}</aside>}</div>
+}
+
+export function AtlasNotification({ notification, onDismiss }: { notification: AtlasNotificationContract; onDismiss?: (id: string) => void }) {
+  useEffect(() => { if (!notification.duration || !onDismiss) return; const timer = window.setTimeout(() => onDismiss(notification.id), notification.duration); return () => window.clearTimeout(timer) }, [notification, onDismiss])
+  return <article className={`atlas-notification is-${notification.intent ?? 'info'}`} role={notification.intent === 'danger' ? 'alert' : 'status'}><i aria-hidden="true">{notification.intent === 'success' ? '✓' : notification.intent === 'warning' || notification.intent === 'danger' ? '!' : 'i'}</i><div><strong>{notification.title}</strong>{notification.description && <p>{notification.description}</p>}</div>{onDismiss && <button type="button" aria-label={`关闭 ${notification.title}`} onClick={() => onDismiss(notification.id)}>×</button>}</article>
+}
+
+export function AtlasNotificationCenter({ items, onDismiss, label = '通知' }: { items: AtlasNotificationContract[]; onDismiss?: (id: string) => void; label?: string }) {
+  return <section className="atlas-notification-center" aria-label={label} aria-live="polite">{items.map((item) => <AtlasNotification key={item.id} notification={item} onDismiss={onDismiss}/>)}</section>
 }
 
 export function AtlasBadge({ children, count, dot = false, intent = 'danger' }: { children: ReactNode; count?: number; dot?: boolean; intent?: 'primary' | 'success' | 'warning' | 'danger' }) {
@@ -343,14 +507,30 @@ export function AtlasSkeleton({ lines = 3, label = '内容加载中' }: { lines?
   return <div className="atlas-skeleton" role="status" aria-label={label}>{Array.from({ length: lines }, (_, index) => <span key={index} style={{ width: `${100 - index * 12}%` }} />)}</div>
 }
 
-export function AtlasDrawer({ open, title, children, onClose, width = 420, footer }: { open: boolean; title: string; children: ReactNode; onClose: () => void; width?: number; footer?: ReactNode }) {
-  return <div className={cx('atlas-drawer-layer', open && 'is-open')} aria-hidden={!open}><button className="atlas-drawer-mask" type="button" onClick={onClose} aria-label="关闭抽屉" tabIndex={open ? 0 : -1} /><aside className="atlas-drawer" role="dialog" aria-modal="true" aria-label={title} style={{ width }}><header><h2>{title}</h2><button type="button" onClick={onClose} aria-label="关闭">×</button></header><div className="atlas-drawer-body">{children}</div>{footer && <footer>{footer}</footer>}</aside></div>
+export function AtlasDrawer({ open, title, children, onClose, width = 420, footer, closeOnBackdrop = true }: { open: boolean; title: string; children: ReactNode; onClose: () => void; width?: number; footer?: ReactNode; closeOnBackdrop?: boolean }) {
+  const ref = useRef<HTMLElement>(null)
+  useAtlasOverlay(open, ref, onClose)
+  return <div className={cx('atlas-drawer-layer', open && 'is-open')} aria-hidden={!open}><button className="atlas-drawer-mask" type="button" onClick={() => closeOnBackdrop && onClose()} aria-label="关闭抽屉" tabIndex={open ? 0 : -1} /><aside ref={ref} className="atlas-drawer" role="dialog" aria-modal="true" aria-label={title} style={{ width }}><header><h2>{title}</h2><button type="button" onClick={onClose} aria-label="关闭">×</button></header><div className="atlas-drawer-body">{children}</div>{footer && <footer>{footer}</footer>}</aside></div>
 }
 
 export interface AtlasDropdownItem extends AtlasDropdownItemContract {}
 
 export function AtlasDropdown({ label, items, onSelect }: { label: ReactNode; items: AtlasDropdownItem[]; onSelect: (id: string) => void }) {
   return <details className="atlas-dropdown"><summary>{label}<span aria-hidden="true">⌄</span></summary><div role="menu">{items.map((item) => <button key={item.id} type="button" role="menuitem" disabled={item.disabled} className={item.danger ? 'is-danger' : undefined} onClick={(event) => { onSelect(item.id); event.currentTarget.closest('details')?.removeAttribute('open') }}>{item.label}</button>)}</div></details>
+}
+
+export function AtlasMenu({ items, activeId, onSelect, label = '操作菜单', orientation = 'vertical' }: { items: AtlasDropdownItem[]; activeId?: string; onSelect: (id: string) => void; label?: string; orientation?: 'vertical' | 'horizontal' }) {
+  const refs = useRef<Array<HTMLButtonElement | null>>([])
+  const disabled = useMemo(() => new Set(items.map((item, index) => item.disabled ? index : -1).filter((index) => index >= 0)), [items])
+  const keydown = (event: ReactKeyboardEvent<HTMLButtonElement>, index: number) => {
+    const previous = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft'
+    const next = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight'
+    if (event.key !== previous && event.key !== next && event.key !== 'Home' && event.key !== 'End') return
+    event.preventDefault()
+    const target = event.key === 'Home' ? 0 : event.key === 'End' ? items.length - 1 : moveAtlasActiveIndex(index, event.key === next ? 1 : -1, items.length, disabled)
+    refs.current[target]?.focus()
+  }
+  return <div className={cx('atlas-menu', `is-${orientation}`)} role="menu" aria-label={label} aria-orientation={orientation}>{items.map((item, index) => <button ref={(element) => { refs.current[index] = element }} key={item.id} type="button" role="menuitem" tabIndex={item.id === activeId || (!activeId && index === 0) ? 0 : -1} aria-current={item.id === activeId ? 'page' : undefined} disabled={item.disabled} className={item.danger ? 'is-danger' : undefined} onKeyDown={(event) => keydown(event, index)} onClick={() => onSelect(item.id)}>{item.label}</button>)}</div>
 }
 
 export type AtlasAIMessageRole = 'user' | 'assistant' | 'system' | 'tool'
@@ -454,4 +634,64 @@ export interface AtlasToolCallItem extends AtlasToolCallItemContract {}
 export function AtlasToolCallCard({ call, onApprove, onReject, onRetry }: { call: AtlasToolCallItem; onApprove?: (id: string) => void; onReject?: (id: string) => void; onRetry?: (id: string) => void }) {
   const [expanded, setExpanded] = useState(false)
   return <article className={`atlas-tool-call is-${call.status}`}><header><i aria-hidden="true">{call.status === 'completed' ? '✓' : call.status === 'failed' ? '!' : call.permission === 'read' ? 'R' : 'T'}</i><span><strong>{call.name}</strong>{call.description && <small>{call.description}</small>}</span><AtlasTag intent={call.permission === 'high-risk' ? 'warning' : call.permission === 'write' ? 'primary' : 'neutral'}>{call.permission}</AtlasTag></header>{(call.input !== undefined || call.result !== undefined) && <><button type="button" className="atlas-tool-details-toggle" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{expanded ? '收起详情' : '查看输入与结果'}</button>{expanded && <pre>{JSON.stringify({ input: call.input, result: call.result }, null, 2)}</pre>}</>}{call.status === 'approval' && <footer>{onReject && <AtlasButton size="compact" onClick={() => onReject(call.id)}>拒绝</AtlasButton>}{onApprove && <AtlasButton size="compact" intent="primary" onClick={() => onApprove(call.id)}>批准执行</AtlasButton>}</footer>}{call.status === 'failed' && onRetry && <footer><AtlasButton size="compact" onClick={() => onRetry(call.id)}>重试</AtlasButton></footer>}{call.durationMs !== undefined && <time>{call.durationMs} ms</time>}</article>
+}
+
+export function AtlasAIArtifactRenderer({ artifact, renderers = {}, actions }: { artifact: AtlasAIArtifactContract; renderers?: Partial<Record<AtlasAIArtifactContract['type'], (artifact: AtlasAIArtifactContract) => ReactNode>>; actions?: ReactNode }) {
+  const custom = renderers[artifact.type]?.(artifact)
+  const rows = (artifact.rows ?? []).map((row, index) => ({ ...row, id: String(row.id ?? `${artifact.id}-${index}`) }))
+  const columns: AtlasTableColumn<(typeof rows)[number]>[] = (artifact.columns ?? Object.keys(rows[0] ?? {}).filter((key) => key !== 'id').map((key) => ({ key, title: key }))).map((column) => ({ key: column.key, title: column.title }))
+  let content: ReactNode = custom
+  if (!content && artifact.type === 'code') content = <pre><code data-language={artifact.language}>{artifact.content ?? ''}</code></pre>
+  if (!content && artifact.type === 'json') content = <pre><code>{artifact.content ?? '{}'}</code></pre>
+  if (!content && (artifact.type === 'text' || artifact.type === 'markdown')) content = <div className="atlas-ai-artifact-text">{(artifact.content ?? '').split(/\n{2,}/).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
+  if (!content && artifact.type === 'table') content = <AtlasTable caption={artifact.title ?? 'AI 生成表格'} columns={columns} rows={rows}/>
+  if (!content && artifact.type === 'chart') {
+    const max = Math.max(1, ...(artifact.values ?? []).map((item) => item.value))
+    content = <div className="atlas-ai-artifact-chart" role="img" aria-label={artifact.title ?? 'AI 生成图表'}>{artifact.values?.map((item) => <div key={item.label}><span>{item.label}</span><i style={{ '--atlas-artifact-value': `${Math.max(0, item.value) / max * 100}%` } as CSSProperties}/><b>{item.value}</b></div>)}</div>
+  }
+  if (!content && artifact.type === 'file' && artifact.file) content = <a className="atlas-ai-artifact-file" href={artifact.file.url} download={artifact.file.name}><strong>{artifact.file.name}</strong><span>{artifact.file.mediaType ?? '文件'}{artifact.file.size ? ` · ${Math.ceil(artifact.file.size / 1024)} KB` : ''}</span></a>
+  return <article className={`atlas-ai-artifact is-${artifact.type}`}><header><div><small>AI Artifact · {artifact.type}</small>{artifact.title && <h3>{artifact.title}</h3>}{artifact.description && <p>{artifact.description}</p>}</div>{actions}</header><div className="atlas-ai-artifact-body">{content}</div></article>
+}
+
+export function AtlasAIStructuredInput({ fields, values, onChange, onSubmit, busy = false, submitLabel = '生成' }: { fields: AtlasAIStructuredFieldContract[]; values: Record<string, AtlasFieldValue>; onChange: (values: Record<string, AtlasFieldValue>) => void; onSubmit: (values: Record<string, AtlasFieldValue>) => void; busy?: boolean; submitLabel?: string }) {
+  const update = (name: string, value: AtlasFieldValue) => onChange({ ...values, [name]: value })
+  return <AtlasForm className="atlas-ai-structured-input" schema={Object.fromEntries(fields.map((field) => [field.name, field.rules ?? []]))} busy={busy} onSubmit={() => onSubmit(values)}>{fields.map((field) => {
+    if (field.type === 'textarea') return <AtlasTextarea key={field.name} name={field.name} label={field.label} hint={field.description} placeholder={field.placeholder} value={String(values[field.name] ?? '')} onChange={(event) => update(field.name, event.target.value)}/>
+    if (field.type === 'select') return <AtlasSelect key={field.name} name={field.name} label={field.label} hint={field.description} options={field.options ?? []} value={String(values[field.name] ?? '')} onChange={(event) => update(field.name, event.target.value)}/>
+    if (field.type === 'boolean') return <AtlasCheckbox key={field.name} name={field.name} label={field.label} checked={Boolean(values[field.name])} onChange={(value) => update(field.name, value)}/>
+    if (field.type === 'date') return <AtlasDateInput key={field.name} name={field.name} label={field.label} hint={field.description} value={String(values[field.name] ?? '')} onChange={(event) => update(field.name, event.target.value)}/>
+    return <AtlasInput key={field.name} name={field.name} type={field.type === 'number' ? 'number' : 'text'} label={field.label} hint={field.description} placeholder={field.placeholder} value={String(values[field.name] ?? '')} onChange={(event) => update(field.name, field.type === 'number' ? Number(event.target.value) : event.target.value)}/>
+  })}<footer><AtlasButton type="submit" intent="primary" loading={busy}>{submitLabel}</AtlasButton></footer></AtlasForm>
+}
+
+export function AtlasAIProvenance({ provenance, defaultOpen = false }: { provenance: AtlasAIProvenanceContract; defaultOpen?: boolean }) {
+  return <details className="atlas-ai-provenance" open={defaultOpen}><summary><span><strong>AI 生成依据</strong><small>{provenance.provider ? `${provenance.provider} / ` : ''}{provenance.model}</small></span>{provenance.confidence !== undefined && <AtlasStatusTag tone={provenance.confidence >= .8 ? 'success' : provenance.confidence >= .6 ? 'warning' : 'danger'}>{Math.round(provenance.confidence * 100)}% 置信度</AtlasStatusTag>}</summary><dl><div><dt>生成时间</dt><dd>{provenance.generatedAt}</dd></div><div><dt>Trace ID</dt><dd><code>{provenance.traceId}</code></dd></div><div><dt>引用来源</dt><dd>{provenance.sourceIds?.join('、') || '无外部来源'}</dd></div><div><dt>策略</dt><dd>{provenance.policyIds?.join('、') || '默认策略'}</dd></div>{provenance.cost && <div><dt>成本</dt><dd>{provenance.cost.inputTokens ?? 0} + {provenance.cost.outputTokens ?? 0} tokens{provenance.cost.amount !== undefined && ` · ${provenance.cost.currency ?? 'USD'} ${provenance.cost.amount.toFixed(4)}`}</dd></div>}{provenance.reviewedBy && <div><dt>人工复核</dt><dd>{provenance.reviewedBy}</dd></div>}</dl></details>
+}
+
+export function AtlasGenUIRenderer({ schema, onAction }: { schema: AtlasGenUINodeContract; onAction?: (actionId: string, node: AtlasGenUINodeContract) => void }) {
+  const validation = validateAtlasGenUISchema(schema)
+  if (!validation.valid) return <AtlasAlert intent="danger" title="生成式 UI 未通过安全校验" description={validation.issues.join('；')}/>
+  const render = (node: AtlasGenUINodeContract): ReactNode => {
+    const children = node.children?.map((child) => <Fragment key={child.id}>{render(child)}</Fragment>)
+    if (node.type === 'stack') return <section className="atlas-genui-stack" data-genui-id={node.id}>{children}</section>
+    if (node.type === 'panel') return <AtlasPanel title={node.title}>{node.text && <p>{node.text}</p>}{children}</AtlasPanel>
+    if (node.type === 'text') return <p className="atlas-genui-text">{node.text}</p>
+    if (node.type === 'metric') return <AtlasStatistic label={node.title ?? ''} value={node.value ?? '-'} suffix={node.suffix}/>
+    if (node.type === 'action') return <AtlasButton intent="primary" onClick={() => node.actionId && onAction?.(node.actionId, node)}>{node.actionLabel}</AtlasButton>
+    if ((node.type === 'table' || node.type === 'artifact') && node.artifact) return <AtlasAIArtifactRenderer artifact={node.artifact}/>
+    return null
+  }
+  return <section className="atlas-genui" aria-label="AI 生成界面" data-node-count={validation.nodeCount}>{render(schema)}</section>
+}
+
+export function AtlasMCPToolPanel({ tools, selectedIds, onChange, onApprove, label = 'MCP 工具' }: { tools: AtlasMCPToolContract[]; selectedIds: string[]; onChange: (ids: string[]) => void; onApprove?: (id: string) => void; label?: string }) {
+  const [query, setQuery] = useState('')
+  const [permission, setPermission] = useState<AtlasMCPToolContract['permission'] | ''>('')
+  const visible = filterAtlasMCPTools(tools, query, permission || undefined)
+  const toggle = (id: string) => onChange(selectedIds.includes(id) ? selectedIds.filter((item) => item !== id) : [...selectedIds, id])
+  return <section className="atlas-mcp-tool-panel" aria-label={label}><header><div><strong>{label}</strong><small>{selectedIds.length} 个已授权</small></div><AtlasStatusTag tone="primary">{tools.length} tools</AtlasStatusTag></header><div className="atlas-mcp-tool-filters"><AtlasSearchInput value={query} onChange={setQuery} onSearch={setQuery} placeholder="搜索工具"/><AtlasSelect aria-label="权限筛选" value={permission} options={[{ label: '全部权限', value: '' }, { label: '只读', value: 'read' }, { label: '写入', value: 'write' }, { label: '高风险', value: 'high-risk' }]} onChange={(event) => setPermission(event.target.value as AtlasMCPToolContract['permission'] | '')}/></div><ul>{visible.map((tool) => <li key={tool.id} className={`is-${tool.status ?? 'available'}`}><AtlasCheckbox label={tool.name} checked={selectedIds.includes(tool.id)} disabled={tool.status === 'disabled' || tool.status === 'error'} onChange={() => toggle(tool.id)}/><span><small>{tool.serverId}</small>{tool.description && <p>{tool.description}</p>}</span><AtlasStatusTag tone={tool.permission === 'high-risk' ? 'warning' : tool.permission === 'write' ? 'primary' : 'neutral'}>{tool.permission}</AtlasStatusTag>{tool.status === 'approval' && onApprove && <AtlasButton size="compact" intent="primary" onClick={() => onApprove(tool.id)}>审批</AtlasButton>}</li>)}</ul>{visible.length === 0 && <AtlasEmpty title="没有匹配的工具" description="调整搜索词或权限范围。"/>}</section>
+}
+
+export function AtlasCrossPageAgent({ goal, currentRoute, routes, steps, status = 'running', onNavigate, onApprove, onStop }: { goal: string; currentRoute: string; routes: Array<{ path: string; label: string }>; steps: AtlasCrossPageStepContract[]; status?: 'idle' | 'thinking' | 'running' | 'error'; onNavigate: (path: string) => void; onApprove?: (id: string) => void; onStop?: () => void }) {
+  return <section className="atlas-cross-page-agent"><header><span><AtlasOrb state={status} size={42}/><span><small>跨页面 Agent</small><strong>{goal}</strong></span></span>{onStop && <AtlasButton size="compact" onClick={onStop}>停止</AtlasButton>}</header><nav aria-label="Agent 页面路径">{routes.map((route) => <button type="button" key={route.path} aria-current={route.path === currentRoute ? 'page' : undefined} onClick={() => onNavigate(route.path)}><span>{route.label}</span><code>{route.path}</code></button>)}</nav><AtlasExecutionPlan title="跨页面执行计划" steps={steps} onApprove={onApprove} onStop={onStop}/></section>
 }

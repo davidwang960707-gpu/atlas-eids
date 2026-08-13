@@ -19,7 +19,7 @@
 - 建立 npm Workspace 和 14 个可独立构建的工程 packages
 - 建立 Plugin SDK、第三方 Token Adapter、AI Runtime 和 Web Agent 工具层
 - 建立 React / Vue 正式组件包与源码生成 CLI
-- React / Vue 各提供 50 个 UI 组件与 `AtlasProvider`，其中 7 个为企业组合组件、15 个为 AI 原生组件
+- React / Vue 各提供 66 个 UI 组件与 `AtlasProvider`，其中 9 个为企业组合组件、21 个为 AI 原生组件
 - 建立 16 个独立路由、可运行、可交互的企业与 AI 页面模板
 - 建立 Ant Design、TDesign、OpenTiny 运行时 Wrapper
 - 建立 React / Vue Storybook
@@ -31,8 +31,8 @@
 - 建立 Changesets、npm Provenance Workflow、包体和组件 API/Type 发布预检
 - 包级测试、Axe、E2E、视觉回归、Maven 测试和 npm audit 已进入检查流程
 - CLI 生成 7 种完整应用框架，并支持可运行路由、产品 / 业务分层菜单、角色权限、Light / Dark 主题、多租户会话、类型化 Java API Client、密度、语言、第三方 Adapter 和升级差异预览
-- React / Vue 的 50 个 UI 组件均建立 Story 状态矩阵，并自动从类型源生成 API 文档
-- React / Vue Storybook 使用统一 Atlas Provider，补齐 Controls、三档密度、双语言、双主题和 50 × 2 逐组件 Axe 检查
+- React / Vue 的 66 个 UI 组件均建立 Story 状态矩阵，并自动从类型源生成 API 文档
+- React / Vue Storybook 使用统一 Atlas Provider，补齐 Controls、三档密度、双语言、双主题和 66 × 2 逐组件 Axe 检查
 - Living Orb 在正式组件包中补齐动态轨道、呼吸形变、深度、碰撞焦散、液态流动和高光层，普通业务列表不再使用 Orb
 - 16 个页面路由增加根布局溢出检查，AI 审计治理页的策略版本标签完成桌面与移动端约束
 - 建立 PostgreSQL + Keycloak + Java Docker Compose，以及 Flyway、OIDC Claims、RBAC、Token 过期与租户隔离 Testcontainers 测试
@@ -41,16 +41,22 @@
 - Agent Kit 提供组件知识、页面规划、源码校验和生成修复循环，7 个 Skills 与 4 份 Machine Manifest 形成渐进式设计知识层
 - 标准 MCP 提供 stdio 与 Streamable HTTP Server/Client、9 类资源、Prompt 和 10 个页面开发工具
 - AI Runtime 建立权限感知 Knowledge Provider、引用和检索 Trace，AI 知识工作台完成组件到页面的闭环示例
+- Tokens 迁移到 DTCG 2025.10 Global、Semantic、Component、State 四层模型，并生成 Figma Variables 交接清单
+- 26 个 Recipe 补齐主任务、主操作、状态、响应式、信息优先级和完成标准
+- Validator 形成 AST、Type、DOM、Playwright 与视觉评测组合验证
+- Form、DataGrid、Combobox、Tree、Upload、DateRange、Dialog/Drawer、Menu、Notification、App Layout 共享 Headless 行为内核
+- AI Artifact、结构化输入、Provenance、GenUI、MCP 工具面板和跨页面 Agent 进入双框架组件包
+- 建立 API 兼容报告、包体预算、覆盖率门槛、多浏览器与人工读屏测试矩阵
 
 ## 组件方向
 
-- 稳定 50 个 UI 组件的公共 API、视觉契约与受控输入行为
+- 稳定 66 个 UI 组件的公共 API、视觉契约与受控输入行为
 - 扩展 Storybook 到全部状态、密度、主题和第三方 Wrapper
 - 为复合控件增加组件级键盘与无障碍测试
 
 ## 设计系统方向
 
-- 增加 Figma token mapping
+- 在具备可编辑 Figma Team Library 与合格订阅后发布 Variables、组件库和真实 Code Connect 节点
 - 扩展图表示例
 - 补充 Light Mode / Dark Mode 对比度规则
 - 增加适合企业 Dashboard 的 compact density 变体

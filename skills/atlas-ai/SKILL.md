@@ -22,6 +22,12 @@ description: 设计、实现或审查 Atlas AI 对话、Agent 执行、知识检
 | 工具与审批 | `AtlasToolCallCard` |
 | MCP 授权 | `AtlasMCPServerPicker` |
 | 知识源与检索解释 | `AtlasKnowledgeSourcePicker`、`AtlasRetrievalTrace` |
+| 多模态结果 | `AtlasAIArtifactRenderer` |
+| 结构化采集 | `AtlasAIStructuredInput` |
+| 模型与生成依据 | `AtlasAIProvenance` |
+| 生成式界面 | `AtlasGenUIRenderer` |
+| MCP 工具发现与权限 | `AtlasMCPToolPanel` |
+| 跨页面任务 | `AtlasCrossPageAgent` |
 
 先用 `atlas_get_visual_contract` 和 `atlas_get_component_api` 查询组件语义与正式 API；没有 MCP 时运行 `npm run atlas -- knowledge contract <组件名>` 和 `npm run atlas -- knowledge components <名称>`。React 与 Vue 的组件意图相同，事件和受控值分别遵循回调与 `v-model` / emits 约定。
 
@@ -43,6 +49,8 @@ AI 页面至少覆盖与风险相符的内容：
 4. 工具调用、权限和执行状态。
 5. 高风险人工审批。
 6. 反馈、审计、成本或质量指标。
+
+Artifact 与 GenUI 不直接执行模型返回的 HTML、脚本或任意组件名。Artifact 使用 `AtlasAIArtifactContract` 的 text、markdown、code、table、chart、file、json 白名单；GenUI 先通过 `validateAtlasGenUISchema` 检查组件白名单、深度、节点数、重复 ID、Action 和 Artifact，再交给 `AtlasGenUIRenderer`。结构化输入先执行 `validateAtlasStructuredInput`，高风险 Action 仍进入人工审批。
 
 知识检索使用 `@atlas-eids/ai-runtime` 的 `AtlasKnowledgeRegistry`，所有查询必须携带 `tenantId`，并在 Provider 结果返回后再次执行角色和租户过滤。引用必须可打开或可定位，不能只显示虚构的“来源 1”。
 

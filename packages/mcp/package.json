@@ -1,9 +1,11 @@
 {
   "name": "@atlas-eids/mcp",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "MCP server and client for Atlas EIDS component knowledge, page generation and design validation",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "bin": {
     "atlas-eids-mcp": "./dist/stdio.js"
   },
@@ -22,7 +24,7 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@atlas-eids/agent-kit": "0.2.0-beta.2",
+    "@atlas-eids/agent-kit": "0.2.0-beta.3",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^4.4.3"
   },
@@ -30,12 +32,16 @@
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
   },
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/davidwang960707-gpu/atlas-eids.git"
   },
   "homepage": "https://davidwang960707-gpu.github.io/atlas-eids/",
-  "bugs": { "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues" }
+  "bugs": {
+    "url": "https://github.com/davidwang960707-gpu/atlas-eids/issues"
+  }
 }

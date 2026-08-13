@@ -1,7 +1,40 @@
-import { defineComponent, h, inject, onMounted, provide, ref, watch, type PropType } from 'vue'
+import { computed, defineComponent, h, inject, nextTick, onBeforeUnmount, onMounted, provide, ref, watch, type PropType } from 'vue'
+import { createAtlasDataGridModel, filterAtlasMCPTools, filterAtlasOptions, flattenAtlasTree, moveAtlasActiveIndex, normalizeAtlasUploadFiles, validateAtlasDateRange, validateAtlasForm, validateAtlasGenUISchema, type AtlasAIArtifactContract, type AtlasAIProvenanceContract, type AtlasAIStructuredFieldContract, type AtlasCrossPageStepContract, type AtlasDataGridColumn, type AtlasDateRangeValue, type AtlasFieldValue, type AtlasFormRule, type AtlasGenUINodeContract, type AtlasMCPToolContract, type AtlasNotificationContract, type AtlasTreeNodeContract, type AtlasUploadFileContract } from '@atlas-eids/core'
 import type { AtlasAIAttachmentItemContract, AtlasAICitationItemContract, AtlasAIHistoryItemContract, AtlasAIPromptItemContract, AtlasBreadcrumbItemContract, AtlasDropdownItemContract, AtlasExecutionStepContract, AtlasKnowledgeSourceItemContract, AtlasMCPServerItemContract, AtlasOptionContract, AtlasRetrievalStepContract, AtlasRowActionContract, AtlasSemanticTone, AtlasSortDirection, AtlasStepContract, AtlasTableColumn, AtlasTableLabels, AtlasToolCallItemContract } from '@atlas-eids/core'
 
 const atlasConfigKey = Symbol('atlas-config')
+const focusableSelector = 'button:not([disabled]),[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+
+function useAtlasOverlay(open: () => boolean, root: { value?: HTMLElement }, close: () => void) {
+  let previousFocus: HTMLElement | null = null
+  let previousOverflow = ''
+  const keydown = (event: KeyboardEvent) => {
+    if (!open() || !root.value) return
+    if (event.key === 'Escape') { event.preventDefault(); close(); return }
+    if (event.key !== 'Tab') return
+    const items = [...root.value.querySelectorAll<HTMLElement>(focusableSelector)].filter((element) => element.offsetParent !== null)
+    if (!items.length) return
+    const first = items[0]
+    const last = items[items.length - 1]
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
+  }
+  watch(open, async (value) => {
+    if (value) {
+      previousFocus = document.activeElement as HTMLElement | null
+      previousOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', keydown)
+      await nextTick()
+      root.value?.querySelector<HTMLElement>(focusableSelector)?.focus()
+    } else {
+      document.removeEventListener('keydown', keydown)
+      document.body.style.overflow = previousOverflow
+      previousFocus?.focus()
+    }
+  }, { flush: 'post' })
+  onBeforeUnmount(() => { document.removeEventListener('keydown', keydown); document.body.style.overflow = previousOverflow })
+}
 
 export const AtlasProvider = defineComponent({
   name: 'AtlasProvider',
@@ -31,6 +64,27 @@ export const AtlasInput = defineComponent({
   }
 })
 
+export const AtlasForm = defineComponent({
+  name: 'AtlasForm',
+  emits: ['submit'],
+  props: { schema: { type: Object as PropType<Record<string, AtlasFormRule[]>>, default: () => ({}) }, errors: { type: Object as PropType<Record<string, string>>, default: undefined }, busy: Boolean },
+  setup(props, { emit, slots, attrs }) {
+    const internalErrors = ref<Record<string, string>>({})
+    const errors = computed(() => props.errors ?? internalErrors.value)
+    const submit = (event: Event) => {
+      event.preventDefault()
+      const form = event.currentTarget as HTMLFormElement
+      const values = Object.fromEntries(new FormData(form).entries()) as Record<string, AtlasFieldValue>
+      const nextErrors = validateAtlasForm(values, props.schema)
+      if (!props.errors) internalErrors.value = nextErrors
+      const first = Object.keys(nextErrors)[0]
+      if (first) { form.querySelector<HTMLElement>(`[name="${CSS.escape(first)}"]`)?.focus(); return }
+      emit('submit', values)
+    }
+    return () => h('form', { ...attrs, class: 'atlas-form', 'aria-busy': props.busy || undefined, novalidate: true, onSubmit: submit }, [Object.keys(errors.value).length ? h('div', { class: 'atlas-form-summary', role: 'alert', tabindex: -1 }, [h('strong', '请检查以下字段'), h('ul', Object.entries(errors.value).map(([name, message]) => h('li', [h('button', { type: 'button', onClick: (event: Event) => (event.currentTarget as HTMLButtonElement).form?.querySelector<HTMLElement>(`[name="${CSS.escape(name)}"]`)?.focus() }, message)])))]) : null, h('fieldset', { disabled: props.busy }, slots.default?.())])
+  }
+})
+
 export const AtlasCard = defineComponent({
   name: 'AtlasCard',
   props: { title: String, description: String, selected: Boolean },
@@ -53,7 +107,7 @@ export const AtlasTabs = defineComponent({
   name: 'AtlasTabs',
   emits: ['update:modelValue'],
   props: { modelValue: { type: String, required: true }, items: { type: Array as PropType<AtlasVueTab[]>, required: true }, label: { type: String, default: '页面标签' } },
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     return () => h('div', { class: 'atlas-tabs', role: 'tablist', 'aria-label': props.label }, props.items.map((item) => h('button', { role: 'tab', 'aria-selected': item.id === props.modelValue, disabled: item.disabled, onClick: () => emit('update:modelValue', item.id) }, [item.label, item.count !== undefined ? h('b', item.count) : null])))
   }
 })
@@ -61,12 +115,13 @@ export const AtlasTabs = defineComponent({
 export const AtlasDialog = defineComponent({
   name: 'AtlasDialog',
   emits: ['update:open'],
-  props: { open: Boolean, title: { type: String, required: true } },
+  props: { open: Boolean, title: { type: String, required: true }, closeOnBackdrop: { type: Boolean, default: true } },
   setup(props, { slots, emit }) {
     const dialog = ref<HTMLDialogElement>()
     const titleId = `atlas-dialog-${Math.random().toString(36).slice(2)}`
+    useAtlasOverlay(() => props.open, dialog, () => emit('update:open', false))
     watch(() => props.open, (open) => { if (open && !dialog.value?.open) dialog.value?.showModal(); if (!open && dialog.value?.open) dialog.value.close() }, { immediate: true, flush: 'post' })
-    return () => h('dialog', { ref: dialog, class: 'atlas-dialog', 'aria-labelledby': titleId, onCancel: (event: Event) => { event.preventDefault(); emit('update:open', false) }, onClose: () => emit('update:open', false) }, [h('header', [h('h2', { id: titleId }, props.title), h('button', { 'aria-label': '关闭', onClick: () => emit('update:open', false) }, '×')]), h('div', { class: 'atlas-dialog-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])
+    return () => h('dialog', { ref: dialog, class: 'atlas-dialog', 'aria-labelledby': titleId, onCancel: (event: Event) => event.preventDefault(), onClick: (event: Event) => { if (props.closeOnBackdrop && event.target === dialog.value) emit('update:open', false) } }, [h('header', [h('h2', { id: titleId }, props.title), h('button', { 'aria-label': '关闭', onClick: () => emit('update:open', false) }, '×')]), h('div', { class: 'atlas-dialog-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])
   }
 })
 
@@ -74,7 +129,7 @@ export const AtlasAIComposer = defineComponent({
   name: 'AtlasAIComposer',
   emits: ['update:modelValue', 'submit'],
   props: { modelValue: { type: String, default: '' }, placeholder: { type: String, default: '描述目标、输出形式和约束条件...' }, suggestions: { type: Array as PropType<string[]>, default: () => [] }, contexts: { type: Array as PropType<string[]>, default: () => [] }, busy: Boolean },
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     const submit = () => { if (!props.busy && props.modelValue.trim()) emit('submit', props.modelValue.trim()) }
     return () => h('section', { class: 'atlas-ai-composer' }, [props.contexts.length ? h('div', { class: 'atlas-contexts' }, props.contexts.map((context) => h('span', context))) : null, h('textarea', { value: props.modelValue, placeholder: props.placeholder, onInput: (event: Event) => emit('update:modelValue', (event.target as HTMLTextAreaElement).value), onKeydown: (event: KeyboardEvent) => { if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') submit() } }), props.suggestions.length ? h('div', { class: 'atlas-suggestions' }, props.suggestions.map((suggestion) => h('button', { onClick: () => emit('update:modelValue', suggestion) }, suggestion))) : null, h('footer', [h('span', 'Atlas Reasoner'), h(AtlasButton, { intent: 'primary', loading: props.busy, onClick: submit }, () => '发送')])])
   }
@@ -103,6 +158,29 @@ export const AtlasSelect = defineComponent({
   }
 })
 
+export const AtlasCombobox = defineComponent({
+  name: 'AtlasCombobox',
+  emits: ['update:modelValue', 'update:query'],
+  props: { modelValue: String, query: String, label: { type: String, required: true }, options: { type: Array as PropType<AtlasVueOption[]>, required: true }, placeholder: { type: String, default: '搜索或选择' }, loading: Boolean, error: String, disabled: Boolean },
+  setup(props, { emit }) {
+    const id = `atlas-combobox-${Math.random().toString(36).slice(2)}`
+    const internalQuery = ref(props.options.find((option) => option.value === props.modelValue)?.label ?? '')
+    const open = ref(false)
+    const active = ref(-1)
+    const currentQuery = computed(() => props.query ?? internalQuery.value)
+    const filtered = computed(() => filterAtlasOptions(props.options, currentQuery.value))
+    const disabledIndexes = computed(() => new Set(filtered.value.map((option, index) => option.disabled ? index : -1).filter((index) => index >= 0)))
+    const updateQuery = (value: string) => { if (props.query === undefined) internalQuery.value = value; emit('update:query', value); open.value = true; active.value = -1 }
+    const select = (option: AtlasVueOption) => { if (option.disabled) return; updateQuery(option.label); emit('update:modelValue', option.value); open.value = false }
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); open.value = true; active.value = moveAtlasActiveIndex(active.value, event.key === 'ArrowDown' ? 1 : -1, filtered.value.length, disabledIndexes.value) }
+      if (event.key === 'Enter' && open.value && active.value >= 0) { event.preventDefault(); select(filtered.value[active.value]) }
+      if (event.key === 'Escape') open.value = false
+    }
+    return () => h('label', { class: ['atlas-field', 'atlas-combobox', props.error && 'has-error'] }, [h('span', { class: 'atlas-field-label' }, props.label), h('div', [h('input', { id, role: 'combobox', 'aria-expanded': open.value, 'aria-controls': `${id}-listbox`, 'aria-activedescendant': active.value >= 0 ? `${id}-option-${active.value}` : undefined, 'aria-autocomplete': 'list', value: currentQuery.value, placeholder: props.placeholder, disabled: props.disabled, onInput: (event: Event) => updateQuery((event.target as HTMLInputElement).value), onFocus: () => { open.value = true }, onKeydown: keydown }), h('button', { type: 'button', 'aria-label': open.value ? '关闭选项' : '打开选项', disabled: props.disabled, onClick: () => { open.value = !open.value } }, '⌄')]), open.value ? h('ul', { id: `${id}-listbox`, role: 'listbox' }, props.loading ? [h('li', { role: 'option', 'aria-disabled': 'true' }, '加载中...')] : filtered.value.length ? filtered.value.map((option, index) => h('li', { id: `${id}-option-${index}`, role: 'option', 'aria-selected': option.value === props.modelValue, 'aria-disabled': option.disabled || undefined, class: [index === active.value && 'is-active', option.value === props.modelValue && 'is-selected'], onMousedown: (event: Event) => event.preventDefault(), onClick: () => select(option) }, option.label)) : [h('li', { role: 'option', 'aria-disabled': 'true' }, '没有匹配项')]) : null, props.error ? h('small', props.error) : null])
+  }
+})
+
 export const AtlasTextarea = defineComponent({
   name: 'AtlasTextarea',
   inheritAttrs: false,
@@ -117,12 +195,12 @@ export const AtlasCheckbox = defineComponent({
   name: 'AtlasCheckbox',
   emits: ['update:modelValue'],
   props: { modelValue: Boolean, indeterminate: Boolean, label: { type: String, required: true }, hideLabel: Boolean, disabled: Boolean },
-  setup(props, { emit }) {
+  setup(props, { emit, attrs }) {
     const input = ref<HTMLInputElement>()
     const syncIndeterminate = () => { if (input.value) input.value.indeterminate = props.indeterminate }
     onMounted(syncIndeterminate)
     watch(() => props.indeterminate, syncIndeterminate, { flush: 'post' })
-    return () => h('label', { class: 'atlas-check' }, [h('input', { ref: input, type: 'checkbox', checked: props.modelValue, 'aria-checked': props.indeterminate ? 'mixed' : props.modelValue, disabled: props.disabled, onChange: (event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).checked) }), h('span', { 'aria-hidden': 'true' }), h('b', { class: props.hideLabel ? 'sr-only' : undefined }, props.label)])
+    return () => h('label', { class: 'atlas-check' }, [h('input', { ...attrs, ref: input, type: 'checkbox', checked: props.modelValue, 'aria-checked': props.indeterminate ? 'mixed' : props.modelValue, disabled: props.disabled, onChange: (event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).checked) }), h('span', { 'aria-hidden': 'true' }), h('b', { class: props.hideLabel ? 'sr-only' : undefined }, props.label)])
   }
 })
 
@@ -154,6 +232,27 @@ export const AtlasDateInput = defineComponent({
   }
 })
 
+export const AtlasDateRange = defineComponent({
+  name: 'AtlasDateRange',
+  emits: ['update:modelValue'],
+  props: { modelValue: { type: Object as PropType<AtlasDateRangeValue>, required: true }, label: { type: String, default: '日期范围' }, min: String, max: String, disabled: Boolean },
+  setup(props, { emit }) {
+    const error = computed(() => validateAtlasDateRange(props.modelValue, props.min, props.max))
+    return () => h('fieldset', { class: ['atlas-date-range', error.value && 'has-error'], disabled: props.disabled }, [h('legend', props.label), h(AtlasDateInput, { label: '开始日期', modelValue: props.modelValue.start ?? '', min: props.min, max: props.modelValue.end ?? props.max, 'onUpdate:modelValue': (start: string) => emit('update:modelValue', { ...props.modelValue, start }) }), h('span', { 'aria-hidden': 'true' }, '至'), h(AtlasDateInput, { label: '结束日期', modelValue: props.modelValue.end ?? '', min: props.modelValue.start ?? props.min, max: props.max, 'onUpdate:modelValue': (end: string) => emit('update:modelValue', { ...props.modelValue, end }) }), error.value ? h('small', { role: 'alert' }, error.value) : null])
+  }
+})
+
+export const AtlasUpload = defineComponent({
+  name: 'AtlasUpload',
+  emits: ['add', 'remove', 'retry'],
+  props: { files: { type: Array as PropType<AtlasUploadFileContract[]>, default: () => [] }, accept: { type: Array as PropType<string[]>, default: () => [] }, maxSize: Number, multiple: { type: Boolean, default: true }, disabled: Boolean, label: { type: String, default: '上传文件' } },
+  setup(props, { emit }) {
+    const input = ref<HTMLInputElement>()
+    const add = (nativeFiles: File[]) => { if (nativeFiles.length) emit('add', normalizeAtlasUploadFiles(nativeFiles, { accept: props.accept, maxSize: props.maxSize }), nativeFiles) }
+    return () => h('section', { class: ['atlas-upload', props.disabled && 'is-disabled'], 'aria-label': props.label }, [h('input', { ref: input, class: 'sr-only', type: 'file', multiple: props.multiple, accept: props.accept.join(','), disabled: props.disabled, onChange: (event: Event) => add([...(event.target as HTMLInputElement).files ?? []]) }), h('button', { type: 'button', class: 'atlas-upload-dropzone', disabled: props.disabled, onClick: () => input.value?.click(), onDragover: (event: DragEvent) => event.preventDefault(), onDrop: (event: DragEvent) => { event.preventDefault(); if (!props.disabled) add([...event.dataTransfer?.files ?? []]) } }, [h('strong', props.label), h('span', '拖放文件到这里，或点击选择'), props.maxSize ? h('small', `单个文件不超过 ${Math.round(props.maxSize / 1024 / 1024)} MB`) : null]), props.files.length ? h('ul', props.files.map((file) => h('li', { class: `is-${file.status}` }, [h('span', [h('strong', file.name), h('small', file.error ?? `${Math.ceil(file.size / 1024)} KB`)]), h('progress', { value: file.progress, max: 100 }, `${file.progress}%`), file.status === 'failed' ? h(AtlasButton, { size: 'compact', onClick: () => emit('retry', file.id) }, () => '重试') : null, h('button', { type: 'button', 'aria-label': `移除 ${file.name}`, onClick: () => emit('remove', file.id) }, '×')]))) : null])
+  }
+})
+
 export const AtlasSearchInput = defineComponent({
   name: 'AtlasSearchInput',
   emits: ['update:modelValue', 'search'],
@@ -172,7 +271,7 @@ export const AtlasSegmentedControl = defineComponent({
   }
 })
 
-export interface AtlasVueBreadcrumbItem extends AtlasBreadcrumbItemContract {}
+export interface AtlasVueBreadcrumbItem extends AtlasBreadcrumbItemContract { onClick?: () => void }
 
 export const AtlasBreadcrumb = defineComponent({
   name: 'AtlasBreadcrumb',
@@ -181,7 +280,7 @@ export const AtlasBreadcrumb = defineComponent({
     return () => h('nav', { class: 'atlas-breadcrumb', 'aria-label': props.label }, [
       h('ol', props.items.map((item, index) => h('li', [
         index < props.items.length - 1
-          ? (item.href ? h('a', { href: item.href }, item.label) : h('span', item.label))
+          ? (item.href ? h('a', { href: item.href }, item.label) : h('button', { type: 'button', onClick: item.onClick }, item.label))
           : h('span', { 'aria-current': 'page' }, item.label)
       ])))
     ])
@@ -319,9 +418,11 @@ export const AtlasSkeleton = defineComponent({
 export const AtlasDrawer = defineComponent({
   name: 'AtlasDrawer',
   emits: ['update:open'],
-  props: { open: Boolean, title: { type: String, required: true }, width: { type: Number, default: 420 } },
+  props: { open: Boolean, title: { type: String, required: true }, width: { type: Number, default: 420 }, closeOnBackdrop: { type: Boolean, default: true } },
   setup(props, { emit, slots }) {
-    return () => h('div', { class: ['atlas-drawer-layer', props.open && 'is-open'], 'aria-hidden': !props.open }, [h('button', { class: 'atlas-drawer-mask', type: 'button', 'aria-label': '关闭抽屉', tabindex: props.open ? 0 : -1, onClick: () => emit('update:open', false) }), h('aside', { class: 'atlas-drawer', role: 'dialog', 'aria-modal': 'true', 'aria-label': props.title, style: { width: `${props.width}px` } }, [h('header', [h('h2', props.title), h('button', { type: 'button', 'aria-label': '关闭', onClick: () => emit('update:open', false) }, '×')]), h('div', { class: 'atlas-drawer-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])])
+    const drawer = ref<HTMLElement>()
+    useAtlasOverlay(() => props.open, drawer, () => emit('update:open', false))
+    return () => h('div', { class: ['atlas-drawer-layer', props.open && 'is-open'], 'aria-hidden': !props.open }, [h('button', { class: 'atlas-drawer-mask', type: 'button', 'aria-label': '关闭抽屉', tabindex: props.open ? 0 : -1, onClick: () => { if (props.closeOnBackdrop) emit('update:open', false) } }), h('aside', { ref: drawer, class: 'atlas-drawer', role: 'dialog', 'aria-modal': 'true', 'aria-label': props.title, style: { width: `${props.width}px` } }, [h('header', [h('h2', props.title), h('button', { type: 'button', 'aria-label': '关闭', onClick: () => emit('update:open', false) }, '×')]), h('div', { class: 'atlas-drawer-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])])
   }
 })
 
@@ -334,6 +435,25 @@ export const AtlasDropdown = defineComponent({
   setup(props, { emit }) {
     const details = ref<HTMLDetailsElement>()
     return () => h('details', { ref: details, class: 'atlas-dropdown' }, [h('summary', [props.label, h('span', { 'aria-hidden': 'true' }, '⌄')]), h('div', { role: 'menu' }, props.items.map((item) => h('button', { type: 'button', role: 'menuitem', disabled: item.disabled, class: item.danger ? 'is-danger' : undefined, onClick: () => { emit('select', item.id); details.value?.removeAttribute('open') } }, item.label)))])
+  }
+})
+
+export const AtlasMenu = defineComponent({
+  name: 'AtlasMenu',
+  emits: ['select'],
+  props: { items: { type: Array as PropType<AtlasVueDropdownItem[]>, required: true }, activeId: String, label: { type: String, default: '操作菜单' }, orientation: { type: String as PropType<'vertical' | 'horizontal'>, default: 'vertical' } },
+  setup(props, { emit }) {
+    const refs: Array<HTMLButtonElement | null> = []
+    const keydown = (event: KeyboardEvent, index: number) => {
+      const previous = props.orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft'
+      const next = props.orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight'
+      if (![previous, next, 'Home', 'End'].includes(event.key)) return
+      event.preventDefault()
+      const disabled = new Set(props.items.map((item, itemIndex) => item.disabled ? itemIndex : -1).filter((itemIndex) => itemIndex >= 0))
+      const target = event.key === 'Home' ? 0 : event.key === 'End' ? props.items.length - 1 : moveAtlasActiveIndex(index, event.key === next ? 1 : -1, props.items.length, disabled)
+      refs[target]?.focus()
+    }
+    return () => h('div', { class: ['atlas-menu', `is-${props.orientation}`], role: 'menu', 'aria-label': props.label, 'aria-orientation': props.orientation }, props.items.map((item, index) => h('button', { ref: ((element: Element | null) => { refs[index] = element as HTMLButtonElement | null }) as never, type: 'button', role: 'menuitem', tabindex: item.id === props.activeId || (!props.activeId && index === 0) ? 0 : -1, 'aria-current': item.id === props.activeId ? 'page' : undefined, disabled: item.disabled, class: item.danger ? 'is-danger' : undefined, onKeydown: (event: KeyboardEvent) => keydown(event, index), onClick: () => emit('select', item.id) }, item.label)))
   }
 })
 
@@ -384,11 +504,60 @@ export const AtlasDataTable = defineComponent({
   }
 })
 
+export const AtlasDataGrid = defineComponent({
+  name: 'AtlasDataGrid',
+  emits: ['update:selectedIds', 'update:query', 'update:page', 'sort'],
+  props: { columns: { type: Array as PropType<Array<AtlasDataGridColumn<Record<string, unknown>> & { key: string }>>, required: true }, rows: { type: Array as PropType<Array<Record<string, unknown> & { id: string | number }>>, required: true }, caption: { type: String, required: true }, selectedIds: { type: Array as PropType<Array<string | number>>, default: () => [] }, selectable: Boolean, loading: Boolean, sortKey: String, sortDirection: String as PropType<AtlasSortDirection>, query: { type: String, default: '' }, page: { type: Number, default: 1 }, pageSize: { type: Number, default: 50 }, totalRows: Number, virtualize: Boolean, viewportHeight: { type: Number, default: 420 } },
+  setup(props, { emit, slots }) {
+    const config = inject<{ density: string }>(atlasConfigKey, { density: 'standard' })
+    const scrollTop = ref(0)
+    return () => {
+      const rowHeight = config.density === 'compact' ? 36 : config.density === 'comfortable' ? 50 : 42
+      const windowSize = props.virtualize ? Math.ceil(props.viewportHeight / rowHeight) + 4 : props.pageSize
+      const offset = props.virtualize ? Math.max(0, Math.floor(scrollTop.value / rowHeight) - 2) : (Math.max(1, props.page) - 1) * props.pageSize
+      const model = createAtlasDataGridModel({ rows: props.rows, columns: props.columns, query: props.query, sortKey: props.sortKey, sortDirection: props.sortDirection, offset, limit: windowSize })
+      const table = h(AtlasTable, { columns: model.visibleColumns, rows: model.visibleRows, caption: props.caption, selectedIds: props.selectedIds, selectable: props.selectable, loading: props.loading, sortKey: props.sortKey, sortDirection: props.sortDirection, 'onUpdate:selectedIds': (ids: Array<string | number>) => emit('update:selectedIds', ids), onSort: (value: unknown) => emit('sort', value) }, slots)
+      const pageCount = Math.max(1, Math.ceil((props.totalRows ?? model.totalRows) / props.pageSize))
+      return h('section', { class: 'atlas-data-grid', 'data-atlas-critical': '' }, [h('div', { class: 'atlas-data-grid-controls' }, [h(AtlasSearchInput, { modelValue: props.query, placeholder: '筛选数据', 'onUpdate:modelValue': (value: string) => emit('update:query', value), onSearch: (value: string) => emit('update:query', value) }), h('span', { role: 'status' }, `${props.totalRows ?? model.totalRows} 项`)]), props.virtualize ? h('div', { class: 'atlas-data-grid-viewport', style: { height: `${props.viewportHeight}px` }, onScroll: (event: Event) => { scrollTop.value = (event.currentTarget as HTMLElement).scrollTop } }, [h('div', { style: { paddingTop: `${offset * rowHeight}px`, paddingBottom: `${Math.max(0, (model.totalRows - offset - model.visibleRows.length) * rowHeight)}px` } }, [table])]) : table, !props.virtualize && pageCount > 1 ? h('footer', [h(AtlasPagination, { modelValue: props.page, pageCount, 'onUpdate:modelValue': (page: number) => emit('update:page', page) })]) : null])
+    }
+  }
+})
+
+export const AtlasTree = defineComponent({
+  name: 'AtlasTree',
+  emits: ['update:expandedIds', 'update:selectedId'],
+  props: { nodes: { type: Array as PropType<AtlasTreeNodeContract[]>, required: true }, expandedIds: { type: Array as PropType<string[]>, default: () => [] }, selectedId: String, label: { type: String, default: '树形导航' } },
+  setup(props, { emit }) {
+    const refs = new Map<string, HTMLButtonElement>()
+    const flat = computed(() => flattenAtlasTree(props.nodes, props.expandedIds))
+    const activate = (index: number) => refs.get(flat.value[index]?.id)?.focus()
+    const keydown = (event: KeyboardEvent, index: number) => {
+      const node = flat.value[index]
+      if (event.key === 'ArrowDown') { event.preventDefault(); activate(Math.min(flat.value.length - 1, index + 1)) }
+      if (event.key === 'ArrowUp') { event.preventDefault(); activate(Math.max(0, index - 1)) }
+      if (event.key === 'ArrowRight' && node.hasChildren) { event.preventDefault(); if (!props.expandedIds.includes(node.id)) emit('update:expandedIds', [...props.expandedIds, node.id]); else activate(index + 1) }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); if (props.expandedIds.includes(node.id)) emit('update:expandedIds', props.expandedIds.filter((id) => id !== node.id)); else if (node.parentId) refs.get(node.parentId)?.focus() }
+      if (event.key === 'Home') { event.preventDefault(); activate(0) }
+      if (event.key === 'End') { event.preventDefault(); activate(flat.value.length - 1) }
+    }
+    return () => h('div', { class: 'atlas-tree', role: 'tree', 'aria-label': props.label }, flat.value.map((node, index) => {
+      const expanded = props.expandedIds.includes(node.id)
+      return h('div', { role: 'treeitem', 'aria-level': node.depth + 1, 'aria-expanded': node.hasChildren ? expanded : undefined, 'aria-selected': node.id === props.selectedId, 'aria-disabled': node.disabled || undefined, style: { '--atlas-tree-depth': node.depth } }, [
+        node.hasChildren ? h('button', { type: 'button', class: 'atlas-tree-expander', 'aria-label': expanded ? `收起 ${node.label}` : `展开 ${node.label}`, disabled: node.disabled, onClick: () => emit('update:expandedIds', expanded ? props.expandedIds.filter((id) => id !== node.id) : [...props.expandedIds, node.id]) }, expanded ? '⌄' : '›') : h('span', { class: 'atlas-tree-expander is-placeholder', 'aria-hidden': 'true' }, '›'),
+        h('button', { ref: ((element: Element | null) => { if (element) refs.set(node.id, element as HTMLButtonElement); else refs.delete(node.id) }) as never, class: 'atlas-tree-selector', type: 'button', tabindex: node.id === props.selectedId || (!props.selectedId && index === 0) ? 0 : -1, disabled: node.disabled, onKeydown: (event: KeyboardEvent) => keydown(event, index), onClick: () => emit('update:selectedId', node.id) }, [h('strong', node.label)])
+      ])
+    }))
+  }
+})
+
 export const AtlasPageHeader = defineComponent({
   name: 'AtlasPageHeader',
   props: { title: { type: String, required: true }, description: String, eyebrow: String, breadcrumbs: { type: Array as PropType<AtlasVueBreadcrumbItem[]>, default: () => [] } },
   setup(props, { slots, attrs }) {
-    return () => h('header', { ...attrs, class: 'atlas-page-header' }, [h('div', { class: 'atlas-page-header-copy' }, [props.breadcrumbs.length ? h(AtlasBreadcrumb, { items: props.breadcrumbs }) : null, props.eyebrow ? h('span', { class: 'atlas-page-header-eyebrow' }, props.eyebrow) : null, h('h1', slots.title?.() ?? props.title), props.description ? h('p', props.description) : null, slots.meta ? h('div', { class: 'atlas-page-header-meta' }, slots.meta()) : null]), slots.actions ? h('div', { class: 'atlas-page-header-actions' }, slots.actions()) : null])
+    return () => {
+      const { class: inheritedClass, ...restAttrs } = attrs
+      return h('header', { ...restAttrs, class: ['atlas-page-header', inheritedClass] }, [h('div', { class: 'atlas-page-header-copy' }, [props.breadcrumbs.length ? h(AtlasBreadcrumb, { items: props.breadcrumbs }) : null, props.eyebrow ? h('span', { class: 'atlas-page-header-eyebrow' }, props.eyebrow) : null, h('h1', slots.title?.() ?? props.title), props.description ? h('p', props.description) : null, slots.meta ? h('div', { class: 'atlas-page-header-meta' }, slots.meta()) : null]), slots.actions ? h('div', { class: 'atlas-page-header-actions' }, slots.actions()) : null])
+    }
   }
 })
 
@@ -396,8 +565,40 @@ export const AtlasPanel = defineComponent({
   name: 'AtlasPanel',
   props: { title: String, description: String },
   setup(props, { slots, attrs }) {
-    return () => h('section', { ...attrs, class: 'atlas-panel' }, [props.title || props.description || slots.actions ? h('header', [h('div', [props.title ? h('h2', props.title) : null, props.description ? h('p', props.description) : null]), slots.actions?.()]) : null, h('div', { class: 'atlas-panel-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])
+    return () => {
+      const { class: inheritedClass, ...restAttrs } = attrs
+      const hasHeader = props.title || props.description || slots.title || slots.description || slots.actions
+      return h('section', { ...restAttrs, class: ['atlas-panel', inheritedClass] }, [hasHeader ? h('header', [h('div', [props.title || slots.title ? h('h2', slots.title?.() ?? props.title) : null, props.description || slots.description ? h('p', slots.description?.() ?? props.description) : null]), slots.actions?.()]) : null, h('div', { class: 'atlas-panel-body' }, slots.default?.()), slots.footer ? h('footer', slots.footer()) : null])
+    }
   }
+})
+
+export const AtlasAppLayout = defineComponent({
+  name: 'AtlasAppLayout',
+  emits: ['update:mobileNavigationOpen'],
+  props: { collapsed: Boolean, mobileNavigationOpen: Boolean },
+  setup(props, { slots, emit }) {
+    return () => h('div', { class: ['atlas-app-layout', props.collapsed && 'is-collapsed', props.mobileNavigationOpen && 'is-mobile-open'] }, [h('header', { class: 'atlas-app-layout-header' }, [h('button', { type: 'button', class: 'atlas-app-layout-toggle', 'aria-label': props.mobileNavigationOpen ? '关闭导航' : '打开导航', 'aria-expanded': props.mobileNavigationOpen, onClick: () => emit('update:mobileNavigationOpen', !props.mobileNavigationOpen) }, '☰'), slots.brand?.(), h('div', slots.topbar?.())]), h('aside', { class: 'atlas-app-layout-nav', 'aria-label': '主导航' }, slots.navigation?.()), props.mobileNavigationOpen ? h('button', { type: 'button', class: 'atlas-app-layout-mask', 'aria-label': '关闭导航', onClick: () => emit('update:mobileNavigationOpen', false) }) : null, h('main', { class: 'atlas-app-layout-main' }, slots.default?.()), slots.aside ? h('aside', { class: 'atlas-app-layout-aside' }, slots.aside()) : null])
+  }
+})
+
+export const AtlasNotification = defineComponent({
+  name: 'AtlasNotification',
+  emits: ['dismiss'],
+  props: { notification: { type: Object as PropType<AtlasNotificationContract>, required: true } },
+  setup(props, { emit }) {
+    let timer: number | undefined
+    onMounted(() => { if (props.notification.duration) timer = window.setTimeout(() => emit('dismiss', props.notification.id), props.notification.duration) })
+    onBeforeUnmount(() => { if (timer) window.clearTimeout(timer) })
+    return () => h('article', { class: ['atlas-notification', `is-${props.notification.intent ?? 'info'}`], role: props.notification.intent === 'danger' ? 'alert' : 'status' }, [h('i', { 'aria-hidden': 'true' }, props.notification.intent === 'success' ? '✓' : props.notification.intent === 'warning' || props.notification.intent === 'danger' ? '!' : 'i'), h('div', [h('strong', props.notification.title), props.notification.description ? h('p', props.notification.description) : null]), h('button', { type: 'button', 'aria-label': `关闭 ${props.notification.title}`, onClick: () => emit('dismiss', props.notification.id) }, '×')])
+  }
+})
+
+export const AtlasNotificationCenter = defineComponent({
+  name: 'AtlasNotificationCenter',
+  emits: ['dismiss'],
+  props: { items: { type: Array as PropType<AtlasNotificationContract[]>, required: true }, label: { type: String, default: '通知' } },
+  setup(props, { emit }) { return () => h('section', { class: 'atlas-notification-center', 'aria-label': props.label, 'aria-live': 'polite' }, props.items.map((item) => h(AtlasNotification, { notification: item, onDismiss: (id: string) => emit('dismiss', id) }))) }
 })
 
 export interface AtlasVueAICitationItem extends AtlasAICitationItemContract {}
@@ -513,8 +714,115 @@ export const AtlasToolCallCard = defineComponent({
   }
 })
 
+export const AtlasAIArtifactRenderer = defineComponent({
+  name: 'AtlasAIArtifactRenderer',
+  props: { artifact: { type: Object as PropType<AtlasAIArtifactContract>, required: true }, renderers: { type: Object as PropType<Partial<Record<AtlasAIArtifactContract['type'], (artifact: AtlasAIArtifactContract) => unknown>>>, default: () => ({}) } },
+  setup(props, { slots }) {
+    return () => {
+      const artifact = props.artifact
+      const rows = (artifact.rows ?? []).map((row, index) => ({ ...row, id: String(row.id ?? `${artifact.id}-${index}`) }))
+      const columns = (artifact.columns ?? Object.keys(rows[0] ?? {}).filter((key) => key !== 'id').map((key) => ({ key, title: key }))).map((column) => ({ key: column.key, title: column.title }))
+      let content = props.renderers[artifact.type]?.(artifact) ?? slots.default?.({ artifact })
+      if (!content && artifact.type === 'code') content = h('pre', [h('code', { 'data-language': artifact.language }, artifact.content ?? '')])
+      if (!content && artifact.type === 'json') content = h('pre', [h('code', artifact.content ?? '{}')])
+      if (!content && (artifact.type === 'text' || artifact.type === 'markdown')) content = h('div', { class: 'atlas-ai-artifact-text' }, (artifact.content ?? '').split(/\n{2,}/).map((paragraph) => h('p', paragraph)))
+      if (!content && artifact.type === 'table') content = h(AtlasTable, { caption: artifact.title ?? 'AI 生成表格', columns, rows })
+      if (!content && artifact.type === 'chart') {
+        const max = Math.max(1, ...(artifact.values ?? []).map((item) => item.value))
+        content = h('div', { class: 'atlas-ai-artifact-chart', role: 'img', 'aria-label': artifact.title ?? 'AI 生成图表' }, artifact.values?.map((item) => h('div', [h('span', item.label), h('i', { style: { '--atlas-artifact-value': `${Math.max(0, item.value) / max * 100}%` } }), h('b', item.value)])))
+      }
+      if (!content && artifact.type === 'file' && artifact.file) content = h('a', { class: 'atlas-ai-artifact-file', href: artifact.file.url, download: artifact.file.name }, [h('strong', artifact.file.name), h('span', `${artifact.file.mediaType ?? '文件'}${artifact.file.size ? ` · ${Math.ceil(artifact.file.size / 1024)} KB` : ''}`)])
+      return h('article', { class: ['atlas-ai-artifact', `is-${artifact.type}`] }, [h('header', [h('div', [h('small', `AI Artifact · ${artifact.type}`), artifact.title ? h('h3', artifact.title) : null, artifact.description ? h('p', artifact.description) : null]), slots.actions?.()]), h('div', { class: 'atlas-ai-artifact-body' }, content as never)])
+    }
+  }
+})
+
+export const AtlasAIStructuredInput = defineComponent({
+  name: 'AtlasAIStructuredInput',
+  emits: ['update:modelValue', 'submit'],
+  props: { fields: { type: Array as PropType<AtlasAIStructuredFieldContract[]>, required: true }, modelValue: { type: Object as PropType<Record<string, AtlasFieldValue>>, required: true }, busy: Boolean, submitLabel: { type: String, default: '生成' } },
+  setup(props, { emit }) {
+    const update = (name: string, value: AtlasFieldValue) => emit('update:modelValue', { ...props.modelValue, [name]: value })
+    return () => h(AtlasForm, { class: 'atlas-ai-structured-input', schema: Object.fromEntries(props.fields.map((field) => [field.name, field.rules ?? []])), busy: props.busy, onSubmit: () => emit('submit', props.modelValue) }, () => [
+      ...props.fields.map((field) => {
+        if (field.type === 'textarea') return h(AtlasTextarea, { name: field.name, label: field.label, hint: field.description, placeholder: field.placeholder, modelValue: String(props.modelValue[field.name] ?? ''), 'onUpdate:modelValue': (value: string) => update(field.name, value) })
+        if (field.type === 'select') return h(AtlasSelect, { name: field.name, label: field.label, hint: field.description, options: field.options ?? [], modelValue: String(props.modelValue[field.name] ?? ''), 'onUpdate:modelValue': (value: string) => update(field.name, value) })
+        if (field.type === 'boolean') return h(AtlasCheckbox, { name: field.name, label: field.label, modelValue: Boolean(props.modelValue[field.name]), 'onUpdate:modelValue': (value: boolean) => update(field.name, value) })
+        if (field.type === 'date') return h(AtlasDateInput, { name: field.name, label: field.label, hint: field.description, modelValue: String(props.modelValue[field.name] ?? ''), 'onUpdate:modelValue': (value: string) => update(field.name, value) })
+        return h(AtlasInput, { name: field.name, type: field.type === 'number' ? 'number' : 'text', label: field.label, hint: field.description, placeholder: field.placeholder, modelValue: String(props.modelValue[field.name] ?? ''), 'onUpdate:modelValue': (value: string) => update(field.name, field.type === 'number' ? Number(value) : value) })
+      }),
+      h('footer', [h(AtlasButton, { type: 'submit', intent: 'primary', loading: props.busy }, () => props.submitLabel)])
+    ])
+  }
+})
+
+export const AtlasAIProvenance = defineComponent({
+  name: 'AtlasAIProvenance',
+  props: { provenance: { type: Object as PropType<AtlasAIProvenanceContract>, required: true }, defaultOpen: Boolean },
+  setup(props) {
+    return () => h('details', { class: 'atlas-ai-provenance', open: props.defaultOpen }, [h('summary', [h('span', [h('strong', 'AI 生成依据'), h('small', `${props.provenance.provider ? `${props.provenance.provider} / ` : ''}${props.provenance.model}`)]), props.provenance.confidence !== undefined ? h(AtlasStatusTag, { tone: props.provenance.confidence >= .8 ? 'success' : props.provenance.confidence >= .6 ? 'warning' : 'danger' }, () => `${Math.round(props.provenance.confidence! * 100)}% 置信度`) : null]), h('dl', [h('div', [h('dt', '生成时间'), h('dd', props.provenance.generatedAt)]), h('div', [h('dt', 'Trace ID'), h('dd', [h('code', props.provenance.traceId)])]), h('div', [h('dt', '引用来源'), h('dd', props.provenance.sourceIds?.join('、') || '无外部来源')]), h('div', [h('dt', '策略'), h('dd', props.provenance.policyIds?.join('、') || '默认策略')]), props.provenance.cost ? h('div', [h('dt', '成本'), h('dd', `${props.provenance.cost.inputTokens ?? 0} + ${props.provenance.cost.outputTokens ?? 0} tokens${props.provenance.cost.amount !== undefined ? ` · ${props.provenance.cost.currency ?? 'USD'} ${props.provenance.cost.amount.toFixed(4)}` : ''}`)]) : null, props.provenance.reviewedBy ? h('div', [h('dt', '人工复核'), h('dd', props.provenance.reviewedBy)]) : null])])
+  }
+})
+
+export const AtlasGenUIRenderer = defineComponent({
+  name: 'AtlasGenUIRenderer',
+  emits: ['action'],
+  props: { schema: { type: Object as PropType<AtlasGenUINodeContract>, required: true } },
+  setup(props, { emit }) {
+    const renderNode = (node: AtlasGenUINodeContract): unknown => {
+      const children = node.children?.map(renderNode) as never
+      if (node.type === 'stack') return h('section', { class: 'atlas-genui-stack', 'data-genui-id': node.id }, children)
+      if (node.type === 'panel') return h(AtlasPanel, { title: node.title }, () => [node.text ? h('p', node.text) : null, children])
+      if (node.type === 'text') return h('p', { class: 'atlas-genui-text' }, node.text)
+      if (node.type === 'metric') return h(AtlasStatistic, { label: node.title ?? '', value: node.value ?? '-', suffix: node.suffix })
+      if (node.type === 'action') return h(AtlasButton, { intent: 'primary', onClick: () => node.actionId && emit('action', node.actionId, node) }, () => node.actionLabel)
+      if ((node.type === 'table' || node.type === 'artifact') && node.artifact) return h(AtlasAIArtifactRenderer, { artifact: node.artifact })
+      return null
+    }
+    return () => {
+      const validation = validateAtlasGenUISchema(props.schema)
+      return validation.valid ? h('section', { class: 'atlas-genui', 'aria-label': 'AI 生成界面', 'data-node-count': validation.nodeCount }, renderNode(props.schema) as never) : h(AtlasAlert, { intent: 'danger', title: '生成式 UI 未通过安全校验', description: validation.issues.join('；') })
+    }
+  }
+})
+
+export const AtlasMCPToolPanel = defineComponent({
+  name: 'AtlasMCPToolPanel',
+  emits: ['update:modelValue', 'approve'],
+  props: { tools: { type: Array as PropType<AtlasMCPToolContract[]>, required: true }, modelValue: { type: Array as PropType<string[]>, default: () => [] }, label: { type: String, default: 'MCP 工具' } },
+  setup(props, { emit }) {
+    const query = ref('')
+    const permission = ref<AtlasMCPToolContract['permission'] | ''>('')
+    const visible = computed(() => filterAtlasMCPTools(props.tools, query.value, permission.value || undefined))
+    const toggle = (id: string) => emit('update:modelValue', props.modelValue.includes(id) ? props.modelValue.filter((item) => item !== id) : [...props.modelValue, id])
+    return () => h('section', { class: 'atlas-mcp-tool-panel', 'aria-label': props.label }, [
+      h('header', [h('div', [h('strong', props.label), h('small', `${props.modelValue.length} 个已授权`)]), h(AtlasStatusTag, { tone: 'primary' }, () => `${props.tools.length} tools`)]),
+      h('div', { class: 'atlas-mcp-tool-filters' }, [
+        h(AtlasSearchInput, { modelValue: query.value, placeholder: '搜索工具', 'onUpdate:modelValue': (value: string) => { query.value = value }, onSearch: (value: string) => { query.value = value } }),
+        h(AtlasSelect, { 'aria-label': '权限筛选', modelValue: permission.value, options: [{ label: '全部权限', value: '' }, { label: '只读', value: 'read' }, { label: '写入', value: 'write' }, { label: '高风险', value: 'high-risk' }], 'onUpdate:modelValue': (value: AtlasMCPToolContract['permission'] | '') => { permission.value = value } })
+      ]),
+      h('ul', visible.value.map((tool) => h('li', { class: `is-${tool.status ?? 'available'}` }, [
+        h(AtlasCheckbox, { label: tool.name, modelValue: props.modelValue.includes(tool.id), disabled: tool.status === 'disabled' || tool.status === 'error', 'onUpdate:modelValue': () => toggle(tool.id) }),
+        h('span', [h('small', tool.serverId), tool.description ? h('p', tool.description) : null]),
+        h(AtlasStatusTag, { tone: tool.permission === 'high-risk' ? 'warning' : tool.permission === 'write' ? 'primary' : 'neutral' }, () => tool.permission),
+        tool.status === 'approval' ? h(AtlasButton, { size: 'compact', intent: 'primary', onClick: () => emit('approve', tool.id) }, () => '审批') : null
+      ]))),
+      visible.value.length === 0 ? h(AtlasEmpty, { title: '没有匹配的工具', description: '调整搜索词或权限范围。' }) : null
+    ])
+  }
+})
+
+export const AtlasCrossPageAgent = defineComponent({
+  name: 'AtlasCrossPageAgent',
+  emits: ['navigate', 'approve', 'stop'],
+  props: { goal: { type: String, required: true }, currentRoute: { type: String, required: true }, routes: { type: Array as PropType<Array<{ path: string; label: string }>>, required: true }, steps: { type: Array as PropType<AtlasCrossPageStepContract[]>, required: true }, status: { type: String, default: 'running' }, stoppable: Boolean },
+  setup(props, { emit }) {
+    return () => h('section', { class: 'atlas-cross-page-agent' }, [h('header', [h('span', [h(AtlasOrb, { state: props.status, size: 42 }), h('span', [h('small', '跨页面 Agent'), h('strong', props.goal)])]), props.stoppable ? h(AtlasButton, { size: 'compact', onClick: () => emit('stop') }, () => '停止') : null]), h('nav', { 'aria-label': 'Agent 页面路径' }, props.routes.map((route) => h('button', { type: 'button', 'aria-current': route.path === props.currentRoute ? 'page' : undefined, onClick: () => emit('navigate', route.path) }, [h('span', route.label), h('code', route.path)]))), h(AtlasExecutionPlan, { title: '跨页面执行计划', steps: props.steps, onApprove: (id: string) => emit('approve', id), onStop: props.stoppable ? () => emit('stop') : undefined })])
+  }
+})
+
 export const AtlasEIDS = {
   install(app: { component(name: string, component: unknown): void }) {
-    for (const component of [AtlasProvider, AtlasButton, AtlasInput, AtlasSelect, AtlasTextarea, AtlasCheckbox, AtlasRadioGroup, AtlasSwitch, AtlasDateInput, AtlasSearchInput, AtlasCard, AtlasTabs, AtlasSegmentedControl, AtlasBreadcrumb, AtlasPagination, AtlasSteps, AtlasTable, AtlasTag, AtlasObjectCell, AtlasStatusTag, AtlasRowActions, AtlasTableToolbar, AtlasDataTable, AtlasPageHeader, AtlasPanel, AtlasBadge, AtlasAvatar, AtlasStatistic, AtlasProgress, AtlasAlert, AtlasTooltip, AtlasEmpty, AtlasSkeleton, AtlasDialog, AtlasDrawer, AtlasDropdown, AtlasOrb, AtlasAIComposer, AtlasExecutionPlan, AtlasAIConversation, AtlasAIMessageBubble, AtlasAIStreamingText, AtlasAIPrompts, AtlasAIAttachmentList, AtlasAIConversationHistory, AtlasAIFeedback, AtlasMCPServerPicker, AtlasCitationList, AtlasKnowledgeSourcePicker, AtlasRetrievalTrace, AtlasToolCallCard]) app.component(component.name!, component)
+    for (const component of [AtlasProvider, AtlasButton, AtlasInput, AtlasForm, AtlasSelect, AtlasCombobox, AtlasTextarea, AtlasCheckbox, AtlasRadioGroup, AtlasSwitch, AtlasDateInput, AtlasDateRange, AtlasUpload, AtlasSearchInput, AtlasCard, AtlasTabs, AtlasSegmentedControl, AtlasBreadcrumb, AtlasPagination, AtlasSteps, AtlasTable, AtlasDataGrid, AtlasTree, AtlasTag, AtlasObjectCell, AtlasStatusTag, AtlasRowActions, AtlasTableToolbar, AtlasDataTable, AtlasPageHeader, AtlasPanel, AtlasAppLayout, AtlasBadge, AtlasAvatar, AtlasStatistic, AtlasProgress, AtlasAlert, AtlasNotification, AtlasNotificationCenter, AtlasTooltip, AtlasEmpty, AtlasSkeleton, AtlasDialog, AtlasDrawer, AtlasDropdown, AtlasMenu, AtlasOrb, AtlasAIComposer, AtlasExecutionPlan, AtlasAIConversation, AtlasAIMessageBubble, AtlasAIStreamingText, AtlasAIPrompts, AtlasAIAttachmentList, AtlasAIConversationHistory, AtlasAIFeedback, AtlasMCPServerPicker, AtlasCitationList, AtlasKnowledgeSourcePicker, AtlasRetrievalTrace, AtlasToolCallCard, AtlasAIArtifactRenderer, AtlasAIStructuredInput, AtlasAIProvenance, AtlasGenUIRenderer, AtlasMCPToolPanel, AtlasCrossPageAgent]) app.component(component.name!, component)
   }
 }

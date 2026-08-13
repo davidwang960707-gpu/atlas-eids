@@ -1,7 +1,7 @@
 {
   "name": "atlas-eids-templates",
   "private": true,
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@atlas-eids/react": "0.2.0-beta.2",
+    "@atlas-eids/react": "0.2.0-beta.3",
     "lucide-react": "^1.31.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

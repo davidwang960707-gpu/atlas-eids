@@ -10,7 +10,7 @@ cd atlas-eids
 npm install
 ```
 
-不要在仓库外直接安装 `@atlas-eids/react` 或 `@atlas-eids/vue`。GitHub 已发布 [v0.2.0-beta.2](https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.2) 源码与 tarball，npm Registry 状态和后续迁移方式见 [Packages 发布状态](PACKAGE_STATUS.md)。
+不要在仓库外直接安装 `@atlas-eids/react` 或 `@atlas-eids/vue`。当前发布候选为 [v0.2.0-beta.3](https://github.com/davidwang960707-gpu/atlas-eids/releases/tag/v0.2.0-beta.3)；npm Registry 状态和后续迁移方式见 [Packages 发布状态](PACKAGE_STATUS.md)。
 
 ## Workspace 开发
 
@@ -111,6 +111,8 @@ npm run dev
 npm run build
 ```
 
+开发服务启动后，访问 `/knowledge.html` 可查看使用 Atlas Skills 和正式 React 组件包组装的知识库管理工作台。
+
 ## 运行 Vue 3 示例
 
 ```bash
@@ -124,6 +126,8 @@ npm run dev
 ```bash
 npm run build
 ```
+
+开发服务启动后，访问 `/knowledge.html` 可查看与 React 版本共享设计契约的 Vue 知识库管理工作台。
 
 ## 运行页面模板与 Storybook
 

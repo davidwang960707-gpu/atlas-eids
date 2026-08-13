@@ -7,7 +7,7 @@ import { createAtlasMCPService, createAtlasMcpServer } from '../dist/index.js'
 
 test('MCP service exposes design resources, progressive skills and AI page planning', async () => {
   const service = createAtlasMCPService({ workspaceRoot: process.cwd() })
-  assert.equal(service.resources.components.length, 51)
+  assert.equal(service.resources.components.length, 67)
   assert.equal(service.resources.patterns.filter((pattern) => pattern.group === 'ai').length, 15)
   assert.equal(service.planPage({ intent: '知识库 RAG 检索页面' }).pattern.id, 'ai-knowledge')
   const skill = await service.getSkill('atlas-eids-design-system')
@@ -16,7 +16,7 @@ test('MCP service exposes design resources, progressive skills and AI page plann
   const visualReference = await service.getSkill('atlas-eids-design-system', 'visual-quality.md')
   assert.match(visualReference.reference.source, /42px/)
   const componentManifest = JSON.parse(await service.readDesignManifest('component-manifest.json'))
-  assert.equal(componentManifest.componentCount, 50)
+  assert.equal(componentManifest.componentCount, 66)
   assert.ok(componentManifest.components.some((component) => component.name === 'AtlasDataTable' && component.states.includes('loading')))
   await assert.rejects(() => service.getSkill('atlas-eids-design-system', '../secret.md'), /Unknown reference/)
   const { server } = createAtlasMcpServer({ service })
