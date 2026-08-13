@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/web-agent",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Permission-aware page tools for Atlas EIDS web agents",
   "type": "module",
   "files": [

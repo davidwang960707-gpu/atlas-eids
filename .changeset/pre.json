@@ -23,6 +23,7 @@
     "@atlas-eids/mcp": "0.2.0-beta.2"
   },
   "changesets": [
+    "align-runtime-platform-beta",
     "complete-application-frameworks",
     "dtcg-headless-ai-beta",
     "future-enterprise-beta",

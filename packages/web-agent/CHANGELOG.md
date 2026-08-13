@@ -1,5 +1,11 @@
 # @atlas-eids/web-agent
 
+## 0.2.0-beta.3
+
+### Patch Changes
+
+- 补齐插件沙箱、知识检索、WebSkills 与远程 Agent 在 beta.2 之后的版本记录，使 Beta 发布列车中的代码、契约和安装产物保持一致。
+
 ## 0.2.0-beta.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@atlas-eids/ai-runtime",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Provider-neutral streaming, tool and approval runtime for Atlas EIDS",
   "type": "module",
   "files": [
